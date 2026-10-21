@@ -17,6 +17,7 @@ func _ready() -> void:
 
 	output = RichTextLabel.new()
 	output.bbcode_enabled = true
+	output.selection_enabled = true
 	output.scroll_following = true
 	output.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	output.custom_minimum_size = Vector2(0, 320)
@@ -28,7 +29,7 @@ func _ready() -> void:
 	add_child(output)
 
 	input = LineEdit.new()
-	input.placeholder_text = "Escribe una orden (AYUDA para más)"
+	input.placeholder_text = "Escribe una orden (HELP para más)"
 	input.add_theme_font_override("font", _font)
 	input.add_theme_font_size_override("font_size", 16)
 	input.text_submitted.connect(_on_text_submitted)
@@ -39,8 +40,12 @@ func _on_text_submitted(text: String) -> void:
 	var command := text.strip_edges()
 	input.clear()
 	if command.is_empty():
+		focus_input_deferred()
 		return
 	command_entered.emit(command)
+	# The signal handlers may update/reparent other controls before the
+	# submission event finishes. Restore focus after that event has settled.
+	focus_input_deferred()
 
 
 func append_lines(lines: Array[String]) -> void:
@@ -59,3 +64,7 @@ func append_note(text: String) -> void:
 
 func focus_input() -> void:
 	input.grab_focus()
+
+
+func focus_input_deferred() -> void:
+	input.call_deferred("grab_focus")

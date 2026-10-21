@@ -24,7 +24,7 @@ func _ready() -> void:
 	interpreter = Interpreter.new(world)
 	_build_layout()
 	_show_intro()
-	terminal.focus_input()
+	terminal.focus_input_deferred()
 
 
 func _build_layout() -> void:
@@ -136,7 +136,7 @@ func _on_command(command: String) -> void:
 	if not lines.is_empty():
 		terminal.append_lines(lines)
 	_refresh_status()
-	terminal.focus_input()
+	terminal.focus_input_deferred()
 
 
 func _input(event: InputEvent) -> void:
@@ -166,7 +166,7 @@ func _toggle_debug_mode() -> void:
 		terminal.output.custom_minimum_size = _terminal_output_minimum
 		map_view.set_navigation_enabled(true)
 		_normal_interface.visible = true
-	terminal.call_deferred("focus_input")
+	terminal.focus_input_deferred()
 
 
 func _refresh_status() -> void:

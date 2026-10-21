@@ -145,6 +145,44 @@ func _test_parser(world: WorldData) -> void:
 	_equal(take.noun_stem, "LAMP", "noun stem of TAKE LAMP")
 	var magic := parser.parse("xyzzy")
 	_equal(magic.motion, "XYZZY", "XYZZY is a motion")
+	_equal(parser.parse("ayuda").kind, Command.Kind.UNKNOWN, "AYUDA is not advertised as a parser alias")
+	var specifically_handled := {
+		"CARRY": true,
+		"DROP": true,
+		"INVENTORY": true,
+		"UNLOCK": true,
+		"LOCK": true,
+		"LIGHT": true,
+		"EXTINGUISH": true,
+		"DRINK": true,
+		"FILL": true,
+		"POUR": true,
+		"EAT": true,
+		"ATTACK": true,
+		"WAKE": true,
+		"LISTEN": true,
+		"TREE": true,
+		"SCORE": true,
+		"HELP": true,
+		"INFO": true,
+		"QUIT": true,
+		"SAY": true,
+		"NOTHING": true,
+	}
+	var checked_actions: Dictionary = {}
+	for action in world.action_verbs.values():
+		var action_name := String(action)
+		if (
+			checked_actions.has(action_name)
+			or specifically_handled.has(action_name)
+			or not world.action_messages.has(action_name)
+		):
+			continue
+		checked_actions[action_name] = true
+		_check(
+			world.l10n_messages.has(action_name),
+			"recognized action %s has a Spanish fallback" % action_name
+		)
 
 
 func _test_movement(world: WorldData) -> void:
@@ -173,6 +211,8 @@ func _test_movement(world: WorldData) -> void:
 	var output := _play(interpreter, ["UP"])
 	_contains(output, "Por ahí no se puede ir", "an impossible direction is refused")
 	_equal(interpreter.state.current_location, "LOC_FOREST20", "the player did not move")
+	output = _play(interpreter, ["LEFT"])
+	_contains(output, "puntos cardinales", "relative movement failure is localized")
 
 
 func _test_grate_and_keys(world: WorldData) -> void:
@@ -262,6 +302,8 @@ func _test_score(world: WorldData) -> void:
 	_contains(output, "MetalWAR", "the notice names the author")
 	output = _play(interpreter, ["HELP"])
 	_contains(output, "GPL", "the help carries the licence line")
+	_contains(output, "LICENSES", "the help advertises the implemented licence command")
+	_check(not "\n".join(output).contains("AYUDA"), "the help does not advertise an unsupported alias")
 
 	# Survival (3 deaths) plus the rounding points, before any treasure.
 	_equal(interpreter._score(), 32, "score without treasure")
@@ -346,10 +388,16 @@ func _test_debug_interface() -> void:
 	var map_connections := map_before.exit_requested.get_connections().size()
 	var location_before: String = main.interpreter.state.current_location
 	var turn_before: int = main.interpreter.state.turn
-	terminal_before.input.text = "texto parcial"
 	map_before.zoom_level = 1.6
 	map_before.pan_offset = Vector2(30, -12)
 	var mode_before: MapView.ViewMode = map_before.view_mode
+	_check(terminal_before.output.selection_enabled, "terminal output text is selectable")
+	await process_frame
+	_check(terminal_before.input.has_focus(), "command input receives initial deferred focus")
+	terminal_before._on_text_submitted("   ")
+	await process_frame
+	_check(terminal_before.input.has_focus(), "empty command restores input focus")
+	terminal_before.input.text = "texto parcial"
 
 	var tab_event := InputEventKey.new()
 	tab_event.keycode = KEY_TAB
@@ -367,6 +415,8 @@ func _test_debug_interface() -> void:
 	_check(not map_before.navigation_enabled, "debug mode disables graph navigation")
 
 	main._on_command("E")
+	await process_frame
+	_check(terminal_before.input.has_focus(), "valid command restores input focus")
 	_equal(main.interpreter.state.current_location, "LOC_BUILDING", "parser moves while debug mode is open")
 	_equal(map_before.current_location, "LOC_BUILDING", "debug graph follows interpreter location")
 	_equal(map_before.observed_from, "LOC_START", "debug graph records actual origin")
@@ -376,11 +426,14 @@ func _test_debug_interface() -> void:
 	_equal(map_before.pan_offset, Vector2(30, -12), "command execution preserves pan")
 
 	main._on_command("LOOK")
+	await process_frame
 	_equal(main.interpreter.state.current_location, "LOC_BUILDING", "LOOK does not move in debug mode")
 	_equal(map_before.observed_command, "E", "LOOK preserves the last valid observed transition")
 
 	main._input(tab_event)
+	await process_frame
 	_check(not main.debug_mode, "debug mode closes")
+	_check(terminal_before.input.has_focus(), "view toggle restores input focus")
 	_check(map_before.navigation_enabled, "normal mode restores graph navigation")
 	_equal(terminal_before.command_entered.get_connections().size(), terminal_connections, "terminal signal is not duplicated")
 	_equal(map_before.exit_requested.get_connections().size(), map_connections, "map signal is not duplicated")
@@ -389,5 +442,9 @@ func _test_debug_interface() -> void:
 	_equal(map_before.view_mode, mode_before, "closing debug mode preserves map mode")
 
 	main._on_command("OUT")
+	await process_frame
 	_equal(main.interpreter.state.current_location, "LOC_START", "parser still moves in normal mode")
+	main._on_command("UNKNOWN-COMMAND")
+	await process_frame
+	_check(terminal_before.input.has_focus(), "unknown command restores input focus")
 	main.free()
