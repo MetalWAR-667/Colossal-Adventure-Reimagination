@@ -1,0 +1,351 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="Open Adventure RPG Archaeology tooling" agent="007-mata-hari-pilot-v2" type="device" version="24.7.0">
+  <diagram id="CH_ENTRY" name="02 — Cave Entry — Pilot V2">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2570" pageHeight="1255" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontFamily=Helvetica;" value="02 — Cave Entry — Pilot V2 (Mata Hari, Mission 004)" vertex="1" parent="1">
+          <mxGeometry x="60" y="14" width="780" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="compass" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#BDBDBD;align=center;verticalAlign=middle;fontFamily=Courier New;fontSize=11;fontStyle=1;" value="NORTH (–Y)&lt;br&gt;↑&lt;br&gt;W ← + → E&lt;br&gt;↓&lt;br&gt;SOUTH (+Y)" vertex="1" parent="1">
+          <mxGeometry x="60" y="46" width="130" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#BDBDBD;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5;fontSize=9.5;fontFamily=Helvetica;" value="&lt;b&gt;LEGEND &amp;amp; VISUAL HIERARCHY&lt;/b&gt;&lt;br&gt;• &lt;b&gt;Black solid (2.5 px):&lt;/b&gt; primary compass/passage movement (double arrowhead = two-way)&lt;br&gt;• &lt;b&gt;Blue solid (2.8 px):&lt;/b&gt; vertical UP / DOWN shaft (distinct from compass N/S)&lt;br&gt;• &lt;b&gt;Purple dashed:&lt;/b&gt; magic word teleport (XYZZY / &amp;gt;&amp;gt;Foof!&amp;lt;&amp;lt;) · &lt;b&gt;Grey dashed bus:&lt;/b&gt; parser fast-travel aliases (ENTRA, DEBRI, PIT)&lt;br&gt;• &lt;b&gt;Local markers:&lt;/b&gt; yellow = cross-page room · orange = transient state · red = death hazard" vertex="1" parent="1">
+          <mxGeometry x="206" y="46" width="660" height="92" as="geometry" />
+        </mxCell>
+        <object id="N_LOC_AWKWARD" label="&lt;b&gt;LOC_AWKWARD — Awkward canyon&lt;/b&gt;&lt;hr size='1'/&gt;You are in an awkward sloping east/west canyon.&lt;br&gt;&lt;br&gt;&lt;b&gt;EXITS (source precedence order)&lt;/b&gt;&lt;br&gt;1. DEPRE → LOC_GRATE [Ch 01] [not GRATE=GRATE_CLOSED]&lt;br&gt;2. ENTRA → LOC_BELOWGRATE&lt;br&gt;3. DOWN, EAST, DEBRI → LOC_DEBRIS&lt;br&gt;4. INWAR, UPWAR, WEST → LOC_BIRDCHAMBER&lt;br&gt;5. PIT → LOC_PITTOP" source_id="LOC_AWKWARD" description_en="You are in an awkward sloping east/west canyon." description_es="" short_en="" maptag="Awkward canyon." chapter_id="CH_ENTRY" source_reference="Open_Adventure.yaml locations/LOC_AWKWARD" review_status="ok" role="playable" conditions="" travel_rules="[{&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_GRATE&quot;], &quot;action_target&quot;: &quot;LOC_GRATE&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: {&quot;object&quot;: &quot;GRATE&quot;, &quot;state&quot;: &quot;GRATE_CLOSED&quot;, &quot;type&quot;: &quot;not&quot;}, &quot;verbs&quot;: [&quot;DEPRE&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_BELOWGRATE&quot;], &quot;action_target&quot;: &quot;LOC_BELOWGRATE&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;ENTRA&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_DEBRIS&quot;], &quot;action_target&quot;: &quot;LOC_DEBRIS&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;DOWN&quot;, &quot;EAST&quot;, &quot;DEBRI&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_BIRDCHAMBER&quot;], &quot;action_target&quot;: &quot;LOC_BIRDCHAMBER&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;INWAR&quot;, &quot;UPWAR&quot;, &quot;WEST&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_PITTOP&quot;], &quot;action_target&quot;: &quot;LOC_PITTOP&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;PIT&quot;]}]">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=1.5;arcSize=4;fontSize=10;fontFamily=Helvetica;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;spacingBottom=6;" vertex="1" parent="1">
+            <mxGeometry x="1290" y="175" width="290" height="190" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="N_LOC_BELOWGRATE" label="&lt;b&gt;LOC_BELOWGRATE — below the grate&lt;/b&gt;&lt;hr size='1'/&gt;You are in a small chamber beneath a 3x3 steel grate to the surface.&lt;br&gt;A low crawl over cobbles leads inward to the west.&lt;br&gt;&lt;br&gt;&lt;b&gt;EXITS (source precedence order)&lt;/b&gt;&lt;br&gt;1. OUT, UPWAR → LOC_GRATE [Ch 01] [not GRATE=GRATE_CLOSED]&lt;br&gt;2. OUT ✕ msg GRATE_NOWAY&lt;br&gt;3. CRAWL, COBBL, INWAR, WEST → LOC_COBBLE&lt;br&gt;4. PIT → LOC_PITTOP&lt;br&gt;5. DEBRI → LOC_DEBRIS" source_id="LOC_BELOWGRATE" description_en="You are in a small chamber beneath a 3x3 steel grate to the surface.&#10;A low crawl over cobbles leads inward to the west." description_es="" short_en="You're below the grate." maptag="" chapter_id="CH_ENTRY" source_reference="Open_Adventure.yaml locations/LOC_BELOWGRATE" review_status="ok" role="playable" conditions="LIT=True" travel_rules="[{&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_GRATE&quot;], &quot;action_target&quot;: &quot;LOC_GRATE&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: {&quot;object&quot;: &quot;GRATE&quot;, &quot;state&quot;: &quot;GRATE_CLOSED&quot;, &quot;type&quot;: &quot;not&quot;}, &quot;verbs&quot;: [&quot;OUT&quot;, &quot;UPWAR&quot;]}, {&quot;action_full&quot;: [&quot;speak&quot;, &quot;GRATE_NOWAY&quot;], &quot;action_target&quot;: &quot;GRATE_NOWAY&quot;, &quot;action_type&quot;: &quot;speak&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;OUT&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_COBBLE&quot;], &quot;action_target&quot;: &quot;LOC_COBBLE&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;CRAWL&quot;, &quot;COBBL&quot;, &quot;INWAR&quot;, &quot;WEST&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_PITTOP&quot;], &quot;action_target&quot;: &quot;LOC_PITTOP&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;PIT&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_DEBRIS&quot;], &quot;action_target&quot;: &quot;LOC_DEBRIS&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;DEBRI&quot;]}]" blocked_messages="OUT → GRATE_NOWAY" objects_here="GRATE" immovable_objects_here="GRATE">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=1.5;arcSize=4;fontSize=10;fontFamily=Helvetica;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;spacingBottom=6;" vertex="1" parent="1">
+            <mxGeometry x="2220" y="660" width="290" height="210" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="N_LOC_BIRDCHAMBER" label="&lt;b&gt;LOC_BIRDCHAMBER — in bird chamber&lt;/b&gt;&lt;hr size='1'/&gt;You are in a splendid chamber thirty feet high.  The walls are frozen&lt;br&gt;rivers of orange stone.  An awkward canyon and a good passage exit&lt;br&gt;from east and west sides of the chamber.&lt;br&gt;&lt;br&gt;&lt;b&gt;EXITS (source precedence order)&lt;/b&gt;&lt;br&gt;1. DEPRE → LOC_GRATE [Ch 01] [not GRATE=GRATE_CLOSED]&lt;br&gt;2. ENTRA → LOC_BELOWGRATE&lt;br&gt;3. DEBRI → LOC_DEBRIS&lt;br&gt;4. CANYO, EAST → LOC_AWKWARD&lt;br&gt;5. PASSA, PIT, WEST → LOC_PITTOP" source_id="LOC_BIRDCHAMBER" description_en="You are in a splendid chamber thirty feet high.  The walls are frozen&#10;rivers of orange stone.  An awkward canyon and a good passage exit&#10;from east and west sides of the chamber." description_es="" short_en="You're in bird chamber." maptag="" chapter_id="CH_ENTRY" source_reference="Open_Adventure.yaml locations/LOC_BIRDCHAMBER" review_status="ok" role="playable" conditions="" travel_rules="[{&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_GRATE&quot;], &quot;action_target&quot;: &quot;LOC_GRATE&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: {&quot;object&quot;: &quot;GRATE&quot;, &quot;state&quot;: &quot;GRATE_CLOSED&quot;, &quot;type&quot;: &quot;not&quot;}, &quot;verbs&quot;: [&quot;DEPRE&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_BELOWGRATE&quot;], &quot;action_target&quot;: &quot;LOC_BELOWGRATE&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;ENTRA&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_DEBRIS&quot;], &quot;action_target&quot;: &quot;LOC_DEBRIS&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;DEBRI&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_AWKWARD&quot;], &quot;action_target&quot;: &quot;LOC_AWKWARD&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;CANYO&quot;, &quot;EAST&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_PITTOP&quot;], &quot;action_target&quot;: &quot;LOC_PITTOP&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;PASSA&quot;, &quot;PIT&quot;, &quot;WEST&quot;]}]" objects_here="BIRD">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=1.5;arcSize=4;fontSize=10;fontFamily=Helvetica;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;spacingBottom=6;" vertex="1" parent="1">
+            <mxGeometry x="880" y="175" width="290" height="230" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="N_LOC_COBBLE" label="&lt;b&gt;LOC_COBBLE — in cobble crawl&lt;/b&gt;&lt;hr size='1'/&gt;You are crawling over cobbles in a low passage.  There is a dim light&lt;br&gt;at the east end of the passage.&lt;br&gt;&lt;br&gt;&lt;b&gt;EXITS (source precedence order)&lt;/b&gt;&lt;br&gt;1. OUT, SURFA, EAST → LOC_BELOWGRATE&lt;br&gt;2. INWAR, DARK, WEST, DEBRI → LOC_DEBRIS&lt;br&gt;3. PIT → LOC_PITTOP" source_id="LOC_COBBLE" description_en="You are crawling over cobbles in a low passage.  There is a dim light&#10;at the east end of the passage." description_es="" short_en="You're in cobble crawl." maptag="" chapter_id="CH_ENTRY" source_reference="Open_Adventure.yaml locations/LOC_COBBLE" review_status="ok" role="playable" conditions="LIT=True" travel_rules="[{&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_BELOWGRATE&quot;], &quot;action_target&quot;: &quot;LOC_BELOWGRATE&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;OUT&quot;, &quot;SURFA&quot;, &quot;EAST&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_DEBRIS&quot;], &quot;action_target&quot;: &quot;LOC_DEBRIS&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;INWAR&quot;, &quot;DARK&quot;, &quot;WEST&quot;, &quot;DEBRI&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_PITTOP&quot;], &quot;action_target&quot;: &quot;LOC_PITTOP&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;PIT&quot;]}]" objects_here="CAGE">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=1.5;arcSize=4;fontSize=10;fontFamily=Helvetica;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;spacingBottom=6;" vertex="1" parent="1">
+            <mxGeometry x="1810" y="660" width="290" height="160" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="N_LOC_CRACK" label="&lt;b&gt;LOC_CRACK — [unpassable crack]&lt;/b&gt;&lt;hr size='1'/&gt;The crack is far too small for you to follow.  At its widest it is&lt;br&gt;barely wide enough to admit your foot.&lt;br&gt;&lt;br&gt;&lt;b&gt;EXITS (source precedence order)&lt;/b&gt;&lt;br&gt;1. (implicit) → LOC_PITTOP" source_id="LOC_CRACK" description_en="The crack is far too small for you to follow.  At its widest it is&#10;barely wide enough to admit your foot." description_es="" short_en="" maptag="" chapter_id="CH_ENTRY" source_reference="Open_Adventure.yaml locations/LOC_CRACK" review_status="ok" role="transient" conditions="DEEP=True" travel_rules="[{&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_PITTOP&quot;], &quot;action_target&quot;: &quot;LOC_PITTOP&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: []}]">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#333333;strokeWidth=1.5;dashed=1;arcSize=4;fontSize=10;fontFamily=Helvetica;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;spacingBottom=6;" vertex="1" parent="1">
+            <mxGeometry x="60" y="175" width="290" height="130" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="N_LOC_DEBRIS" label="&lt;b&gt;LOC_DEBRIS — in debris room&lt;/b&gt;&lt;hr size='1'/&gt;You are in a debris room filled with stuff washed in from the surface.&lt;br&gt;A low wide passage with cobbles becomes plugged with mud and debris&lt;br&gt;here, but an awkward canyon leads upward and west.  In the mud someone&lt;br&gt;has scrawled, &amp;quot;MAGIC WORD XYZZY&amp;quot;.&lt;br&gt;&lt;br&gt;&lt;b&gt;EXITS (source precedence order)&lt;/b&gt;&lt;br&gt;1. DEPRE → LOC_GRATE [Ch 01] [not GRATE=GRATE_CLOSED]&lt;br&gt;2. ENTRA → LOC_BELOWGRATE&lt;br&gt;3. CRAWL, COBBL, PASSA, LOW, EAST → LOC_COBBLE&lt;br&gt;4. CANYO, INWAR, UPWAR, WEST → LOC_AWKWARD&lt;br&gt;5. XYZZY → LOC_FOOF2 [Ch 01]&lt;br&gt;6. PIT → LOC_PITTOP" source_id="LOC_DEBRIS" description_en="You are in a debris room filled with stuff washed in from the surface.&#10;A low wide passage with cobbles becomes plugged with mud and debris&#10;here, but an awkward canyon leads upward and west.  In the mud someone&#10;has scrawled, &quot;MAGIC WORD XYZZY&quot;." description_es="" short_en="You're in debris room." maptag="" chapter_id="CH_ENTRY" source_reference="Open_Adventure.yaml locations/LOC_DEBRIS" review_status="ok" role="playable" conditions="" travel_rules="[{&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_GRATE&quot;], &quot;action_target&quot;: &quot;LOC_GRATE&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: {&quot;object&quot;: &quot;GRATE&quot;, &quot;state&quot;: &quot;GRATE_CLOSED&quot;, &quot;type&quot;: &quot;not&quot;}, &quot;verbs&quot;: [&quot;DEPRE&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_BELOWGRATE&quot;], &quot;action_target&quot;: &quot;LOC_BELOWGRATE&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;ENTRA&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_COBBLE&quot;], &quot;action_target&quot;: &quot;LOC_COBBLE&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;CRAWL&quot;, &quot;COBBL&quot;, &quot;PASSA&quot;, &quot;LOW&quot;, &quot;EAST&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_AWKWARD&quot;], &quot;action_target&quot;: &quot;LOC_AWKWARD&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;CANYO&quot;, &quot;INWAR&quot;, &quot;UPWAR&quot;, &quot;WEST&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_FOOF2&quot;], &quot;action_target&quot;: &quot;LOC_FOOF2&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;XYZZY&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_PITTOP&quot;], &quot;action_target&quot;: &quot;LOC_PITTOP&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;PIT&quot;]}]" objects_here="ROD, OBJ_47" immovable_objects_here="OBJ_47">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=1.5;arcSize=4;fontSize=10;fontFamily=Helvetica;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;spacingBottom=6;" vertex="1" parent="1">
+            <mxGeometry x="1400" y="660" width="290" height="280" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="N_LOC_EASTBANK" label="&lt;b&gt;LOC_EASTBANK — on east bank of fissure&lt;/b&gt;&lt;hr size='1'/&gt;You are on the east bank of a fissure slicing clear across the hall.&lt;br&gt;The mist is quite thick here, and the fissure is too wide to jump.&lt;br&gt;&lt;br&gt;&lt;b&gt;EXITS (source precedence order)&lt;/b&gt;&lt;br&gt;1. HALL, EAST → LOC_MISTHALL&lt;br&gt;2. JUMP ✕ msg CROSS_BRIDGE [not FISSURE=UNBRIDGED]&lt;br&gt;3. FORWA → LOC_NOMAKE [Ch 11] [not FISSURE=BRIDGED]&lt;br&gt;4. OVER, ACROS, WEST, CROSS ✕ msg NO_CROSS [not FISSURE=BRIDGED]&lt;br&gt;5. OVER → LOC_WESTBANK" source_id="LOC_EASTBANK" description_en="You are on the east bank of a fissure slicing clear across the hall.&#10;The mist is quite thick here, and the fissure is too wide to jump." description_es="" short_en="You're on east bank of fissure." maptag="" chapter_id="CH_ENTRY" source_reference="Open_Adventure.yaml locations/LOC_EASTBANK" review_status="ok" role="playable" conditions="DEEP=True" travel_rules="[{&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_MISTHALL&quot;], &quot;action_target&quot;: &quot;LOC_MISTHALL&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;HALL&quot;, &quot;EAST&quot;]}, {&quot;action_full&quot;: [&quot;speak&quot;, &quot;CROSS_BRIDGE&quot;], &quot;action_target&quot;: &quot;CROSS_BRIDGE&quot;, &quot;action_type&quot;: &quot;speak&quot;, &quot;cond&quot;: {&quot;object&quot;: &quot;FISSURE&quot;, &quot;state&quot;: &quot;UNBRIDGED&quot;, &quot;type&quot;: &quot;not&quot;}, &quot;verbs&quot;: [&quot;JUMP&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_NOMAKE&quot;], &quot;action_target&quot;: &quot;LOC_NOMAKE&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: {&quot;object&quot;: &quot;FISSURE&quot;, &quot;state&quot;: &quot;BRIDGED&quot;, &quot;type&quot;: &quot;not&quot;}, &quot;verbs&quot;: [&quot;FORWA&quot;]}, {&quot;action_full&quot;: [&quot;speak&quot;, &quot;NO_CROSS&quot;], &quot;action_target&quot;: &quot;NO_CROSS&quot;, &quot;action_type&quot;: &quot;speak&quot;, &quot;cond&quot;: {&quot;object&quot;: &quot;FISSURE&quot;, &quot;state&quot;: &quot;BRIDGED&quot;, &quot;type&quot;: &quot;not&quot;}, &quot;verbs&quot;: [&quot;OVER&quot;, &quot;ACROS&quot;, &quot;WEST&quot;, &quot;CROSS&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_WESTBANK&quot;], &quot;action_target&quot;: &quot;LOC_WESTBANK&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;OVER&quot;]}]" blocked_messages="JUMP → CROSS_BRIDGE [not FISSURE=UNBRIDGED] | OVER, ACROS, WEST, CROSS → NO_CROSS [not FISSURE=BRIDGED]" objects_here="FISSURE" immovable_objects_here="FISSURE">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=1.5;arcSize=4;fontSize=10;fontFamily=Helvetica;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;spacingBottom=6;" vertex="1" parent="1">
+            <mxGeometry x="470" y="660" width="290" height="240" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="N_LOC_FOOF1" label="&lt;b&gt;LOC_FOOF1 — [XYZZY teleport arrival]&lt;/b&gt;&lt;hr size='1'/&gt;&amp;gt;&amp;gt;Foof!&amp;lt;&amp;lt;&lt;br&gt;&lt;br&gt;&lt;b&gt;EXITS (source precedence order)&lt;/b&gt;&lt;br&gt;1. (implicit) → LOC_DEBRIS" source_id="LOC_FOOF1" description_en="&gt;&gt;Foof!&lt;&lt;" description_es="" short_en="" maptag="" chapter_id="CH_ENTRY" source_reference="Open_Adventure.yaml locations/LOC_FOOF1" review_status="ok" role="special" conditions="" travel_rules="[{&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_DEBRIS&quot;], &quot;action_target&quot;: &quot;LOC_DEBRIS&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: []}]">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#7B1FA2;strokeWidth=1.5;dashed=1;arcSize=4;fontSize=10;fontFamily=Helvetica;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;spacingBottom=6;" vertex="1" parent="1">
+            <mxGeometry x="1660" y="175" width="290" height="120" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="N_LOC_MISTHALL" label="&lt;b&gt;LOC_MISTHALL — in Hall of Mists&lt;/b&gt;&lt;hr size='1'/&gt;You are at one end of a vast hall stretching forward out of sight to&lt;br&gt;the west.  There are openings to either side.  Nearby, a wide stone&lt;br&gt;staircase leads downward.  The hall is filled with wisps of white mist&lt;br&gt;swaying to and fro almost as if alive.  A cold wind blows up the&lt;br&gt;staircase.  There is a passage at the top of a dome behind you.&lt;br&gt;&lt;br&gt;&lt;b&gt;EXITS (source precedence order)&lt;/b&gt;&lt;br&gt;1. LEFT, SOUTH → LOC_NUGGET&lt;br&gt;2. FORWA, HALL, WEST → LOC_EASTBANK&lt;br&gt;3. STAIR, DOWN, NORTH → LOC_KINGHALL [Ch 03]&lt;br&gt;4. UPWAR, PIT, STEPS, DOME, PASSA, EAST → LOC_DOME [Ch 11] [carry NUGGET]&lt;br&gt;5. UPWAR → LOC_PITTOP&lt;br&gt;6. Y2 → LOC_JUMBLE [Ch 10]" source_id="LOC_MISTHALL" description_en="You are at one end of a vast hall stretching forward out of sight to&#10;the west.  There are openings to either side.  Nearby, a wide stone&#10;staircase leads downward.  The hall is filled with wisps of white mist&#10;swaying to and fro almost as if alive.  A cold wind blows up the&#10;staircase.  There is a passage at the top of a dome behind you." description_es="" short_en="You're in Hall of Mists." maptag="" chapter_id="CH_ENTRY" source_reference="Open_Adventure.yaml locations/LOC_MISTHALL" review_status="ok" role="playable" conditions="DEEP=True" travel_rules="[{&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_NUGGET&quot;], &quot;action_target&quot;: &quot;LOC_NUGGET&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;LEFT&quot;, &quot;SOUTH&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_EASTBANK&quot;], &quot;action_target&quot;: &quot;LOC_EASTBANK&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;FORWA&quot;, &quot;HALL&quot;, &quot;WEST&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_KINGHALL&quot;], &quot;action_target&quot;: &quot;LOC_KINGHALL&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;STAIR&quot;, &quot;DOWN&quot;, &quot;NORTH&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_DOME&quot;], &quot;action_target&quot;: &quot;LOC_DOME&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: {&quot;object&quot;: &quot;NUGGET&quot;, &quot;type&quot;: &quot;carry&quot;}, &quot;verbs&quot;: [&quot;UPWAR&quot;, &quot;PIT&quot;, &quot;STEPS&quot;, &quot;DOME&quot;, &quot;PASSA&quot;, &quot;EAST&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_PITTOP&quot;], &quot;action_target&quot;: &quot;LOC_PITTOP&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;UPWAR&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_JUMBLE&quot;], &quot;action_target&quot;: &quot;LOC_JUMBLE&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;Y2&quot;]}]" objects_here="STEPS" immovable_objects_here="STEPS" sound="WIND_WHISTLES">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=1.5;arcSize=4;fontSize=10;fontFamily=Helvetica;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;spacingBottom=6;" vertex="1" parent="1">
+            <mxGeometry x="880" y="660" width="290" height="310" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="N_LOC_NUGGET" label="&lt;b&gt;LOC_NUGGET — in nugget-of-gold room&lt;/b&gt;&lt;hr size='1'/&gt;This is a low room with a crude note on the wall.  The note says,&lt;br&gt;&amp;quot;You won&amp;#x27;t get it up the steps&amp;quot;.&lt;br&gt;&lt;br&gt;&lt;b&gt;EXITS (source precedence order)&lt;/b&gt;&lt;br&gt;1. HALL, OUT, NORTH → LOC_MISTHALL" source_id="LOC_NUGGET" description_en="This is a low room with a crude note on the wall.  The note says,&#10;&quot;You won't get it up the steps&quot;." description_es="" short_en="You're in nugget-of-gold room." maptag="" chapter_id="CH_ENTRY" source_reference="Open_Adventure.yaml locations/LOC_NUGGET" review_status="ok" role="playable" conditions="DEEP=True" travel_rules="[{&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_MISTHALL&quot;], &quot;action_target&quot;: &quot;LOC_MISTHALL&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;HALL&quot;, &quot;OUT&quot;, &quot;NORTH&quot;]}]" objects_here="OBJ_48, NUGGET" treasures_here="NUGGET" immovable_objects_here="OBJ_48">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=1.5;arcSize=4;fontSize=10;fontFamily=Helvetica;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;spacingBottom=6;" vertex="1" parent="1">
+            <mxGeometry x="880" y="1060" width="290" height="130" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="N_LOC_PITTOP" label="&lt;b&gt;LOC_PITTOP — at top of small pit&lt;/b&gt;&lt;hr size='1'/&gt;At your feet is a small pit breathing traces of white mist.  An east&lt;br&gt;passage ends here except for a small crack leading on.&lt;br&gt;&lt;br&gt;&lt;b&gt;EXITS (source precedence order)&lt;/b&gt;&lt;br&gt;1. DEPRE → LOC_GRATE [Ch 01] [not GRATE=GRATE_CLOSED]&lt;br&gt;2. ENTRA → LOC_BELOWGRATE&lt;br&gt;3. DEBRI → LOC_DEBRIS&lt;br&gt;4. PASSA, EAST → LOC_BIRDCHAMBER&lt;br&gt;5. DOWN, PIT, STEPS → LOC_NECKBROKE [Ch 11] [carry NUGGET]&lt;br&gt;6. DOWN → LOC_MISTHALL&lt;br&gt;7. CRACK, WEST → LOC_CRACK" source_id="LOC_PITTOP" description_en="At your feet is a small pit breathing traces of white mist.  An east&#10;passage ends here except for a small crack leading on." description_es="" short_en="You're at top of small pit." maptag="" chapter_id="CH_ENTRY" source_reference="Open_Adventure.yaml locations/LOC_PITTOP" review_status="ok" role="playable" conditions="" travel_rules="[{&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_GRATE&quot;], &quot;action_target&quot;: &quot;LOC_GRATE&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: {&quot;object&quot;: &quot;GRATE&quot;, &quot;state&quot;: &quot;GRATE_CLOSED&quot;, &quot;type&quot;: &quot;not&quot;}, &quot;verbs&quot;: [&quot;DEPRE&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_BELOWGRATE&quot;], &quot;action_target&quot;: &quot;LOC_BELOWGRATE&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;ENTRA&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_DEBRIS&quot;], &quot;action_target&quot;: &quot;LOC_DEBRIS&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;DEBRI&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_BIRDCHAMBER&quot;], &quot;action_target&quot;: &quot;LOC_BIRDCHAMBER&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;PASSA&quot;, &quot;EAST&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_NECKBROKE&quot;], &quot;action_target&quot;: &quot;LOC_NECKBROKE&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: {&quot;object&quot;: &quot;NUGGET&quot;, &quot;type&quot;: &quot;carry&quot;}, &quot;verbs&quot;: [&quot;DOWN&quot;, &quot;PIT&quot;, &quot;STEPS&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_MISTHALL&quot;], &quot;action_target&quot;: &quot;LOC_MISTHALL&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;DOWN&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_CRACK&quot;], &quot;action_target&quot;: &quot;LOC_CRACK&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;CRACK&quot;, &quot;WEST&quot;]}]" objects_here="STEPS" immovable_objects_here="STEPS">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=1.5;arcSize=4;fontSize=10;fontFamily=Helvetica;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;spacingBottom=6;" vertex="1" parent="1">
+            <mxGeometry x="470" y="175" width="290" height="250" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="N_LOC_WESTBANK" label="&lt;b&gt;LOC_WESTBANK — on west bank of fissure&lt;/b&gt;&lt;hr size='1'/&gt;You are on the west side of the fissure in the Hall of Mists.&lt;br&gt;&lt;br&gt;&lt;b&gt;EXITS (source precedence order)&lt;/b&gt;&lt;br&gt;1. JUMP ✕ msg CROSS_BRIDGE [not FISSURE=UNBRIDGED]&lt;br&gt;2. FORWA → LOC_NOMAKE [Ch 11] [not FISSURE=BRIDGED]&lt;br&gt;3. OVER, ACROS, EAST, CROSS ✕ msg NO_CROSS [not FISSURE=BRIDGED]&lt;br&gt;4. OVER → LOC_EASTBANK&lt;br&gt;5. NORTH → LOC_PARALLEL1 [Ch 04]&lt;br&gt;6. WEST → LOC_MISTWEST [Ch 04]" source_id="LOC_WESTBANK" description_en="You are on the west side of the fissure in the Hall of Mists." description_es="" short_en="You're on west bank of fissure." maptag="" chapter_id="CH_ENTRY" source_reference="Open_Adventure.yaml locations/LOC_WESTBANK" review_status="ok" role="playable" conditions="DEEP=True" travel_rules="[{&quot;action_full&quot;: [&quot;speak&quot;, &quot;CROSS_BRIDGE&quot;], &quot;action_target&quot;: &quot;CROSS_BRIDGE&quot;, &quot;action_type&quot;: &quot;speak&quot;, &quot;cond&quot;: {&quot;object&quot;: &quot;FISSURE&quot;, &quot;state&quot;: &quot;UNBRIDGED&quot;, &quot;type&quot;: &quot;not&quot;}, &quot;verbs&quot;: [&quot;JUMP&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_NOMAKE&quot;], &quot;action_target&quot;: &quot;LOC_NOMAKE&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: {&quot;object&quot;: &quot;FISSURE&quot;, &quot;state&quot;: &quot;BRIDGED&quot;, &quot;type&quot;: &quot;not&quot;}, &quot;verbs&quot;: [&quot;FORWA&quot;]}, {&quot;action_full&quot;: [&quot;speak&quot;, &quot;NO_CROSS&quot;], &quot;action_target&quot;: &quot;NO_CROSS&quot;, &quot;action_type&quot;: &quot;speak&quot;, &quot;cond&quot;: {&quot;object&quot;: &quot;FISSURE&quot;, &quot;state&quot;: &quot;BRIDGED&quot;, &quot;type&quot;: &quot;not&quot;}, &quot;verbs&quot;: [&quot;OVER&quot;, &quot;ACROS&quot;, &quot;EAST&quot;, &quot;CROSS&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_EASTBANK&quot;], &quot;action_target&quot;: &quot;LOC_EASTBANK&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;OVER&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_PARALLEL1&quot;], &quot;action_target&quot;: &quot;LOC_PARALLEL1&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;NORTH&quot;]}, {&quot;action_full&quot;: [&quot;goto&quot;, &quot;LOC_MISTWEST&quot;], &quot;action_target&quot;: &quot;LOC_MISTWEST&quot;, &quot;action_type&quot;: &quot;goto&quot;, &quot;cond&quot;: null, &quot;verbs&quot;: [&quot;WEST&quot;]}]" blocked_messages="JUMP → CROSS_BRIDGE [not FISSURE=UNBRIDGED] | OVER, ACROS, EAST, CROSS → NO_CROSS [not FISSURE=BRIDGED]" objects_here="FISSURE, OBJ_51" treasures_here="OBJ_51" immovable_objects_here="FISSURE">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=1.5;arcSize=4;fontSize=10;fontFamily=Helvetica;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;spacingBottom=6;" vertex="1" parent="1">
+            <mxGeometry x="60" y="660" width="290" height="220" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="M_LOC_GRATE" label="&lt;b&gt;→ LOC_GRATE · Ch 01 Surface World&lt;/b&gt;&lt;br&gt;OUT, UPWAR (BELOWGRATE) · DEPRE (4 rooms)&lt;br&gt;[not GRATE=GRATE_CLOSED]" kind="cross" target_id="LOC_GRATE" represents_rules="[{&quot;action&quot;: [&quot;goto&quot;, &quot;LOC_GRATE&quot;], &quot;cond&quot;: {&quot;object&quot;: &quot;GRATE&quot;, &quot;state&quot;: &quot;GRATE_CLOSED&quot;, &quot;type&quot;: &quot;not&quot;}, &quot;source&quot;: &quot;LOC_AWKWARD&quot;, &quot;verbs&quot;: [&quot;DEPRE&quot;]}, {&quot;action&quot;: [&quot;goto&quot;, &quot;LOC_GRATE&quot;], &quot;cond&quot;: {&quot;object&quot;: &quot;GRATE&quot;, &quot;state&quot;: &quot;GRATE_CLOSED&quot;, &quot;type&quot;: &quot;not&quot;}, &quot;source&quot;: &quot;LOC_BELOWGRATE&quot;, &quot;verbs&quot;: [&quot;OUT&quot;, &quot;UPWAR&quot;]}, {&quot;action&quot;: [&quot;goto&quot;, &quot;LOC_GRATE&quot;], &quot;cond&quot;: {&quot;object&quot;: &quot;GRATE&quot;, &quot;state&quot;: &quot;GRATE_CLOSED&quot;, &quot;type&quot;: &quot;not&quot;}, &quot;source&quot;: &quot;LOC_BIRDCHAMBER&quot;, &quot;verbs&quot;: [&quot;DEPRE&quot;]}, {&quot;action&quot;: [&quot;goto&quot;, &quot;LOC_GRATE&quot;], &quot;cond&quot;: {&quot;object&quot;: &quot;GRATE&quot;, &quot;state&quot;: &quot;GRATE_CLOSED&quot;, &quot;type&quot;: &quot;not&quot;}, &quot;source&quot;: &quot;LOC_DEBRIS&quot;, &quot;verbs&quot;: [&quot;DEPRE&quot;]}, {&quot;action&quot;: [&quot;goto&quot;, &quot;LOC_GRATE&quot;], &quot;cond&quot;: {&quot;object&quot;: &quot;GRATE&quot;, &quot;state&quot;: &quot;GRATE_CLOSED&quot;, &quot;type&quot;: &quot;not&quot;}, &quot;source&quot;: &quot;LOC_PITTOP&quot;, &quot;verbs&quot;: [&quot;DEPRE&quot;]}]">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57C00;strokeWidth=1.5;dashed=1;arcSize=6;fontSize=9;fontFamily=Helvetica;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;" vertex="1" parent="1">
+            <mxGeometry x="2270" y="545" width="240" height="56" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="X1" label="OUT, UPWAR [open]" marker_target="LOC_GRATE" source_room="LOC_BELOWGRATE">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#E65100;strokeWidth=1.8;dashed=1;dashPattern=4 3;endArrow=block;endFill=1;endSize=6;exitX=0.65;exitY=0.0;exitDx=0;exitDy=0;entryX=0.58;entryY=1.0;entryDx=0;entryDy=0;fontSize=9;fontFamily=Helvetica;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="N_LOC_BELOWGRATE" target="M_LOC_GRATE">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="M_LOC_FOOF2" label="&lt;b&gt;✨ XYZZY → LOC_FOOF2 · Ch 01&lt;/b&gt;&lt;br&gt;Magic word teleport to LOC_BUILDING" kind="magic" target_id="LOC_FOOF2" represents_rules="[{&quot;action&quot;: [&quot;goto&quot;, &quot;LOC_FOOF2&quot;], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_DEBRIS&quot;, &quot;verbs&quot;: [&quot;XYZZY&quot;]}]">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#7B1FA2;strokeWidth=1.5;dashed=1;arcSize=6;fontSize=9;fontFamily=Helvetica;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;" vertex="1" parent="1">
+            <mxGeometry x="1540" y="985" width="250" height="48" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="X2" label="XYZZY" marker_target="LOC_FOOF2" source_room="LOC_DEBRIS">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#7B1FA2;strokeWidth=1.8;dashed=1;dashPattern=4 3;endArrow=block;endFill=1;endSize=6;exitX=0.69;exitY=1.0;exitDx=0;exitDy=0;entryX=0.24;entryY=0.0;entryDx=0;entryDy=0;fontSize=9;fontFamily=Helvetica;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="N_LOC_DEBRIS" target="M_LOC_FOOF2">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="M_LOC_NECKBROKE" label="&lt;b&gt;☠ LOC_NECKBROKE · Ch 11 Death&lt;/b&gt;&lt;br&gt;DOWN, PIT, STEPS [carry NUGGET]" kind="death" target_id="LOC_NECKBROKE" represents_rules="[{&quot;action&quot;: [&quot;goto&quot;, &quot;LOC_NECKBROKE&quot;], &quot;cond&quot;: {&quot;object&quot;: &quot;NUGGET&quot;, &quot;type&quot;: &quot;carry&quot;}, &quot;source&quot;: &quot;LOC_PITTOP&quot;, &quot;verbs&quot;: [&quot;DOWN&quot;, &quot;PIT&quot;, &quot;STEPS&quot;]}]">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#C62828;strokeWidth=1.5;dashed=1;arcSize=6;fontSize=9;fontFamily=Helvetica;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;" vertex="1" parent="1">
+            <mxGeometry x="470" y="550" width="230" height="48" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="X3" label="DOWN [carry NUGGET]" marker_target="LOC_NECKBROKE" source_room="LOC_PITTOP">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#C62828;strokeWidth=1.8;dashed=1;dashPattern=4 3;endArrow=block;endFill=1;endSize=6;exitX=0.16;exitY=1.0;exitDx=0;exitDy=0;entryX=0.2;entryY=0.0;entryDx=0;entryDy=0;fontSize=9;fontFamily=Helvetica;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="N_LOC_PITTOP" target="M_LOC_NECKBROKE">
+            <mxGeometry relative="1" as="geometry">
+              <mxPoint x="0" y="18" as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object id="M_LOC_PARALLEL1" label="&lt;b&gt;→ LOC_PARALLEL1 · Ch 04 Maze All Alike&lt;/b&gt;&lt;br&gt;NORTH (low wide passage north of hall)" kind="cross" target_id="LOC_PARALLEL1" represents_rules="[{&quot;action&quot;: [&quot;goto&quot;, &quot;LOC_PARALLEL1&quot;], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_WESTBANK&quot;, &quot;verbs&quot;: [&quot;NORTH&quot;]}]">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57C00;strokeWidth=1.5;dashed=1;arcSize=6;fontSize=9;fontFamily=Helvetica;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;" vertex="1" parent="1">
+            <mxGeometry x="60" y="550" width="290" height="48" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="X4" label="NORTH" marker_target="LOC_PARALLEL1" source_room="LOC_WESTBANK">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#F57C00;strokeWidth=1.8;dashed=1;dashPattern=4 3;endArrow=block;endFill=1;endSize=6;exitX=0.5;exitY=0.0;exitDx=0;exitDy=0;entryX=0.5;entryY=1.0;entryDx=0;entryDy=0;fontSize=9;fontFamily=Helvetica;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="N_LOC_WESTBANK" target="M_LOC_PARALLEL1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="M_LOC_MISTWEST" label="&lt;b&gt;→ LOC_MISTWEST · Ch 04 Maze&lt;/b&gt;&lt;br&gt;WEST (west end of Hall of Mists)" kind="cross" target_id="LOC_MISTWEST" represents_rules="[{&quot;action&quot;: [&quot;goto&quot;, &quot;LOC_MISTWEST&quot;], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_WESTBANK&quot;, &quot;verbs&quot;: [&quot;WEST&quot;]}]">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57C00;strokeWidth=1.5;dashed=1;arcSize=6;fontSize=9;fontFamily=Helvetica;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;" vertex="1" parent="1">
+            <mxGeometry x="60" y="950" width="225" height="48" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="X5" label="WEST" marker_target="LOC_MISTWEST" source_room="LOC_WESTBANK">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#F57C00;strokeWidth=1.8;dashed=1;dashPattern=4 3;endArrow=block;endFill=1;endSize=6;exitX=0.39;exitY=1.0;exitDx=0;exitDy=0;entryX=0.5;entryY=0.0;entryDx=0;entryDy=0;fontSize=9;fontFamily=Helvetica;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="N_LOC_WESTBANK" target="M_LOC_MISTWEST">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="M_LOC_NOMAKE" label="&lt;b&gt;☠ LOC_NOMAKE · Ch 11 Death&lt;/b&gt;&lt;br&gt;FORWA [not FISSURE=BRIDGED] (both banks)" kind="death" target_id="LOC_NOMAKE" represents_rules="[{&quot;action&quot;: [&quot;goto&quot;, &quot;LOC_NOMAKE&quot;], &quot;cond&quot;: {&quot;object&quot;: &quot;FISSURE&quot;, &quot;state&quot;: &quot;BRIDGED&quot;, &quot;type&quot;: &quot;not&quot;}, &quot;source&quot;: &quot;LOC_EASTBANK&quot;, &quot;verbs&quot;: [&quot;FORWA&quot;]}, {&quot;action&quot;: [&quot;goto&quot;, &quot;LOC_NOMAKE&quot;], &quot;cond&quot;: {&quot;object&quot;: &quot;FISSURE&quot;, &quot;state&quot;: &quot;BRIDGED&quot;, &quot;type&quot;: &quot;not&quot;}, &quot;source&quot;: &quot;LOC_WESTBANK&quot;, &quot;verbs&quot;: [&quot;FORWA&quot;]}]">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#C62828;strokeWidth=1.5;dashed=1;arcSize=6;fontSize=9;fontFamily=Helvetica;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;" vertex="1" parent="1">
+            <mxGeometry x="470" y="950" width="290" height="50" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="X6" label="FORWA [unbridged]" marker_target="LOC_NOMAKE" source_room="LOC_EASTBANK">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#C62828;strokeWidth=1.8;dashed=1;dashPattern=4 3;endArrow=block;endFill=1;endSize=6;exitX=0.5;exitY=1.0;exitDx=0;exitDy=0;entryX=0.5;entryY=0.0;entryDx=0;entryDy=0;fontSize=9;fontFamily=Helvetica;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="N_LOC_EASTBANK" target="M_LOC_NOMAKE">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="X7" label="FORWA [unbridged]" marker_target="LOC_NOMAKE" source_room="LOC_WESTBANK">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#C62828;strokeWidth=1.8;dashed=1;dashPattern=4 3;endArrow=block;endFill=1;endSize=6;exitX=0.88;exitY=1.0;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;fontSize=9;fontFamily=Helvetica;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="N_LOC_WESTBANK" target="M_LOC_NOMAKE">
+            <mxGeometry relative="1" as="geometry">
+              <mxPoint x="26" y="20" as="offset" />
+              <Array as="points">
+                <mxPoint x="315" y="975" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object id="M_LOC_DOME" label="&lt;b&gt;⚠ LOC_DOME · Ch 11 Transient State&lt;/b&gt;&lt;br&gt;UPWAR, PIT, STEPS… [carry NUGGET]&lt;br&gt;(&amp;quot;The dome is unclimbable&amp;quot;)" kind="transient" target_id="LOC_DOME" represents_rules="[{&quot;action&quot;: [&quot;goto&quot;, &quot;LOC_DOME&quot;], &quot;cond&quot;: {&quot;object&quot;: &quot;NUGGET&quot;, &quot;type&quot;: &quot;carry&quot;}, &quot;source&quot;: &quot;LOC_MISTHALL&quot;, &quot;verbs&quot;: [&quot;UPWAR&quot;, &quot;PIT&quot;, &quot;STEPS&quot;, &quot;DOME&quot;, &quot;PASSA&quot;, &quot;EAST&quot;]}]">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#E65100;strokeWidth=1.5;dashed=1;arcSize=6;fontSize=9;fontFamily=Helvetica;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;" vertex="1" parent="1">
+            <mxGeometry x="940" y="548" width="230" height="52" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="X8" label="UP [carry NUGGET]" marker_target="LOC_DOME" source_room="LOC_MISTHALL">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#E65100;strokeWidth=1.8;dashed=1;dashPattern=4 3;endArrow=block;endFill=1;endSize=6;exitX=0.6;exitY=0.0;exitDx=0;exitDy=0;entryX=0.495;entryY=1.0;entryDx=0;entryDy=0;fontSize=9;fontFamily=Helvetica;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="N_LOC_MISTHALL" target="M_LOC_DOME">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="M_LOC_KINGHALL" label="&lt;b&gt;→ LOC_KINGHALL · Ch 03 Mt King&lt;/b&gt;&lt;br&gt;STAIR, DOWN, NORTH (wide stone staircase)" kind="cross" target_id="LOC_KINGHALL" represents_rules="[{&quot;action&quot;: [&quot;goto&quot;, &quot;LOC_KINGHALL&quot;], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_MISTHALL&quot;, &quot;verbs&quot;: [&quot;STAIR&quot;, &quot;DOWN&quot;, &quot;NORTH&quot;]}]">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57C00;strokeWidth=1.5;dashed=1;arcSize=6;fontSize=9;fontFamily=Helvetica;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;" vertex="1" parent="1">
+            <mxGeometry x="1260" y="985" width="250" height="48" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="X9" label="STAIR / N" marker_target="LOC_KINGHALL" source_room="LOC_MISTHALL">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#F57C00;strokeWidth=1.8;dashed=1;dashPattern=4 3;endArrow=block;endFill=1;endSize=6;exitX=1.0;exitY=0.88;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;fontSize=9;fontFamily=Helvetica;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="N_LOC_MISTHALL" target="M_LOC_KINGHALL">
+            <mxGeometry relative="1" as="geometry">
+              <mxPoint x="32" y="2" as="offset" />
+              <Array as="points">
+                <mxPoint x="1192" y="932" />
+                <mxPoint x="1192" y="1009" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object id="M_LOC_JUMBLE" label="&lt;b&gt;→ LOC_JUMBLE · Ch 10 Y2 &amp;amp; Windows&lt;/b&gt;&lt;br&gt;Y2 (fast-travel keyword to rock jumble)" kind="cross" target_id="LOC_JUMBLE" represents_rules="[{&quot;action&quot;: [&quot;goto&quot;, &quot;LOC_JUMBLE&quot;], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_MISTHALL&quot;, &quot;verbs&quot;: [&quot;Y2&quot;]}]">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57C00;strokeWidth=1.5;dashed=1;arcSize=6;fontSize=9;fontFamily=Helvetica;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;" vertex="1" parent="1">
+            <mxGeometry x="1260" y="1055" width="250" height="48" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="X10" label="Y2" marker_target="LOC_JUMBLE" source_room="LOC_MISTHALL">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#F57C00;strokeWidth=1.8;dashed=1;dashPattern=4 3;endArrow=block;endFill=1;endSize=6;exitX=1.0;exitY=0.95;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;fontSize=9;fontFamily=Helvetica;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="N_LOC_MISTHALL" target="M_LOC_JUMBLE">
+            <mxGeometry relative="1" as="geometry">
+              <mxPoint x="36" y="18" as="offset" />
+              <Array as="points">
+                <mxPoint x="1180" y="954" />
+                <mxPoint x="1180" y="1079" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object id="C0" label="ENTRA" role="fast_travel" represents_rules="[{&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_AWKWARD&quot;, &quot;verbs&quot;: [&quot;ENTRA&quot;]}]">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#78909C;strokeWidth=1.4;dashed=1;dashPattern=3 3;endArrow=block;endFill=1;endSize=7;fontSize=8;fontFamily=Helvetica;fontColor=#37474F;labelBackgroundColor=#FFFFFF;exitX=0.450;exitY=1.0;entryX=0.060;entryY=0.0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="N_LOC_AWKWARD" target="N_LOC_BELOWGRATE">
+            <mxGeometry relative="1" as="geometry" x="0.30">
+              <Array as="points">
+                <mxPoint x="1420" y="468" />
+                <mxPoint x="2237" y="468" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object id="C1" label="E · canyon ↔ W / UP" role="primary" represents_rules="[{&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_BIRDCHAMBER&quot;, &quot;verbs&quot;: [&quot;CANYO&quot;, &quot;EAST&quot;]}, {&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_AWKWARD&quot;, &quot;verbs&quot;: [&quot;INWAR&quot;, &quot;UPWAR&quot;, &quot;WEST&quot;]}]">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#000000;strokeWidth=2.5;endArrow=block;endFill=1;endSize=7;startArrow=block;startFill=1;startSize=7;exitX=1.0;exitY=0.339;exitDx=0;exitDy=0;entryX=0.0;entryY=0.411;entryDx=0;entryDy=0;fontSize=9;fontStyle=1;fontFamily=Helvetica;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="N_LOC_BIRDCHAMBER" target="N_LOC_AWKWARD">
+            <mxGeometry relative="1" as="geometry">
+              <mxPoint x="0" y="-14" as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object id="C2" label="DOWN / E ↔ UP / W · canyon" role="primary" represents_rules="[{&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_AWKWARD&quot;, &quot;verbs&quot;: [&quot;DOWN&quot;, &quot;EAST&quot;, &quot;DEBRI&quot;]}, {&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_DEBRIS&quot;, &quot;verbs&quot;: [&quot;CANYO&quot;, &quot;INWAR&quot;, &quot;UPWAR&quot;, &quot;WEST&quot;]}]">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#000000;strokeWidth=2.5;endArrow=block;endFill=1;endSize=7;startArrow=block;startFill=1;startSize=7;exitX=0.879;exitY=1.0;exitDx=0;exitDy=0;entryX=0.500;entryY=0.0;entryDx=0;entryDy=0;fontSize=9;fontStyle=1;fontFamily=Helvetica;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="N_LOC_AWKWARD" target="N_LOC_DEBRIS">
+            <mxGeometry relative="1" as="geometry">
+              <mxPoint x="0" y="56" as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object id="C3" label="PIT" role="fast_travel" represents_rules="[{&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_AWKWARD&quot;, &quot;verbs&quot;: [&quot;PIT&quot;]}]">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#78909C;strokeWidth=1.4;dashed=1;dashPattern=3 3;endArrow=block;endFill=1;endSize=7;fontSize=8;fontFamily=Helvetica;fontColor=#37474F;labelBackgroundColor=#FFFFFF;exitX=0.250;exitY=0.0;entryX=0.780;entryY=0.0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="N_LOC_AWKWARD" target="N_LOC_PITTOP">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="1362" y="148" />
+                <mxPoint x="696" y="148" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object id="C4" label="ENTRA" role="fast_travel" represents_rules="[{&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_BIRDCHAMBER&quot;, &quot;verbs&quot;: [&quot;ENTRA&quot;]}]">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#78909C;strokeWidth=1.4;dashed=1;dashPattern=3 3;endArrow=block;endFill=1;endSize=7;fontSize=8;fontFamily=Helvetica;fontColor=#37474F;labelBackgroundColor=#FFFFFF;exitX=0.460;exitY=1.0;entryX=0.120;entryY=0.0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="N_LOC_BIRDCHAMBER" target="N_LOC_BELOWGRATE">
+            <mxGeometry relative="1" as="geometry" x="0.50">
+              <Array as="points">
+                <mxPoint x="1013" y="500" />
+                <mxPoint x="2254" y="500" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object id="C5" label="E · out ↔ W · crawl" role="primary" represents_rules="[{&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_COBBLE&quot;, &quot;verbs&quot;: [&quot;OUT&quot;, &quot;SURFA&quot;, &quot;EAST&quot;]}, {&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_BELOWGRATE&quot;, &quot;verbs&quot;: [&quot;CRAWL&quot;, &quot;COBBL&quot;, &quot;INWAR&quot;, &quot;WEST&quot;]}]">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#000000;strokeWidth=2.5;endArrow=block;endFill=1;endSize=7;startArrow=block;startFill=1;startSize=7;exitX=1.0;exitY=0.487;exitDx=0;exitDy=0;entryX=0.0;entryY=0.371;entryDx=0;entryDy=0;fontSize=9;fontStyle=1;fontFamily=Helvetica;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="N_LOC_COBBLE" target="N_LOC_BELOWGRATE">
+            <mxGeometry relative="1" as="geometry">
+              <mxPoint x="0" y="-14" as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object id="C6" label="DEBRI ↔ ENTRA" role="fast_travel" represents_rules="[{&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_BELOWGRATE&quot;, &quot;verbs&quot;: [&quot;DEBRI&quot;]}, {&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_DEBRIS&quot;, &quot;verbs&quot;: [&quot;ENTRA&quot;]}]">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#78909C;strokeWidth=1.4;dashed=1;dashPattern=3 3;endArrow=block;endFill=1;endSize=7;startArrow=block;startFill=1;startSize=7;fontSize=8;fontFamily=Helvetica;fontColor=#37474F;labelBackgroundColor=#FFFFFF;exitX=0.000;exitY=0.881;entryX=1.000;entryY=0.661;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="N_LOC_BELOWGRATE" target="N_LOC_DEBRIS">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="C7" label="PIT ↔ ENTRA" role="fast_travel" represents_rules="[{&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_BELOWGRATE&quot;, &quot;verbs&quot;: [&quot;PIT&quot;]}, {&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_PITTOP&quot;, &quot;verbs&quot;: [&quot;ENTRA&quot;]}]">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#78909C;strokeWidth=1.4;dashed=1;dashPattern=3 3;endArrow=block;endFill=1;endSize=7;startArrow=block;startFill=1;startSize=7;fontSize=8;fontFamily=Helvetica;fontColor=#37474F;labelBackgroundColor=#FFFFFF;exitX=0.180;exitY=0.0;entryX=0.420;entryY=1.0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="N_LOC_BELOWGRATE" target="N_LOC_PITTOP">
+            <mxGeometry relative="1" as="geometry" x="0.62">
+              <Array as="points">
+                <mxPoint x="2272" y="516" />
+                <mxPoint x="591" y="516" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object id="C8" label="DEBRI" role="fast_travel" represents_rules="[{&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_BIRDCHAMBER&quot;, &quot;verbs&quot;: [&quot;DEBRI&quot;]}]">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#78909C;strokeWidth=1.4;dashed=1;dashPattern=3 3;endArrow=block;endFill=1;endSize=7;fontSize=8;fontFamily=Helvetica;fontColor=#37474F;labelBackgroundColor=#FFFFFF;exitX=0.720;exitY=1.0;entryX=0.100;entryY=0.0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="N_LOC_BIRDCHAMBER" target="N_LOC_DEBRIS">
+            <mxGeometry relative="1" as="geometry" x="-0.35">
+              <Array as="points">
+                <mxPoint x="1088" y="436" />
+                <mxPoint x="1429" y="436" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object id="C9" label="E · passage ↔ W · passage" role="primary" represents_rules="[{&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_PITTOP&quot;, &quot;verbs&quot;: [&quot;PASSA&quot;, &quot;EAST&quot;]}, {&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_BIRDCHAMBER&quot;, &quot;verbs&quot;: [&quot;PASSA&quot;, &quot;PIT&quot;, &quot;WEST&quot;]}]">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#000000;strokeWidth=2.5;endArrow=block;endFill=1;endSize=7;startArrow=block;startFill=1;startSize=7;exitX=1.0;exitY=0.312;exitDx=0;exitDy=0;entryX=0.0;entryY=0.339;entryDx=0;entryDy=0;fontSize=9;fontStyle=1;fontFamily=Helvetica;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="N_LOC_PITTOP" target="N_LOC_BIRDCHAMBER">
+            <mxGeometry relative="1" as="geometry">
+              <mxPoint x="0" y="-14" as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object id="C10" label="E · crawl ↔ W · inwar" role="primary" represents_rules="[{&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_DEBRIS&quot;, &quot;verbs&quot;: [&quot;CRAWL&quot;, &quot;COBBL&quot;, &quot;PASSA&quot;, &quot;LOW&quot;, &quot;EAST&quot;]}, {&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_COBBLE&quot;, &quot;verbs&quot;: [&quot;INWAR&quot;, &quot;DARK&quot;, &quot;WEST&quot;, &quot;DEBRI&quot;]}]">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#000000;strokeWidth=2.5;endArrow=block;endFill=1;endSize=7;startArrow=block;startFill=1;startSize=7;exitX=1.0;exitY=0.279;exitDx=0;exitDy=0;entryX=0.0;entryY=0.487;entryDx=0;entryDy=0;fontSize=9;fontStyle=1;fontFamily=Helvetica;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="N_LOC_DEBRIS" target="N_LOC_COBBLE">
+            <mxGeometry relative="1" as="geometry">
+              <mxPoint x="0" y="-14" as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object id="C11" label="PIT" role="fast_travel" represents_rules="[{&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_COBBLE&quot;, &quot;verbs&quot;: [&quot;PIT&quot;]}]">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#78909C;strokeWidth=1.4;dashed=1;dashPattern=3 3;endArrow=block;endFill=1;endSize=7;fontSize=8;fontFamily=Helvetica;fontColor=#37474F;labelBackgroundColor=#FFFFFF;exitX=0.350;exitY=0.0;entryX=0.580;entryY=1.0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="N_LOC_COBBLE" target="N_LOC_PITTOP">
+            <mxGeometry relative="1" as="geometry" x="0.11">
+              <Array as="points">
+                <mxPoint x="1911" y="484" />
+                <mxPoint x="638" y="484" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object id="C12" label="(return) ↔ W · crack" role="primary" represents_rules="[{&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_CRACK&quot;, &quot;verbs&quot;: []}, {&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_PITTOP&quot;, &quot;verbs&quot;: [&quot;CRACK&quot;, &quot;WEST&quot;]}]">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#000000;strokeWidth=2.5;endArrow=block;endFill=1;endSize=7;startArrow=block;startFill=1;startSize=7;exitX=1.0;exitY=0.600;exitDx=0;exitDy=0;entryX=0.0;entryY=0.312;entryDx=0;entryDy=0;fontSize=9;fontStyle=1;fontFamily=Helvetica;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="N_LOC_CRACK" target="N_LOC_PITTOP">
+            <mxGeometry relative="1" as="geometry">
+              <mxPoint x="0" y="-14" as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object id="C13" label="(implicit)" role="primary" represents_rules="[{&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_FOOF1&quot;, &quot;verbs&quot;: []}]">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#7B1FA2;strokeWidth=2.2;dashed=1;dashPattern=5 3;endArrow=block;endFill=1;endSize=7;exitX=0.052;exitY=1.0;exitDx=0;exitDy=0;entryX=0.948;entryY=0.0;entryDx=0;entryDy=0;fontSize=9;fontFamily=Helvetica;fontColor=#4A148C;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="N_LOC_FOOF1" target="N_LOC_DEBRIS">
+            <mxGeometry relative="1" as="geometry">
+              <mxPoint x="0" y="-80" as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object id="C14" label="PIT ↔ DEBRI" role="fast_travel" represents_rules="[{&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_DEBRIS&quot;, &quot;verbs&quot;: [&quot;PIT&quot;]}, {&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_PITTOP&quot;, &quot;verbs&quot;: [&quot;DEBRI&quot;]}]">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#78909C;strokeWidth=1.4;dashed=1;dashPattern=3 3;endArrow=block;endFill=1;endSize=7;startArrow=block;startFill=1;startSize=7;fontSize=8;fontFamily=Helvetica;fontColor=#37474F;labelBackgroundColor=#FFFFFF;exitX=0.220;exitY=0.0;entryX=0.720;entryY=1.0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="N_LOC_DEBRIS" target="N_LOC_PITTOP">
+            <mxGeometry relative="1" as="geometry" x="0.59">
+              <Array as="points">
+                <mxPoint x="1463" y="452" />
+                <mxPoint x="678" y="452" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object id="C15" label="E · hall ↔ W · hall" role="primary" represents_rules="[{&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_EASTBANK&quot;, &quot;verbs&quot;: [&quot;HALL&quot;, &quot;EAST&quot;]}, {&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_MISTHALL&quot;, &quot;verbs&quot;: [&quot;FORWA&quot;, &quot;HALL&quot;, &quot;WEST&quot;]}]">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#000000;strokeWidth=2.5;endArrow=block;endFill=1;endSize=7;startArrow=block;startFill=1;startSize=7;exitX=1.0;exitY=0.325;exitDx=0;exitDy=0;entryX=0.0;entryY=0.252;entryDx=0;entryDy=0;fontSize=9;fontStyle=1;fontFamily=Helvetica;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="N_LOC_EASTBANK" target="N_LOC_MISTHALL">
+            <mxGeometry relative="1" as="geometry">
+              <mxPoint x="0" y="-14" as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object id="C16" label="OVER ↔ OVER" role="primary" represents_rules="[{&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_WESTBANK&quot;, &quot;verbs&quot;: [&quot;OVER&quot;]}, {&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_EASTBANK&quot;, &quot;verbs&quot;: [&quot;OVER&quot;]}]">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#000000;strokeWidth=2.5;endArrow=block;endFill=1;endSize=7;startArrow=block;startFill=1;startSize=7;exitX=1.0;exitY=0.355;exitDx=0;exitDy=0;entryX=0.0;entryY=0.325;entryDx=0;entryDy=0;fontSize=9;fontStyle=1;fontFamily=Helvetica;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="N_LOC_WESTBANK" target="N_LOC_EASTBANK">
+            <mxGeometry relative="1" as="geometry">
+              <mxPoint x="0" y="-14" as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object id="C17" label="S · left ↔ N · hall" role="primary" represents_rules="[{&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_MISTHALL&quot;, &quot;verbs&quot;: [&quot;LEFT&quot;, &quot;SOUTH&quot;]}, {&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_NUGGET&quot;, &quot;verbs&quot;: [&quot;HALL&quot;, &quot;OUT&quot;, &quot;NORTH&quot;]}]">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#000000;strokeWidth=2.5;endArrow=block;endFill=1;endSize=7;startArrow=block;startFill=1;startSize=7;exitX=0.5;exitY=1.0;exitDx=0;exitDy=0;entryX=0.5;entryY=0.0;entryDx=0;entryDy=0;fontSize=9;fontStyle=1;fontFamily=Helvetica;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="N_LOC_MISTHALL" target="N_LOC_NUGGET">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="C18" label="DOWN ↔ UP" role="primary" represents_rules="[{&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_PITTOP&quot;, &quot;verbs&quot;: [&quot;DOWN&quot;]}, {&quot;action&quot;: [&quot;goto&quot;, null], &quot;cond&quot;: null, &quot;source&quot;: &quot;LOC_MISTHALL&quot;, &quot;verbs&quot;: [&quot;UPWAR&quot;]}]">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;strokeColor=#1565C0;strokeWidth=2.8;endArrow=block;endFill=1;endSize=7;startArrow=block;startFill=1;startSize=7;exitX=0.90;exitY=1.0;exitDx=0;exitDy=0;entryX=0.10;entryY=0.0;entryDx=0;entryDy=0;fontSize=10;fontStyle=1;fontFamily=Helvetica;fontColor=#0D47A1;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="N_LOC_PITTOP" target="N_LOC_MISTHALL">
+            <mxGeometry relative="1" as="geometry">
+              <mxPoint x="0" y="-12" as="offset" />
+              <Array as="points">
+                <mxPoint x="731" y="576" />
+                <mxPoint x="909" y="576" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <mxCell id="provenance" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=9;fontStyle=2;fontFamily=Helvetica;" value="Source: Open_Adventure.yaml (BSD-2-Clause, E. S. Raymond) — canonical. Pilot V2: 12 locations, 51/51 travel rules preserved (19 internal connectors + 9 local reference markers + 5 in-room message annotations; 17/17 directional constraints satisfied). NORTH = up = smaller Y." vertex="1" parent="1">
+          <mxGeometry x="60" y="1208" width="1200" height="32" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

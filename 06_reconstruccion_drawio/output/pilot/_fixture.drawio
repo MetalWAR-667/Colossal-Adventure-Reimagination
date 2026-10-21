@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="fixture" type="device" version="24.7.0">
+  <diagram id="fix1" name="Fixture">
+    <mxGraphModel dx="800" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <object id="NODE_A" label="&lt;b&gt;NODE_A&lt;/b&gt;">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;" vertex="1" parent="1">
+            <mxGeometry x="40" y="80" width="200" height="80" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="NODE_B" label="&lt;b&gt;NODE_B&lt;/b&gt;">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;" vertex="1" parent="1">
+            <mxGeometry x="400" y="80" width="200" height="80" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="EDGE_GOOD" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;endArrow=block;endFill=1;strokeWidth=2.5;strokeColor=#000000;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="NODE_A" target="NODE_B" value="east &amp;amp;rarr; visible arrow">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <object label="&lt;b&gt;NODE_C&lt;/b&gt;">
+          <mxCell id="NODE_C" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;" vertex="1" parent="1">
+            <mxGeometry x="40" y="240" width="200" height="80" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="&lt;b&gt;NODE_D&lt;/b&gt;">
+          <mxCell id="NODE_D" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;" vertex="1" parent="1">
+            <mxGeometry x="400" y="240" width="200" height="80" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="EDGE_BROKEN" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=2.5;strokeColor=#CC0000;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="NODE_C" target="NODE_D" value="this arrow should vanish">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

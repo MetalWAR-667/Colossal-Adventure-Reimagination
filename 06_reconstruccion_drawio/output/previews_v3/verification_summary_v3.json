@@ -1,0 +1,227 @@
+{
+  "prior_deliverables_untouched": true,
+  "prior_hashes": {
+    "Open_Adventure.yaml": {
+      "sha256_16": "4ee2c6451a64591b",
+      "matches_expected": true
+    },
+    "output/Open_Adventure_World.drawio": {
+      "sha256_16": "605295e295a1f09a",
+      "matches_expected": true
+    },
+    "output/Open_Adventure_World_V2.drawio": {
+      "sha256_16": "d7834725142d3cf2",
+      "matches_expected": true
+    },
+    "output/open_adventure_graph.json": {
+      "sha256_16": "c6ee8bf9c46638d8",
+      "matches_expected": true
+    },
+    "output/pilot/CH_ENTRY_MataHari.drawio": {
+      "sha256_16": "4fedddcf36ebc700",
+      "matches_expected": true
+    },
+    "output/pilot/CH_ENTRY_MataHari.png": {
+      "sha256_16": "3a5ca1167d99c0b6",
+      "matches_expected": true
+    },
+    "output/pilot/CH_ENTRY_MataHari_V2.drawio": {
+      "sha256_16": "f0c5a1f5a4184e0f",
+      "matches_expected": true
+    }
+  },
+  "pilot_v3_sha256_16": "ec1a020aacc3f6c5",
+  "world_v3_sha256_16": "a67521fd3d8addd0",
+  "pilot_validation": {
+    "rooms_present": "12/12",
+    "room_ids_match": true,
+    "duplicate_ids": false,
+    "travel_rules_on_nodes_roundtrip": true,
+    "total_rules_on_nodes": "51/51",
+    "internal_rules_exact_partition": true,
+    "directional_constraints": "17/17",
+    "connector_endpoints_resolve": true,
+    "box_overlaps": 0,
+    "layer_exists": true,
+    "layer_name_ok": true,
+    "layer_hidden_by_default": true,
+    "layer_parent_ok": true,
+    "primary_internal_connectors": 11,
+    "alias_internal_connectors": 8,
+    "external_marker_connectors": 10,
+    "default_visible_connectors": 21,
+    "all_layers_connectors": 29
+  },
+  "world_validation": {
+    "pages_count": 12,
+    "index_page_present": true,
+    "locations_preserved": "185/185",
+    "all_locations_exact_match": true,
+    "travel_rules_preserved": "623/623",
+    "all_travel_rules_roundtrip": true,
+    "all_descriptions_roundtrip": true,
+    "all_internal_partitions_exact": true,
+    "all_connector_endpoints_resolve": true,
+    "all_alias_layers_configured_hidden": true,
+    "total_box_overlaps_across_world": 0
+  },
+  "all_12_pages_svg_render_exact_match": true,
+  "page_exports": [
+    {
+      "page_index": 0,
+      "diagram_id": "INDEX",
+      "diagram_name": "00 \u2014 World Index",
+      "png": "output\\previews_v3\\00_INDEX.png",
+      "png_bytes": 934082,
+      "svg": "output\\previews_v3\\00_INDEX.svg",
+      "expected_visible_connectors": 0,
+      "expected_hidden_alias_connectors": 0,
+      "rendered_svg_connectors": 0,
+      "rendered_alias_strokes_in_default_svg": 0,
+      "svg_render_exact_match": true
+    },
+    {
+      "page_index": 1,
+      "diagram_id": "CH_SURFACE",
+      "diagram_name": "01 \u2014 Surface World",
+      "png": "output\\previews_v3\\01_CH_SURFACE.png",
+      "png_bytes": 1088149,
+      "svg": "output\\previews_v3\\01_CH_SURFACE.svg",
+      "expected_visible_connectors": 63,
+      "expected_hidden_alias_connectors": 4,
+      "rendered_svg_connectors": 63,
+      "rendered_alias_strokes_in_default_svg": 0,
+      "svg_render_exact_match": true
+    },
+    {
+      "page_index": 2,
+      "diagram_id": "CH_ENTRY",
+      "diagram_name": "02 \u2014 Cave Entry",
+      "png": "output\\previews_v3\\02_CH_ENTRY.png",
+      "png_bytes": 1888830,
+      "svg": "output\\previews_v3\\02_CH_ENTRY.svg",
+      "expected_visible_connectors": 21,
+      "expected_hidden_alias_connectors": 8,
+      "rendered_svg_connectors": 21,
+      "rendered_alias_strokes_in_default_svg": 0,
+      "svg_render_exact_match": true
+    },
+    {
+      "page_index": 3,
+      "diagram_id": "CH_CENTRAL",
+      "diagram_name": "03 \u2014 Hall of Mountain King & Twopit",
+      "png": "output\\previews_v3\\03_CH_CENTRAL.png",
+      "png_bytes": 2196695,
+      "svg": "output\\previews_v3\\03_CH_CENTRAL.svg",
+      "expected_visible_connectors": 31,
+      "expected_hidden_alias_connectors": 2,
+      "rendered_svg_connectors": 31,
+      "rendered_alias_strokes_in_default_svg": 0,
+      "svg_render_exact_match": true
+    },
+    {
+      "page_index": 4,
+      "diagram_id": "CH_MAZE_ALIKE",
+      "diagram_name": "04 \u2014 Maze (All Alike)",
+      "png": "output\\previews_v3\\04_CH_MAZE_ALIKE.png",
+      "png_bytes": 2575541,
+      "svg": "output\\previews_v3\\04_CH_MAZE_ALIKE.svg",
+      "expected_visible_connectors": 50,
+      "expected_hidden_alias_connectors": 0,
+      "rendered_svg_connectors": 50,
+      "rendered_alias_strokes_in_default_svg": 0,
+      "svg_render_exact_match": true
+    },
+    {
+      "page_index": 5,
+      "diagram_id": "CH_BEDQUILT",
+      "diagram_name": "05 \u2014 Bedquilt & Secret Canyons",
+      "png": "output\\previews_v3\\05_CH_BEDQUILT.png",
+      "png_bytes": 2160683,
+      "svg": "output\\previews_v3\\05_CH_BEDQUILT.svg",
+      "expected_visible_connectors": 33,
+      "expected_hidden_alias_connectors": 1,
+      "rendered_svg_connectors": 33,
+      "rendered_alias_strokes_in_default_svg": 0,
+      "svg_render_exact_match": true
+    },
+    {
+      "page_index": 6,
+      "diagram_id": "CH_ORIENTAL_PLOVER",
+      "diagram_name": "06 \u2014 Oriental Room & Plover Passage",
+      "png": "output\\previews_v3\\06_CH_ORIENTAL_PLOVER.png",
+      "png_bytes": 1477441,
+      "svg": "output\\previews_v3\\06_CH_ORIENTAL_PLOVER.svg",
+      "expected_visible_connectors": 15,
+      "expected_hidden_alias_connectors": 1,
+      "rendered_svg_connectors": 15,
+      "rendered_alias_strokes_in_default_svg": 0,
+      "svg_render_exact_match": true
+    },
+    {
+      "page_index": 7,
+      "diagram_id": "CH_RESERVOIR",
+      "diagram_name": "07 \u2014 Reservoir & Cliff Ascent",
+      "png": "output\\previews_v3\\07_CH_RESERVOIR.png",
+      "png_bytes": 1776806,
+      "svg": "output\\previews_v3\\07_CH_RESERVOIR.svg",
+      "expected_visible_connectors": 15,
+      "expected_hidden_alias_connectors": 0,
+      "rendered_svg_connectors": 15,
+      "rendered_alias_strokes_in_default_svg": 0,
+      "svg_render_exact_match": true
+    },
+    {
+      "page_index": 8,
+      "diagram_id": "CH_REPOSITORY",
+      "diagram_name": "08 \u2014 Repository & Volcano",
+      "png": "output\\previews_v3\\08_CH_REPOSITORY.png",
+      "png_bytes": 2445351,
+      "svg": "output\\previews_v3\\08_CH_REPOSITORY.svg",
+      "expected_visible_connectors": 13,
+      "expected_hidden_alias_connectors": 13,
+      "rendered_svg_connectors": 13,
+      "rendered_alias_strokes_in_default_svg": 0,
+      "svg_render_exact_match": true
+    },
+    {
+      "page_index": 9,
+      "diagram_id": "CH_WITT_DIFFERENT",
+      "diagram_name": "09 \u2014 Witt's End & Maze All-Different",
+      "png": "output\\previews_v3\\09_CH_WITT_DIFFERENT.png",
+      "png_bytes": 2640385,
+      "svg": "output\\previews_v3\\09_CH_WITT_DIFFERENT.svg",
+      "expected_visible_connectors": 63,
+      "expected_hidden_alias_connectors": 0,
+      "rendered_svg_connectors": 63,
+      "rendered_alias_strokes_in_default_svg": 0,
+      "svg_render_exact_match": true
+    },
+    {
+      "page_index": 10,
+      "diagram_id": "CH_Y2_WINDOWS",
+      "diagram_name": "10 \u2014 Y2, Windows & Dusty Room",
+      "png": "output\\previews_v3\\10_CH_Y2_WINDOWS.png",
+      "png_bytes": 1257320,
+      "svg": "output\\previews_v3\\10_CH_Y2_WINDOWS.svg",
+      "expected_visible_connectors": 16,
+      "expected_hidden_alias_connectors": 0,
+      "rendered_svg_connectors": 16,
+      "rendered_alias_strokes_in_default_svg": 0,
+      "svg_render_exact_match": true
+    },
+    {
+      "page_index": 11,
+      "diagram_id": "CH_SPECIAL",
+      "diagram_name": "11 \u2014 Special & Transient States",
+      "png": "output\\previews_v3\\11_CH_SPECIAL.png",
+      "png_bytes": 629286,
+      "svg": "output\\previews_v3\\11_CH_SPECIAL.svg",
+      "expected_visible_connectors": 6,
+      "expected_hidden_alias_connectors": 0,
+      "rendered_svg_connectors": 6,
+      "rendered_alias_strokes_in_default_svg": 0,
+      "svg_render_exact_match": true
+    }
+  ]
+}

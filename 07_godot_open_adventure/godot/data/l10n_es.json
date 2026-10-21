@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "language": "es",
+    "status": "reinterpretación original del laboratorio RPG Archaeology",
+    "provenance": "Textos en español redactados para este proyecto a partir de las descripciones, funciones y reglas de Open Adventure (BSD-2-Clause). No son la traducción de La Aventura Original ni de ninguna edición comercial existente: son una reescritura con voz propia, conforme a 03_reinterpretation/CREATIVE_BIBLE.md.",
+    "voice": "Segunda persona, presente, con humor que nunca tapa una pista.",
+    "source": "07_godot_open_adventure/godot/data/chapter_01_surface.json"
+  },
+  "ui": {
+    "title": "La Aventura Original — Capítulo 01: El Mundo de la Superficie",
+    "subtitle": "Reconstrucción sobre Open Adventure (BSD-2-Clause). Capítulo 01 de 11.",
+    "prompt": "> ",
+    "welcome": "Estás al borde de algo que todavía no entiendes. Escribe N, S, E, W, ENTER, TAKE o AYUDA.",
+    "help": [
+      "Ordenes principales:",
+      "  N / S / E / W / U / D   — moverse (norte, sur, este, oeste, arriba, abajo)",
+      "  ENTER, IN, OUT          — entrar, quedarse dentro, salir",
+      "  TAKE <objeto> / DROP    — recoger o soltar",
+      "  LOOK                    — describir el lugar con detalle",
+      "  INVENTORY / I           — ver lo que llevas",
+      "  OPEN / CLOSE            — abrir o cerrar",
+      "  DRINK / FILL / EAT      — beber, llenar, comer",
+      "  XYZZY / PLUGH           — palabras mágicas (sí, funcionan)",
+      "  MAP                     — mostrar el mapa del capítulo",
+      "  HELP / AYUDA            — esta ayuda",
+      "  SCORE / QUIT            — puntuación y salida",
+      "Los sinónimos se comparan por sus cinco primeras letras, como en el original."
+    ],
+    "frontier": "Ese paso pertenece al capítulo siguiente. Aquí se acaba el capítulo 01.",
+    "no_such_place": "No hay ningún sitio así cerca.",
+    "unknown_verb": "No sé aplicar esa palabra aquí.",
+    "score_line": "Puntuación: {score} — {class}",
+    "turn_line": "Turno {turn}.",
+    "inventory_header": "Llevas:",
+    "inventory_empty": "No llevas nada. El mundo, en cambio, lleva muchas cosas.",
+    "look_again": "Ya lo has mirado bien.",
+    "quit_line": "Se cierra el cuaderno. Vuelve cuando quieras.",
+    "map_hint": "Mapa del capítulo 01 (dibujado desde Open_Adventure_World_V3.drawio).",
+    "help_footer": "GPL-3.0-or-later. Avisos legales completos: orden LICENSES.",
+    "license_notice": [
+      "La Aventura Original — Capítulo 01: El Mundo de la Superficie.",
+      "Copyright (C) 2026 MetalWAR — <metalwar_coder@proton.me>",
+      "Licencia: GNU General Public License v3.0 o posterior (GPL-3.0-or-later).",
+      "Los datos del dungeon y los textos en inglés proceden de Open Adventure (Eric S. Raymond), BSD-2-Clause, y conservan su licencia.",
+      "El motor, los textos en español y las ilustraciones son originales de este proyecto.",
+      "Ayudado por herramientas: Minimax, Gemini y OpenCode. Autoría y decisiones: MetalWAR.",
+      "Código fuente: 07_godot_open_adventure/ del repositorio del proyecto; se ofrece el código fuente correspondiente a quien lo solicite a la dirección de arriba.",
+      "Si se distribuye como binario, debe acompañarse el texto íntegro de la licencia y el código fuente correspondiente."
+    ]
+  },
+  "locations": {
+    "LOC_START": {
+      "desc": "Estás al final de un camino, frente a una casita de ladrillo. Te rodean árboles hasta donde alcanza la vista y un arroyo sale del edificio bajando hacia una barranca.",
+      "short": "Sigues frente a la casita."
+    },
+    "LOC_BUILDING": {
+      "desc": "Dentro de la casita, que en realidad es una caseta de pozo. A la derecha late una fuente que se desborda. Huele a piedra húmeda y a agua fría.",
+      "short": "Sigues dentro de la casita."
+    },
+    "LOC_ROADEND": {
+      "desc": "El camino, que viene del este, se acaba aquí entre los árboles. Solo queda hojarasca, sombra y la impresión de que nadie pasa por aquí desde hace años.",
+      "short": "El camino ha muerto aquí."
+    },
+    "LOC_HILL": {
+      "desc": "Has subido una loma sin salir del bosque. El camino baja por el otro lado y, a lo lejos, se ve la casita con su humo.",
+      "short": "Sigues en la loma del camino."
+    },
+    "LOC_VALLEY": {
+      "desc": "Estás en una vaguada del bosque, junto a un arroyo que salta entre rocas. El agua corre con ganas y el barranco huele a frío.",
+      "short": "Sigues en la vaguada."
+    },
+    "LOC_SLIT": {
+      "desc": "A tus pies, toda el agua del arroyo se pierde en una ranura de dos pulgadas abierta en la roca. Más abajo el lecho es piedra desnuda.",
+      "short": "Sigues junto a la ranura."
+    },
+    "LOC_GRATE": {
+      "desc": "Estás en una depresión de veinte pies, de fondo de tierra pelada. Encajada en la tierra hay una reja de acero macizo montada en hormigón, y un lecho seco de arroyo entra en la depresión.",
+      "short": "Sigues fuera de la reja."
+    },
+    "LOC_CLIFF": {
+      "desc": "El bosque se espesa hasta aquí y deja al descubierto un acantilado vertical. No hay forma de bajar, pero al oeste, al otro lado del precipicio, se ve una cornisa.",
+      "short": "Sigues ante el acantilado."
+    },
+    "LOC_LEDGE": {
+      "desc": "Estás en una cornisa diminuta en la cara de un acantilado. No sale ningún camino de aquí. Al otro lado del precipicio hay un claro rodeado de bosque.",
+      "short": "Sigues en la cornisa."
+    },
+    "LOC_SEWER": {
+      "desc": "El arroyo sale por un par de tuberías de cloaca de un pie de diámetro. El agua corre profunda y helada; más vale no seguirla.",
+      "short": "Sigues en la boca de las tuberías."
+    },
+    "LOC_FOOF2": {
+      "desc": ">>¡Puf!<<",
+      "short": ">>¡Puf!<<"
+    },
+    "LOC_FOOF4": {
+      "desc": ">>¡Puf!<<",
+      "short": ">>¡Puf!<<"
+    },
+    "LOC_FOREST": {
+      "desc": "Vagueas sin rumbo por el bosque. Los árboles se repiten uno tras otro y el suelo no dice nada.",
+      "short": "Sigues vagueando por el bosque."
+    }
+  },
+  "messages": {
+    "GRATE_NOWAY": "¡No puedes pasar por una reja de acero cerrada con llave!",
+    "WHICH_WAY": "¿Por dónde?",
+    "DONT_FIT": "¡No cabes por una ranura de dos pulgadas!",
+    "UPSTREAM_DOWNSTREAM": "¿Aguas arriba o aguas abajo?",
+    "BAD_DIRECTION": "Por ahí no se puede ir.",
+    "NOT_CONNECTED": "Desde aquí no se llega.",
+    "FORGOT_PATH": "Perdona, ya no me acuerdo de cómo se llegaba aquí.",
+    "TWIST_TURN": "Perdona, el camino dio tantas vueltas que no sé por dónde se vuelve.",
+    "NOTHING_HAPPENS": "No ocurre nada.",
+    "CANT_APPLY": "No sé aplicar esa palabra aquí.",
+    "NO_INOUT_HERE": "Aquí no sé qué es dentro y qué es fuera. Usa los puntos cardinales o nombra algo en la dirección general que quieras tomar.",
+    "NO_MORE_DETAIL": "Perdona, no me dan permiso para más detalle. Te repito la descripción larga.",
+    "ALREADY_CARRYING": "¡Ya lo llevas!",
+    "NOT_CARRYING": "No lo llevas encima.",
+    "IMMOVABLE": "Eso no se mueve ni a palos.",
+    "TAKEN": "Cogido: {object}.",
+    "DROPPED": "Soltado: {object}.",
+    "NO_SUCH_THING": "No ves ninguna {noun} por aquí.",
+    "TAKE_WHAT": "¿Qué quieres coger?",
+    "DROP_WHAT": "¿Qué quieres soltar?",
+    "POUR_GROUND": "El suelo queda mojado.",
+    "NO_KEYS": "¡No tienes llaves!",
+    "NOTHING_LOCKED": "Aquí no hay nada con cerradura.",
+    "FOLLOW_STREAM": "No sé dónde está la cueva, pero por aquí ningún arroyo puede correr mucho tiempo en la superficie. Probaría con el arroyo.",
+    "ALL_SILENT": "Todo está en silencio.",
+    "TREE": "Los árboles del bosque son grandes robles y arces de madera dura, con algún grupo de pinos de vez en cuando.",
+    "OFF_SCALE": "Tu marca queda fuera de las tablas.",
+    "CLASS_45": "Se te ve claramente como un simple principiante. Mejor suerte la próxima vez.",
+    "CLASS_120": "Tu puntuación te califica como aventurero de clase principiante.",
+    "CLASS_170": "Has alcanzado la categoría de «Aventurero con experiencia».",
+    "CLASS_250": "Ya puedes considerarte un «Aventurero curtido».",
+    "CLASS_320": "Has alcanzado el rango de «Maestro Junior».",
+    "CLASS_375": "Tu puntuación te sitúa en la clase C de Aventurero Maestro.",
+    "CLASS_410": "Tu puntuación te sitúa en la clase B de Aventurero Maestro.",
+    "CLASS_426": "Tu puntuación te sitúa en la clase A de Aventurero Maestro.",
+    "CLASS_429": "¡Toda la Aventurilandia te rinde homenaje, Aventurero Gran Maestro!",
+    "CLASS_9999": "Aventurilandia se queda sin aliento: ¡te has unido a las filas de los CAMPEONES MUNDIALES DE LA AVENTURA!",
+    "UNLOCK": "No sé cómo se abre o se cierra eso.",
+    "LOCK": "No sé cómo se abre o se cierra eso.",
+    "LIGHT": "No lo entiendo.",
+    "EXTINGUISH": "No lo entiendo.",
+    "DRINK": "Bebes del arroyo. El agua sabe fuerte a minerales, pero no es desagradable. Está heladísima.",
+    "DRINK_STREAM": "Bebes del arroyo. El agua sabe fuerte a minerales, pero no es desagradable. Está heladísima.",
+    "EAT_THAT": "¡No seas ridículo!",
+    "FILL_THAT": "No puedes llenar eso.",
+    "OPEN_THAT": "No sabes cómo se abre eso.",
+    "CLOSE_THAT": "No sabes cómo se cierra eso.",
+    "LAMP_ON": "Tu lámpara está encendida.",
+    "LAMP_OFF": "Tu lámpara está apagada.",
+    "LAMP_ALREADY_ON": "La lámpara ya está encendida.",
+    "LAMP_ALREADY_OFF": "La lámpara ya está apagada.",
+    "GRATE_LOCKED": "La reja está cerrada con llave.",
+    "GRATE_UNLOCKED": "La reja está abierta.",
+    "MAGIC_FOOF": ">>¡Puf!<<",
+    "MAGIC_FOOF_OUT": "La palabra mágica se deshace como humo de naranja.",
+    "NOTHING_TO_TAKE": "Aquí no hay nada que coger.",
+    "SCORE_INTRO": "Todavía no has hecho nada que contar.",
+    "END_OF_CHAPTER": "El capítulo 01 termina aquí. Lo que hay bajo la reja pertenece al capítulo 02."
+  },
+  "objects": {
+    "KEYS": {
+      "inventory": "Un manojo de llaves",
+      "descriptions": ["Hay unas llaves en el suelo."]
+    },
+    "LAMP": {
+      "inventory": "Lámpara de latón",
+      "descriptions": [
+        "Hay una lámpara de latón reluciente cerca.",
+        "Hay una lámpara encendida cerca."
+      ],
+      "changes": [
+        "Tu lámpara está apagada.",
+        "Tu lámpara está encendida."
+      ]
+    },
+    "FOOD": {
+      "inventory": "Comida sabrosa",
+      "descriptions": ["Hay comida aquí."]
+    },
+    "BOTTLE": {
+      "inventory": "Botella pequeña",
+      "descriptions": [
+        "Hay una botella de agua aquí.",
+        "Hay una botella vacía aquí.",
+        "Hay una botella de aceite aquí."
+      ],
+      "changes": [
+        "Tu botella está llena de agua.",
+        "La botella de agua está vacía.",
+        "Tu botella está llena de aceite."
+      ]
+    },
+    "GRATE": {
+      "inventory": "Reja de acero",
+      "descriptions": [
+        "La reja está cerrada con llave.",
+        "La reja está abierta."
+      ],
+      "changes": [
+        "La reja está ahora cerrada.",
+        "La reja está ahora abierta."
+      ]
+    },
+    "URN": {
+      "inventory": "Urna",
+      "descriptions": [
+        "Una pequeña urna está encastrada en la roca.",
+        "Una pequeña urna llena de aceite está encastrada en la roca.",
+        "Una pequeña llama de aceite sale de una urna encastrada en la roca."
+      ],
+      "changes": [
+        "La urna está vacía y no se enciende.",
+        "La urna está apagada.",
+        "La urna está encendida."
+      ]
+    },
+    "RABBITFOOT": {
+      "inventory": "Apéndice leporino",
+      "descriptions": ["Tu ojo experto descubre un apéndice leporino cortado en el suelo."]
+    },
+    "SAPPH": {
+      "inventory": "Zafiro estrella",
+      "descriptions": [
+        "¡Hay un brillante zafiro azul estrella aquí!",
+        "¡Hay un zafiro estrella descansando en una pequeña cavidad de la roca!"
+      ]
+    }
+  }
+}

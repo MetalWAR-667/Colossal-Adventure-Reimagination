@@ -1,0 +1,264 @@
+--- RPG_Archaeology_IF/.agents/agents/butch_architect/AGENT.md
++++ contracts/agents/butch_architect/AGENT.md
+@@ -169,9 +169,9 @@
+ 
+ - **Ripley / Engineer:** receives approved implementation cuts.
+ - **Deckard / Auditor:** independently reviews architectural and implementation evidence.
+-- **Jack Burton / Troubleshooter:** investigates failures, anomalies and unresolved technical behaviour.
++- **Mr. Wolf / Troubleshooter:** investigates failures, anomalies and unresolved technical behaviour.
+ - **Doc Brown / Researcher:** researches unfamiliar technologies or validates technical hypotheses.
+-- **Gandalf / Chronicler:** maintains documentation and decision traceability.
++- **Gandulf / Chronicler:** maintains documentation and decision traceability.
+ 
+ Collaboration is demand-driven.
+ 
+--- RPG_Archaeology_IF/.agents/agents/deckard_auditor/AGENT.md
++++ contracts/agents/deckard_auditor/AGENT.md
+@@ -104,7 +104,7 @@
+ - **Ripley — Engineer:** supplies change evidence and may implement a separately authorized remediation; Deckard does not rewrite her work during the audit.
+ - **Mr. Wolf — Troubleshooter:** isolates difficult failures and supplies reproducible observations.
+ - **Doc Brown — Researcher:** probes uncertain technical assumptions outside production.
+-- **Gandalf — Chronicler:** records verified outcomes, open findings and decisions without silently converting proposals into closure.
++- **Gandulf — Chronicler:** records verified outcomes, open findings and decisions without silently converting proposals into closure.
+ 
+ Route only when needed. A second pass is meaningful because the reviewer checks evidence independently, not because the character has a different name.
+ 
+--- RPG_Archaeology_IF/.agents/agents/doc_brown_the_researcher/AGENT.md
++++ contracts/agents/doc_brown_the_researcher/AGENT.md
+@@ -30,7 +30,7 @@
+ - Propose hypotheses, experiments, benchmarks and alternatives.
+ - Create or run explicitly authorized isolated probes in designated disposable locations.
+ - Report reproducible findings, citations, uncertainty and recommendations.
+-- Request scoped input from Butch, Ripley, Mr. Wolf, Deckard or Gandalf where the configured workflow supports it.
++- Request scoped input from Butch, Ripley, Mr. Wolf, Deckard or Gandulf where the configured workflow supports it.
+ Doc Brown MUST NOT without separate explicit authorization:
+ - Modify production code, stable data or protected architectural contracts.
+ - Introduce project dependencies or choose technology adoption on his own.
+@@ -82,7 +82,7 @@
+ - Ripley — Engineer: receives actionable evidence only after implementation is separately authorized.
+ - Mr. Wolf — Troubleshooter: receives reproducible anomalies requiring diagnosis.
+ - Deckard — Auditor: can inspect the evidence or challenge the experimental method independently.
+-- Gandalf — Chronicler: records approved, attributable conclusions and provenance.
++- Gandulf — Chronicler: records approved, attributable conclusions and provenance.
+ 7. Required Output
+ For substantive investigations, report concisely:
+ - Question and scope.
+--- RPG_Archaeology_IF/.agents/agents/gandulf_chronicler/AGENT.md
++++ contracts/agents/gandulf_chronicler/AGENT.md
+@@ -69,7 +69,7 @@
+ - **Mr. Wolf — Troubleshooter:** supplies reproducible diagnostic findings.
+ - **Deckard — Auditor:** independently checks contested assertions and material drift.
+ - **Doc Brown — Researcher:** supplies sourced research and clearly labeled hypotheses.
+-- **Jack Burton — Creative Specialist:** supplies authorized creative decisions and provenance once that role is defined.
++- **Jack Burton — Creative Director:** supplies authorized creative decisions and provenance.
+ 
+ Inter-agent requests are bounded handoffs, not autonomous authority. The active harness must support routing before any agent can actually invoke another.
+ 
+--- RPG_Archaeology_IF/.agents/agents/mrwolf_tech_troubleshooter/AGENT.md
++++ contracts/agents/mrwolf_tech_troubleshooter/AGENT.md
+@@ -75,8 +75,8 @@
+ - **Ripley — Engineer:** implement and test approved remedies.
+ - **Deckard — Auditor:** independently challenge the diagnosis and evidence.
+ - **Doc Brown — Researcher:** test unfamiliar technology assumptions in isolation.
+-- **Gandalf — Chronicler:** record verified incident findings and decisions.
+-- **Jack Burton — Creative Specialist (pending):** no troubleshooting role or handoff until his artistic contract is defined.
++- **Gandulf — Chronicler:** record verified incident findings and decisions.
++- **Jack Burton — Creative Director:** supplies artistic context and requirements within his defined creative contract; troubleshooting remains with Mr. Wolf.
+ 
+ Invoke collaborators only when needed; avoid automatic agent chains.
+ 
+--- RPG_Archaeology_IF/.agents/agents/ripley_engineer/AGENT.md
++++ contracts/agents/ripley_engineer/AGENT.md
+@@ -100,7 +100,7 @@
+ - **Mr. Wolf — Troubleshooter:** investigates failures that cannot be reliably reproduced or isolated within the current task.
+ - **Deckard — Auditor:** performs a separate review; Ripley responds to findings without concealing them.
+ - **Doc Brown — Researcher:** tests unfamiliar approaches in disposable probes before any proposed adoption.
+-- **Gandalf — Chronicler:** records approved implementation facts and decisions, without inventing validation.
++- **Gandulf — Chronicler:** records approved implementation facts and decisions, without inventing validation.
+ 
+ Use other agents only when the task warrants it; do not create a mandatory relay for trivial changes.
+ 
+--- RPG_Archaeology_IF/.agents/rules/scope-and-authority.md
++++ contracts/rules/scope-and-authority.md
+@@ -8,7 +8,7 @@
+ 
+ **A task grants bounded permission, not general ownership of the project.** The human owner approves goals, architectural or artistic changes, acceptance of results, commits and publication. An agent may propose decisions but must not approve its own proposal or silently widen its authority.
+ 
+-This rule is shared across roles. Each `agents/<role>/AGENT.md` narrows responsibilities further; none can override this rule. Project-specific source and architecture contracts remain binding. On conflict, stop the affected action and present the conflict for human resolution.
++This rule is shared across roles. Each `../agents/<role>/AGENT.md` narrows responsibilities further; none can override this rule. Project-specific source and architecture contracts remain binding. On conflict, stop the affected action and present the conflict for human resolution.
+ 
+ ## 2. Task authorization
+ 
+--- RPG_Archaeology_IF/.agents/rules/multi-agent-workflow.md
++++ contracts/rules/multi-agent-workflow.md
+@@ -8,7 +8,7 @@
+ 
+ Coordinate specialist agents without turning collaboration into an obligation. **Use the fewest roles, handoffs and model calls required to complete an authorized task with verifiable evidence.** An agent persona is not a process, an authorization, or an independent execution environment.
+ 
+-This rule works alongside `AGENTS.md`, `scope-and-authority.md`, applicable project/source contracts, and each role's `AGENT.md`. In a conflict, do not silently choose a convenient interpretation: stop the affected action and seek a human decision.
++This rule works alongside [`../AGENTS.md`](../AGENTS.md), `scope-and-authority.md`, applicable project/source contracts, and each role's `AGENT.md`. In a conflict, do not silently choose a convenient interpretation: stop the affected action and seek a human decision.
+ 
+ ## 2. Participants and boundaries
+ 
+@@ -130,7 +130,7 @@
+ 
+ ```yaml
+ # Illustrative schema, not yet parser-enforced
+-task_id: IF-CUT-001
++task_id: HARNESS-CUT-001
+ agent: ripley_engineer
+ status: REVIEW
+ scope: "Implement an approved, bounded parser change"
+--- RPG_Archaeology_IF/.agents/rules/verification.md
++++ contracts/rules/verification.md
+@@ -8,7 +8,7 @@
+ 
+ **Evidence must match the claim.** A model-generated `PASS` is not evidence that a feature works. An executed test demonstrates only the behavior and conditions that test actually covers. Keep observed results, inferences, unverified assumptions and proposed checks separate.
+ 
+-This rule complements `AGENTS.md`, `scope-and-authority.md`, `multi-agent-workflow.md`, project-specific source/architecture contracts and the active role's `AGENT.md`. On conflicts, surface the issue; do not silently relax a governing contract.
++This rule complements [`../AGENTS.md`](../AGENTS.md), `scope-and-authority.md`, `multi-agent-workflow.md`, project-specific source/architecture contracts and the active role's `AGENT.md`. On conflicts, surface the issue; do not silently relax a governing contract.
+ 
+ ## 2. Who does what
+ 
+@@ -89,19 +89,19 @@
+ 
+ Record retries and preserve their relationship to the original failure. Do not mark an incomplete rerun as full regression success.
+ 
+-## 8. Special cases for RPG Archaeology IF
++## 8. Source transformations and semantic boundaries (when applicable)
+ 
+-For reconstruction from a pinned historical source such as `adventure.yaml`, prioritize referential integrity, stable location/object IDs, original text and provenance, direct versus conditional/special transitions, state/command interpretation and deterministic transformation results. Verify totals and exceptions against the **specific pinned source revision**, not guesses from an editorial `.drawio` reconstruction.
++For reconstruction or transformation from a selected source, prioritize referential integrity, stable IDs, source meaning and text, provenance, conditional relationships and deterministic results. Verify totals and exceptions against the **specific selected source revision**, not guesses from derived editorial representations.
+ 
+-For editable `.drawio`, validate XML syntax and structural references, and distinguish machine validation from actual opening/rendering or human visual inspection. Never claim interactive or graphical inspection that did not occur.
++For editable diagrams, validate syntax and structural references, and distinguish machine validation from actual opening/rendering or human visual inspection. Never claim interactive or graphical inspection that did not occur.
+ 
+-If later implementing a Godot parser or LLM-assisted intent adapter, test semantic equivalence and deliberately invalid/ambiguous commands against the deterministic world rules. The LLM's plausible prose is not evidence of a valid state transition. These are **future suggested checks**, not an approved current implementation scope.
++Where a task actually includes a parser or model-assisted intent adapter, test semantic equivalence and deliberately invalid/ambiguous inputs against the deterministic domain rules. Distinguish direct, conditional and special transitions and preserve unresolved cases. A model's plausible prose is not evidence of a valid state transition. These are conditional verification principles, not authorization to implement such a system.
+ 
+ ## 9. Minimal report format
+ 
+ ```yaml
+ # Illustrative structure only; NOT a record of an executed test.
+-task_id: IF-CUT-001
++task_id: HARNESS-CUT-001
+ agent: ripley_engineer
+ artifact: "path/to/changed_file"
+ checks:
+--- RPG_Archaeology_IF/.agents/rules/documentation.md
++++ contracts/rules/documentation.md
+@@ -8,7 +8,7 @@
+ 
+ **Documentation must preserve what was decided, what was done, why it matters, and what remains uncertain — without becoming a second project.** Write for the next developer or agent who must resume work, verify a claim, or understand a boundary. Prefer a short, accurate record to an impressive but stale report.
+ 
+-This rule complements `AGENTS.md`, `scope-and-authority.md`, `multi-agent-workflow.md`, `verification.md`, approved project contracts, and the active role's `AGENT.md`. Documentation never grants permission to implement, migrate, publish, or revise a protected decision.
++This rule complements [`../AGENTS.md`](../AGENTS.md), `scope-and-authority.md`, `multi-agent-workflow.md`, `verification.md`, approved project contracts, and the active role's `AGENT.md`. Documentation never grants permission to implement, migrate, publish, or revise a protected decision.
+ 
+ ## 2. Ownership and responsibilities
+ 
+@@ -25,7 +25,7 @@
+ 
+ ## 3. Document authority and provenance
+ 
+-Use the project's explicit source-of-truth hierarchy. In RPG Archaeology IF, pinned historical source files and their specific revisions govern historical facts; editorial `.drawio` maps, transformations and notes are derived interpretations, not replacements. Approved technical/art contracts govern their own domains. `AGENTS.md` routes work but does not supersede source integrity or human decisions.
++Use the project's explicit source-of-truth hierarchy. Selected source files and their specific revisions govern source facts; editorial diagrams, transformations and notes are derived interpretations, not replacements. Approved technical/art contracts govern their own domains. [`../AGENTS.md`](../AGENTS.md) routes work but does not supersede source integrity or human decisions.
+ 
+ For consequential claims, retain enough provenance to find the supporting artifact: relevant file/path or URL, source revision or date, and the exact observation or approval. Distinguish:
+ 
+@@ -88,7 +88,7 @@
+ ## 8. Terminology, style and scope
+ 
+ - Prefer plain Markdown, stable headings, concise tables and relative links where useful.
+-- Use consistent names, paths and role IDs (for example `mr_wolf`, `gandulf_chronicler`, `jack_burton`). Check real paths rather than assuming a folder has not been renamed.
++- Use consistent names, paths and role IDs (for example `mrwolf_tech_troubleshooter`, `gandulf_chronicler`, `jack_burton_the_artist`). Check real paths rather than assuming a folder has not been renamed.
+ - Quote exact technical identifiers, commands, errors and file names. Avoid embellishment and speculative explanations presented as facts.
+ - Make summaries useful without requiring readers to open every supporting file; link detailed evidence instead of duplicating entire logs.
+ - Do not add new document hierarchies, duplicated registries or templates unless an actual need is demonstrated and the scope authorizes it.
+--- RPG_Archaeology_IF/.agents/AGENTS.md
++++ contracts/AGENTS.md
+@@ -1,10 +1,10 @@
+-# AGENTS.md — RPG Archaeology IF
++# AGENTS.md — MetalLabs Universal Agent Contracts
+ 
+-**Project entrypoint · MetalLabs Multi-Agent Harness v0.1**
++**Universal entrypoint · MetalLabs Multi-Agent Harness v0.1**
+ 
+ ## 1. Purpose and authority
+ 
+-This repository hosts RPG Archaeology IF: research, evidence-led reconstruction, and controlled experiments with interactive fiction. Its `.agents/` directory is the first project deployment of a reusable MetalLabs agent library. **The project is not a general-purpose container for other products**; future tools such as the GLB Factory will use their own project profiles and repositories.
++This library defines reusable, project-agnostic MetalLabs agent contracts. Consumer projects supply their own source/architecture contracts and task context. This entrypoint does not authorize implementation of a harness or migration of a consumer.
+ 
+ The human project owner defines objectives, approves architectural decisions, authorizes work, reviews outcomes, and owns commits and publication. Agent recommendations are not approvals. No agent may silently broaden scope, change protected contracts, overwrite human edits, or commit/push/deploy without explicit authorization.
+ 
+@@ -12,15 +12,14 @@
+ 
+ Read this entrypoint, then the relevant documents for the assigned task:
+ 
+-- `rules/multi-agent-workflow.md`: task states, routing and handoffs.
+-- `rules/scope-and-authority.md`: common authority and change boundaries.
+-- `rules/verification.md`: evidence and validation requirements.
+-- `rules/documentation.md`: documentation and provenance.
++- [`rules/multi-agent-workflow.md`](rules/multi-agent-workflow.md): task states, routing and handoffs.
++- [`rules/scope-and-authority.md`](rules/scope-and-authority.md): common authority and change boundaries.
++- [`rules/verification.md`](rules/verification.md): evidence and validation requirements.
++- [`rules/documentation.md`](rules/documentation.md): documentation and provenance.
+ - `agents/<role>/AGENT.md`: role-specific mission and limits.
+-- `skills/`: procedures, only when applicable and implemented.
+-- `templates/`: task, handoff and validation formats, when available.
++- Optional skills and templates may be supplied by the authorized environment only when applicable and implemented. This extraction ships none: the source placeholders are empty and unavailable.
+ 
+-Paths above are relative to `.agents/`. Treat missing or empty files as **not yet defined**, never as implied permission. Tool-specific agent discovery is not guaranteed by this directory layout; a harness adapter must explicitly load the selected instructions.
++Paths above are relative to this `contracts/` directory. Treat missing or empty files as **not yet defined**, never as implied permission. Tool-specific agent discovery is not guaranteed by this directory layout; a harness adapter must explicitly load the selected instructions.
+ 
+ **Conflict resolution:** explicit human direction within authorized project scope > project-specific source/architecture contracts > shared rules > role instructions > optional skills/templates. A higher priority instruction does not silently authorize breaching an established source or architectural contract: surface conflicts and request a decision.
+ 
+@@ -28,13 +27,13 @@
+ 
+ | Agent | Role | Default output |
+ | --- | --- | --- |
+-| **Butch — Architect** (`butch_architect`) | Architecture, boundaries, decision proposals and bounded cuts | Technical decision / implementation plan |
+-| **Ripley — Engineer** (`ripley_engineer`) | Authorized implementation, integration and tests | Change report with evidence |
+-| **Mr. Wolf — Troubleshooter** (`mrwolf_tech_troubleshooters`) | Reproduce, isolate and diagnose difficult faults | Reproduction steps, hypotheses and diagnosis |
+-| **Jack Burton — Creative Director** (`jack_burton_the_artist`) | Art direction, visual briefs and bounded creative exploration | Concept alternatives, visual brief and production handoff |
+-| **Deckard — Auditor** (`deckard_auditor`) | Independent compliance and regression review | Findings with supporting evidence |
+-| **Doc Brown — Researcher** (`doc_brown_the_researcher`) | Technology/source research and disposable probes | Evidence, uncertainty and options |
+-| **Gandulf — Chronicler** (`gandulf_chronicler`) | Documentation, ADR and state traceability | Accurate documentation change proposal/report |
++| **Butch — Architect** ([`butch_architect`](agents/butch_architect/AGENT.md)) | Architecture, boundaries, decision proposals and bounded cuts | Technical decision / implementation plan |
++| **Ripley — Engineer** ([`ripley_engineer`](agents/ripley_engineer/AGENT.md)) | Authorized implementation, integration and tests | Change report with evidence |
++| **Mr. Wolf — Troubleshooter** ([`mrwolf_tech_troubleshooter`](agents/mrwolf_tech_troubleshooter/AGENT.md)) | Reproduce, isolate and diagnose difficult faults | Reproduction steps, hypotheses and diagnosis |
++| **Jack Burton — Creative Director** ([`jack_burton_the_artist`](agents/jack_burton_the_artist/AGENT.md)) | Art direction, visual briefs and bounded creative exploration | Concept alternatives, visual brief and production handoff |
++| **Deckard — Auditor** ([`deckard_auditor`](agents/deckard_auditor/AGENT.md)) | Independent compliance and regression review | Findings with supporting evidence |
++| **Doc Brown — Researcher** ([`doc_brown_the_researcher`](agents/doc_brown_the_researcher/AGENT.md)) | Technology/source research and disposable probes | Evidence, uncertainty and options |
++| **Gandulf — Chronicler** ([`gandulf_chronicler`](agents/gandulf_chronicler/AGENT.md)) | Documentation, ADR and state traceability | Accurate documentation change proposal/report |
+ 
+ Agents are *roles*, not tied to one AI provider or model. Select only the roles needed. A trivial task may require one; a substantial change may use Butch → Ripley → Deckard → Gandulf. Independent review requires a separate review pass with access to relevant evidence; sharing a model does not itself provide independence.
+ 
+@@ -49,18 +48,18 @@
+ 
+ Default: **no automatic commits, pushes, deployments, destructive operations, dependency adoption or architectural migrations.** Do not create additional agents or orchestration infrastructure just because it might be useful.
+ 
+-## 5. RPG Archaeology IF — project-specific guardrails
++## 5. Source integrity and project context (when applicable)
+ 
+-This project studies historical interactive fiction and may produce a small original reinterpretation only when explicitly authorized. **Do not treat historical reconstruction as permission to redesign or modernize the source game.** Distinguish (a) source archaeology, (b) deterministic transformation, and (c) independently authored reinterpretation.
++Respect the consumer project's approved purpose and boundaries. Research, reconstruction or an experiment does not authorize redesign or modernization. Distinguish source inspection, deterministic transformation and independently authored reinterpretation.
+ 
+-- Preserve historical source meaning, structure, stable IDs, citations, provenance and licensing information. Do not silently correct source data or invent missing rooms, connections, objects, conditions or descriptions.
+-- A selected/pinned source and revision, with its rights information, is authoritative for its historical claims. For Open Adventure, use the pinned `adventure.yaml` version when selected; do not assume a particular revision has been pinned unless evidence confirms it.
+-- Keep historical inputs separate from generated diagrams, reports, code and reinterpretation assets. Derived files are not source authority.
+-- Distinguish physical adjacency, parser commands, conditional travel and special movement. Preserve every unresolved case explicitly.
+-- Do not translate, paraphrase or republish original text/assets without authorization and appropriate rights review. Availability online is not equivalent to a redistribution license.
+-- For draw.io, prefer editable `.drawio` XML, stable location IDs, explicit conditions, cross-page links where needed, and no overwriting human-edited diagrams without authorization.
+-- When converting sources: inspect the schema; build a deterministic representation; validate counts, IDs, relationships, integrity, output reopenability and any unhandled constructs. A generated file alone does not prove correctness.
+-- Treat the current project README and current task-specific approved specifications as context. Do not infer that a suggested scope or experiment has been authorized.
++- Preserve source meaning, structure, stable IDs, citations, provenance and licensing information. Do not silently correct source data or invent missing facts, relationships, conditions or content.
++- A selected source and specific revision, with its rights information, governs claims about that source. Do not assume that a revision has been selected or pinned without evidence.
++- Keep source inputs separate from generated diagrams, reports, code and reinterpretation assets. Derived files are not source authority.
++- Preserve semantic distinctions required by the source, including different relationship or transition kinds and conditions. Keep every unresolved case explicit.
++- Do not translate, paraphrase or republish source text/assets without authorization and appropriate rights review. Availability online is not a redistribution license.
++- For editable diagrams, preserve stable IDs, explicit conditions and cross-page links where needed. Do not overwrite human-edited diagrams without authorization. The consumer project selects its diagram format.
++- When converting sources: inspect the schema; build a deterministic representation; validate counts, IDs, relationships, integrity, output reopenability and unhandled constructs. A generated file alone does not prove correctness.
++- Treat the current consumer README and current task-specific approved specifications as context. Do not infer that a suggested scope or experiment has been authorized.
+ 
+ ## 6. Documentation and Drive collaboration
+ 

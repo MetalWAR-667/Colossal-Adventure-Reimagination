@@ -1,0 +1,293 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="Open Adventure RPG Archaeology tooling" agent="007-mata-hari-pilot" type="device" version="24.7.0">
+  <diagram id="CH_ENTRY" name="02 — Cave Entry — Pilot">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3310" pageHeight="1970" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1" vertex="1" parent="1" value="02 — Cave Entry — Pilot (Mata Hari, Mission 003)">
+          <mxGeometry x="80" y="20" width="700" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="compass" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Courier New;fontSize=12" vertex="1" parent="1" value="   N&#10;   ↑&#10;W ← + → E&#10;   ↓&#10;   S">
+          <mxGeometry x="80" y="60" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10" vertex="1" parent="1" value="black solid = direct compass travel&#10;blue solid = vertical UP/DOWN (not compass N/S)&#10;orange dashed = conditional · blue dotted = random %&#10;grey dashed = message · purple dashed = special movement&#10;dashed to gutter = leaves this page (marker shows exact destination)">
+          <mxGeometry x="220" y="60" width="360" height="95" as="geometry" />
+        </mxCell>
+        <object label="&lt;b&gt;LOC_AWKWARD — Awkward canyon.&lt;/b&gt;&lt;br&gt;&lt;br&gt;You are in an awkward sloping east/west canyon.&lt;br&gt;&lt;br&gt;&lt;b&gt;EXITS (source order)&lt;/b&gt;&lt;br&gt;DEPRE → LOC_GRATE · 01 — Surface World [not GRATE=GRATE_CLOSED]&lt;br&gt;ENTRA → LOC_BELOWGRATE&lt;br&gt;d → LOC_DEBRIS&lt;br&gt;INWAR → LOC_BIRDCHAMBER&lt;br&gt;PIT → LOC_PITTOP" source_id="LOC_AWKWARD" description_en="You are in an awkward sloping east/west canyon." description_es="" short_en="" maptag="Awkward canyon." chapter_id="CH_ENTRY" source_reference="Open_Adventure.yaml locations/LOC_AWKWARD" review_status="ok" role="playable" conditions="">
+          <mxCell id="CH_ENTRY_LOC_AWKWARD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;arcSize=6;fontSize=11;fontFamily=Helvetica;verticalAlign=top;spacingTop=2;" vertex="1" parent="1">
+            <mxGeometry x="1520" y="520" width="300" height="190" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="&lt;b&gt;LOC_BELOWGRATE — below the grate&lt;/b&gt;&lt;br&gt;&lt;br&gt;You are in a small chamber beneath a 3x3 steel grate to the surface.&lt;br&gt;A low crawl over cobbles leads inward to the west.&lt;br&gt;&lt;br&gt;&lt;b&gt;EXITS (source order)&lt;/b&gt;&lt;br&gt;OUT → LOC_GRATE · 01 — Surface World [not GRATE=GRATE_CLOSED]&lt;br&gt;OUT → say GRATE_NOWAY&lt;br&gt;crawl → LOC_COBBLE&lt;br&gt;PIT → LOC_PITTOP&lt;br&gt;DEBRI → LOC_DEBRIS" source_id="LOC_BELOWGRATE" description_en="You are in a small chamber beneath a 3x3 steel grate to the surface.&#10;A low crawl over cobbles leads inward to the west." description_es="" short_en="You're below the grate." maptag="" chapter_id="CH_ENTRY" source_reference="Open_Adventure.yaml locations/LOC_BELOWGRATE" review_status="ok" role="playable" conditions="LIT=True" objects_here="GRATE" immovable_objects_here="GRATE">
+          <mxCell id="CH_ENTRY_LOC_BELOWGRATE" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;arcSize=6;fontSize=11;fontFamily=Helvetica;verticalAlign=top;spacingTop=2;" vertex="1" parent="1">
+            <mxGeometry x="2600" y="520" width="300" height="220" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="&lt;b&gt;LOC_BIRDCHAMBER — in bird chamber&lt;/b&gt;&lt;br&gt;&lt;br&gt;You are in a splendid chamber thirty feet high.  The walls are frozen&lt;br&gt;rivers of orange stone.  An awkward canyon and a good passage exit&lt;br&gt;from east and west sides of the chamber.&lt;br&gt;&lt;br&gt;&lt;b&gt;EXITS (source order)&lt;/b&gt;&lt;br&gt;DEPRE → LOC_GRATE · 01 — Surface World [not GRATE=GRATE_CLOSED]&lt;br&gt;ENTRA → LOC_BELOWGRATE&lt;br&gt;DEBRI → LOC_DEBRIS&lt;br&gt;CANYO → LOC_AWKWARD&lt;br&gt;PASSA → LOC_PITTOP" source_id="LOC_BIRDCHAMBER" description_en="You are in a splendid chamber thirty feet high.  The walls are frozen&#10;rivers of orange stone.  An awkward canyon and a good passage exit&#10;from east and west sides of the chamber." description_es="" short_en="You're in bird chamber." maptag="" chapter_id="CH_ENTRY" source_reference="Open_Adventure.yaml locations/LOC_BIRDCHAMBER" review_status="ok" role="playable" conditions="" objects_here="BIRD">
+          <mxCell id="CH_ENTRY_LOC_BIRDCHAMBER" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;arcSize=6;fontSize=11;fontFamily=Helvetica;verticalAlign=top;spacingTop=2;" vertex="1" parent="1">
+            <mxGeometry x="1160" y="520" width="300" height="230" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="&lt;b&gt;LOC_COBBLE — in cobble crawl&lt;/b&gt;&lt;br&gt;&lt;br&gt;You are crawling over cobbles in a low passage.  There is a dim light&lt;br&gt;at the east end of the passage.&lt;br&gt;&lt;br&gt;&lt;b&gt;EXITS (source order)&lt;/b&gt;&lt;br&gt;OUT → LOC_BELOWGRATE&lt;br&gt;INWAR → LOC_DEBRIS&lt;br&gt;PIT → LOC_PITTOP" source_id="LOC_COBBLE" description_en="You are crawling over cobbles in a low passage.  There is a dim light&#10;at the east end of the passage." description_es="" short_en="You're in cobble crawl." maptag="" chapter_id="CH_ENTRY" source_reference="Open_Adventure.yaml locations/LOC_COBBLE" review_status="ok" role="playable" conditions="LIT=True" objects_here="CAGE">
+          <mxCell id="CH_ENTRY_LOC_COBBLE" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;arcSize=6;fontSize=11;fontFamily=Helvetica;verticalAlign=top;spacingTop=2;" vertex="1" parent="1">
+            <mxGeometry x="2240" y="520" width="300" height="160" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="&lt;b&gt;LOC_CRACK — The crack is far too small for you to follow.  At...&lt;/b&gt;&lt;br&gt;&lt;br&gt;The crack is far too small for you to follow.  At its widest it is&lt;br&gt;barely wide enough to admit your foot.&lt;br&gt;&lt;br&gt;&lt;b&gt;EXITS (source order)&lt;/b&gt;&lt;br&gt;(implicit) → LOC_PITTOP" source_id="LOC_CRACK" description_en="The crack is far too small for you to follow.  At its widest it is&#10;barely wide enough to admit your foot." description_es="" short_en="" maptag="" chapter_id="CH_ENTRY" source_reference="Open_Adventure.yaml locations/LOC_CRACK" review_status="ok" role="transient" conditions="DEEP=True">
+          <mxCell id="CH_ENTRY_LOC_CRACK" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#333333;arcSize=6;fontSize=11;fontFamily=Helvetica;verticalAlign=top;spacingTop=2;" vertex="1" parent="1">
+            <mxGeometry x="440" y="520" width="300" height="150" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="&lt;b&gt;LOC_DEBRIS — in debris room&lt;/b&gt;&lt;br&gt;&lt;br&gt;You are in a debris room filled with stuff washed in from the surface.&lt;br&gt;A low wide passage with cobbles becomes plugged with mud and debris&lt;br&gt;here, but an awkward canyon leads upward and west.  In the mud someone&lt;br&gt;[... full description stored in node metadata ...]&lt;br&gt;&lt;br&gt;&lt;b&gt;EXITS (source order)&lt;/b&gt;&lt;br&gt;DEPRE → LOC_GRATE · 01 — Surface World [not GRATE=GRATE_CLOSED]&lt;br&gt;ENTRA → LOC_BELOWGRATE&lt;br&gt;crawl → LOC_COBBLE&lt;br&gt;CANYO → LOC_AWKWARD&lt;br&gt;xyzzy → LOC_FOOF2 · 01 — Surface World&lt;br&gt;PIT → LOC_PITTOP" source_id="LOC_DEBRIS" description_en="You are in a debris room filled with stuff washed in from the surface.&#10;A low wide passage with cobbles becomes plugged with mud and debris&#10;here, but an awkward canyon leads upward and west.  In the mud someone&#10;has scrawled, &quot;MAGIC WORD XYZZY&quot;." description_es="" short_en="You're in debris room." maptag="" chapter_id="CH_ENTRY" source_reference="Open_Adventure.yaml locations/LOC_DEBRIS" review_status="ok" role="playable" conditions="" objects_here="ROD, OBJ_47" immovable_objects_here="OBJ_47">
+          <mxCell id="CH_ENTRY_LOC_DEBRIS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;arcSize=6;fontSize=11;fontFamily=Helvetica;verticalAlign=top;spacingTop=2;" vertex="1" parent="1">
+            <mxGeometry x="1880" y="520" width="300" height="290" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="&lt;b&gt;LOC_EASTBANK — on east bank of fissure&lt;/b&gt;&lt;br&gt;&lt;br&gt;You are on the east bank of a fissure slicing clear across the hall.&lt;br&gt;The mist is quite thick here, and the fissure is too wide to jump.&lt;br&gt;&lt;br&gt;&lt;b&gt;EXITS (source order)&lt;/b&gt;&lt;br&gt;HALL → LOC_MISTHALL&lt;br&gt;JUMP → say CROSS_BRIDGE [not FISSURE=UNBRIDGED]&lt;br&gt;FORWA → LOC_NOMAKE · 11 — Special &amp;amp; Transient States [not FISSURE=BRIDGED]&lt;br&gt;OVER → say NO_CROSS [not FISSURE=BRIDGED]&lt;br&gt;OVER → LOC_WESTBANK" source_id="LOC_EASTBANK" description_en="You are on the east bank of a fissure slicing clear across the hall.&#10;The mist is quite thick here, and the fissure is too wide to jump." description_es="" short_en="You're on east bank of fissure." maptag="" chapter_id="CH_ENTRY" source_reference="Open_Adventure.yaml locations/LOC_EASTBANK" review_status="ok" role="playable" conditions="DEEP=True" objects_here="FISSURE" immovable_objects_here="FISSURE">
+          <mxCell id="CH_ENTRY_LOC_EASTBANK" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;arcSize=6;fontSize=11;fontFamily=Helvetica;verticalAlign=top;spacingTop=2;" vertex="1" parent="1">
+            <mxGeometry x="440" y="920" width="300" height="230" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="&lt;b&gt;LOC_FOOF1 — &amp;gt;&amp;gt;Foof!&amp;lt;&amp;lt;&lt;/b&gt;&lt;br&gt;&lt;br&gt;&amp;gt;&amp;gt;Foof!&amp;lt;&amp;lt;&lt;br&gt;&lt;br&gt;&lt;b&gt;EXITS (source order)&lt;/b&gt;&lt;br&gt;(implicit) → LOC_DEBRIS" source_id="LOC_FOOF1" description_en="&gt;&gt;Foof!&lt;&lt;" description_es="" short_en="" maptag="" chapter_id="CH_ENTRY" source_reference="Open_Adventure.yaml locations/LOC_FOOF1" review_status="ok" role="special" conditions="">
+          <mxCell id="CH_ENTRY_LOC_FOOF1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#333333;arcSize=6;fontSize=11;fontFamily=Helvetica;verticalAlign=top;spacingTop=2;" vertex="1" parent="1">
+            <mxGeometry x="1880" y="170" width="300" height="110" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="&lt;b&gt;LOC_MISTHALL — in Hall of Mists&lt;/b&gt;&lt;br&gt;&lt;br&gt;You are at one end of a vast hall stretching forward out of sight to&lt;br&gt;the west.  There are openings to either side.  Nearby, a wide stone&lt;br&gt;staircase leads downward.  The hall is filled with wisps of white mist&lt;br&gt;sw&lt;br&gt;[... full description stored in node metadata ...]&lt;br&gt;&lt;br&gt;&lt;b&gt;EXITS (source order)&lt;/b&gt;&lt;br&gt;left → LOC_NUGGET&lt;br&gt;FORWA → LOC_EASTBANK&lt;br&gt;STAIR → LOC_KINGHALL · 03 — Hall of Mountain King &amp;amp; Twopit&lt;br&gt;UPWAR → LOC_DOME · 11 — Special &amp;amp; Transient States [carry NUGGET]&lt;br&gt;UPWAR → LOC_PITTOP&lt;br&gt;Y2 → LOC_JUMBLE · 10 — Y2, Windows &amp;amp; Dusty Room" source_id="LOC_MISTHALL" description_en="You are at one end of a vast hall stretching forward out of sight to&#10;the west.  There are openings to either side.  Nearby, a wide stone&#10;staircase leads downward.  The hall is filled with wisps of white mist&#10;swaying to and fro almost as if alive.  A cold wind blows up the&#10;staircase.  There is a passage at the top of a dome behind you." description_es="" short_en="You're in Hall of Mists." maptag="" chapter_id="CH_ENTRY" source_reference="Open_Adventure.yaml locations/LOC_MISTHALL" review_status="ok" role="playable" conditions="DEEP=True" objects_here="STEPS" immovable_objects_here="STEPS" sound="WIND_WHISTLES">
+          <mxCell id="CH_ENTRY_LOC_MISTHALL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;arcSize=6;fontSize=11;fontFamily=Helvetica;verticalAlign=top;spacingTop=2;" vertex="1" parent="1">
+            <mxGeometry x="800" y="920" width="300" height="340" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="&lt;b&gt;LOC_NUGGET — in nugget-of-gold room&lt;/b&gt;&lt;br&gt;&lt;br&gt;This is a low room with a crude note on the wall.  The note says,&lt;br&gt;&amp;quot;You won&amp;#x27;t get it up the steps&amp;quot;.&lt;br&gt;&lt;br&gt;&lt;b&gt;EXITS (source order)&lt;/b&gt;&lt;br&gt;HALL → LOC_MISTHALL" source_id="LOC_NUGGET" description_en="This is a low room with a crude note on the wall.  The note says,&#10;&quot;You won't get it up the steps&quot;." description_es="" short_en="You're in nugget-of-gold room." maptag="" chapter_id="CH_ENTRY" source_reference="Open_Adventure.yaml locations/LOC_NUGGET" review_status="ok" role="playable" conditions="DEEP=True" objects_here="OBJ_48, NUGGET" treasures_here="NUGGET" immovable_objects_here="OBJ_48">
+          <mxCell id="CH_ENTRY_LOC_NUGGET" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;arcSize=6;fontSize=11;fontFamily=Helvetica;verticalAlign=top;spacingTop=2;" vertex="1" parent="1">
+            <mxGeometry x="800" y="1320" width="300" height="130" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="&lt;b&gt;LOC_PITTOP — at top of small pit&lt;/b&gt;&lt;br&gt;&lt;br&gt;At your feet is a small pit breathing traces of white mist.  An east&lt;br&gt;passage ends here except for a small crack leading on.&lt;br&gt;&lt;br&gt;&lt;b&gt;EXITS (source order)&lt;/b&gt;&lt;br&gt;DEPRE → LOC_GRATE · 01 — Surface World [not GRATE=GRATE_CLOSED]&lt;br&gt;ENTRA → LOC_BELOWGRATE&lt;br&gt;DEBRI → LOC_DEBRIS&lt;br&gt;PASSA → LOC_BIRDCHAMBER&lt;br&gt;d → LOC_NECKBROKE · 11 — Special &amp;amp; Transient States [carry NUGGET]&lt;br&gt;d → LOC_MISTHALL&lt;br&gt;CRACK → LOC_CRACK" source_id="LOC_PITTOP" description_en="At your feet is a small pit breathing traces of white mist.  An east&#10;passage ends here except for a small crack leading on." description_es="" short_en="You're at top of small pit." maptag="" chapter_id="CH_ENTRY" source_reference="Open_Adventure.yaml locations/LOC_PITTOP" review_status="ok" role="playable" conditions="" objects_here="STEPS" immovable_objects_here="STEPS">
+          <mxCell id="CH_ENTRY_LOC_PITTOP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;arcSize=6;fontSize=11;fontFamily=Helvetica;verticalAlign=top;spacingTop=2;" vertex="1" parent="1">
+            <mxGeometry x="800" y="520" width="300" height="260" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="&lt;b&gt;LOC_WESTBANK — on west bank of fissure&lt;/b&gt;&lt;br&gt;&lt;br&gt;You are on the west side of the fissure in the Hall of Mists.&lt;br&gt;&lt;br&gt;&lt;b&gt;EXITS (source order)&lt;/b&gt;&lt;br&gt;JUMP → say CROSS_BRIDGE [not FISSURE=UNBRIDGED]&lt;br&gt;FORWA → LOC_NOMAKE · 11 — Special &amp;amp; Transient States [not FISSURE=BRIDGED]&lt;br&gt;OVER → say NO_CROSS [not FISSURE=BRIDGED]&lt;br&gt;OVER → LOC_EASTBANK&lt;br&gt;north → LOC_PARALLEL1 · 04 — Maze (All Alike)&lt;br&gt;west → LOC_MISTWEST · 04 — Maze (All Alike)" source_id="LOC_WESTBANK" description_en="You are on the west side of the fissure in the Hall of Mists." description_es="" short_en="You're on west bank of fissure." maptag="" chapter_id="CH_ENTRY" source_reference="Open_Adventure.yaml locations/LOC_WESTBANK" review_status="ok" role="playable" conditions="DEEP=True" objects_here="FISSURE, OBJ_51" treasures_here="OBJ_51" immovable_objects_here="FISSURE">
+          <mxCell id="CH_ENTRY_LOC_WESTBANK" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;arcSize=6;fontSize=11;fontFamily=Helvetica;verticalAlign=top;spacingTop=2;" vertex="1" parent="1">
+            <mxGeometry x="80" y="920" width="300" height="230" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="ie0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitX=0;exitY=0.62;exitDx=0;exitDy=0;entryX=1;entryY=0.62;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_BELOWGRATE" target="CH_ENTRY_LOC_COBBLE" value="crawl, COBBL, INWAR, west">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_BELOWGRATE" target="CH_ENTRY_LOC_PITTOP" value="PIT">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_BELOWGRATE" target="CH_ENTRY_LOC_DEBRIS" value="DEBRI">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitX=1;exitY=0.38;exitDx=0;exitDy=0;entryX=0;entryY=0.38;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_COBBLE" target="CH_ENTRY_LOC_BELOWGRATE" value="OUT, SURFA, east">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitX=0;exitY=0.62;exitDx=0;exitDy=0;entryX=1;entryY=0.62;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_COBBLE" target="CH_ENTRY_LOC_DEBRIS" value="INWAR, DARK, west, DEBRI">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_COBBLE" target="CH_ENTRY_LOC_PITTOP" value="PIT">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_DEBRIS" target="CH_ENTRY_LOC_BELOWGRATE" value="ENTRA">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitX=1;exitY=0.38;exitDx=0;exitDy=0;entryX=0;entryY=0.38;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_DEBRIS" target="CH_ENTRY_LOC_COBBLE" value="crawl, COBBL, PASSA, LOW, east">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitX=0;exitY=0.38;exitDx=0;exitDy=0;entryX=1;entryY=0.38;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_DEBRIS" target="CH_ENTRY_LOC_AWKWARD" value="CANYO, INWAR, UPWAR, west">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_DEBRIS" target="CH_ENTRY_LOC_PITTOP" value="PIT">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_AWKWARD" target="CH_ENTRY_LOC_BELOWGRATE" value="ENTRA">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitX=1;exitY=0.62;exitDx=0;exitDy=0;entryX=0;entryY=0.62;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_AWKWARD" target="CH_ENTRY_LOC_DEBRIS" value="d, east, DEBRI">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitX=0;exitY=0.62;exitDx=0;exitDy=0;entryX=1;entryY=0.62;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_AWKWARD" target="CH_ENTRY_LOC_BIRDCHAMBER" value="INWAR, UPWAR, west">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_AWKWARD" target="CH_ENTRY_LOC_PITTOP" value="PIT">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_BIRDCHAMBER" target="CH_ENTRY_LOC_BELOWGRATE" value="ENTRA">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_BIRDCHAMBER" target="CH_ENTRY_LOC_DEBRIS" value="DEBRI">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitX=1;exitY=0.38;exitDx=0;exitDy=0;entryX=0;entryY=0.38;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_BIRDCHAMBER" target="CH_ENTRY_LOC_AWKWARD" value="CANYO, east">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitX=0;exitY=0.62;exitDx=0;exitDy=0;entryX=1;entryY=0.62;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_BIRDCHAMBER" target="CH_ENTRY_LOC_PITTOP" value="PASSA, PIT, west">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_PITTOP" target="CH_ENTRY_LOC_BELOWGRATE" value="ENTRA">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_PITTOP" target="CH_ENTRY_LOC_DEBRIS" value="DEBRI">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitX=1;exitY=0.38;exitDx=0;exitDy=0;entryX=0;entryY=0.38;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_PITTOP" target="CH_ENTRY_LOC_BIRDCHAMBER" value="PASSA, east">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#1565C0;exitX=0.72;exitY=1;exitDx=0;exitDy=0;entryX=0.72;entryY=0;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_PITTOP" target="CH_ENTRY_LOC_MISTHALL" value="d">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_PITTOP" target="CH_ENTRY_LOC_CRACK" value="CRACK, west">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_MISTHALL" target="CH_ENTRY_LOC_NUGGET" value="left, south">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitX=0;exitY=0.38;exitDx=0;exitDy=0;entryX=1;entryY=0.38;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_MISTHALL" target="CH_ENTRY_LOC_EASTBANK" value="FORWA, HALL, west">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#1565C0;exitX=0.72;exitY=0;exitDx=0;exitDy=0;entryX=0.72;entryY=1;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_MISTHALL" target="CH_ENTRY_LOC_PITTOP" value="UPWAR">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_CRACK" target="CH_ENTRY_LOC_PITTOP" value="(implicit)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitX=1;exitY=0.62;exitDx=0;exitDy=0;entryX=0;entryY=0.62;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_EASTBANK" target="CH_ENTRY_LOC_MISTHALL" value="HALL, east">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_EASTBANK" target="CH_ENTRY_LOC_WESTBANK" value="OVER">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_NUGGET" target="CH_ENTRY_LOC_MISTHALL" value="HALL, OUT, north">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_WESTBANK" target="CH_ENTRY_LOC_EASTBANK" value="OVER">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="CH_ENTRY_LOC_FOOF1" target="CH_ENTRY_LOC_DEBRIS" value="(implicit)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xp_LOC_AWKWARD_1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57C00;arcSize=6;fontSize=11;fontFamily=Helvetica;" vertex="1" parent="1" value="&lt;b&gt;→ LOC_GRATE&lt;/b&gt;&lt;br&gt;&lt;i&gt;01 — Surface World&lt;/i&gt; [not GRATE=GRATE_CLOSED]">
+          <mxGeometry x="2980" y="170" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xe0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#E65100;dashed=1;strokeWidth=1;" edge="1" parent="1" source="CH_ENTRY_LOC_AWKWARD" target="xp_LOC_AWKWARD_1" value="DEPRE [not GRATE=GRATE_CLOSED]">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xp_LOC_BELOWGRATE_2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57C00;arcSize=6;fontSize=11;fontFamily=Helvetica;" vertex="1" parent="1" value="&lt;b&gt;→ LOC_GRATE&lt;/b&gt;&lt;br&gt;&lt;i&gt;01 — Surface World&lt;/i&gt; [not GRATE=GRATE_CLOSED]">
+          <mxGeometry x="2980" y="260" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xe1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#E65100;dashed=1;strokeWidth=1;" edge="1" parent="1" source="CH_ENTRY_LOC_BELOWGRATE" target="xp_LOC_BELOWGRATE_2" value="OUT [not GRATE=GRATE_CLOSED]">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xp_LOC_BELOWGRATE_3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEEEEE;strokeColor=#9E9E9E;arcSize=6;fontSize=11;fontFamily=Helvetica;" vertex="1" parent="1" value="&lt;b&gt;MESSAGE&lt;/b&gt;&lt;br&gt;say GRATE_NOWAY">
+          <mxGeometry x="2980" y="350" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xe2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#9E9E9E;dashed=1;" edge="1" parent="1" source="CH_ENTRY_LOC_BELOWGRATE" target="xp_LOC_BELOWGRATE_3" value="OUT">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xp_LOC_BIRDCHAMBER_4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57C00;arcSize=6;fontSize=11;fontFamily=Helvetica;" vertex="1" parent="1" value="&lt;b&gt;→ LOC_GRATE&lt;/b&gt;&lt;br&gt;&lt;i&gt;01 — Surface World&lt;/i&gt; [not GRATE=GRATE_CLOSED]">
+          <mxGeometry x="2980" y="440" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xe3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#E65100;dashed=1;strokeWidth=1;" edge="1" parent="1" source="CH_ENTRY_LOC_BIRDCHAMBER" target="xp_LOC_BIRDCHAMBER_4" value="DEPRE [not GRATE=GRATE_CLOSED]">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xp_LOC_DEBRIS_5" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57C00;arcSize=6;fontSize=11;fontFamily=Helvetica;" vertex="1" parent="1" value="&lt;b&gt;→ LOC_GRATE&lt;/b&gt;&lt;br&gt;&lt;i&gt;01 — Surface World&lt;/i&gt; [not GRATE=GRATE_CLOSED]">
+          <mxGeometry x="2980" y="530" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xe4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#E65100;dashed=1;strokeWidth=1;" edge="1" parent="1" source="CH_ENTRY_LOC_DEBRIS" target="xp_LOC_DEBRIS_5" value="DEPRE [not GRATE=GRATE_CLOSED]">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xp_LOC_DEBRIS_6" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57C00;arcSize=6;fontSize=11;fontFamily=Helvetica;" vertex="1" parent="1" value="&lt;b&gt;→ LOC_FOOF2&lt;/b&gt;&lt;br&gt;&lt;i&gt;01 — Surface World&lt;/i&gt;">
+          <mxGeometry x="2980" y="620" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xe5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;dashed=1;strokeWidth=1;" edge="1" parent="1" source="CH_ENTRY_LOC_DEBRIS" target="xp_LOC_DEBRIS_6" value="xyzzy">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xp_LOC_EASTBANK_7" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEEEEE;strokeColor=#9E9E9E;arcSize=6;fontSize=11;fontFamily=Helvetica;" vertex="1" parent="1" value="&lt;b&gt;MESSAGE&lt;/b&gt;&lt;br&gt;say CROSS_BRIDGE [not FISSURE=UNBRIDGED]">
+          <mxGeometry x="2980" y="710" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xe6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#9E9E9E;dashed=1;" edge="1" parent="1" source="CH_ENTRY_LOC_EASTBANK" target="xp_LOC_EASTBANK_7" value="JUMP [not FISSURE=UNBRIDGED]">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xp_LOC_EASTBANK_8" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57C00;arcSize=6;fontSize=11;fontFamily=Helvetica;" vertex="1" parent="1" value="&lt;b&gt;→ LOC_NOMAKE&lt;/b&gt;&lt;br&gt;&lt;i&gt;11 — Special &amp;amp; Transient States&lt;/i&gt; [not FISSURE=BRIDGED]">
+          <mxGeometry x="2980" y="800" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xe7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#E65100;dashed=1;strokeWidth=1;" edge="1" parent="1" source="CH_ENTRY_LOC_EASTBANK" target="xp_LOC_EASTBANK_8" value="FORWA [not FISSURE=BRIDGED]">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xp_LOC_EASTBANK_9" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEEEEE;strokeColor=#9E9E9E;arcSize=6;fontSize=11;fontFamily=Helvetica;" vertex="1" parent="1" value="&lt;b&gt;MESSAGE&lt;/b&gt;&lt;br&gt;say NO_CROSS [not FISSURE=BRIDGED]">
+          <mxGeometry x="2980" y="890" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xe8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#9E9E9E;dashed=1;" edge="1" parent="1" source="CH_ENTRY_LOC_EASTBANK" target="xp_LOC_EASTBANK_9" value="OVER [not FISSURE=BRIDGED]">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xp_LOC_MISTHALL_10" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57C00;arcSize=6;fontSize=11;fontFamily=Helvetica;" vertex="1" parent="1" value="&lt;b&gt;→ LOC_KINGHALL&lt;/b&gt;&lt;br&gt;&lt;i&gt;03 — Hall of Mountain King &amp;amp; Twopit&lt;/i&gt;">
+          <mxGeometry x="2980" y="980" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xe9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;dashed=1;strokeWidth=1;" edge="1" parent="1" source="CH_ENTRY_LOC_MISTHALL" target="xp_LOC_MISTHALL_10" value="STAIR">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xp_LOC_MISTHALL_11" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57C00;arcSize=6;fontSize=11;fontFamily=Helvetica;" vertex="1" parent="1" value="&lt;b&gt;→ LOC_DOME&lt;/b&gt;&lt;br&gt;&lt;i&gt;11 — Special &amp;amp; Transient States&lt;/i&gt; [carry NUGGET]">
+          <mxGeometry x="2980" y="1070" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xe10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#E65100;dashed=1;strokeWidth=1;" edge="1" parent="1" source="CH_ENTRY_LOC_MISTHALL" target="xp_LOC_MISTHALL_11" value="UPWAR [carry NUGGET]">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xp_LOC_MISTHALL_12" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57C00;arcSize=6;fontSize=11;fontFamily=Helvetica;" vertex="1" parent="1" value="&lt;b&gt;→ LOC_JUMBLE&lt;/b&gt;&lt;br&gt;&lt;i&gt;10 — Y2, Windows &amp;amp; Dusty Room&lt;/i&gt;">
+          <mxGeometry x="2980" y="1160" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xe11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;dashed=1;strokeWidth=1;" edge="1" parent="1" source="CH_ENTRY_LOC_MISTHALL" target="xp_LOC_MISTHALL_12" value="Y2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xp_LOC_PITTOP_13" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57C00;arcSize=6;fontSize=11;fontFamily=Helvetica;" vertex="1" parent="1" value="&lt;b&gt;→ LOC_GRATE&lt;/b&gt;&lt;br&gt;&lt;i&gt;01 — Surface World&lt;/i&gt; [not GRATE=GRATE_CLOSED]">
+          <mxGeometry x="2980" y="1250" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xe12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#E65100;dashed=1;strokeWidth=1;" edge="1" parent="1" source="CH_ENTRY_LOC_PITTOP" target="xp_LOC_PITTOP_13" value="DEPRE [not GRATE=GRATE_CLOSED]">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xp_LOC_PITTOP_14" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57C00;arcSize=6;fontSize=11;fontFamily=Helvetica;" vertex="1" parent="1" value="&lt;b&gt;→ LOC_NECKBROKE&lt;/b&gt;&lt;br&gt;&lt;i&gt;11 — Special &amp;amp; Transient States&lt;/i&gt; [carry NUGGET]">
+          <mxGeometry x="2980" y="1340" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xe13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#E65100;dashed=1;strokeWidth=1;" edge="1" parent="1" source="CH_ENTRY_LOC_PITTOP" target="xp_LOC_PITTOP_14" value="d [carry NUGGET]">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xp_LOC_WESTBANK_15" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEEEEE;strokeColor=#9E9E9E;arcSize=6;fontSize=11;fontFamily=Helvetica;" vertex="1" parent="1" value="&lt;b&gt;MESSAGE&lt;/b&gt;&lt;br&gt;say CROSS_BRIDGE [not FISSURE=UNBRIDGED]">
+          <mxGeometry x="2980" y="1430" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xe14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#9E9E9E;dashed=1;" edge="1" parent="1" source="CH_ENTRY_LOC_WESTBANK" target="xp_LOC_WESTBANK_15" value="JUMP [not FISSURE=UNBRIDGED]">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xp_LOC_WESTBANK_16" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57C00;arcSize=6;fontSize=11;fontFamily=Helvetica;" vertex="1" parent="1" value="&lt;b&gt;→ LOC_NOMAKE&lt;/b&gt;&lt;br&gt;&lt;i&gt;11 — Special &amp;amp; Transient States&lt;/i&gt; [not FISSURE=BRIDGED]">
+          <mxGeometry x="2980" y="1520" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xe15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#E65100;dashed=1;strokeWidth=1;" edge="1" parent="1" source="CH_ENTRY_LOC_WESTBANK" target="xp_LOC_WESTBANK_16" value="FORWA [not FISSURE=BRIDGED]">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xp_LOC_WESTBANK_17" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEEEEE;strokeColor=#9E9E9E;arcSize=6;fontSize=11;fontFamily=Helvetica;" vertex="1" parent="1" value="&lt;b&gt;MESSAGE&lt;/b&gt;&lt;br&gt;say NO_CROSS [not FISSURE=BRIDGED]">
+          <mxGeometry x="2980" y="1610" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xe16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#9E9E9E;dashed=1;" edge="1" parent="1" source="CH_ENTRY_LOC_WESTBANK" target="xp_LOC_WESTBANK_17" value="OVER [not FISSURE=BRIDGED]">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xp_LOC_WESTBANK_18" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57C00;arcSize=6;fontSize=11;fontFamily=Helvetica;" vertex="1" parent="1" value="&lt;b&gt;→ LOC_PARALLEL1&lt;/b&gt;&lt;br&gt;&lt;i&gt;04 — Maze (All Alike)&lt;/i&gt;">
+          <mxGeometry x="2980" y="1700" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xe17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;dashed=1;strokeWidth=1;" edge="1" parent="1" source="CH_ENTRY_LOC_WESTBANK" target="xp_LOC_WESTBANK_18" value="north">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xp_LOC_WESTBANK_19" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57C00;arcSize=6;fontSize=11;fontFamily=Helvetica;" vertex="1" parent="1" value="&lt;b&gt;→ LOC_MISTWEST&lt;/b&gt;&lt;br&gt;&lt;i&gt;04 — Maze (All Alike)&lt;/i&gt;">
+          <mxGeometry x="2980" y="1790" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xe18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#000000;dashed=1;strokeWidth=1;" edge="1" parent="1" source="CH_ENTRY_LOC_WESTBANK" target="xp_LOC_WESTBANK_19" value="west">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="provenance" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=9;fontStyle=2" vertex="1" parent="1" value="Source: Open_Adventure.yaml (BSD-2-Clause, E. S. Raymond / Open Adventure) — canonical. Pilot: 12 locations, 51 travel rules preserved in source order. Editorial hint: WESTBANK placed west of EASTBANK per fissure descriptions. Generated by Mata Hari (Mission 003). North = up = smaller Y.">
+          <mxGeometry x="80" y="1890" width="700" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

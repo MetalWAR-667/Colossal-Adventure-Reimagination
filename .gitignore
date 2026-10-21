@@ -1,0 +1,61 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# System
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Temporary files
+*.tmp
+*.bak
+*.log
+!codigo_fuente_open_adventure/tests/*.log
+~$*
+
+# Credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Generated output
+dist/
+build/
+
+# Godot
+.godot/
+*.translation
+*.import
+
+# Python reports and packaging
+.coverage
+coverage.xml
+htmlcov/
+.tox/
+*.egg-info/
+
+# Local tools, private research material and session state
+/.agents/
+/draw.io/
+/material_referencia_no_redistribuible/
+/sesion.txt
+/07_godot_open_adventure/logo/
+
+# Herramientas locales, no redistribuibles en este repositorio
+/tools/Godot_v4.7.2-stable_win64.exe
+/tools/Godot_v4.7.2-stable_win64_console.exe
+/tools/ripgrep-15.2.0-x86_64-pc-windows-gnu/

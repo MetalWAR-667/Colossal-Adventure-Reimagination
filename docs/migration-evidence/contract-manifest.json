@@ -1,0 +1,132 @@
+[
+  {
+    "source": "RPG_Archaeology_IF/.agents/agents/butch_architect/AGENT.md",
+    "destination": "contracts/agents/butch_architect/AGENT.md",
+    "source_sha256": "c48e1b9f22bbee5a0dc88b7e5f13b680cd3d1175eb6eefbc39ecd5117e899b7a",
+    "destination_sha256": "7165da5bc89945a258b660a8ca95e56044eb6664b2e3895ef4eae934df9cff67",
+    "transformations": [
+      "Gandalf -> Gandulf (cross-role references only)",
+      "Stale Jack Burton / Troubleshooter -> Mr. Wolf / Troubleshooter",
+      "Normalize UTF-8 without BOM and LF line endings; all other text retained"
+    ]
+  },
+  {
+    "source": "RPG_Archaeology_IF/.agents/agents/deckard_auditor/AGENT.md",
+    "destination": "contracts/agents/deckard_auditor/AGENT.md",
+    "source_sha256": "7a029d21b74476dfdb2a3ac4a6bdce8c9c49489b689d86726852f2c13e41c6ad",
+    "destination_sha256": "7bbaa221b2fe6f0cec029851c5c89457dac7254e0c369bb8d107ee6dfa1ec6f3",
+    "transformations": [
+      "Gandalf -> Gandulf (cross-role references only)",
+      "Normalize UTF-8 without BOM and LF line endings; all other text retained"
+    ]
+  },
+  {
+    "source": "RPG_Archaeology_IF/.agents/agents/doc_brown_the_researcher/AGENT.md",
+    "destination": "contracts/agents/doc_brown_the_researcher/AGENT.md",
+    "source_sha256": "e1b7f6507dfa039311317836f0858aa5861903de0f51070be5b4676b0c9b2987",
+    "destination_sha256": "7a008832416c8200b2cee5e5b5606fc1fa1b9bf60e2b7a313507dcb38c3d811b",
+    "transformations": [
+      "Gandalf -> Gandulf (cross-role references only)",
+      "Normalize UTF-8 without BOM and LF line endings; all other text retained"
+    ]
+  },
+  {
+    "source": "RPG_Archaeology_IF/.agents/agents/gandulf_chronicler/AGENT.md",
+    "destination": "contracts/agents/gandulf_chronicler/AGENT.md",
+    "source_sha256": "8dda59fa014ce87aee8a568a047db4f5dbdf69ea0833714f606f94d265d35578",
+    "destination_sha256": "86aae158ddc3d3062ca0ca0a8b94a4c24819fe2408950d07cdddf8ba199f03e7",
+    "transformations": [
+      "Replace pending Jack reference with current Creative Director",
+      "Normalize UTF-8 without BOM and LF line endings; all other text retained"
+    ]
+  },
+  {
+    "source": "RPG_Archaeology_IF/.agents/agents/jack_burton_the_artist/AGENT.md",
+    "destination": "contracts/agents/jack_burton_the_artist/AGENT.md",
+    "source_sha256": "ef99b272e7049385375c19436212e33fba57a8a61622de5ba87e52b1118a81bc",
+    "destination_sha256": "ef99b272e7049385375c19436212e33fba57a8a61622de5ba87e52b1118a81bc",
+    "transformations": [
+      "Normalize UTF-8 without BOM and LF line endings; all other text retained"
+    ]
+  },
+  {
+    "source": "RPG_Archaeology_IF/.agents/agents/mrwolf_tech_troubleshooter/AGENT.md",
+    "destination": "contracts/agents/mrwolf_tech_troubleshooter/AGENT.md",
+    "source_sha256": "0baadfe243e29cdce9a0019b35c8b8c288f8b7a2567dfe900cd153b0524baa11",
+    "destination_sha256": "cd71924156c109f14a8e4c379ae3cc0b6b4a3a188b87a46954c985938b8a81cf",
+    "transformations": [
+      "Gandalf -> Gandulf (cross-role references only)",
+      "Replace pending Jack reference with current Creative Director; preserve troubleshooting boundary",
+      "Normalize UTF-8 without BOM and LF line endings; all other text retained"
+    ]
+  },
+  {
+    "source": "RPG_Archaeology_IF/.agents/agents/ripley_engineer/AGENT.md",
+    "destination": "contracts/agents/ripley_engineer/AGENT.md",
+    "source_sha256": "f4753613136521525b5284fc24cb885c8757d2f3b8bfa3914aba627602d7bdc4",
+    "destination_sha256": "47d3faacfd2ef50e7b7d646263bcaa550dcee8fa4ba93d0e6d1e8c098a39591c",
+    "transformations": [
+      "Gandalf -> Gandulf (cross-role references only)",
+      "Normalize UTF-8 without BOM and LF line endings; all other text retained"
+    ]
+  },
+  {
+    "source": "RPG_Archaeology_IF/.agents/rules/scope-and-authority.md",
+    "destination": "contracts/rules/scope-and-authority.md",
+    "source_sha256": "a5faea2b229aaf6feb3d2caf8f5b277fe144afddc138cc8995907e502b837a5e",
+    "destination_sha256": "7c11265d09b65de5e7d490882938a37d6748c538348dff7ef80ad5978fefc6db",
+    "transformations": [
+      "Resolve role path relative to rules/",
+      "Normalize UTF-8 without BOM and LF line endings; all other text retained"
+    ]
+  },
+  {
+    "source": "RPG_Archaeology_IF/.agents/rules/multi-agent-workflow.md",
+    "destination": "contracts/rules/multi-agent-workflow.md",
+    "source_sha256": "bf636e504316026258e63235e1875ae42bb60f06fc3800cfa0f2b14e1ed33f9d",
+    "destination_sha256": "d5a64b781b86295985d3ea2072819d4a6105c39193baddfb26a8689be984ab16",
+    "transformations": [
+      "Resolve entrypoint reference relative to rules/: ../AGENTS.md",
+      "Neutralize illustrative task ID IF-CUT-001 -> HARNESS-CUT-001",
+      "Normalize UTF-8 without BOM and LF line endings; all other text retained"
+    ]
+  },
+  {
+    "source": "RPG_Archaeology_IF/.agents/rules/verification.md",
+    "destination": "contracts/rules/verification.md",
+    "source_sha256": "15ba80bf6bf8b401d63ac2a1bc449595d91619d2a6515af3c94e65a95cc83f60",
+    "destination_sha256": "f05aaa048cc64e7364cd91f58f86f5e56aa97f54a8fb5f48b18c0510106f4213",
+    "transformations": [
+      "Resolve entrypoint reference relative to rules/: ../AGENTS.md",
+      "Neutralize illustrative task ID IF-CUT-001 -> HARNESS-CUT-001",
+      "Generalize section 8: remove RPG/source-format/parser-project specifics; retain source revision, IDs, deterministic integrity, render honesty and semantic/state verification as conditional guidance",
+      "Normalize UTF-8 without BOM and LF line endings; all other text retained"
+    ]
+  },
+  {
+    "source": "RPG_Archaeology_IF/.agents/rules/documentation.md",
+    "destination": "contracts/rules/documentation.md",
+    "source_sha256": "d301a3f4822a6d32c08ee342f54da9b309f99cf7ed1a7bfe53f3fb9e40e51963",
+    "destination_sha256": "7cc7b68476d08469f3511f5c0937cf2d700bee1039f0a3a15d2e453b32356c1e",
+    "transformations": [
+      "Resolve entrypoint reference relative to rules/: ../AGENTS.md",
+      "Generalize RPG historical-source example while preserving source authority versus derived interpretation",
+      "Normalize mr_wolf and jack_burton examples to canonical existing folder IDs",
+      "Normalize UTF-8 without BOM and LF line endings; all other text retained"
+    ]
+  },
+  {
+    "source": "RPG_Archaeology_IF/.agents/AGENTS.md",
+    "destination": "contracts/AGENTS.md",
+    "source_sha256": "e2199c737d5c1a117b2fadf5f730ea9a6bf2f04706b73cf2149be8d167b0caeb",
+    "destination_sha256": "586470f3542462530b342a1016255898dbde357137d524eac6884a86b397c2b5",
+    "transformations": [
+      "Replace source project identity with universal library identity",
+      "Keep sections 1 authority, 2 priority/discovery safety, 3 roster, 4 protocol, 6 optional Drive safeguards and 7 reporting/stopping",
+      "Generalize every section 5 safeguard; remove only source-specific names, examples, domain enumerations and format preference",
+      "Fix Mr. Wolf canonical ID; link four rules and seven roles",
+      "Mark empty source skills/templates unavailable; no dangling directory reference",
+      "Normalize UTF-8 without BOM and LF line endings"
+    ]
+  }
+]
