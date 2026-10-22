@@ -21,3 +21,30 @@ autorizados. El juego debe seguir funcionando sin Steam.
 Los documentos de `docs/` conservan evidencia histórica de la extracción de contratos. Sus rutas y estados antiguos no son instrucciones operativas actuales. `contracts/` contiene contratos documentales reutilizables; no constituye por sí solo un harness ejecutable.
 
 Inspecciona Git y los archivos reales antes de escribir. Preserva ediciones humanas. Los commits, remotos y la publicación requieren autorización humana expresa.
+
+## Project routing — Local workspaces
+
+Los proyectos siguientes son independientes. Antes de ejecutar una tarea, identificar el proyecto solicitado y comprobar que existe su raíz local.
+
+| Proyecto | Ruta local |
+|---|---|
+| Lands of Folklore | `C:\LoF-GIT` |
+| Colossal Adventure: Reimagination | `C:\remake\Colossal-Adventure-Reimagination-public` |
+
+### Reglas de enrutamiento
+
+1. Seleccionar el repositorio según el proyecto indicado en la tarea, no según el directorio de trabajo inicial del agente.
+2. Verificar que la ruta existe y corresponde al repositorio esperado.
+3. Leer el `AGENTS.md` y los contratos aplicables del proyecto seleccionado antes de trabajar.
+4. Ejecutar Git, pruebas y modificaciones únicamente dentro del repositorio autorizado.
+5. No modificar archivos de otro proyecto ni trasladar cambios entre repositorios.
+6. Si la ruta no existe, el repositorio no coincide o las instrucciones entran en conflicto, detenerse y solicitar aclaración.
+7. Una ruta conocida no constituye autorización para realizar commits, push ni cambios fuera del alcance de la tarea.
+
+### Colossal Adventure: Reimagination
+
+Las tareas identificadas como `CAR-*`, incluida `CAR-QOL-001`, corresponden a:
+
+`C:\remake\Colossal-Adventure-Reimagination-public`
+
+No ejecutarlas desde `C:\LoF-GIT`.
