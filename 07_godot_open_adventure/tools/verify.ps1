@@ -77,6 +77,8 @@ if ($LASTEXITCODE -ne 0) { Fail "the structural projection changed the playable 
 if ($LASTEXITCODE -ne 0) { Fail "the structural loader and enabled view tests failed" }
 & $Godot --headless --path $project --script res://tests/test_structural_contract_freeze.gd
 if ($LASTEXITCODE -ne 0) { Fail "the structural contract freeze tests failed" }
+& $Godot --headless --path $project --script res://tests/test_cave_mouth_pilot.gd
+if ($LASTEXITCODE -ne 0) { Fail "the cave mouth pilot tests failed" }
 & $Godot --headless --path $project --script res://tests/test_travel_cycle.gd
 if ($LASTEXITCODE -ne 0) { Fail "the historical travel cycle tests failed" }
 & $Godot --headless --path $project --script res://tests/test_darkness_lamp.gd

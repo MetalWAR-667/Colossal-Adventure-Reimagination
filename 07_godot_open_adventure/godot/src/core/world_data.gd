@@ -11,6 +11,9 @@ const DATASET_PATH := "res://data/chapter_01_surface.json"
 const L10N_PATH := "res://data/l10n_es.json"
 const ART_PATH := "res://data/art_ch01.json"
 const STRUCTURAL_DATASET_PATH := "res://data/structural_world.json"
+const AUTHORIZED_ADDITIONAL_LOCATIONS: PackedStringArray = [
+	"LOC_BELOWGRATE"
+]
 
 var meta: Dictionary = {}
 var chapter_id: String = ""
@@ -47,6 +50,7 @@ static func load_default() -> WorldData:
 	world.load_l10n(L10N_PATH)
 	world.load_art(ART_PATH)
 	world.load_structural_catalog(STRUCTURAL_DATASET_PATH)
+	world.enable_structural_location("LOC_BELOWGRATE")
 	return world
 
 
@@ -255,10 +259,75 @@ func get_structural_counts() -> Dictionary:
 	return structural_catalog.get_counts()
 
 
+## Atomically enables an authorized structural location from the StructuralCatalog (CAR-CORE-002 / R5A).
+## Returns true on success or if already enabled (idempotent); false if unauthorized or invalid.
+func enable_structural_location(location_id: String) -> bool:
+	if not AUTHORIZED_ADDITIONAL_LOCATIONS.has(location_id):
+		push_warning("WorldData: location '%s' is not authorized for enablement in this cut" % location_id)
+		return false
+	if enabled_location_ids.has(location_id):
+		return true
+	if structural_catalog == null or not structural_catalog.has_location(location_id):
+		push_error("WorldData: cannot enable unknown structural location '%s'" % location_id)
+		return false
+	var data: Dictionary = structural_catalog.get_location(location_id)
+	if data.is_empty():
+		return false
+
+	var loc := WorldLocation.new()
+	loc.id = String(data.get("id", ""))
+	loc.chapter_id = String(data.get("chapter_id", ""))
+	loc.description_en = String(data.get("long_description", ""))
+	loc.short_en = String(data.get("short_description", ""))
+	loc.maptag = String(data.get("maptag", "") if data.get("maptag") != null else "")
+	loc.sound = String(data.get("sound", "") if data.get("sound") != null else "")
+
+	# Inherit raw conditions and boolean flags
+	var conds: Dictionary = (data.get("raw_conditions", {}) as Dictionary).duplicate()
+	var flags: Dictionary = data.get("flags", {})
+	for flag_name: String in flags.keys():
+		if bool(flags[flag_name]):
+			conds[flag_name] = true
+	loc.conditions = conds
+
+	# Construct travel rules with resolved motion names
+	var lookup: Dictionary = {}
+	for word in motion_verbs.keys():
+		lookup[String(word).to_upper()] = String(motion_verbs[word])
+
+	var rules: Array[TravelRule] = []
+	for raw in data.get("travel", []):
+		var raw_dict: Dictionary = raw
+		var rule := TravelRule.new()
+		rule.verbs = PackedStringArray(raw_dict.get("verbs", []))
+		var kind := String(raw_dict.get("action_type", "goto"))
+		rule.action_type = TravelRule.ActionType.SPECIAL if kind == "special" else (TravelRule.ActionType.SPEAK if kind == "speak" else TravelRule.ActionType.GOTO)
+		rule.target = str(raw_dict.get("target", ""))
+		rule.special_id = int(raw_dict.get("target", 0)) if kind == "special" else 0
+		var cond_data: Dictionary = raw_dict.get("condition", raw_dict.get("cond", {"type": "always"}))
+		rule.cond_type = String(cond_data.get("type", "always"))
+		rule.cond_object = String(cond_data.get("object", ""))
+		rule.cond_state = String(cond_data.get("state", ""))
+		rule.cond_percent = int(cond_data.get("percent", 0))
+		rule.target_in_chapter = is_location_enabled(rule.target)
+
+		rule.motion_names.clear()
+		for verb in rule.verbs:
+			var name := String(lookup.get(String(verb).to_upper(), String(verb)))
+			rule.motion_names.append(name)
+
+		rules.append(rule)
+
+	loc.travel = rules
+	locations[loc.id] = loc
+	enabled_location_ids[loc.id] = true
+	return true
+
+
 ## Long description of a room, Spanish first, English as fallback.
 func describe(location_id: String) -> String:
 	var entry: Dictionary = _localized_location(location_id)
-	if entry.has("desc"):
+	if entry.has("desc") and not String(entry["desc"]).is_empty():
 		return String(entry["desc"])
 	var loc := location(location_id)
 	return loc.description_en if loc != null else ""
@@ -267,7 +336,7 @@ func describe(location_id: String) -> String:
 ## Short description used when the room has already been visited.
 func describe_short(location_id: String) -> String:
 	var entry: Dictionary = _localized_location(location_id)
-	if entry.has("short"):
+	if entry.has("short") and not String(entry["short"]).is_empty():
 		return String(entry["short"])
 	var loc := location(location_id)
 	return loc.short_en if loc != null else ""

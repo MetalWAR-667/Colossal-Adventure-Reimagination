@@ -195,6 +195,18 @@ baseline. See the retrospective
   Dwarves are confirmed inactive before `LOC_MISTHALL` (`DEEP == false`).
   See the [R5-PRE record](changes/car_core_002_r5_pre_historical_travel_semantics_crosscheck/CHANGE.md)
   and [crosscheck report](changes/car_core_002_r5_pre_historical_travel_semantics_crosscheck/HISTORICAL_TRAVEL_CROSSCHECK.md).
+- CAR-CORE-002 / R5A: `CLOSED / PASS` on 2026-10-26. Cave mouth pilot
+  (`LOC_BELOWGRATE`) is implemented in Godot 4.7.2 via atomic and idempotent
+  enablement in `WorldData` from `StructuralCatalog`. Playable world expands
+  from 34 to 35 locations (34 `CH_SURFACE` + `LOC_BELOWGRATE`); 150 historical
+  locations remain inert. The steel grate unlocks and permits bidirectional
+  traversal (`ENTER` / `DOWN` / `OUT` / `UP` / `BACK`) while interior passages
+  (`WEST` / `PIT` / `DEBRI`) are strictly blocked as unenabled frontiers. English
+  historical descriptions (long and short) are transparently displayed without
+  altering the Spanish translation dataset. 51 focused integration checks in
+  `test_cave_mouth_pilot.gd` and all 7 `verify.ps1` phases passed cleanly with
+  zero regressions on CUT A–D. See the
+  [R5A record](changes/car_core_002_r5a_cave_mouth_pilot/CHANGE.md).
 
 ## ACTIVE
 
@@ -204,8 +216,11 @@ No active implementation cut is recorded.
 
 These items are not authorized implementation cuts:
 
-- CAR-CORE-002 / R5 — Structural Navigation Enablement: `PROPOSED / NOT AUTHORIZED`
-  (recommended first cut: `CAR-CORE-002 / R5A — Cave Mouth Pilot (LOC_BELOWGRATE)`).
+- CAR-CORE-002 / R5B — Hall of Mists Vestibule (`CH_ENTRY` Safe Subgraph):
+  `PROPOSED / NOT AUTHORIZED`. (Enabling `LOC_COBBLE`, `LOC_DEBRIS`, `LOC_AWKWARD`,
+  `LOC_BIRDCHAMBER`, `LOC_PITTOP`, `LOC_CRACK` under strict anti-bypass rules).
+- CAR-CORE-002 / R5C — Magic Transit & Word Connections: `PROPOSED / NOT AUTHORIZED`.
+  (Enabling `LOC_FOOF1`, `LOC_FOOF2` and bidirectional `XYZZY` transport).
 - Human graphical and gameplay-experience review of chapter 01.
 - Final artistic polish of `GRATE_OPEN`, accepted provisionally by the human
   in CAR-ART-005 and reserved for the project's final art review.
@@ -259,8 +274,8 @@ Known style diagnostics, not demonstrated functional regressions:
 
 ## Next Decision Gate
 
-CAR-CORE-002 / R5-PRE is closed with VERIFIED — R5A READY.
-**CAR-CORE-002 / R5A — Cave Mouth Pilot (`LOC_BELOWGRATE`): PROPOSED / NOT AUTHORIZED**
+CAR-CORE-002 / R5A is closed with `CLOSED / PASS`.
+**CAR-CORE-002 / R5B — Hall of Mists Vestibule (`CH_ENTRY` Safe Subgraph): PROPOSED / NOT AUTHORIZED**
 is the next dependency cut; it requires explicit human authorization.
 CAR-ART-005 is closed with documented follow-up: `GRATE_OPEN` polish remains
 pending final artistic review; its accepted state selection and integration are

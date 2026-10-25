@@ -124,30 +124,30 @@ func _test_enabled_view() -> void:
 	var world := WorldData.load_default()
 	check(world != null and world.structural_catalog != null, "WorldData.load_default() carga el catálogo estructural")
 
-	# 13. Exactamente 34 ubicaciones habilitadas
+	# 13. Exactamente 35 ubicaciones habilitadas
 	var enabled_ids := world.get_enabled_location_ids()
-	check(enabled_ids.size() == 34, "13. Exactamente 34 ubicaciones habilitadas en runtime")
+	check(enabled_ids.size() == 35, "13. Exactamente 35 ubicaciones habilitadas en runtime")
 
-	# 14. Las 34 pertenecen a CH_SURFACE
-	var all_surface := true
+	# 14. Las 35 pertenecen a CH_SURFACE + LOC_BELOWGRATE
+	var all_authorized := true
 	var ch_surface := world.structural_catalog.get_chapter("CH_SURFACE")
 	var surface_members: Array = ch_surface.get("members", [])
 	for eid in enabled_ids:
-		if not surface_members.has(eid):
-			all_surface = false
+		if not surface_members.has(eid) and eid != "LOC_BELOWGRATE":
+			all_authorized = false
 			break
-	check(all_surface and surface_members.size() == 34, "14. Todas las 34 ubicaciones habilitadas pertenecen a CH_SURFACE")
+	check(all_authorized and surface_members.size() == 34, "14. Todas las 35 ubicaciones habilitadas pertenecen a CH_SURFACE + LOC_BELOWGRATE")
 
-	# 15. Las otras 151 permanecen deshabilitadas
+	# 15. Las otras 150 permanecen deshabilitadas
 	var non_enabled_count := 0
 	var all_ids := world.get_structural_location_ids()
 	for lid in all_ids:
 		if not world.is_location_enabled(lid):
 			non_enabled_count += 1
-	check(non_enabled_count == 151, "15. Exactamente 151 ubicaciones históricas permanecen deshabilitadas")
+	check(non_enabled_count == 150, "15. Exactamente 150 ubicaciones históricas permanecen deshabilitadas")
 
 	# 16. Ubicación global deshabilitada es consultable estructuralmente
-	var test_inert_id := "LOC_BELOWGRATE"
+	var test_inert_id := "LOC_COBBLE"
 	var structural_known := world.has_structural_location(test_inert_id)
 	var struct_loc := world.get_structural_location(test_inert_id)
 	check(structural_known and not struct_loc.is_empty(), "16. Ubicación fuera de CH_01 (" + test_inert_id + ") es consultable estructuralmente")
@@ -162,7 +162,7 @@ func _test_enabled_view() -> void:
 	check(not_playable, "17. La ubicación estructural inerte no es accesible en el runtime jugable")
 
 	# 18. WorldData.locations conserva su contenido funcional
-	check(world.locations.size() == 34, "18. WorldData.locations conserva exactamente 34 ubicaciones funcionales")
+	check(world.locations.size() == 35, "18. WorldData.locations conserva exactamente 35 ubicaciones funcionales")
 
 	# 19. WorldData.objects conserva su contenido funcional
 	check(world.objects.size() == 8, "19. WorldData.objects conserva exactamente 8 objetos funcionales")

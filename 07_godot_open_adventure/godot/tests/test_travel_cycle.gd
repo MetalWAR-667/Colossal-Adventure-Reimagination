@@ -74,9 +74,11 @@ func _test_turns() -> void:
 	check(e.state.previous_location == "LOC_SEWER" and e.state.previous_previous_location == "LOC_BUILDING", "SEWER history follows HERE order")
 	for line in ["OUT", "DEPRESSION", "UNLOCK GRATE", "ENTER"]:
 		e.submit(line)
-	check(e.state.current_location == "LOC_GRATE" and e.state.travel_outcome == GameState.TravelOutcome.FRONTIER, "CH_02 still blocked after unlock")
-	check(e.state.pending_location == "LOC_BELOWGRATE" and e.state.turn == 10, "frontier preserves requested destination and counts one input")
+	check(e.state.current_location == "LOC_BELOWGRATE" and e.state.travel_outcome == GameState.TravelOutcome.ARRIVED, "descent into LOC_BELOWGRATE after unlock")
 	check(e.state.state_of("GRATE") == "GRATE_OPEN", "grate puzzle preserved")
+	e.submit("WEST")
+	check(e.state.current_location == "LOC_BELOWGRATE" and e.state.travel_outcome == GameState.TravelOutcome.FRONTIER, "cave interior blocked beyond cave mouth")
+	check(e.state.pending_location == "LOC_COBBLE" and e.state.turn == 11, "frontier preserves requested destination and counts one input")
 	e = Interpreter.new(WorldData.load_default())
 	e.submit("!")
 	check(e.state.turn == 1, "nonempty unknown punctuation still counts an input")

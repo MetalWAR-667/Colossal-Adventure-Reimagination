@@ -73,7 +73,7 @@ func _play(interpreter: Interpreter, lines: Array[String]) -> Array[String]:
 
 func _test_dataset(world: WorldData) -> void:
 	_equal(world.chapter_id, "CH_SURFACE", "chapter id")
-	_equal(world.locations.size(), 34, "chapter location count")
+	_equal(world.locations.size(), 35, "chapter location count")
 	_equal(world.objects.size(), 8, "chapter object count")
 	_equal(world.map_nodes.size(), 34, "map node count")
 	_check(world.map_edges.size() > 100, "map edges present")
@@ -93,7 +93,7 @@ func _test_dataset(world: WorldData) -> void:
 			if rule.action_type != TravelRule.ActionType.GOTO:
 				continue
 			_check(
-				world.is_in_chapter(rule.target) or world.frontier.has(rule.target),
+				world.is_in_chapter(rule.target) or world.frontier.has(rule.target) or world.has_structural_location(rule.target),
 				"travel target %s of %s is known" % [rule.target, location_id]
 			)
 
@@ -245,8 +245,12 @@ func _test_grate_and_keys(world: WorldData) -> void:
 	_equal(interpreter.state.state_of("GRATE"), "GRATE_OPEN", "grate state is open")
 
 	output = _play(interpreter, ["ENTER"])
-	_contains(output, "capítulo siguiente", "entering the grate hits the chapter frontier")
-	_equal(interpreter.state.current_location, "LOC_GRATE", "the frontier refuses the move")
+	_equal(interpreter.state.current_location, "LOC_BELOWGRATE", "entering the open grate moves to LOC_BELOWGRATE")
+	output = _play(interpreter, ["WEST"])
+	_contains(output, "capítulo siguiente", "moving west from LOC_BELOWGRATE hits the chapter frontier")
+	_equal(interpreter.state.current_location, "LOC_BELOWGRATE", "the frontier refuses the move")
+	output = _play(interpreter, ["OUT"])
+	_equal(interpreter.state.current_location, "LOC_GRATE", "leaving LOC_BELOWGRATE returns to LOC_GRATE")
 
 
 func _test_magic_words(world: WorldData) -> void:

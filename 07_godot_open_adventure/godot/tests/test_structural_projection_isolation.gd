@@ -47,7 +47,7 @@ func _initialize() -> void:
 	# WorldData load_default must remain strictly limited to Chapter 01
 	var world := WorldData.load_default()
 	var interpreter := Interpreter.new(world)
-	check(world.locations.size() == 34, "playable locations strictly preserved at 34")
+	check(world.locations.size() == 35, "playable locations strictly preserved at 35")
 	check(world.objects.size() == 8, "playable objects strictly preserved at 8")
 
 	var outside := 0
@@ -73,8 +73,8 @@ func _initialize() -> void:
 		var result: Dictionary = interpreter._execute_move(rule)
 		blocked = blocked and not result["moved"] and interpreter.state.current_location == "LOC_START" and interpreter.state.turn == 0
 
-	check(outside == 151, "exactly 151 inert locations outside playable boundary")
-	check(inaccessible, "all 151 inert locations excluded from player lookups")
+	check(outside == 150, "exactly 150 inert locations outside playable boundary")
+	check(inaccessible, "all 150 inert locations excluded from player lookups")
 	check(undescribable, "no descriptions accessible in runtime for inert locations")
 	check(unmapped, "no inert locations in playable map nodes or edges")
 	check(blocked, "movement to all inert locations strictly rejected")
@@ -82,7 +82,7 @@ func _initialize() -> void:
 	# Playable sequence check: ensure CH_01 game loop and boundary gate remain intact
 	for line in ["E", "TAKE KEYS", "OUT", "DEPRESSION", "UNLOCK GRATE", "ENTER"]:
 		interpreter.submit(line)
-	check(interpreter.state.current_location == "LOC_GRATE", "ENTER still blocks crossing into CH_02 after unlocking GRATE")
+	check(interpreter.state.current_location == "LOC_BELOWGRATE", "ENTER descends into LOC_BELOWGRATE after unlocking GRATE")
 	check(interpreter.state.state_of("GRATE") == "GRATE_OPEN", "GRATE unlocking works normally")
 
 	print("%s: %d CAR-CORE-002 / R2 structural isolation checks; %d inert locations examined" % [

@@ -236,27 +236,27 @@ func _test_loading_and_isolation() -> void:
 	)
 	check(defense_ok, "13. Resistencia absoluta a mutaciones externas mediante copias defensivas profundas")
 
-	# 14. Conjunto habilitado restringido exactamente a las 34 salas de CH_01
+	# 14. Conjunto habilitado restringido exactamente a las 34 salas de CH_01 + LOC_BELOWGRATE
 	var enabled_ids := world.get_enabled_location_ids()
 	var ch_surface := catalog.get_chapter("CH_SURFACE")
 	var surface_members: Array = ch_surface.get("members", [])
 	var all_in_surface := true
 	for eid in enabled_ids:
-		if not surface_members.has(eid):
+		if not surface_members.has(eid) and eid != "LOC_BELOWGRATE":
 			all_in_surface = false
 			break
-	check(enabled_ids.size() == 34 and all_in_surface,
-		"14. Conjunto habilitado restringido exactamente a las 34 salas de CH_01")
+	check(enabled_ids.size() == 35 and all_in_surface,
+		"14. Conjunto habilitado restringido exactamente a las 34 salas de CH_01 + LOC_BELOWGRATE")
 
-	# 15. Exactamente 151 salas no habilitadas fuera de CH_01
+	# 15. Exactamente 150 salas no habilitadas fuera de CH_01
 	var disabled_count := 0
 	for lid in catalog.get_location_ids():
 		if not world.is_location_enabled(lid):
 			disabled_count += 1
-	check(disabled_count == 151, "15. Exactamente 151 salas permanecen no habilitadas fuera de CH_01")
+	check(disabled_count == 150, "15. Exactamente 150 salas permanecen no habilitadas fuera de CH_01")
 
 	# 16. WorldData.locations y WorldData.objects preservan contenido funcional
-	var locs_functional: bool = (world.locations.size() == 34)
+	var locs_functional: bool = (world.locations.size() == 35)
 	var objs_functional: bool = (world.objects.size() == 8)
 	var no_inert_in_runtime := true
 	for oid in ["CHEST", "DRAGON", "OGRE", "PLANT", "TROLL", "BEAR"]:
@@ -264,7 +264,7 @@ func _test_loading_and_isolation() -> void:
 			no_inert_in_runtime = false
 			break
 	check(locs_functional and objs_functional and no_inert_in_runtime,
-		"16. WorldData.locations (34) y WorldData.objects (8) preservan contenido funcional sin filtraciones")
+		"16. WorldData.locations (35) y WorldData.objects (8) preservan contenido funcional sin filtraciones")
 
 	# 17. No incorporación de vocabulario de capítulos posteriores al parser
 	var cmd_chest := parser.parse("TAKE CHEST")
@@ -309,7 +309,7 @@ func _test_loading_and_isolation() -> void:
 		if world.is_in_chapter(lid) != world.is_location_enabled(lid):
 			is_in_chapter_match = false
 			break
-	check(is_in_chapter_match, "20. is_in_chapter() es estrictamente equivalente al conjunto habilitado (34 true, 151 false)")
+	check(is_in_chapter_match, "20. is_in_chapter() es estrictamente equivalente al conjunto habilitado (35 true, 150 false)")
 
 
 func _test_robustness_and_negatives() -> void:
@@ -407,7 +407,7 @@ func _test_regression_and_compatibility() -> void:
 	var world := WorldData.load_default()
 	var interpreter := Interpreter.new(world)
 	# CUT A isolation
-	var cut_a_ok: bool = (world.locations.size() == 34 and world.objects.size() == 8)
+	var cut_a_ok: bool = (world.locations.size() == 35 and world.objects.size() == 8)
 	# CUT B travel
 	var cut_b_ok: bool = (world.locations.has("LOC_START") and world.describe("LOC_START").length() > 0)
 	# CUT C darkness/lamp
@@ -421,19 +421,19 @@ func _test_regression_and_compatibility() -> void:
 	for line in ["E", "TAKE KEYS", "OUT", "DEPRESSION", "UNLOCK GRATE", "ENTER"]:
 		interpreter.submit(line)
 	var ch01_loop_ok: bool = (
-		interpreter.state.current_location == "LOC_GRATE" and
+		interpreter.state.current_location == "LOC_BELOWGRATE" and
 		interpreter.state.state_of("GRATE") == "GRATE_OPEN" and
-		interpreter.state.travel_outcome == GameState.TravelOutcome.FRONTIER
+		interpreter.state.travel_outcome == GameState.TravelOutcome.ARRIVED
 	)
-	check(ch01_loop_ok, "31. Ciclo de juego jugable de CH_01 y bloqueo en la frontera de la reja intactos")
+	check(ch01_loop_ok, "31. Ciclo de juego jugable de CH_01 y descenso a LOC_BELOWGRATE tras abrir la reja intactos")
 
-	# 32. Ninguna sala fuera de CH_01 puede habilitarse accidentalmente sin ampliación explícita
+	# 32. Ninguna sala no autorizada fuera de CH_01 + LOC_BELOWGRATE puede habilitarse accidentalmente
 	var enabled_copy := world.get_enabled_location_ids()
-	enabled_copy.append("LOC_BELOWGRATE")
+	enabled_copy.append("LOC_COBBLE")
 	enabled_copy.clear()
 	var still_protected: bool = (
-		world.get_enabled_location_ids().size() == 34 and
-		not world.is_location_enabled("LOC_BELOWGRATE") and
-		world.location("LOC_BELOWGRATE") == null
+		world.get_enabled_location_ids().size() == 35 and
+		not world.is_location_enabled("LOC_COBBLE") and
+		world.location("LOC_COBBLE") == null
 	)
-	check(still_protected, "32. Ninguna sala fuera de CH_01 puede habilitarse accidentalmente; vista habilitada blindada")
+	check(still_protected, "32. Ninguna sala no autorizada fuera de CH_01 + LOC_BELOWGRATE puede habilitarse accidentalmente")
