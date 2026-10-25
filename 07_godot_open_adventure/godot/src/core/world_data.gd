@@ -10,6 +10,7 @@ extends RefCounted
 const DATASET_PATH := "res://data/chapter_01_surface.json"
 const L10N_PATH := "res://data/l10n_es.json"
 const ART_PATH := "res://data/art_ch01.json"
+const STRUCTURAL_DATASET_PATH := "res://data/structural_world.json"
 
 var meta: Dictionary = {}
 var chapter_id: String = ""
@@ -36,12 +37,16 @@ var l10n_messages: Dictionary = {}
 var l10n_objects: Dictionary = {}
 var art: Dictionary = {}
 
+var structural_catalog: StructuralCatalog = null
+var enabled_location_ids: Dictionary = {}
+
 
 static func load_default() -> WorldData:
 	var world := WorldData.new()
 	world.load_dataset(DATASET_PATH)
 	world.load_l10n(L10N_PATH)
 	world.load_art(ART_PATH)
+	world.load_structural_catalog(STRUCTURAL_DATASET_PATH)
 	return world
 
 
@@ -59,10 +64,12 @@ func load_dataset(path: String) -> bool:
 	chapter_id = String(meta.get("chapter_id", ""))
 	chapter_title = String(meta.get("chapter_title", ""))
 	chapter_description = String(meta.get("chapter_description", ""))
+	enabled_location_ids.clear()
 
 	for key in data.get("locations", {}).keys():
 		var loc := WorldLocation.from_dict(data["locations"][key])
 		locations[loc.id] = loc
+		enabled_location_ids[loc.id] = true
 	for key in data.get("objects", {}).keys():
 		var obj := WorldObject.from_dict(data["objects"][key])
 		objects[obj.id] = obj
@@ -142,6 +149,15 @@ func load_art(path: String) -> bool:
 	return true
 
 
+func load_structural_catalog(path: String) -> bool:
+	var catalog := StructuralCatalog.new()
+	if not catalog.load_from_file(path):
+		push_error("WorldData: failed to load structural catalog from %s: %s" % [path, catalog.get_last_error()])
+		return false
+	structural_catalog = catalog
+	return true
+
+
 # ---------------------------------------------------------------------------
 # lookups
 # ---------------------------------------------------------------------------
@@ -164,6 +180,79 @@ func is_in_chapter(location_id: String) -> bool:
 
 func frontier_sources(location_id: String) -> PackedStringArray:
 	return PackedStringArray(frontier.get(location_id, []))
+
+
+func is_location_enabled(location_id: String) -> bool:
+	return enabled_location_ids.has(location_id)
+
+
+func is_location_structural(location_id: String) -> bool:
+	return structural_catalog != null and structural_catalog.has_location(location_id)
+
+
+func has_structural_location(location_id: String) -> bool:
+	return is_location_structural(location_id)
+
+
+func get_structural_location(location_id: String) -> Dictionary:
+	if structural_catalog == null:
+		return {}
+	return structural_catalog.get_location(location_id)
+
+
+func get_structural_travel_records(location_id: String) -> Array[Dictionary]:
+	if structural_catalog == null:
+		return []
+	return structural_catalog.get_travel_records(location_id)
+
+
+func get_structural_object(object_id: String) -> Dictionary:
+	if structural_catalog == null:
+		return {}
+	return structural_catalog.get_object(object_id)
+
+
+func get_structural_chapter(chapter_id: String) -> Dictionary:
+	if structural_catalog == null:
+		return {}
+	return structural_catalog.get_chapter(chapter_id)
+
+
+func get_structural_location_ids() -> PackedStringArray:
+	if structural_catalog == null:
+		return PackedStringArray()
+	return structural_catalog.get_location_ids()
+
+
+func get_enabled_location_ids() -> PackedStringArray:
+	var ids := PackedStringArray()
+	for key in enabled_location_ids.keys():
+		ids.append(String(key))
+	return ids
+
+
+func get_structural_dwarflocs() -> PackedStringArray:
+	if structural_catalog == null:
+		return PackedStringArray()
+	return structural_catalog.get_dwarflocs()
+
+
+func get_structural_dependencies() -> Dictionary:
+	if structural_catalog == null:
+		return {}
+	return structural_catalog.get_structural_dependencies()
+
+
+func get_structural_meta() -> Dictionary:
+	if structural_catalog == null:
+		return {}
+	return structural_catalog.get_catalog_meta()
+
+
+func get_structural_counts() -> Dictionary:
+	if structural_catalog == null:
+		return {}
+	return structural_catalog.get_counts()
 
 
 ## Long description of a room, Spanish first, English as fallback.

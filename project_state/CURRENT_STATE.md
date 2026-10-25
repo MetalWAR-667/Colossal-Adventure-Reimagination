@@ -160,6 +160,15 @@ baseline. See the retrospective
   (`chapter_01_surface.json` digest `a49db669...`) and runtime scripts remain
   untouched. See the
   [R2 record](changes/car_core_002_r2_complete_structural_data_projection/CHANGE.md).
+- CAR-CORE-002 / R3: `CLOSED / PASS` on 2026-10-25. The structural loader and
+  enabled view are implemented in Godot 4.7.2 via `StructuralCatalog` and
+  additive queries in `WorldData`: 185 historical locations, 623 travel records,
+  70 objects, 11 chapters and 6 dwarflocs loaded and validated. Exactly 34
+  locations (`CH_SURFACE`) are enabled in runtime, while 151 remain inert.
+  37 Godot unit/negative/isolation tests passed in `test_structural_loader.gd`.
+  Playable CH_01 contract digest (`a49db669...`), `GameState.gd`, `Interpreter.gd`,
+  and `CommandParser.gd` remain untouched. See the
+  [R3 record](changes/car_core_002_r3_structural_loader_enabled_view/CHANGE.md).
 
 ## ACTIVE
 
@@ -169,8 +178,7 @@ No active implementation cut is recorded.
 
 These items are not authorized implementation cuts:
 
-- CAR-CORE-002 / R3 — Structural Loader & Enabled View: `PROPOSED / NOT AUTHORIZED`.
-- CAR-CORE-002 / R4 — Gameplay Mechanics & Active View: `PROPOSED / NOT AUTHORIZED`.
+- CAR-CORE-002 / R4 — Structural Validation & Contract Freeze: `PROPOSED / NOT AUTHORIZED`.
 - Human graphical and gameplay-experience review of chapter 01.
 - Final artistic polish of `GRATE_OPEN`, accepted provisionally by the human
   in CAR-ART-005 and reserved for the project's final art review.
@@ -224,9 +232,9 @@ Known style diagnostics, not demonstrated functional regressions:
 
 ## Next Decision Gate
 
-CAR-CORE-002 / R2 is closed with PASS: the complete structural data projection
-is generated deterministically and verified inert.
-**CAR-CORE-002 / R3 — Structural Loader & Enabled View: PROPOSED / NOT AUTHORIZED**
+CAR-CORE-002 / R3 is closed with PASS: the structural loader and enabled location
+view are verified in Godot.
+**CAR-CORE-002 / R4 — Structural Validation & Contract Freeze: PROPOSED / NOT AUTHORIZED**
 is the next dependency cut; it requires explicit human authorization.
 CAR-ART-005 is closed with documented follow-up: `GRATE_OPEN` polish remains
 pending final artistic review; its accepted state selection and integration are
