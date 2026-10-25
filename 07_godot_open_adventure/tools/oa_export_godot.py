@@ -6,7 +6,8 @@ Exporter: Open Adventure YAML -> Godot 4 chapter dataset.
 Reads the canonical dungeon description (Open Adventure `adventure.yaml`,
 structurally equivalent to `06_reconstruccion_drawio/Open_Adventure.yaml`
 after normalising line endings) and
-emits a single deterministic JSON document consumed by the Godot project.
+emits a single deterministic JSON document: the existing playable chapter
+fields plus a separate, currently unconsumed global simulation_graph.
 
 The chapter partition is the editorial one already produced by
 `06_reconstruccion_drawio/tools/oa_chapters.py`; it is imported, never
@@ -296,6 +297,80 @@ def build_edges(locations: dict[str, Any], node_ids: set[str]) -> list[dict[str,
 # main
 # --------------------------------------------------------------------------
 
+def build_simulation_graph(ir: dict[str, Any]) -> dict[str, Any]:
+    """Export source rows, not executable player routes or expanded C motions.
+
+    FORCED follows init.c:initialise (first motion HERE, including the
+    generator's implicit HERE for an empty verbs list). Empty text is not NULL.
+    nodwarves stays separate from ordinary player predicates. Special targets
+    are handler numbers, never room IDs (make_dungeon.py:cencode/dencode).
+    """
+    locations = []
+    record_index = 0
+    location_ids = {name for name, _ in ir["locations"]}
+    message_ids = {name for name, _ in ir["arbitrary_messages"]}
+    object_ids = {name for name, _ in ir["objects"]}
+    for source_index, (name, spec) in enumerate(ir["locations"]):
+        source_flags = dict(spec.get("conditions") or {})
+        rules = spec.get("travel") or []
+        flags = dict(source_flags)
+        flags["DEEP"] = bool(source_flags.get("DEEP", False))
+        flags["NOARRR"] = bool(source_flags.get("NOARRR", False))
+        flags["FORCED"] = bool(
+            source_index != 0
+            and (spec.get("description") or {}).get("long") is not None
+            and rules
+            and not rules[0]["verbs"]
+        )
+        travel = []
+        for rule_index, rule in enumerate(rules):
+            action_type, target = rule["action"]
+            resolution = {"goto": "location", "speak": "message", "special": "special_handler"}
+            if action_type not in resolution:
+                raise ValueError(f"{name}: unknown action {rule['action']!r}")
+            if action_type == "goto" and target not in location_ids:
+                raise ValueError(f"{name}: unresolved location {target}")
+            if action_type == "speak" and target not in message_ids:
+                raise ValueError(f"{name}: unresolved message {target}")
+            if action_type == "special" and (type(target) is not int or target not in (1, 2, 3)):
+                raise ValueError(f"{name}: unknown special handler {target}")
+            source_condition = rule.get("cond")
+            nodwarves = source_condition == ["nodwarves"]
+            condition = None if nodwarves else parse_cond(source_condition)
+            if condition and condition.get("object") and condition["object"] not in object_ids:
+                raise ValueError(f"{name}: unresolved condition object {condition['object']}")
+            travel.append({
+                "source_index": rule_index,
+                "source_record_index": record_index,
+                "verbs": list(rule["verbs"]),
+                "action_type": action_type,
+                "target": target,
+                "target_resolution": resolution[action_type],
+                "source_condition": source_condition,
+                "condition": condition,
+                "nodwarves": nodwarves,
+            })
+            record_index += 1
+        locations.append({
+            "id": name,
+            "source_index": source_index,
+            "source_conditions": source_flags,
+            "flags": flags,
+            "travel": travel,
+        })
+    if (len(locations), record_index, len(ir["dwarflocs"])) != (185, 623, 6):
+        raise ValueError("Historical inventory differs from CUT A expectations; review source before exporting")
+    if any(loc not in location_ids for loc in ir["dwarflocs"]):
+        raise ValueError("Unresolved dwarflocs location")
+    return {
+        "schema_version": 1,
+        "location_count": len(locations),
+        "travel_record_count": record_index,
+        "locations": locations,
+        "dwarflocs": list(ir["dwarflocs"]),
+    }
+
+
 def build_dataset() -> dict[str, Any]:
     ir, yaml_path, yaml_sources = load_yaml_source()
     members = chapter_members(CHAPTER_ID)
@@ -354,6 +429,9 @@ def build_dataset() -> dict[str, Any]:
             "edges": edges,
         },
     }
+    # Existing fields remain the playable contract. WorldData does not consume
+    # this additive projection. Both projections share the loaded IR and hashes.
+    dataset["simulation_graph"] = build_simulation_graph(ir)
     return dataset
 
 
@@ -411,6 +489,8 @@ def main() -> int:
     print(f"  map nodes : {len(dataset['map']['nodes'])}")
     print(f"  map edges : {len(dataset['map']['edges'])}")
     print(f"  frontier  : {len(dataset['frontier'])}")
+    print(f"  simulation: {dataset['simulation_graph']['location_count']} locations / "
+          f"{dataset['simulation_graph']['travel_record_count']} source travel records")
     return 0
 
 

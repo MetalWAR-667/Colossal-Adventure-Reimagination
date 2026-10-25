@@ -48,6 +48,8 @@ if ([string]::IsNullOrWhiteSpace($Godot)) {
 Write-Host "== 1/7 export determinism ==" -ForegroundColor Cyan
 & $Python (Join-Path $here "oa_export_godot.py") --check
 if ($LASTEXITCODE -ne 0) { Fail "the committed dataset does not match the regenerated one" }
+& $Python (Join-Path $here "test_simulation_graph.py")
+if ($LASTEXITCODE -ne 0) { Fail "the global simulation data contract failed" }
 
 Write-Host "== 2/7 godot import ==" -ForegroundColor Cyan
 & $Godot --headless --path $project --editor --quit | Out-Null
@@ -56,6 +58,8 @@ if ($LASTEXITCODE -ne 0) { Fail "the Godot import reported errors" }
 Write-Host "== 3/7 engine tests ==" -ForegroundColor Cyan
 & $Godot --headless --path $project --script res://tests/run_tests.gd
 if ($LASTEXITCODE -ne 0) { Fail "the engine tests failed" }
+& $Godot --headless --path $project --script res://tests/test_simulation_graph_isolation.gd
+if ($LASTEXITCODE -ne 0) { Fail "the simulation graph changed the playable boundary" }
 
 Write-Host "== 4/7 illustration sheet ==" -ForegroundColor Cyan
 & $Godot --headless --path $project --script res://tools/capture_scenes.gd

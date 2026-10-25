@@ -68,6 +68,13 @@ baseline. See the retrospective
 - CAR-CORE-001 historical runtime-dependency Decision Gate is complete. It
   concludes that a full simulation graph can remain separate from the playable
   subset; this is an architectural finding, not an implementation.
+- CAR-CORE-001 CUT A: `CLOSED / PASS`. The existing dataset now contains a
+  separate, unconsumed `simulation_graph`: 185 source-ordered location IDs,
+  623 travel records and six original dwarf/pirate start positions. All previous
+  playable fields remain identical to the pre-cut contract. Ten Python contract
+  tests and 12 Godot isolation checks passed; the unchanged game suite passes
+  448 checks. Runtime consumption and CH_02 remain outside this cut. See the
+  [CUT A record](changes/car_core_001_cut_a_global_data_contract/CHANGE.md).
 - CAR-ART-001 is `CLOSED / DECISION RECORDED`: the human selected C — Línea
   solar on 2026-10-25. This closes the art-direction gate only;
   conceptual-browser playback remains unverified. Runtime pilot integration
@@ -118,7 +125,7 @@ These items are not authorized implementation cuts:
 - Expansion beyond chapter 01; chapters 02–11 are not implemented.
 - Further UX improvements beyond the recorded CAR-ART-001 direction, subject
   to existing project evidence and a separately approved scope.
-- CAR-CORE-001 CUT A — proposed global data-contract cut; not authorized.
+- CAR-CORE-001 CUT B — `PROPOSED / NOT AUTHORIZED`: historical travel cycle.
 - Final UI polish/resizing, possible hiding of the main graph after development,
   graph legibility at 1280 × 720 and the approximately 1.571 s initial
   preparation cost remain future work. Acceptance of CAR-ART-003 does not
@@ -164,9 +171,10 @@ Known style diagnostics, not demonstrated functional regressions:
 
 CAR-ART-005 is closed with documented follow-up: `GRATE_OPEN` polish remains
 pending final artistic review; its accepted state selection and integration are
-closed. **CAR-CORE-001 CUT A — PROPOSED / NOT AUTHORIZED** remains the next
-decision gate: emit and verify the ordered global simulation graph alongside
-the playable subset, with no runtime behavior change. CH_02 remains blocked for
+closed. CAR-CORE-001 CUT A is closed for the global data contract only.
+**CAR-CORE-001 CUT B — PROPOSED / NOT AUTHORIZED** is the next decision gate:
+historical travel cycle, with its own explicit scope and authorization required.
+CH_02 remains blocked for
 playable integration until the global travel, forced movement, lighting, death,
 and actor dependencies are implemented and verified in authorized cuts.
 
