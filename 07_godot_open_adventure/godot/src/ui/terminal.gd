@@ -30,6 +30,9 @@ func _ready() -> void:
 
 	input = LineEdit.new()
 	input.placeholder_text = "Escribe una orden (HELP para más)"
+	# Keep the edit session alive after Enter; focus alone is not enough to
+	# make LineEdit accept the next command immediately.
+	input.keep_editing_on_text_submit = true
 	input.add_theme_font_override("font", _font)
 	input.add_theme_font_size_override("font_size", 16)
 	input.text_submitted.connect(_on_text_submitted)

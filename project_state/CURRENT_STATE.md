@@ -1,8 +1,9 @@
 # Current State — Colossal Adventure: Reimagination
 
-**Document status:** `REVIEW`  
-**Documentation task:** `CAR-DOC-001` — implemented, pending human review  
-**Observed baseline:** `main` at `f59c413550dd3566e63af0c98a8df17a96359768`
+**Document status:** `CURRENT / REVIEW`
+**Documentation task:** `CAR-DOC-001` — closed and published
+**Observed state:** `main` at `04841045a6b3e4a01ac6b8b1e401d70d5af5f279`
+**Historical baseline:** `f59c413550dd3566e63af0c98a8df17a96359768`
 
 ## Project Identity
 
@@ -54,11 +55,13 @@ baseline. See the retrospective
   transitions follow interpreter state, and debug navigation is read-only.
 - GUT 9.7.1 is included and activated as a Godot editor plugin. It does not
   run or replace the existing 400-check suite.
+- The CAR-QOL-001 terminal focus correction is closed after manual validation;
+  the current suite passes 448 checks. The maximized window mode is accepted
+  provisionally for this cut.
 
 ## ACTIVE
 
-- `CAR-DOC-001`: initial project-state documentation is implemented and awaits
-  human review. No technical implementation workstream is recorded as active.
+- No technical implementation workstream is active.
 
 ## PENDING / PROPOSED
 
@@ -70,6 +73,7 @@ These items are not authorized implementation cuts:
 - Expansion beyond chapter 01; chapters 02–11 are not implemented.
 - UX and art-direction improvements, subject to the existing project evidence
   and a separately approved scope.
+- `CH_02`: proposed planning gate only; not implemented and not authorized.
 
 ## DEFERRED / OUT OF SCOPE
 
@@ -97,7 +101,6 @@ Known style diagnostics, not demonstrated functional regressions:
 
 ## Next Decision Gate
 
-**PROPOSED / NOT AUTHORIZED:** perform the human review of chapter 01, then
-prioritize one small next cut using that evidence. This proposal does not select
-chapter 02 or authorize implementation.
+**PROPOSED / NOT AUTHORIZED:** plan the next small cut after the chapter 01
+review. `CH_02` remains a proposal only and is not authorized for implementation.
 

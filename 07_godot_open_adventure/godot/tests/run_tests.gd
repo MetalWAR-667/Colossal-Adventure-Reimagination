@@ -392,6 +392,7 @@ func _test_debug_interface() -> void:
 	map_before.pan_offset = Vector2(30, -12)
 	var mode_before: MapView.ViewMode = map_before.view_mode
 	_check(terminal_before.output.selection_enabled, "terminal output text is selectable")
+	_check(terminal_before.input.keep_editing_on_text_submit, "command input keeps editing after Enter")
 	await process_frame
 	_check(terminal_before.input.has_focus(), "command input receives initial deferred focus")
 	terminal_before._on_text_submitted("   ")
@@ -447,4 +448,10 @@ func _test_debug_interface() -> void:
 	main._on_command("UNKNOWN-COMMAND")
 	await process_frame
 	_check(terminal_before.input.has_focus(), "unknown command restores input focus")
+	terminal_before.input.text_submitted.emit("BLORP")
+	await process_frame
+	_check(terminal_before.input.has_focus(), "signal submission keeps focus after unknown command")
+	terminal_before.input.text_submitted.emit("")
+	await process_frame
+	_check(terminal_before.input.has_focus(), "signal submission keeps focus after empty command")
 	main.free()
