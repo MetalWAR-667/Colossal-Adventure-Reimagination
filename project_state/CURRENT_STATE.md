@@ -71,17 +71,15 @@ baseline. See the retrospective
 - CAR-ART-001 is `CLOSED / DECISION RECORDED`: the human selected C — Línea
   solar on 2026-10-25. This closes the art-direction gate only; production
   renderer integration and conceptual-browser playback remain unverified.
+- CAR-ART-002 is `CLOSED / PASS — EXPERIMENTAL PROTOTYPE LOC_START` after human
+  visual acceptance on 2026-10-25. The prototype is not integrated into the
+  productive game; see the
+  [prototype record](changes/car_art_002_vector_drawing_playback_prototype/CHANGE.md).
 
 ## ACTIVE
 
-- CAR-ART-002: `CLOSED / PASS — EXPERIMENTAL PROTOTYPE LOC_START`. The human
-  accepted the corrected framing on 2026-10-25 («Validación correcta. El
-  encuadre es el adecuado»); the prototype also retains the previously
-  accepted 3.5 s speed and recorded technical verification. Its isolated
-  Godot scene is not integrated into the game or parser. This closure does not
-  accept the other ten illustrations or resolve the recorded 1.535074 s
-  preparation time. See the
-  [prototype record](changes/car_art_002_vector_drawing_playback_prototype/CHANGE.md).
+No CAR-ART-002 implementation work is active. Any production integration
+requires a separately authorized cut.
 
 ## PENDING / PROPOSED
 

@@ -25,7 +25,8 @@ son históricos y quedan supersedidos por este cierre para la aceptación de
 
 **Siguiente decisión:** cualquier integración productiva requiere un corte y
 autorización separados. CAR-ART-003 sigue `NOT AUTHORIZED`; no se inicia otro
-corte aquí.
+corte aquí. `project_state/CURRENT_STATE.md` registra el prototipo como cerrado
+y no mantiene trabajo CAR-ART-002 en la sección de cortes activos.
 
 Estado de la entrega original: **IMPLEMENTED / TECHNICAL VERIFICATION COMPLETE / MANUAL_VALIDATION PENDING**.
 Resultado de aquella entrega: **PARTIAL**, pendiente entonces de que el responsable contemplara y aceptara la animación real. Prototipo experimental, sin integración productiva. Fecha: 2026-10-25. Agente: Sol, implementación asistida por Codex.
