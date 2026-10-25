@@ -1,9 +1,36 @@
 # CAR-ART-002 — Vector Drawing Playback Prototype
 
-Estado: **IMPLEMENTED / TECHNICAL VERIFICATION COMPLETE / MANUAL_VALIDATION PENDING**.
-Resultado de entrega: **PARTIAL**, pendiente de que el responsable contemple y acepte la animación real. Prototipo experimental, sin integración productiva. Fecha: 2026-10-25. Agente: Sol, implementación asistida por Codex.
+## Cierre de aceptación humana — 2026-10-25
 
-**Revisión vigente:** Visual Review Fix 01, encuadre lateral corregido a **736 × 400**. La velocidad de 3,5 s a 1× está **ACCEPTED** por el responsable; aceptación visual final todavía pendiente. Las secciones originales y sus artefactos conservan la evidencia de la primera entrega a 640 × 400. El registro de la corrección y las capturas actuales figuran al final de este documento.
+**Estado actual:** `CLOSED / PASS — PROTOTIPO EXPERIMENTAL LOC_START`.
+
+El responsable confirmó: **«Validación correcta. El encuadre es el adecuado»**.
+La aceptación cierra la revisión visual de la versión corregida de `LOC_START`:
+dirección C — Línea solar, trazado interpolado, relleno progresivo, ritmo de
+referencia de 3,5 s a 1× y encuadre lateral con ambos árboles completos y
+margen visible. La evidencia técnica ya registrada en Visual Review Fix 01
+incluye 66 checks del prototipo, 448 checks de `verify.ps1`, captura Godot
+4.7.2 y equivalencia byte a byte entre el final animado y Omitir. No se
+repitieron esas pruebas para este cierre documental.
+
+Este PASS se limita al prototipo experimental aislado. No afirma integración
+con el parser o la interfaz productiva, aceptación de las otras diez
+ilustraciones, ni resolución del tiempo de preparación previo (1,535074 s en
+la medición registrada para esta revisión). La dirección artística aprobada
+no convierte las capacidades experimentales en un contrato implementado del
+renderer productivo. Las secciones siguientes conservan el informe y los
+estados observados en las fechas de sus revisiones; sus estados pendientes
+son históricos y quedan supersedidos por este cierre para la aceptación de
+`LOC_START`.
+
+**Siguiente decisión:** cualquier integración productiva requiere un corte y
+autorización separados. CAR-ART-003 sigue `NOT AUTHORIZED`; no se inicia otro
+corte aquí.
+
+Estado de la entrega original: **IMPLEMENTED / TECHNICAL VERIFICATION COMPLETE / MANUAL_VALIDATION PENDING**.
+Resultado de aquella entrega: **PARTIAL**, pendiente entonces de que el responsable contemplara y aceptara la animación real. Prototipo experimental, sin integración productiva. Fecha: 2026-10-25. Agente: Sol, implementación asistida por Codex.
+
+**Revisión aceptada:** Visual Review Fix 01, encuadre lateral corregido a **736 × 400**. La velocidad de 3,5 s a 1× y el encuadre están aceptados por el responsable. Las secciones originales y sus artefactos conservan la evidencia de la primera entrega a 640 × 400. El registro de la corrección y las capturas actuales figuran al final de este documento.
 
 ## Autorización y baseline
 
@@ -62,7 +89,7 @@ La primera apertura prepara las regiones antes de iniciar el reloj; los controle
 3. **Salir de LOC_START / Cancelar:** limpia imagen y trazos, cancela la secuencia anterior. Es una identidad de presentación de prueba, no un movimiento del mundo.
 4. **Volver a LOC_START:** muestra el final directamente después de la primera visita; Replay sigue disponible. Refrescar la misma identidad no reinicia la reproducción.
 
-Revisar visualmente recorrido, ritmo, propagación, curvas/legibilidad y reconocimiento de casa/carretera/bosque/arroyo. Probar Omitir durante contornos y rellenos, cancelar a mitad y volver. La revisión humana de estos controles y del resultado artístico sigue **PENDING**.
+La revisión humana de recorrido, ritmo, propagación, curvas/legibilidad y reconocimiento estaba **PENDING** en la entrega original. La aceptación posterior queda registrada al inicio de este CHANGE y se limita a la versión corregida de `LOC_START`.
 
 [Animación de revisión](evidence/playback.gif), [lámina de seis frames](evidence/contact_sheet.png), [final PNG](evidence/final.png) y [métricas reales](evidence/metrics.json). El GIF contiene 35 muestras capturadas de Godot, cuantización de paleta/tiempos y una pausa final añadida de 1,5 s; sirve de revisión, no de prueba exacta de cronometraje o píxeles. No alimenta al renderer. La imagen estática por sí sola no demuestra la animación.
 
@@ -91,7 +118,7 @@ La primera ejecución de la prueba encontró un array temporal compartido que va
 
 ## Pendientes y condiciones de parada
 
-- **MANUAL_VALIDATION:** el responsable debe contemplar la animación real y valorar ritmo, propagación y fidelidad a C. No se declara aprobación definitiva por capturas o checks.
+- **Estado en la entrega original:** `MANUAL_VALIDATION PENDING`; el responsable aún debía contemplar la animación real. Esa espera terminó con la aceptación registrada en el encabezado de cierre; las capturas y checks por sí solos no constituyeron la aprobación.
 - **NO INTEGRADO:** parser durante playback, lifecycle de UI/Tab y uso del estado único de partida requerirán un corte autorizado posterior. Este prototipo no permite afirmar que LOOK u otras órdenes del juego ya convivan con su reproducción; solo verifica que el mismo ID no la reinicia y que el juego original no presenta regresiones en la suite.
 - La preparación previa de ~1,39 s, memoria de máscaras/colas y llenado raster a 640 × 400 son límites conocidos. No se afirma 60 FPS universal ni calidad validada al escalar a cualquier tamaño. No se añadieron controles de aceleración; 1× es la referencia.
 - CAR-ART-003, migración de once dibujos, CH_02 y CAR-CORE-001 CUT A–F siguen sin autorización adicional. No iniciar otro corte tras esta entrega.
@@ -101,7 +128,7 @@ La primera ejecución de la prueba encontró un array temporal compartido que va
 
 ## Visual Review Fix 01 — Lateral Framing (2026-10-25)
 
-**Baseline:** `b6c558b55da8131ff90886f2f392a634367c7629`, `main`, índice/árbol limpios. La persona ha ejecutado el prototipo: acepta velocidad de 3,5 s a 1×, mantiene C — Línea solar y no formula objeciones al trazado o relleno en esta revisión. Solicita corregir exclusivamente el recorte lateral. **Estado posterior a esta corrección: REVIEW / MANUAL_VALIDATION PENDING**; la aceptación parcial no cierra el corte.
+**Baseline:** `b6c558b55da8131ff90886f2f392a634367c7629`, `main`, índice/árbol limpios. En esa revisión la persona ejecutó el prototipo: aceptó la velocidad de 3,5 s a 1×, mantuvo C — Línea solar y no formuló objeciones al trazado o relleno. Solicitó corregir exclusivamente el recorte lateral. **Estado registrado entonces, tras esa corrección: REVIEW / MANUAL_VALIDATION PENDING**; la aceptación parcial de esa fecha aún no cerraba el corte. La aceptación final posterior se consigna al inicio de este documento.
 
 ### Causa y corrección
 

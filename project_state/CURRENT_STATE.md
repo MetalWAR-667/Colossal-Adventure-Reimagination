@@ -74,12 +74,14 @@ baseline. See the retrospective
 
 ## ACTIVE
 
-- CAR-ART-002: experimental `LOC_START` playback prototype implemented and
-  technically verified; `REVIEW / MANUAL_VALIDATION PENDING`. The isolated
-  Godot scene is not integrated into the game or its parser. See the
+- CAR-ART-002: `CLOSED / PASS — EXPERIMENTAL PROTOTYPE LOC_START`. The human
+  accepted the corrected framing on 2026-10-25 («Validación correcta. El
+  encuadre es el adecuado»); the prototype also retains the previously
+  accepted 3.5 s speed and recorded technical verification. Its isolated
+  Godot scene is not integrated into the game or parser. This closure does not
+  accept the other ten illustrations or resolve the recorded 1.535074 s
+  preparation time. See the
   [prototype record](changes/car_art_002_vector_drawing_playback_prototype/CHANGE.md).
-  Human review accepted the 3.5 s speed; lateral framing was corrected in
-  Visual Review Fix 01 and awaits final visual acceptance.
 
 ## PENDING / PROPOSED
 
@@ -92,9 +94,9 @@ These items are not authorized implementation cuts:
 - Further UX improvements beyond the recorded CAR-ART-001 direction, subject
   to existing project evidence and a separately approved scope.
 - CAR-CORE-001 CUT A — proposed global data-contract cut; not authorized.
-- Human visual acceptance of CAR-ART-002 and any subsequent production
-  integration; the existing 448 game checks and 66 separate prototype checks
-  do not replace that acceptance.
+- Any production integration of CAR-ART-002 requires a separately authorized
+  cut; the accepted experimental prototype does not establish parser/UI
+  integration or a production renderer contract.
 - CAR-ART-003 — migration of all eleven CH_01 illustrations; `NOT AUTHORIZED`.
 - CH_02 playable integration remains blocked by the global runtime dependencies
   identified in CAR-CORE-001. Chapters beyond CH_01 are not implemented or
@@ -126,10 +128,9 @@ Known style diagnostics, not demonstrated functional regressions:
 
 ## Next Decision Gate
 
-**REVIEW / MANUAL_VALIDATION PENDING:** the responsible human reviews the
-actual CAR-ART-002 `LOC_START` animation, its pace and spatial fill, using the
-isolated Godot scene. Production integration and CAR-ART-003 are not authorized
-by this record. CAR-CORE-001 CUT A remains
+**No new implementation cut is authorized by this state update.** CAR-ART-002
+is closed for its isolated `LOC_START` prototype only. Production integration
+and CAR-ART-003 are not authorized by this record. CAR-CORE-001 CUT A remains
 `PROPOSED / NOT AUTHORIZED`: emit and verify the ordered global simulation graph
 alongside the playable subset, with no runtime behavior change. CH_02 remains
 blocked for playable integration until the global travel, forced movement,
