@@ -49,6 +49,7 @@ func _enter_start() -> void:
 	_waiting = false
 	if visited.has(illustration_id) or _finish_requested:
 		model.skip()
+		_update_picture()
 	else:
 		replay()
 	visited[illustration_id] = true

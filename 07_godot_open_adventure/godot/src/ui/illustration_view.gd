@@ -5,10 +5,21 @@ extends Control
 const ProgressiveView = preload("res://experiments/vector_playback/playback_view.gd")
 const PROGRESSIVE_SOURCES := {
 	"LOC_START": "res://experiments/vector_playback/loc_start.json",
+	"LOC_FOREST": "res://data/vector_ch01/loc_forest.json",
+	"LOC_BUILDING": "res://data/vector_ch01/loc_building.json",
+	"LOC_ROADEND": "res://data/vector_ch01/loc_roadend.json",
+	"LOC_HILL": "res://data/vector_ch01/loc_hill.json",
+	"LOC_VALLEY": "res://data/vector_ch01/loc_valley.json",
+	"LOC_SLIT": "res://data/vector_ch01/loc_slit.json",
+	"LOC_CLIFF": "res://data/vector_ch01/loc_cliff.json",
+	"LOC_LEDGE": "res://data/vector_ch01/loc_ledge.json",
+	"LOC_SEWER": "res://data/vector_ch01/loc_sewer.json",
 }
 
 var world: WorldData
 var playback: Control
+var progressive_sources: Dictionary = PROGRESSIVE_SOURCES.duplicate()
+var _playbacks: Dictionary = {}
 var current_room := ""
 var presentation_kind := "legacy"
 var _presented_rooms: Dictionary = {}
@@ -28,28 +39,32 @@ func show_room(location_id: String) -> void:
 		return
 	current_room = location_id
 	_caption = location_id.replace("LOC_", "")
-	if PROGRESSIVE_SOURCES.has(location_id):
-		presentation_kind = "progressive"
-		_texture = null
-		if playback == null:
-			playback = ProgressiveView.new()
-			playback.source_path = PROGRESSIVE_SOURCES[location_id]
-			playback.illustration_id = location_id
-			playback.autoplay_on_ready = false
-			playback.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-			add_child(playback)
-		playback.show()
-		playback.show_room(location_id)
-		if _presented_rooms.has(location_id):
-			playback.skip()
-		_presented_rooms[location_id] = true
-		queue_redraw()
-		return
-	presentation_kind = "legacy"
+	var scene_id := location_id
+	if location_id.begins_with("LOC_FOREST") and progressive_sources.has("LOC_FOREST"):
+		scene_id = "LOC_FOREST"
 	if playback != null:
 		playback.show_room("")
 		playback.hide()
-	var scene_id := location_id
+	if progressive_sources.has(scene_id):
+		presentation_kind = "progressive"
+		_texture = null
+		if not _playbacks.has(scene_id):
+			playback = ProgressiveView.new()
+			playback.source_path = progressive_sources[scene_id]
+			playback.illustration_id = scene_id
+			playback.autoplay_on_ready = false
+			playback.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+			add_child(playback)
+			_playbacks[scene_id] = playback
+		playback = _playbacks[scene_id]
+		playback.show()
+		playback.show_room(scene_id)
+		if _presented_rooms.has(scene_id):
+			playback.skip()
+		_presented_rooms[scene_id] = true
+		queue_redraw()
+		return
+	presentation_kind = "legacy"
 	if not world.art.has("scenes"):
 		return
 	var scenes: Dictionary = world.art["scenes"]

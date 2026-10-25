@@ -90,7 +90,14 @@ baseline. See the retrospective
 
 ## ACTIVE
 
-No CAR-ART implementation cut is active following this documentary closure.
+- CAR-ART-004: `IMPLEMENTED / TECHNICAL VERIFICATION COMPLETE /
+  MANUAL_VALIDATION PENDING` for nine remaining CH_01 illustrations, using the
+  [vector-art contract](../03_reinterpretation/CH01_VECTOR_ART_CONTRACT.md).
+  FOREST is a shared drawing for 22 canonical locations. The nine pieces are
+  integrated through the existing progressive consumer; START and legacy art
+  remain intact. GRATE is `BLOCKED / NOT PRODUCED` by explicit human choice:
+  a future state-aware selector needs separate technical authorization.
+  See the [production record and gallery](changes/car_art_004_ch01_vector_illustration_production/CHANGE.md).
 
 ## PENDING / PROPOSED
 
@@ -107,9 +114,11 @@ These items are not authorized implementation cuts:
   graph legibility at 1280 × 720 and the approximately 1.571 s initial
   preparation cost remain future work. Acceptance of CAR-ART-003 does not
   authorize these changes or open new cuts.
-- Migration of the other ten CH_01 illustrations is not authorized by the
-  CAR-ART-003 pilot scope. Replay/revisit policy beyond immediate revisits
-  remains a separate decision.
+- Human artistic acceptance of CAR-ART-004's nine completed illustrations.
+- GRATE production remains blocked pending expressly authorized support for
+  open/closed visual selection. The inherited static reference is preserved;
+  it is excluded from the nine-piece technical PASS.
+- Replay/revisit policy beyond immediate revisits remains a separate decision.
 - CH_02 playable integration remains blocked by the global runtime dependencies
   identified in CAR-CORE-001. Chapters beyond CH_01 are not implemented or
   authorized.
@@ -140,9 +149,10 @@ Known style diagnostics, not demonstrated functional regressions:
 
 ## Next Decision Gate
 
-**Awaiting new human authorization.** CAR-ART-003 is closed by visual and
-interaction acceptance of its runtime integration pilot. The retained future
-work does not open or authorize another implementation cut.
+**CAR-ART-004 — MANUAL_VALIDATION PENDING:** the responsible human reviews the
+nine-piece batch and its runtime presentation. GRATE remains the explicitly
+excluded blocked exception. CAR-ART-003 stays closed; no further production
+or technical cut is opened by this record.
 CAR-CORE-001 CUT A remains
 `PROPOSED / NOT AUTHORIZED`: emit and verify the ordered global simulation graph
 alongside the playable subset, with no runtime behavior change. CH_02 remains

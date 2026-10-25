@@ -79,6 +79,9 @@ func _run() -> void:
 	root.add_child(viewport)
 	main = load("res://scenes/main.tscn").instantiate()
 	viewport.add_child(main)
+	# Preserve the CAR-ART-003 pilot/fallback fixture after the authorized batch
+	# migration. Current production selection is covered by test_ch01_vector_art.
+	main.illustration.progressive_sources = {"LOC_START": IllustrationView.PROGRESSIVE_SOURCES["LOC_START"]}
 	await settle()
 	var view: Control = main.illustration.playback
 	check(view != null and main.illustration.presentation_kind == "progressive", "pilot selected through adapter")
@@ -214,6 +217,7 @@ func _run() -> void:
 	check(state.current_location == "LOC_BUILDING", "graph node hit still moves via the interpreter")
 	# Exercise leave/revisit and Tab completion before the cache is prepared.
 	var pending := IllustrationView.new(main.world)
+	pending.progressive_sources = main.illustration.progressive_sources
 	viewport.add_child(pending)
 	pending.hide()
 	pending.show_room("LOC_START")
@@ -226,6 +230,7 @@ func _run() -> void:
 	check(pending.playback.model.complete, "revisit after interrupted preparation is immediate")
 	pending.free()
 	pending = IllustrationView.new(main.world)
+	pending.progressive_sources = main.illustration.progressive_sources
 	viewport.add_child(pending)
 	pending.hide()
 	pending.show_room("LOC_START")

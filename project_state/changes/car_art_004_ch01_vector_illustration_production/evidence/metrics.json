@@ -1,0 +1,298 @@
+{
+	"checks": 582,
+	"device": "NVIDIA GeForce RTX 3070",
+	"failures": [],
+	"godot": "4.7.2-stable (official)",
+	"grate": "BLOCKED BY HUMAN DECISION",
+	"manual_validation": "PENDING",
+	"rooms": [
+		{
+			"lines": 43,
+			"playback_seconds": 3.510644,
+			"prepare_seconds": 2.08388,
+			"regions": 14,
+			"rendered_skip_equal": true,
+			"room": "LOC_FOREST",
+			"sample_elapsed": [
+				0.035847,
+				0.362755,
+				0.713001,
+				1.062758,
+				1.410381,
+				1.760373,
+				2.110356,
+				2.460347,
+				2.81033,
+				3.160314
+			],
+			"samples": [
+				"00.png",
+				"01.png",
+				"02.png",
+				"03.png",
+				"04.png",
+				"05.png",
+				"06.png",
+				"07.png",
+				"08.png",
+				"09.png"
+			]
+		},
+		{
+			"lines": 39,
+			"playback_seconds": 3.515965,
+			"prepare_seconds": 2.493728,
+			"regions": 9,
+			"rendered_skip_equal": true,
+			"room": "LOC_BUILDING",
+			"sample_elapsed": [
+				0.038799,
+				0.365936,
+				0.715918,
+				1.065909,
+				1.415894,
+				1.765877,
+				2.115861,
+				2.465854,
+				2.815832,
+				3.165823
+			],
+			"samples": [
+				"00.png",
+				"01.png",
+				"02.png",
+				"03.png",
+				"04.png",
+				"05.png",
+				"06.png",
+				"07.png",
+				"08.png",
+				"09.png"
+			]
+		},
+		{
+			"lines": 41,
+			"playback_seconds": 3.512597,
+			"prepare_seconds": 2.147747,
+			"regions": 15,
+			"rendered_skip_equal": true,
+			"room": "LOC_ROADEND",
+			"sample_elapsed": [
+				0.036143,
+				0.362461,
+				0.712446,
+				1.062434,
+				1.41243,
+				1.762407,
+				2.112392,
+				2.462381,
+				2.812368,
+				3.162353
+			],
+			"samples": [
+				"00.png",
+				"01.png",
+				"02.png",
+				"03.png",
+				"04.png",
+				"05.png",
+				"06.png",
+				"07.png",
+				"08.png",
+				"09.png"
+			]
+		},
+		{
+			"lines": 35,
+			"playback_seconds": 3.51673,
+			"prepare_seconds": 2.410165,
+			"regions": 18,
+			"rendered_skip_equal": true,
+			"room": "LOC_HILL",
+			"sample_elapsed": [
+				0.04145,
+				0.350032,
+				0.700019,
+				1.050004,
+				1.416664,
+				1.766642,
+				2.116631,
+				2.466629,
+				2.816596,
+				3.166587
+			],
+			"samples": [
+				"00.png",
+				"01.png",
+				"02.png",
+				"03.png",
+				"04.png",
+				"05.png",
+				"06.png",
+				"07.png",
+				"08.png",
+				"09.png"
+			]
+		},
+		{
+			"lines": 39,
+			"playback_seconds": 3.514499,
+			"prepare_seconds": 2.110927,
+			"regions": 18,
+			"rendered_skip_equal": true,
+			"room": "LOC_VALLEY",
+			"sample_elapsed": [
+				0.037608,
+				0.364412,
+				0.714392,
+				1.064396,
+				1.414369,
+				1.764379,
+				2.114343,
+				2.464335,
+				2.814316,
+				3.164308
+			],
+			"samples": [
+				"00.png",
+				"01.png",
+				"02.png",
+				"03.png",
+				"04.png",
+				"05.png",
+				"06.png",
+				"07.png",
+				"08.png",
+				"09.png"
+			]
+		},
+		{
+			"lines": 22,
+			"playback_seconds": 3.514113,
+			"prepare_seconds": 3.271284,
+			"regions": 10,
+			"rendered_skip_equal": true,
+			"room": "LOC_SLIT",
+			"sample_elapsed": [
+				0.052727,
+				0.363821,
+				0.713795,
+				1.06377,
+				1.413778,
+				1.763966,
+				2.11381,
+				2.463959,
+				2.813768,
+				3.163791
+			],
+			"samples": [
+				"00.png",
+				"01.png",
+				"02.png",
+				"03.png",
+				"04.png",
+				"05.png",
+				"06.png",
+				"07.png",
+				"08.png",
+				"09.png"
+			]
+		},
+		{
+			"lines": 27,
+			"playback_seconds": 3.501062,
+			"prepare_seconds": 2.161316,
+			"regions": 13,
+			"rendered_skip_equal": true,
+			"room": "LOC_CLIFF",
+			"sample_elapsed": [
+				0.038566,
+				0.350857,
+				0.700853,
+				1.051049,
+				1.401074,
+				1.750961,
+				2.10085,
+				2.45084,
+				2.800845,
+				3.150869
+			],
+			"samples": [
+				"00.png",
+				"01.png",
+				"02.png",
+				"03.png",
+				"04.png",
+				"05.png",
+				"06.png",
+				"07.png",
+				"08.png",
+				"09.png"
+			]
+		},
+		{
+			"lines": 32,
+			"playback_seconds": 3.515618,
+			"prepare_seconds": 2.645944,
+			"regions": 15,
+			"rendered_skip_equal": true,
+			"room": "LOC_LEDGE",
+			"sample_elapsed": [
+				0.04025,
+				0.365553,
+				0.715558,
+				1.065532,
+				1.415521,
+				1.7655,
+				2.115488,
+				2.465479,
+				2.815457,
+				3.165445
+			],
+			"samples": [
+				"00.png",
+				"01.png",
+				"02.png",
+				"03.png",
+				"04.png",
+				"05.png",
+				"06.png",
+				"07.png",
+				"08.png",
+				"09.png"
+			]
+		},
+		{
+			"lines": 23,
+			"playback_seconds": 3.510946,
+			"prepare_seconds": 3.180843,
+			"regions": 13,
+			"rendered_skip_equal": true,
+			"room": "LOC_SEWER",
+			"sample_elapsed": [
+				0.0485,
+				0.360776,
+				0.710782,
+				1.060793,
+				1.410797,
+				1.760785,
+				2.110764,
+				2.460772,
+				2.810956,
+				3.160773
+			],
+			"samples": [
+				"00.png",
+				"01.png",
+				"02.png",
+				"03.png",
+				"04.png",
+				"05.png",
+				"06.png",
+				"07.png",
+				"08.png",
+				"09.png"
+			]
+		}
+	]
+}
