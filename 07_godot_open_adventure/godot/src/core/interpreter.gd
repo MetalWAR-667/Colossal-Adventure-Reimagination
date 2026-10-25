@@ -10,6 +10,9 @@ class_name Interpreter
 extends RefCounted
 
 const MAX_RULE_WALK := 64
+const LAMP_WARNING_TURNS := 30  ## advent.h:WARNTIME
+const BATTERY_LIFE := 2500  ## advent.h:BATTERYLIFE
+const PIT_KILL_PERCENT := 35  ## advent.h:PIT_KILL_PROB
 
 var world: WorldData
 var state: GameState
@@ -44,17 +47,23 @@ func submit(line: String) -> Array[String]:
 		return output
 	if input_words.size() > 2:
 		return [world.message("TWO_WORDS")]
+	# main.c:do_command snapshots darkness before reading each accepted input;
+	# closecheck/lampcheck then runs before the parsed command is executed.
+	state.was_dark = _is_dark_here()
 	state.turn += 1
 	state.travel_outcome = GameState.TravelOutcome.IDLE
 	state.travel_dependency = ""
 	state.pending_location = state.current_location
+	output.append_array(_lamp_check())
 
 	var command := parser.parse(line)
 	# Interface commands that are not part of the source vocabulary.
 	if command.verb_stem == "LICEN" or command.verb_stem == "ABOUT":
-		return _do_licenses()
+		output.append_array(_do_licenses())
+		return output
 	if command.verb_stem == "MAP":
-		return [world.ui("map_hint")]
+		output.append(world.ui("map_hint"))
+		return output
 
 	if command.kind == Command.Kind.UNKNOWN:
 		output.append(world.message("CANT_APPLY"))
@@ -62,6 +71,7 @@ func submit(line: String) -> Array[String]:
 
 	if command.is_motion():
 		output.append_array(_handle_motion(command))
+		output.append_array(_check_dark_fall())
 		return output
 
 	if command.is_action():
@@ -78,6 +88,9 @@ func submit(line: String) -> Array[String]:
 func _handle_motion(command: Command) -> Array[String]:
 	match command.motion:
 		"LOOK":
+			# playermove(LOOK) clears wzdark so looking into darkness cannot
+			# immediately trigger the pit-fall check in do_move().
+			state.was_dark = false
 			return _describe_current(true)
 		"BACK":
 			return _go_back()
@@ -275,6 +288,70 @@ func _condition_holds(rule: TravelRule) -> bool:
 			return false
 
 
+# ---------------------------------------------------------------------------
+# darkness and lamp lifecycle (advent.h:IS_DARK_HERE, main.c:lampcheck/do_move)
+# ---------------------------------------------------------------------------
+
+func _lamp_here() -> bool:
+	return state.is_here("LAMP") or state.is_carried("LAMP")
+
+
+func _is_dark_here() -> bool:
+	var loc := world.location(state.current_location)
+	if loc == null or loc.has_condition("LIT"):
+		return false
+	return state.state_of("LAMP") != "LAMP_BRIGHT" or not _lamp_here()
+
+
+func _battery_here() -> bool:
+	return state.is_here("BATTERY") or state.is_carried("BATTERY")
+
+
+func _lamp_check() -> Array[String]:
+	var lines: Array[String] = []
+	if state.state_of("LAMP") == "LAMP_BRIGHT":
+		state.lamp_energy -= 1
+
+	if state.lamp_energy <= LAMP_WARNING_TURNS:
+		if _battery_here() and state.state_of("BATTERY") == "FRESH_BATTERIES" and _lamp_here():
+			lines.append(world.message("REPLACE_BATTERIES"))
+			state.set_state("BATTERY", "DEAD_BATTERIES")
+			state.lamp_energy += BATTERY_LIFE
+			state.lamp_warned = false
+		elif not state.lamp_warned and _lamp_here():
+			state.lamp_warned = true
+			if state.state_of("BATTERY") == "DEAD_BATTERIES":
+				lines.append(world.message("MISSING_BATTERIES"))
+			elif String(state.object_place.get("BATTERY", "LOC_NOWHERE")) == "LOC_NOWHERE":
+				lines.append(world.message("LAMP_DIM"))
+			else:
+				lines.append(world.message("GET_BATTERIES"))
+
+	if state.lamp_energy == 0:
+		state.lamp_energy = -1
+		state.set_state("LAMP", "LAMP_DARK")
+		if _lamp_here():
+			lines.append(world.message("LAMP_OUT"))
+	return lines
+
+
+func _check_dark_fall() -> Array[String]:
+	if state.travel_outcome in [GameState.TravelOutcome.DEATH_PENDING, GameState.TravelOutcome.DEPENDENCY_PENDING, GameState.TravelOutcome.CYCLE_ERROR, GameState.TravelOutcome.FRONTIER]:
+		return []
+	var loc := world.location(state.current_location)
+	if loc == null or loc.is_forced() or not state.was_dark or not _is_dark_here():
+		return []
+	if rng.randf() * 100.0 >= float(PIT_KILL_PERCENT):
+		return []
+	# main.c stores the lethal room in oldlc2 before croak().  CUT D will
+	# consume this typed result; this cut does not reincarnate or lose objects.
+	state.previous_previous_location = state.current_location
+	state.pending_location = "LOC_NOWHERE"
+	state.travel_outcome = GameState.TravelOutcome.DEATH_PENDING
+	state.travel_dependency = "darkness_fall"
+	return [world.message("PIT_FALL")]
+
+
 func _go_back() -> Array[String]:
 	var loc := world.location(state.current_location)
 	var target := state.previous_location
@@ -339,6 +416,8 @@ func _handle_action(command: Command) -> Array[String]:
 			return _do_lamp(command, true)
 		"EXTINGUISH":
 			return _do_lamp(command, false)
+		"READ":
+			return _do_read(command)
 		"DRINK":
 			return _do_drink()
 		"FILL":
@@ -431,14 +510,48 @@ func _do_lock(command: Command, unlocking: bool) -> Array[String]:
 
 
 func _do_lamp(command: Command, lighting: bool) -> Array[String]:
-	var obj := _resolve_object(command.noun_stem) if command.has_noun() else null
+	var obj: WorldObject = null
+	if command.has_noun():
+		obj = _resolve_object(command.noun_stem)
+	elif _lamp_here():
+		var lamp_is_bright := state.state_of("LAMP") == "LAMP_BRIGHT"
+		if (lighting and not lamp_is_bright and state.lamp_energy >= 0) or (not lighting and lamp_is_bright):
+			obj = world.world_object("LAMP")
 	if obj == null or obj.id != "LAMP":
 		return [world.action_message("LIGHT" if lighting else "EXTINGUISH")]
-	if not state.is_carried("LAMP"):
+	if not _lamp_here():
 		return [world.message("NO_SUCH_THING").replace("{noun}", "lámpara")]
+	if lighting and state.lamp_energy < 0:
+		return [world.message("LAMP_OUT")]
 	var target_state := "LAMP_BRIGHT" if lighting else "LAMP_DARK"
 	state.set_state("LAMP", target_state)
-	return [world.object_change_message(obj, target_state)]
+	var lines: Array[String] = [world.object_change_message(obj, target_state)]
+	# actions.c:light returns to the top when light restores a room whose
+	# pre-command snapshot was dark.  Re-describe it without another input.
+	if lighting and state.was_dark:
+		lines.append_array(_describe_current(true))
+	elif not lighting and _is_dark_here():
+		lines.append(world.message("PITCH_DARK"))
+	return lines
+
+
+func _do_read(command: Command) -> Array[String]:
+	var obj: WorldObject = null
+	if command.has_noun():
+		obj = _resolve_object(command.noun_stem)
+		if _is_dark_here():
+			return [world.message("NO_SEE").replace("%s", command.noun_text)]
+	else:
+		var readable: Array[WorldObject] = []
+		for object_id in world.objects.keys():
+			var candidate: WorldObject = world.objects[object_id]
+			if not candidate.texts.is_empty() and (state.is_here(candidate.id) or state.is_carried(candidate.id)):
+				readable.append(candidate)
+		if readable.size() == 1 and not _is_dark_here():
+			obj = readable[0]
+	if obj == null or not (state.is_here(obj.id) or state.is_carried(obj.id)) or obj.texts.is_empty():
+		return [world.action_message("READ")]
+	return [obj.text_for(state.state_of(obj.id))]
 
 
 func _do_drink() -> Array[String]:
@@ -570,12 +683,16 @@ func _class_for(score: int) -> String:
 func _describe_current(force_long: bool) -> Array[String]:
 	var lines: Array[String] = []
 	var location_id := state.current_location
+	var loc := world.location(location_id)
+	var dark := _is_dark_here()
+	var forced := loc != null and loc.is_forced()
 	var first_visit := not state.has_visited(location_id)
-	state.visited[location_id] = true
 	visit_log.append(location_id)
 
 	var description := ""
-	if force_long or first_visit:
+	if dark and not forced:
+		description = world.message("PITCH_DARK")
+	elif force_long or first_visit:
 		description = world.describe(location_id)
 	else:
 		description = world.describe_short(location_id)
@@ -584,6 +701,11 @@ func _describe_current(force_long: bool) -> Array[String]:
 	if not description.is_empty():
 		lines.append(description)
 
+	# listobjects() neither reveals objects nor advances description state in
+	# darkness.  Forced rooms keep their special room-description behavior.
+	if dark:
+		return lines
+	state.visited[location_id] = true
 	for object_id in state.objects_here():
 		var obj := world.world_object(object_id)
 		if obj == null:

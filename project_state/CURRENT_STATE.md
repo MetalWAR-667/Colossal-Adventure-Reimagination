@@ -85,6 +85,17 @@ baseline. See the retrospective
   LOOK and rejected nonempty commands consume an input turn. CH_02 and the
   simulation graph remain isolated. See the
   [CUT B record](changes/car_core_001_cut_b_historical_travel_cycle/CHANGE.md).
+- CAR-CORE-001 CUT C: `CLOSED / PASS` for historical darkness, lamp and
+  battery lifecycle. `LIT` plus lamp state/place controls room and object
+  visibility; accepted inputs consume lamp energy once before execution;
+  warnings, automatic fresh-battery replacement and exhaustion use the source
+  constants 330/30/2500. `wzdark`, LOOK exemption and a reproducible 35-percent
+  pit-fall check are implemented. Lethal falls stop at typed `DEATH_PENDING`;
+  no croak, reincarnation, score or inventory-loss behavior is included.
+  Verification: 61 focused CUT C checks, 54 CUT B, 448 game checks, 10 Python
+  CUT A tests and 12 isolation checks passed; the complete verifier passed.
+  CH_02 and the simulation graph remain isolated. See the
+  [CUT C record](changes/car_core_001_cut_c_darkness_lamp_batteries/CHANGE.md).
 - CAR-ART-001 is `CLOSED / DECISION RECORDED`: the human selected C — Línea
   solar on 2026-10-25. This closes the art-direction gate only;
   conceptual-browser playback remains unverified. Runtime pilot integration
@@ -135,7 +146,8 @@ These items are not authorized implementation cuts:
 - Expansion beyond chapter 01; chapters 02–11 are not implemented.
 - Further UX improvements beyond the recorded CAR-ART-001 direction, subject
   to existing project evidence and a separately approved scope.
-- CAR-CORE-001 CUT C — `PROPOSED / NOT AUTHORIZED`: darkness/lamp cycle.
+- CAR-CORE-001 CUT D — `PROPOSED / NOT AUTHORIZED`: consume typed deaths,
+  historical croak/reincarnation, lives, inventory placement and score effects.
 - Final UI polish/resizing, possible hiding of the main graph after development,
   graph legibility at 1280 × 720 and the approximately 1.571 s initial
   preparation cost remain future work. Acceptance of CAR-ART-003 does not
@@ -183,8 +195,10 @@ CAR-ART-005 is closed with documented follow-up: `GRATE_OPEN` polish remains
 pending final artistic review; its accepted state selection and integration are
 closed. CAR-CORE-001 CUT A is closed for the global data contract only.
 CAR-CORE-001 CUT B is closed within its documented travel/dependency boundary.
-**CAR-CORE-001 CUT C — PROPOSED / NOT AUTHORIZED** is the next decision gate:
-darkness/lamp cycle, with its own explicit scope and authorization required.
+CAR-CORE-001 CUT C is closed within its documented darkness/lamp/death-pending
+boundary. **CAR-CORE-001 CUT D — PROPOSED / NOT AUTHORIZED** is the next
+decision gate: consuming typed deaths through historical croak/reincarnation,
+with its own explicit scope and authorization required.
 CH_02 remains blocked for
 playable integration until the global travel, forced movement, lighting, death,
 and actor dependencies are implemented and verified in authorized cuts.

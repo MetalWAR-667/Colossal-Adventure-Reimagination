@@ -62,6 +62,8 @@ if ($LASTEXITCODE -ne 0) { Fail "the engine tests failed" }
 if ($LASTEXITCODE -ne 0) { Fail "the simulation graph changed the playable boundary" }
 & $Godot --headless --path $project --script res://tests/test_travel_cycle.gd
 if ($LASTEXITCODE -ne 0) { Fail "the historical travel cycle tests failed" }
+& $Godot --headless --path $project --script res://tests/test_darkness_lamp.gd
+if ($LASTEXITCODE -ne 0) { Fail "the historical darkness/lamp tests failed" }
 
 Write-Host "== 4/7 illustration sheet ==" -ForegroundColor Cyan
 & $Godot --headless --path $project --script res://tools/capture_scenes.gd

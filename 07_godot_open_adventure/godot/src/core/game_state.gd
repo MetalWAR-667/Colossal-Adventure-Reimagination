@@ -4,6 +4,7 @@ class_name GameState
 extends RefCounted
 
 const CARRIED := ""  ## sentinel used as "object place" for carried items
+const INITIAL_LAMP_ENERGY := 330  ## advent.h:GAMELIMIT
 
 enum TravelOutcome { IDLE, ARRIVED, SPOKE, REJECTED, FRONTIER, DEATH_PENDING, DEPENDENCY_PENDING, CYCLE_ERROR }
 
@@ -17,6 +18,9 @@ var visited: Dictionary = {}
 var object_place: Dictionary = {}
 var object_state: Dictionary = {}
 var turn: int = 0
+var lamp_energy: int = INITIAL_LAMP_ENERGY  ## historical game.limit
+var lamp_warned: bool = false  ## historical lmwarn
+var was_dark: bool = false  ## historical wzdark snapshot
 var treasures_taken: int = 0
 var finished: bool = false
 
@@ -32,12 +36,21 @@ func reset(world: WorldData) -> void:
 	object_place = {}
 	object_state = {}
 	turn = 0
+	lamp_energy = INITIAL_LAMP_ENERGY
+	lamp_warned = false
+	was_dark = false
 	treasures_taken = 0
 	finished = false
 	for object_id in world.objects.keys():
 		var obj: WorldObject = world.objects[object_id]
 		object_place[object_id] = obj.locations[0] if obj.locations.size() > 0 else CARRIED
 		object_state[object_id] = obj.initial_state
+	# BATTERY belongs to the global historical object set, not CH_01's playable
+	# catalogue.  Keep only its runtime place/state so lampcheck can preserve the
+	# source contract without exposing the object through WorldData or the parser.
+	if not object_place.has("BATTERY"):
+		object_place["BATTERY"] = "LOC_NOWHERE"
+		object_state["BATTERY"] = "FRESH_BATTERIES"
 
 
 func _start_location(world: WorldData) -> String:
@@ -52,7 +65,7 @@ func is_here(object_id: String) -> bool:
 
 
 func is_carried(object_id: String) -> bool:
-	return String(object_place.get(object_id, "")) == CARRIED
+	return object_place.has(object_id) and String(object_place[object_id]) == CARRIED
 
 
 func carried_objects() -> PackedStringArray:
