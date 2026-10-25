@@ -92,7 +92,9 @@ baseline. See the retrospective
   The nine new CH_01 illustrations are `IMPLEMENTED / TECHNICAL PASS / HUMAN
   ACCEPTED`; `LOC_START` retains its prior acceptance and is not counted in the
   nine. `GRATE` was deferred within CAR-ART-004 and is not counted as complete
-  in that accepted nine-piece batch; its later technical work is CAR-ART-005.
+  in that accepted nine-piece batch. CAR-ART-005 later supplied and received
+  acceptance for its closed/open state variants; this resolves the functional
+  exception without changing CAR-ART-004's original inventory or history.
   Existing results remain documented: 448 original game checks,
   66 START prototype checks, 62 integration/fallback checks, 455 batch
   headless checks and 582 graphical checks; suites were not rerun for this
@@ -102,24 +104,15 @@ baseline. See the retrospective
 
 ## ACTIVE
 
-- CAR-ART-005: `IMPLEMENTED / TECHNICAL VERIFICATION COMPLETE /
-  MANUAL_VALIDATION PENDING`. `LOC_GRATE` now selects `GRATE_CLOSED` or
-  `GRATE_OPEN` from the existing `GameState.state_of("GRATE")` value; opening or
-  closing while the room stays visible refreshes the progressive illustration.
-  The prior static art and all CAR-ART-004 evidence remain available. The
-  [two-variant gallery](changes/car_art_005_state_aware_illustration_selection_i/gallery.html)
-  and [technical record](changes/car_art_005_state_aware_illustration_selection_i/CHANGE.md)
-  contain the review material. Current focal results: 150 headless and 180
-  graphical checks, zero failures; prior game, prototype, integration and
-  nine-piece batch suites passed. The responsible human has not yet accepted
-  the two new GRATE drawings.
+No active implementation cut is recorded.
 
 ## PENDING / PROPOSED
 
 These items are not authorized implementation cuts:
 
 - Human graphical and gameplay-experience review of chapter 01.
-- Human artistic review of both CAR-ART-005 GRATE states in the playable scene.
+- Final artistic polish of `GRATE_OPEN`, accepted provisionally by the human
+  in CAR-ART-005 and reserved for the project's final art review.
 - Effective integration of project tests with GUT.
 - Selection of the next playable cut.
 - Expansion beyond chapter 01; chapters 02–11 are not implemented.
@@ -140,7 +133,8 @@ is a measured limitation from the test machine; it was not optimized in the
 closure cut and is not a general performance guarantee. CAR-ART-005 measured
 **4.189–4.243 s** initial preparation for its two GRATE variants on the capture
 machine; this remains a performance limitation. The inherited static reference
-remains available as fallback, and human acceptance of the new variants is pending.
+remains available as fallback. The human accepted the variants; visual polish of
+`GRATE_OPEN` remains deferred to the project's final art review.
 
 ## DEFERRED / OUT OF SCOPE
 
@@ -168,12 +162,11 @@ Known style diagnostics, not demonstrated functional regressions:
 
 ## Next Decision Gate
 
-**CAR-ART-005 — MANUAL_VALIDATION PENDING:** the responsible human reviews both
-GRATE variants, their state change and their presentation in the playable
-scene. Technical verification does not close this artistic gate.
-CAR-CORE-001 CUT A remains `PROPOSED / NOT AUTHORIZED`: emit and verify the
-ordered global simulation graph alongside the playable subset, with no runtime
-behavior change. CH_02 remains blocked for playable integration until the
-global travel, forced movement, lighting, death, and actor dependencies are
-implemented and verified in authorized cuts.
+CAR-ART-005 is closed with documented follow-up: `GRATE_OPEN` polish remains
+pending final artistic review; its accepted state selection and integration are
+closed. **CAR-CORE-001 CUT A — PROPOSED / NOT AUTHORIZED** remains the next
+decision gate: emit and verify the ordered global simulation graph alongside
+the playable subset, with no runtime behavior change. CH_02 remains blocked for
+playable integration until the global travel, forced movement, lighting, death,
+and actor dependencies are implemented and verified in authorized cuts.
 

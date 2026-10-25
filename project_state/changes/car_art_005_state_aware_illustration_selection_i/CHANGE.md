@@ -1,8 +1,9 @@
 # CAR-ART-005 — State-Aware Illustration Selection I
 
-**Estado:** `IMPLEMENTED / TECHNICAL VERIFICATION COMPLETE /
-MANUAL_VALIDATION PENDING`. Fecha: 2026-10-25. Alcance: únicamente la reja de
-CH_01. [Galería de revisión](gallery.html) · [Métricas y resultados](evidence/metrics.json).
+**Estado final:** `CLOSED / PASS — WITH DOCUMENTED ARTISTIC FOLLOW-UP`.
+`GRATE_CLOSED` y `GRATE_OPEN`: implementación, verificación técnica y aceptación
+humana PASS el 2026-10-25. Alcance: únicamente la reja de CH_01.
+[Galería](gallery.html) · [Métricas y resultados](evidence/metrics.json).
 
 ## Fuente y contrato comprobados antes de editar
 
@@ -70,6 +71,22 @@ la autoría para evitar máscaras desconectadas y un borde se desplazó 0,0625 p
 para evitar un empate de raster entre Python double y Godot Vector2 float.
 Las máscaras finales coinciden con el raster Python independiente.
 
+## Aceptación humana y seguimiento artístico
+
+El responsable probó y validó ambas variantes y aceptó el 2026-10-25 la
+selección desde el estado autoritativo, el refresco en la misma sala, la
+cancelación del playback anterior, la integración LINE/FILL y la conservación
+del arte heredado como respaldo. CAR-ART-005 queda **`CLOSED / PASS — WITH
+DOCUMENTED ARTISTIC FOLLOW-UP`**. La aceptación incluye las dos variantes; no
+reabre ni altera el corte histórico CAR-ART-004.
+
+La ilustración `GRATE_OPEN` funciona y queda aceptada provisionalmente, con
+calidad visual inferior a la deseada. Su pulido se conserva como deuda para la
+revisión artística final del proyecto. La preparación medida de **4,189–4,243 s**
+se conserva como limitación conocida; esta decisión no autoriza optimizaciones.
+Ambas observaciones quedan diferidas y no invalidan la aceptación funcional y
+artística provisional de CAR-ART-005.
+
 ## Verificación y evidencia
 
 Comandos usados desde la raíz del repositorio:
@@ -123,14 +140,15 @@ python 07_godot_open_adventure/tools/package_grate_review.py $frames
   y `tools/verify.ps1` (séptimo paso focal).
 - Estado del proyecto: `project_state/CURRENT_STATE.md`.
 
-La preparación inicial de **4,189–4,243 s** es una limitación técnica visible.
-No se ha realizado una prueba de interacción física completa en la ventana
-del propietario. Las capturas SubViewport y los checks gráficos respaldan la
-integración, pero la apariencia, legibilidad y experiencia de las dos variantes
-siguen pendientes de valoración humana. Se conserva la ilustración heredada
-para referencia/fallback. CH_02, SAVE/LOAD y otros estados visuales no se abren.
+La preparación inicial de **4,189–4,243 s** es una limitación técnica conocida.
+La calidad visual de `GRATE_OPEN` requiere pulido durante la revisión artística
+final del proyecto. El arte heredado se conserva para referencia/fallback.
+CH_02, SAVE/LOAD y otros estados visuales no se abren.
 
-**Siguiente gate:** revisión humana de GRATE cerrada y abierta dentro del juego.
-CAR-ART-005 permanece `MANUAL_VALIDATION PENDING`; no se declara `CLOSED / PASS`.
+La excepción de GRATE registrada en CAR-ART-004 queda resuelta funcionalmente
+por las dos variantes de este corte, sin cambiar el inventario histórico de sus
+nueve piezas aceptadas y su excepción original. La deuda de pulido de
+`GRATE_OPEN` permanece visible en `CURRENT_STATE.md`.
+
 Finalización CAR-AUTO-001: inventario explícito, commit local y sincronización
 verificada a Drive. **NO PUSH**. El resultado Git/Drive se comunica al entregar.
