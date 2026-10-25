@@ -1,0 +1,2122 @@
+{
+  "actor_relevant_data": {
+    "deep_locations_count": 144,
+    "dwarf_start_locations": [
+      "LOC_KINGHALL",
+      "LOC_WESTBANK",
+      "LOC_Y2",
+      "LOC_ALIKE3",
+      "LOC_COMPLEX",
+      "LOC_MAZEEND12"
+    ],
+    "noarrr_locations_count": 18,
+    "nodwarves_rules": [
+      {
+        "destination_location_id": "LOC_DIFFERENT1",
+        "global_travel_index": 203,
+        "source_location_id": "LOC_LONGWEST",
+        "verbs": [
+          "SOUTH"
+        ]
+      }
+    ],
+    "nodwarves_rules_count": 1,
+    "status": "OBSERVED"
+  },
+  "classification_guide": {
+    "INFERRED": "Technical deduction supported by historical source rules.",
+    "OBSERVED": "Directly attested in authoritative source files (YAML, draw.io).",
+    "PENDING": "Execution semantics documented but awaiting future cut implementation."
+  },
+  "cross_chapter_transitions": {
+    "records": [
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_ENTRY",
+        "destination_location_id": "LOC_FOOF1",
+        "global_travel_index": 11,
+        "source_chapter_id": "CH_SURFACE",
+        "source_condition": null,
+        "source_location_id": "LOC_BUILDING",
+        "verbs": [
+          "XYZZY"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_Y2_WINDOWS",
+        "destination_location_id": "LOC_FOOF3",
+        "global_travel_index": 12,
+        "source_chapter_id": "CH_SURFACE",
+        "source_condition": null,
+        "source_location_id": "LOC_BUILDING",
+        "verbs": [
+          "PLUGH"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_SPECIAL",
+        "destination_location_id": "LOC_NOMAKE",
+        "global_travel_index": 27,
+        "source_chapter_id": "CH_SURFACE",
+        "source_condition": null,
+        "source_location_id": "LOC_CLIFF",
+        "verbs": [
+          "JUMP"
+        ]
+      },
+      {
+        "condition_type": "not",
+        "destination_chapter_id": "CH_ENTRY",
+        "destination_location_id": "LOC_BELOWGRATE",
+        "global_travel_index": 39,
+        "source_chapter_id": "CH_SURFACE",
+        "source_condition": [
+          "not",
+          "GRATE",
+          "GRATE_CLOSED"
+        ],
+        "source_location_id": "LOC_GRATE",
+        "verbs": [
+          "ENTER",
+          "INWAR",
+          "DOWN"
+        ]
+      },
+      {
+        "condition_type": "not",
+        "destination_chapter_id": "CH_SURFACE",
+        "destination_location_id": "LOC_GRATE",
+        "global_travel_index": 41,
+        "source_chapter_id": "CH_ENTRY",
+        "source_condition": [
+          "not",
+          "GRATE",
+          "GRATE_CLOSED"
+        ],
+        "source_location_id": "LOC_BELOWGRATE",
+        "verbs": [
+          "OUT",
+          "UPWAR"
+        ]
+      },
+      {
+        "condition_type": "not",
+        "destination_chapter_id": "CH_SURFACE",
+        "destination_location_id": "LOC_GRATE",
+        "global_travel_index": 49,
+        "source_chapter_id": "CH_ENTRY",
+        "source_condition": [
+          "not",
+          "GRATE",
+          "GRATE_CLOSED"
+        ],
+        "source_location_id": "LOC_DEBRIS",
+        "verbs": [
+          "DEPRE"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_SURFACE",
+        "destination_location_id": "LOC_FOOF2",
+        "global_travel_index": 53,
+        "source_chapter_id": "CH_ENTRY",
+        "source_condition": null,
+        "source_location_id": "LOC_DEBRIS",
+        "verbs": [
+          "XYZZY"
+        ]
+      },
+      {
+        "condition_type": "not",
+        "destination_chapter_id": "CH_SURFACE",
+        "destination_location_id": "LOC_GRATE",
+        "global_travel_index": 55,
+        "source_chapter_id": "CH_ENTRY",
+        "source_condition": [
+          "not",
+          "GRATE",
+          "GRATE_CLOSED"
+        ],
+        "source_location_id": "LOC_AWKWARD",
+        "verbs": [
+          "DEPRE"
+        ]
+      },
+      {
+        "condition_type": "not",
+        "destination_chapter_id": "CH_SURFACE",
+        "destination_location_id": "LOC_GRATE",
+        "global_travel_index": 60,
+        "source_chapter_id": "CH_ENTRY",
+        "source_condition": [
+          "not",
+          "GRATE",
+          "GRATE_CLOSED"
+        ],
+        "source_location_id": "LOC_BIRDCHAMBER",
+        "verbs": [
+          "DEPRE"
+        ]
+      },
+      {
+        "condition_type": "not",
+        "destination_chapter_id": "CH_SURFACE",
+        "destination_location_id": "LOC_GRATE",
+        "global_travel_index": 65,
+        "source_chapter_id": "CH_ENTRY",
+        "source_condition": [
+          "not",
+          "GRATE",
+          "GRATE_CLOSED"
+        ],
+        "source_location_id": "LOC_PITTOP",
+        "verbs": [
+          "DEPRE"
+        ]
+      },
+      {
+        "condition_type": "carry",
+        "destination_chapter_id": "CH_SPECIAL",
+        "destination_location_id": "LOC_NECKBROKE",
+        "global_travel_index": 69,
+        "source_chapter_id": "CH_ENTRY",
+        "source_condition": [
+          "carry",
+          "NUGGET"
+        ],
+        "source_location_id": "LOC_PITTOP",
+        "verbs": [
+          "DOWN",
+          "PIT",
+          "STEPS"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_CENTRAL",
+        "destination_location_id": "LOC_KINGHALL",
+        "global_travel_index": 74,
+        "source_chapter_id": "CH_ENTRY",
+        "source_condition": null,
+        "source_location_id": "LOC_MISTHALL",
+        "verbs": [
+          "STAIR",
+          "DOWN",
+          "NORTH"
+        ]
+      },
+      {
+        "condition_type": "carry",
+        "destination_chapter_id": "CH_SPECIAL",
+        "destination_location_id": "LOC_DOME",
+        "global_travel_index": 75,
+        "source_chapter_id": "CH_ENTRY",
+        "source_condition": [
+          "carry",
+          "NUGGET"
+        ],
+        "source_location_id": "LOC_MISTHALL",
+        "verbs": [
+          "UPWAR",
+          "PIT",
+          "STEPS",
+          "DOME",
+          "PASSA",
+          "EAST"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_Y2_WINDOWS",
+        "destination_location_id": "LOC_JUMBLE",
+        "global_travel_index": 77,
+        "source_chapter_id": "CH_ENTRY",
+        "source_condition": null,
+        "source_location_id": "LOC_MISTHALL",
+        "verbs": [
+          "Y2"
+        ]
+      },
+      {
+        "condition_type": "not",
+        "destination_chapter_id": "CH_SPECIAL",
+        "destination_location_id": "LOC_NOMAKE",
+        "global_travel_index": 81,
+        "source_chapter_id": "CH_ENTRY",
+        "source_condition": [
+          "not",
+          "FISSURE",
+          "BRIDGED"
+        ],
+        "source_location_id": "LOC_EASTBANK",
+        "verbs": [
+          "FORWA"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_ENTRY",
+        "destination_location_id": "LOC_MISTHALL",
+        "global_travel_index": 85,
+        "source_chapter_id": "CH_CENTRAL",
+        "source_condition": null,
+        "source_location_id": "LOC_KINGHALL",
+        "verbs": [
+          "STAIR",
+          "UPWAR",
+          "EAST"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_SPECIAL",
+        "destination_location_id": "LOC_SNAKEBLOCK",
+        "global_travel_index": 89,
+        "source_chapter_id": "CH_CENTRAL",
+        "source_condition": null,
+        "source_location_id": "LOC_KINGHALL",
+        "verbs": [
+          "NORTH"
+        ]
+      },
+      {
+        "condition_type": "pct",
+        "destination_chapter_id": "CH_BEDQUILT",
+        "destination_location_id": "LOC_SECRET3",
+        "global_travel_index": 90,
+        "source_chapter_id": "CH_CENTRAL",
+        "source_condition": [
+          "pct",
+          35
+        ],
+        "source_location_id": "LOC_KINGHALL",
+        "verbs": [
+          "SW"
+        ]
+      },
+      {
+        "condition_type": "with",
+        "destination_chapter_id": "CH_SPECIAL",
+        "destination_location_id": "LOC_SNAKEBLOCK",
+        "global_travel_index": 91,
+        "source_chapter_id": "CH_CENTRAL",
+        "source_condition": [
+          "with",
+          "SNAKE"
+        ],
+        "source_location_id": "LOC_KINGHALL",
+        "verbs": [
+          "SW"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_BEDQUILT",
+        "destination_location_id": "LOC_SECRET3",
+        "global_travel_index": 92,
+        "source_chapter_id": "CH_CENTRAL",
+        "source_condition": null,
+        "source_location_id": "LOC_KINGHALL",
+        "verbs": [
+          "SECRE"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_ENTRY",
+        "destination_location_id": "LOC_MISTHALL",
+        "global_travel_index": 95,
+        "source_chapter_id": "CH_SPECIAL",
+        "source_condition": null,
+        "source_location_id": "LOC_DOME",
+        "verbs": []
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_BEDQUILT",
+        "destination_location_id": "LOC_SLAB",
+        "global_travel_index": 97,
+        "source_chapter_id": "CH_CENTRAL",
+        "source_condition": null,
+        "source_location_id": "LOC_WESTEND",
+        "verbs": [
+          "WEST",
+          "SLAB"
+        ]
+      },
+      {
+        "condition_type": "not",
+        "destination_chapter_id": "CH_SPECIAL",
+        "destination_location_id": "LOC_NOMAKE",
+        "global_travel_index": 106,
+        "source_chapter_id": "CH_ENTRY",
+        "source_condition": [
+          "not",
+          "FISSURE",
+          "BRIDGED"
+        ],
+        "source_location_id": "LOC_WESTBANK",
+        "verbs": [
+          "FORWA"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_MAZE_ALIKE",
+        "destination_location_id": "LOC_PARALLEL1",
+        "global_travel_index": 109,
+        "source_chapter_id": "CH_ENTRY",
+        "source_condition": null,
+        "source_location_id": "LOC_WESTBANK",
+        "verbs": [
+          "NORTH"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_MAZE_ALIKE",
+        "destination_location_id": "LOC_MISTWEST",
+        "global_travel_index": 110,
+        "source_chapter_id": "CH_ENTRY",
+        "source_condition": null,
+        "source_location_id": "LOC_WESTBANK",
+        "verbs": [
+          "WEST"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_Y2_WINDOWS",
+        "destination_location_id": "LOC_Y2",
+        "global_travel_index": 112,
+        "source_chapter_id": "CH_CENTRAL",
+        "source_condition": null,
+        "source_location_id": "LOC_FLOORHOLE",
+        "verbs": [
+          "NORTH",
+          "Y2"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_Y2_WINDOWS",
+        "destination_location_id": "LOC_BROKEN",
+        "global_travel_index": 113,
+        "source_chapter_id": "CH_CENTRAL",
+        "source_condition": null,
+        "source_location_id": "LOC_FLOORHOLE",
+        "verbs": [
+          "DOWN",
+          "HOLE"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_CENTRAL",
+        "destination_location_id": "LOC_KINGHALL",
+        "global_travel_index": 119,
+        "source_chapter_id": "CH_SPECIAL",
+        "source_condition": null,
+        "source_location_id": "LOC_SNAKEBLOCK",
+        "verbs": []
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_SURFACE",
+        "destination_location_id": "LOC_FOOF4",
+        "global_travel_index": 120,
+        "source_chapter_id": "CH_Y2_WINDOWS",
+        "source_condition": null,
+        "source_location_id": "LOC_Y2",
+        "verbs": [
+          "PLUGH"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_CENTRAL",
+        "destination_location_id": "LOC_FLOORHOLE",
+        "global_travel_index": 121,
+        "source_chapter_id": "CH_Y2_WINDOWS",
+        "source_condition": null,
+        "source_location_id": "LOC_Y2",
+        "verbs": [
+          "SOUTH"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_ORIENTAL_PLOVER",
+        "destination_location_id": "LOC_FOOF5",
+        "global_travel_index": 125,
+        "source_chapter_id": "CH_Y2_WINDOWS",
+        "source_condition": null,
+        "source_location_id": "LOC_Y2",
+        "verbs": [
+          "PLOVE"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_ENTRY",
+        "destination_location_id": "LOC_MISTHALL",
+        "global_travel_index": 127,
+        "source_chapter_id": "CH_Y2_WINDOWS",
+        "source_condition": null,
+        "source_location_id": "LOC_JUMBLE",
+        "verbs": [
+          "UPWAR"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_SPECIAL",
+        "destination_location_id": "LOC_NECKBROKE",
+        "global_travel_index": 129,
+        "source_chapter_id": "CH_Y2_WINDOWS",
+        "source_condition": null,
+        "source_location_id": "LOC_WINDOW1",
+        "verbs": [
+          "JUMP"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_CENTRAL",
+        "destination_location_id": "LOC_FLOORHOLE",
+        "global_travel_index": 131,
+        "source_chapter_id": "CH_Y2_WINDOWS",
+        "source_condition": null,
+        "source_location_id": "LOC_BROKEN",
+        "verbs": [
+          "UPWAR",
+          "HOLE"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_BEDQUILT",
+        "destination_location_id": "LOC_BEDQUILT",
+        "global_travel_index": 133,
+        "source_chapter_id": "CH_Y2_WINDOWS",
+        "source_condition": null,
+        "source_location_id": "LOC_BROKEN",
+        "verbs": [
+          "BEDQU"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_BEDQUILT",
+        "destination_location_id": "LOC_COMPLEX",
+        "global_travel_index": 139,
+        "source_chapter_id": "CH_Y2_WINDOWS",
+        "source_condition": null,
+        "source_location_id": "LOC_DUSTY",
+        "verbs": [
+          "DOWN",
+          "HOLE",
+          "FLOOR"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_BEDQUILT",
+        "destination_location_id": "LOC_BEDQUILT",
+        "global_travel_index": 140,
+        "source_chapter_id": "CH_Y2_WINDOWS",
+        "source_condition": null,
+        "source_location_id": "LOC_DUSTY",
+        "verbs": [
+          "BEDQU"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_ENTRY",
+        "destination_location_id": "LOC_WESTBANK",
+        "global_travel_index": 143,
+        "source_chapter_id": "CH_MAZE_ALIKE",
+        "source_condition": null,
+        "source_location_id": "LOC_MISTWEST",
+        "verbs": [
+          "EAST"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_ENTRY",
+        "destination_location_id": "LOC_BIRDCHAMBER",
+        "global_travel_index": 191,
+        "source_chapter_id": "CH_MAZE_ALIKE",
+        "source_condition": null,
+        "source_location_id": "LOC_PITBRINK",
+        "verbs": [
+          "DOWN",
+          "CLIMB"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_ENTRY",
+        "destination_location_id": "LOC_WESTBANK",
+        "global_travel_index": 197,
+        "source_chapter_id": "CH_MAZE_ALIKE",
+        "source_condition": null,
+        "source_location_id": "LOC_PARALLEL2",
+        "verbs": []
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_CENTRAL",
+        "destination_location_id": "LOC_CROSSOVER",
+        "global_travel_index": 200,
+        "source_chapter_id": "CH_MAZE_ALIKE",
+        "source_condition": null,
+        "source_location_id": "LOC_LONGEAST",
+        "verbs": [
+          "NORTH",
+          "DOWN",
+          "HOLE"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_CENTRAL",
+        "destination_location_id": "LOC_CROSSOVER",
+        "global_travel_index": 202,
+        "source_chapter_id": "CH_MAZE_ALIKE",
+        "source_condition": null,
+        "source_location_id": "LOC_LONGWEST",
+        "verbs": [
+          "NORTH"
+        ]
+      },
+      {
+        "condition_type": "nodwarves",
+        "destination_chapter_id": "CH_WITT_DIFFERENT",
+        "destination_location_id": "LOC_DIFFERENT1",
+        "global_travel_index": 203,
+        "source_chapter_id": "CH_MAZE_ALIKE",
+        "source_condition": [
+          "nodwarves"
+        ],
+        "source_location_id": "LOC_LONGWEST",
+        "verbs": [
+          "SOUTH"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_MAZE_ALIKE",
+        "destination_location_id": "LOC_LONGEAST",
+        "global_travel_index": 204,
+        "source_chapter_id": "CH_CENTRAL",
+        "source_condition": null,
+        "source_location_id": "LOC_CROSSOVER",
+        "verbs": [
+          "WEST"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_MAZE_ALIKE",
+        "destination_location_id": "LOC_DEADEND7",
+        "global_travel_index": 205,
+        "source_chapter_id": "CH_CENTRAL",
+        "source_condition": null,
+        "source_location_id": "LOC_CROSSOVER",
+        "verbs": [
+          "NORTH"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_MAZE_ALIKE",
+        "destination_location_id": "LOC_LONGWEST",
+        "global_travel_index": 207,
+        "source_chapter_id": "CH_CENTRAL",
+        "source_condition": null,
+        "source_location_id": "LOC_CROSSOVER",
+        "verbs": [
+          "SOUTH"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_CENTRAL",
+        "destination_location_id": "LOC_CROSSOVER",
+        "global_travel_index": 208,
+        "source_chapter_id": "CH_MAZE_ALIKE",
+        "source_condition": null,
+        "source_location_id": "LOC_DEADEND7",
+        "verbs": [
+          "SOUTH",
+          "OUT"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_Y2_WINDOWS",
+        "destination_location_id": "LOC_DUSTY",
+        "global_travel_index": 209,
+        "source_chapter_id": "CH_BEDQUILT",
+        "source_condition": null,
+        "source_location_id": "LOC_COMPLEX",
+        "verbs": [
+          "UPWAR",
+          "CLIMB",
+          "ROOM"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_ORIENTAL_PLOVER",
+        "destination_location_id": "LOC_SHELLROOM",
+        "global_travel_index": 211,
+        "source_chapter_id": "CH_BEDQUILT",
+        "source_condition": null,
+        "source_location_id": "LOC_COMPLEX",
+        "verbs": [
+          "NORTH",
+          "SHELL"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_WITT_DIFFERENT",
+        "destination_location_id": "LOC_ANTEROOM",
+        "global_travel_index": 212,
+        "source_chapter_id": "CH_BEDQUILT",
+        "source_condition": null,
+        "source_location_id": "LOC_COMPLEX",
+        "verbs": [
+          "EAST"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_Y2_WINDOWS",
+        "destination_location_id": "LOC_DUSTY",
+        "global_travel_index": 219,
+        "source_chapter_id": "CH_BEDQUILT",
+        "source_condition": null,
+        "source_location_id": "LOC_BEDQUILT",
+        "verbs": [
+          "UPWAR"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_WITT_DIFFERENT",
+        "destination_location_id": "LOC_ANTEROOM",
+        "global_travel_index": 224,
+        "source_chapter_id": "CH_BEDQUILT",
+        "source_condition": null,
+        "source_location_id": "LOC_BEDQUILT",
+        "verbs": [
+          "DOWN"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_CENTRAL",
+        "destination_location_id": "LOC_EASTEND",
+        "global_travel_index": 226,
+        "source_chapter_id": "CH_BEDQUILT",
+        "source_condition": null,
+        "source_location_id": "LOC_SWISSCHEESE",
+        "verbs": [
+          "WEST"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_ORIENTAL_PLOVER",
+        "destination_location_id": "LOC_SOFTROOM",
+        "global_travel_index": 229,
+        "source_chapter_id": "CH_BEDQUILT",
+        "source_condition": null,
+        "source_location_id": "LOC_SWISSCHEESE",
+        "verbs": [
+          "EAST"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_ORIENTAL_PLOVER",
+        "destination_location_id": "LOC_ORIENTAL",
+        "global_travel_index": 231,
+        "source_chapter_id": "CH_BEDQUILT",
+        "source_condition": null,
+        "source_location_id": "LOC_SWISSCHEESE",
+        "verbs": [
+          "ORIEN"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_BEDQUILT",
+        "destination_location_id": "LOC_SWISSCHEESE",
+        "global_travel_index": 232,
+        "source_chapter_id": "CH_CENTRAL",
+        "source_condition": null,
+        "source_location_id": "LOC_EASTEND",
+        "verbs": [
+          "EAST"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_CENTRAL",
+        "destination_location_id": "LOC_WESTEND",
+        "global_travel_index": 235,
+        "source_chapter_id": "CH_BEDQUILT",
+        "source_condition": null,
+        "source_location_id": "LOC_SLAB",
+        "verbs": [
+          "SOUTH"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_RESERVOIR",
+        "destination_location_id": "LOC_MIRRORCANYON",
+        "global_travel_index": 241,
+        "source_chapter_id": "CH_BEDQUILT",
+        "source_condition": null,
+        "source_location_id": "LOC_SECRET1",
+        "verbs": [
+          "NORTH"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_RESERVOIR",
+        "destination_location_id": "LOC_RESERVOIR",
+        "global_travel_index": 242,
+        "source_chapter_id": "CH_BEDQUILT",
+        "source_condition": null,
+        "source_location_id": "LOC_SECRET1",
+        "verbs": [
+          "RESER"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_MAZE_ALIKE",
+        "destination_location_id": "LOC_TOPSTALACTITE",
+        "global_travel_index": 245,
+        "source_chapter_id": "CH_BEDQUILT",
+        "source_condition": null,
+        "source_location_id": "LOC_SECRET2",
+        "verbs": [
+          "SOUTH"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_RESERVOIR",
+        "destination_location_id": "LOC_WINDOW2",
+        "global_travel_index": 248,
+        "source_chapter_id": "CH_BEDQUILT",
+        "source_condition": null,
+        "source_location_id": "LOC_THREEJUNCTION",
+        "verbs": [
+          "NORTH"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_REPOSITORY",
+        "destination_location_id": "LOC_WINDING",
+        "global_travel_index": 250,
+        "source_chapter_id": "CH_BEDQUILT",
+        "source_condition": null,
+        "source_location_id": "LOC_LOWROOM",
+        "verbs": [
+          "SW"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_ORIENTAL_PLOVER",
+        "destination_location_id": "LOC_ORIENTAL",
+        "global_travel_index": 252,
+        "source_chapter_id": "CH_BEDQUILT",
+        "source_condition": null,
+        "source_location_id": "LOC_LOWROOM",
+        "verbs": [
+          "SE",
+          "ORIEN"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_CENTRAL",
+        "destination_location_id": "LOC_KINGHALL",
+        "global_travel_index": 254,
+        "source_chapter_id": "CH_BEDQUILT",
+        "source_condition": null,
+        "source_location_id": "LOC_SECRET3",
+        "verbs": [
+          "EAST"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_SPECIAL",
+        "destination_location_id": "LOC_NECKBROKE",
+        "global_travel_index": 282,
+        "source_chapter_id": "CH_CENTRAL",
+        "source_condition": null,
+        "source_location_id": "LOC_NARROW",
+        "verbs": [
+          "JUMP"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_CENTRAL",
+        "destination_location_id": "LOC_WATERFALL",
+        "global_travel_index": 286,
+        "source_chapter_id": "CH_ORIENTAL_PLOVER",
+        "source_condition": null,
+        "source_location_id": "LOC_INCLINE",
+        "verbs": [
+          "NORTH",
+          "CAVER",
+          "PASSA"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_BEDQUILT",
+        "destination_location_id": "LOC_LOWROOM",
+        "global_travel_index": 287,
+        "source_chapter_id": "CH_ORIENTAL_PLOVER",
+        "source_condition": null,
+        "source_location_id": "LOC_INCLINE",
+        "verbs": [
+          "DOWN",
+          "CLIMB"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_ORIENTAL_PLOVER",
+        "destination_location_id": "LOC_INCLINE",
+        "global_travel_index": 297,
+        "source_chapter_id": "CH_CENTRAL",
+        "source_condition": null,
+        "source_location_id": "LOC_WATERFALL",
+        "verbs": [
+          "WEST"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_BEDQUILT",
+        "destination_location_id": "LOC_SWISSCHEESE",
+        "global_travel_index": 298,
+        "source_chapter_id": "CH_ORIENTAL_PLOVER",
+        "source_condition": null,
+        "source_location_id": "LOC_SOFTROOM",
+        "verbs": [
+          "WEST",
+          "OUT"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_BEDQUILT",
+        "destination_location_id": "LOC_SWISSCHEESE",
+        "global_travel_index": 299,
+        "source_chapter_id": "CH_ORIENTAL_PLOVER",
+        "source_condition": null,
+        "source_location_id": "LOC_ORIENTAL",
+        "verbs": [
+          "SE"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_BEDQUILT",
+        "destination_location_id": "LOC_LOWROOM",
+        "global_travel_index": 300,
+        "source_chapter_id": "CH_ORIENTAL_PLOVER",
+        "source_condition": null,
+        "source_location_id": "LOC_ORIENTAL",
+        "verbs": [
+          "WEST",
+          "CRAWL"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_Y2_WINDOWS",
+        "destination_location_id": "LOC_FOOF6",
+        "global_travel_index": 310,
+        "source_chapter_id": "CH_ORIENTAL_PLOVER",
+        "source_condition": null,
+        "source_location_id": "LOC_PLOVER",
+        "verbs": [
+          "PLOVE"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_BEDQUILT",
+        "destination_location_id": "LOC_COMPLEX",
+        "global_travel_index": 318,
+        "source_chapter_id": "CH_ORIENTAL_PLOVER",
+        "source_condition": null,
+        "source_location_id": "LOC_SHELLROOM",
+        "verbs": [
+          "SOUTH"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_BEDQUILT",
+        "destination_location_id": "LOC_COMPLEX",
+        "global_travel_index": 323,
+        "source_chapter_id": "CH_WITT_DIFFERENT",
+        "source_condition": null,
+        "source_location_id": "LOC_ANTEROOM",
+        "verbs": [
+          "UPWAR"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_BEDQUILT",
+        "destination_location_id": "LOC_BEDQUILT",
+        "global_travel_index": 324,
+        "source_chapter_id": "CH_WITT_DIFFERENT",
+        "source_condition": null,
+        "source_location_id": "LOC_ANTEROOM",
+        "verbs": [
+          "WEST"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_MAZE_ALIKE",
+        "destination_location_id": "LOC_LONGWEST",
+        "global_travel_index": 335,
+        "source_chapter_id": "CH_WITT_DIFFERENT",
+        "source_condition": null,
+        "source_location_id": "LOC_DIFFERENT1",
+        "verbs": [
+          "DOWN"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_BEDQUILT",
+        "destination_location_id": "LOC_SECRET1",
+        "global_travel_index": 339,
+        "source_chapter_id": "CH_RESERVOIR",
+        "source_condition": null,
+        "source_location_id": "LOC_MIRRORCANYON",
+        "verbs": [
+          "SOUTH"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_BEDQUILT",
+        "destination_location_id": "LOC_THREEJUNCTION",
+        "global_travel_index": 341,
+        "source_chapter_id": "CH_RESERVOIR",
+        "source_condition": null,
+        "source_location_id": "LOC_WINDOW2",
+        "verbs": [
+          "WEST"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_SPECIAL",
+        "destination_location_id": "LOC_NECKBROKE",
+        "global_travel_index": 342,
+        "source_chapter_id": "CH_RESERVOIR",
+        "source_condition": null,
+        "source_location_id": "LOC_WINDOW2",
+        "verbs": [
+          "JUMP"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_BEDQUILT",
+        "destination_location_id": "LOC_SECRET2",
+        "global_travel_index": 343,
+        "source_chapter_id": "CH_MAZE_ALIKE",
+        "source_condition": null,
+        "source_location_id": "LOC_TOPSTALACTITE",
+        "verbs": [
+          "NORTH"
+        ]
+      },
+      {
+        "condition_type": "not",
+        "destination_chapter_id": "CH_SPECIAL",
+        "destination_location_id": "LOC_NOMAKE",
+        "global_travel_index": 368,
+        "source_chapter_id": "CH_REPOSITORY",
+        "source_condition": [
+          "not",
+          "CHASM",
+          "TROLL_BRIDGE"
+        ],
+        "source_location_id": "LOC_SWCHASM",
+        "verbs": [
+          "JUMP"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_BEDQUILT",
+        "destination_location_id": "LOC_LOWROOM",
+        "global_travel_index": 370,
+        "source_chapter_id": "CH_REPOSITORY",
+        "source_condition": null,
+        "source_location_id": "LOC_WINDING",
+        "verbs": [
+          "DOWN"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_SPECIAL",
+        "destination_location_id": "LOC_GRUESOME",
+        "global_travel_index": 400,
+        "source_chapter_id": "CH_REPOSITORY",
+        "source_condition": null,
+        "source_location_id": "LOC_BREATHTAKING",
+        "verbs": [
+          "JUMP"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_SPECIAL",
+        "destination_location_id": "LOC_NOMAKE",
+        "global_travel_index": 596,
+        "source_chapter_id": "CH_SURFACE",
+        "source_condition": null,
+        "source_location_id": "LOC_LEDGE",
+        "verbs": [
+          "JUMP"
+        ]
+      },
+      {
+        "condition_type": "always",
+        "destination_chapter_id": "CH_SPECIAL",
+        "destination_location_id": "LOC_FOOTSLIP",
+        "global_travel_index": 610,
+        "source_chapter_id": "CH_RESERVOIR",
+        "source_condition": null,
+        "source_location_id": "LOC_CLIFFACE",
+        "verbs": [
+          "UPWAR"
+        ]
+      }
+    ],
+    "status": "OBSERVED",
+    "total_count": 85
+  },
+  "forced_locations": {
+    "derivation_rule": "source_index != 0 and long_description is not None and travel rules[0].verbs == []",
+    "locations": [
+      "LOC_CRACK",
+      "LOC_NECKBROKE",
+      "LOC_NOMAKE",
+      "LOC_DOME",
+      "LOC_CLIMBSTALK",
+      "LOC_BUILDING1",
+      "LOC_SNAKEBLOCK",
+      "LOC_PARALLEL1",
+      "LOC_PARALLEL2",
+      "LOC_SEWER",
+      "LOC_NOCLIMB",
+      "LOC_PLANTTOP",
+      "LOC_BADDIRECTION",
+      "LOC_FOOTSLIP",
+      "LOC_CLIFFTOP",
+      "LOC_GRUESOME",
+      "LOC_FOOF1",
+      "LOC_FOOF2",
+      "LOC_FOOF3",
+      "LOC_FOOF4",
+      "LOC_FOOF5",
+      "LOC_FOOF6"
+    ],
+    "status": "INFERRED",
+    "total_count": 22
+  },
+  "historical_flags": {
+    "locations_by_flag": {
+      "ABOVE": [
+        "LOC_START",
+        "LOC_HILL",
+        "LOC_BUILDING",
+        "LOC_VALLEY",
+        "LOC_ROADEND",
+        "LOC_CLIFF",
+        "LOC_SLIT",
+        "LOC_GRATE",
+        "LOC_LEDGE",
+        "LOC_FOOF2",
+        "LOC_FOOF4"
+      ],
+      "ALLALIKE": [
+        "LOC_ALIKE1",
+        "LOC_ALIKE2",
+        "LOC_ALIKE3",
+        "LOC_ALIKE4",
+        "LOC_MAZEEND1",
+        "LOC_MAZEEND2",
+        "LOC_MAZEEND3",
+        "LOC_ALIKE5",
+        "LOC_ALIKE6",
+        "LOC_ALIKE7",
+        "LOC_ALIKE8",
+        "LOC_ALIKE9",
+        "LOC_MAZEEND4",
+        "LOC_ALIKE10",
+        "LOC_MAZEEND5",
+        "LOC_PITBRINK",
+        "LOC_MAZEEND6",
+        "LOC_ALIKE11",
+        "LOC_MAZEEND8",
+        "LOC_MAZEEND9",
+        "LOC_ALIKE12",
+        "LOC_ALIKE13",
+        "LOC_MAZEEND10",
+        "LOC_MAZEEND11",
+        "LOC_ALIKE14",
+        "LOC_TOPSTALACTITE",
+        "LOC_MAZEEND12"
+      ],
+      "ALLDIFFERENT": [
+        "LOC_DIFFERENT1",
+        "LOC_DIFFERENT2",
+        "LOC_DIFFERENT3",
+        "LOC_DIFFERENT4",
+        "LOC_DIFFERENT5",
+        "LOC_DIFFERENT6",
+        "LOC_DIFFERENT7",
+        "LOC_DIFFERENT8",
+        "LOC_DIFFERENT9",
+        "LOC_DIFFERENT10",
+        "LOC_DIFFERENT11",
+        "LOC_DEADEND13"
+      ],
+      "DEEP": [
+        "LOC_MISTHALL",
+        "LOC_CRACK",
+        "LOC_EASTBANK",
+        "LOC_NUGGET",
+        "LOC_KINGHALL",
+        "LOC_NECKBROKE",
+        "LOC_NOMAKE",
+        "LOC_DOME",
+        "LOC_WESTEND",
+        "LOC_EASTPIT",
+        "LOC_WESTPIT",
+        "LOC_CLIMBSTALK",
+        "LOC_WESTBANK",
+        "LOC_FLOORHOLE",
+        "LOC_SOUTHSIDE",
+        "LOC_WESTSIDE",
+        "LOC_BUILDING1",
+        "LOC_SNAKEBLOCK",
+        "LOC_Y2",
+        "LOC_JUMBLE",
+        "LOC_WINDOW1",
+        "LOC_BROKEN",
+        "LOC_SMALLPITBRINK",
+        "LOC_SMALLPIT",
+        "LOC_DUSTY",
+        "LOC_PARALLEL1",
+        "LOC_MISTWEST",
+        "LOC_ALIKE1",
+        "LOC_ALIKE2",
+        "LOC_ALIKE3",
+        "LOC_ALIKE4",
+        "LOC_MAZEEND1",
+        "LOC_MAZEEND2",
+        "LOC_MAZEEND3",
+        "LOC_ALIKE5",
+        "LOC_ALIKE6",
+        "LOC_ALIKE7",
+        "LOC_ALIKE8",
+        "LOC_ALIKE9",
+        "LOC_MAZEEND4",
+        "LOC_ALIKE10",
+        "LOC_MAZEEND5",
+        "LOC_PITBRINK",
+        "LOC_MAZEEND6",
+        "LOC_PARALLEL2",
+        "LOC_LONGEAST",
+        "LOC_LONGWEST",
+        "LOC_CROSSOVER",
+        "LOC_DEADEND7",
+        "LOC_COMPLEX",
+        "LOC_BEDQUILT",
+        "LOC_SWISSCHEESE",
+        "LOC_EASTEND",
+        "LOC_SLAB",
+        "LOC_SECRET1",
+        "LOC_SECRET2",
+        "LOC_THREEJUNCTION",
+        "LOC_LOWROOM",
+        "LOC_DEADCRAWL",
+        "LOC_SECRET3",
+        "LOC_WIDEPLACE",
+        "LOC_TIGHTPLACE",
+        "LOC_TALL",
+        "LOC_BOULDERS1",
+        "LOC_SEWER",
+        "LOC_ALIKE11",
+        "LOC_MAZEEND8",
+        "LOC_MAZEEND9",
+        "LOC_ALIKE12",
+        "LOC_ALIKE13",
+        "LOC_MAZEEND10",
+        "LOC_MAZEEND11",
+        "LOC_ALIKE14",
+        "LOC_NARROW",
+        "LOC_NOCLIMB",
+        "LOC_PLANTTOP",
+        "LOC_INCLINE",
+        "LOC_GIANTROOM",
+        "LOC_CAVEIN",
+        "LOC_IMMENSE",
+        "LOC_WATERFALL",
+        "LOC_SOFTROOM",
+        "LOC_ORIENTAL",
+        "LOC_MISTY",
+        "LOC_ALCOVE",
+        "LOC_PLOVER",
+        "LOC_DARKROOM",
+        "LOC_ARCHED",
+        "LOC_SHELLROOM",
+        "LOC_SLOPING1",
+        "LOC_CULDESAC",
+        "LOC_ANTEROOM",
+        "LOC_DIFFERENT1",
+        "LOC_WITTSEND",
+        "LOC_MIRRORCANYON",
+        "LOC_WINDOW2",
+        "LOC_TOPSTALACTITE",
+        "LOC_DIFFERENT2",
+        "LOC_RESERVOIR",
+        "LOC_MAZEEND12",
+        "LOC_NE",
+        "LOC_SW",
+        "LOC_SWCHASM",
+        "LOC_WINDING",
+        "LOC_SECRET4",
+        "LOC_SECRET5",
+        "LOC_SECRET6",
+        "LOC_NECHASM",
+        "LOC_CORRIDOR",
+        "LOC_FORK",
+        "LOC_WARMWALLS",
+        "LOC_BREATHTAKING",
+        "LOC_BOULDERS2",
+        "LOC_LIMESTONE",
+        "LOC_BARRENFRONT",
+        "LOC_BARRENROOM",
+        "LOC_DIFFERENT3",
+        "LOC_DIFFERENT4",
+        "LOC_DIFFERENT5",
+        "LOC_DIFFERENT6",
+        "LOC_DIFFERENT7",
+        "LOC_DIFFERENT8",
+        "LOC_DIFFERENT9",
+        "LOC_DIFFERENT10",
+        "LOC_DIFFERENT11",
+        "LOC_DEADEND13",
+        "LOC_ROUGHHEWN",
+        "LOC_BADDIRECTION",
+        "LOC_LARGE",
+        "LOC_STOREROOM",
+        "LOC_RESBOTTOM",
+        "LOC_RESNORTH",
+        "LOC_TREACHEROUS",
+        "LOC_STEEP",
+        "LOC_CLIFFBASE",
+        "LOC_CLIFFACE",
+        "LOC_FOOTSLIP",
+        "LOC_CLIFFTOP",
+        "LOC_CLIFFLEDGE",
+        "LOC_REACHDEAD",
+        "LOC_GRUESOME",
+        "LOC_FOOF3",
+        "LOC_FOOF5",
+        "LOC_FOOF6"
+      ],
+      "FLUID": [
+        "LOC_START",
+        "LOC_BUILDING",
+        "LOC_VALLEY",
+        "LOC_SLIT",
+        "LOC_EASTPIT",
+        "LOC_SMALLPIT",
+        "LOC_WATERFALL",
+        "LOC_RESERVOIR",
+        "LOC_RESBOTTOM",
+        "LOC_RESNORTH"
+      ],
+      "FOREST": [
+        "LOC_FOREST1",
+        "LOC_FOREST2",
+        "LOC_FOREST3",
+        "LOC_FOREST4",
+        "LOC_FOREST5",
+        "LOC_FOREST6",
+        "LOC_FOREST7",
+        "LOC_FOREST8",
+        "LOC_FOREST9",
+        "LOC_FOREST10",
+        "LOC_FOREST11",
+        "LOC_FOREST12",
+        "LOC_FOREST13",
+        "LOC_FOREST14",
+        "LOC_FOREST15",
+        "LOC_FOREST16",
+        "LOC_FOREST17",
+        "LOC_FOREST18",
+        "LOC_FOREST19",
+        "LOC_FOREST20",
+        "LOC_FOREST21",
+        "LOC_FOREST22"
+      ],
+      "LIT": [
+        "LOC_START",
+        "LOC_HILL",
+        "LOC_BUILDING",
+        "LOC_VALLEY",
+        "LOC_ROADEND",
+        "LOC_CLIFF",
+        "LOC_SLIT",
+        "LOC_GRATE",
+        "LOC_BELOWGRATE",
+        "LOC_COBBLE",
+        "LOC_PLOVER",
+        "LOC_NE",
+        "LOC_SW",
+        "LOC_BREATHTAKING",
+        "LOC_FOREST1",
+        "LOC_FOREST2",
+        "LOC_FOREST3",
+        "LOC_FOREST4",
+        "LOC_FOREST5",
+        "LOC_FOREST6",
+        "LOC_FOREST7",
+        "LOC_FOREST8",
+        "LOC_FOREST9",
+        "LOC_FOREST10",
+        "LOC_FOREST11",
+        "LOC_FOREST12",
+        "LOC_FOREST13",
+        "LOC_FOREST14",
+        "LOC_FOREST15",
+        "LOC_FOREST16",
+        "LOC_FOREST17",
+        "LOC_FOREST18",
+        "LOC_FOREST19",
+        "LOC_FOREST20",
+        "LOC_FOREST21",
+        "LOC_FOREST22",
+        "LOC_LEDGE"
+      ],
+      "NOARRR": [
+        "LOC_MAZEEND1",
+        "LOC_MAZEEND2",
+        "LOC_MAZEEND3",
+        "LOC_MAZEEND4",
+        "LOC_MAZEEND5",
+        "LOC_MAZEEND6",
+        "LOC_MAZEEND9",
+        "LOC_MAZEEND10",
+        "LOC_MAZEEND11",
+        "LOC_NECHASM",
+        "LOC_CORRIDOR",
+        "LOC_FORK",
+        "LOC_WARMWALLS",
+        "LOC_BREATHTAKING",
+        "LOC_BOULDERS2",
+        "LOC_LIMESTONE",
+        "LOC_BARRENFRONT",
+        "LOC_BARRENROOM"
+      ],
+      "NOBACK": [
+        "LOC_CLIFF",
+        "LOC_ALIKE1",
+        "LOC_ALIKE2",
+        "LOC_ALIKE3",
+        "LOC_ALIKE4",
+        "LOC_ALIKE5",
+        "LOC_ALIKE6",
+        "LOC_ALIKE7",
+        "LOC_ALIKE8",
+        "LOC_ALIKE9",
+        "LOC_ALIKE10",
+        "LOC_PITBRINK",
+        "LOC_ALIKE11",
+        "LOC_ALIKE12",
+        "LOC_ALIKE13",
+        "LOC_ALIKE14",
+        "LOC_DIFFERENT1",
+        "LOC_WITTSEND",
+        "LOC_DIFFERENT2",
+        "LOC_DIFFERENT3",
+        "LOC_DIFFERENT4",
+        "LOC_DIFFERENT5",
+        "LOC_DIFFERENT6",
+        "LOC_DIFFERENT7",
+        "LOC_DIFFERENT8",
+        "LOC_DIFFERENT9",
+        "LOC_DIFFERENT10",
+        "LOC_DIFFERENT11",
+        "LOC_FOREST1",
+        "LOC_FOREST2",
+        "LOC_FOREST3",
+        "LOC_FOREST4",
+        "LOC_FOREST5",
+        "LOC_FOREST6",
+        "LOC_FOREST7",
+        "LOC_FOREST8",
+        "LOC_FOREST9",
+        "LOC_FOREST10",
+        "LOC_FOREST11",
+        "LOC_FOREST12",
+        "LOC_FOREST13",
+        "LOC_FOREST14",
+        "LOC_FOREST15",
+        "LOC_FOREST16",
+        "LOC_FOREST17",
+        "LOC_FOREST18",
+        "LOC_FOREST19",
+        "LOC_FOREST20",
+        "LOC_FOREST21",
+        "LOC_FOREST22"
+      ],
+      "OILY": [
+        "LOC_EASTPIT"
+      ]
+    },
+    "status": "OBSERVED",
+    "totals": {
+      "ABOVE": 11,
+      "ALLALIKE": 27,
+      "ALLDIFFERENT": 12,
+      "DEEP": 144,
+      "FLUID": 10,
+      "FOREST": 22,
+      "LIT": 37,
+      "NOARRR": 18,
+      "NOBACK": 50,
+      "OILY": 1
+    }
+  },
+  "lethal_locations": {
+    "death_obituaries_count": 3,
+    "locations": [
+      "LOC_FOOTSLIP",
+      "LOC_GRUESOME",
+      "LOC_NECKBROKE",
+      "LOC_NOMAKE"
+    ],
+    "null_sentinel_location": "LOC_NOWHERE",
+    "status": "INFERRED",
+    "total_count": 4
+  },
+  "object_state_dependencies": {
+    "multi_state_objects": [
+      "LAMP",
+      "GRATE",
+      "STEPS",
+      "BIRD",
+      "DOOR",
+      "SNAKE",
+      "FISSURE",
+      "BOTTLE",
+      "MIRROR",
+      "PLANT",
+      "AXE",
+      "DRAGON",
+      "CHASM",
+      "TROLL",
+      "BEAR",
+      "VEND",
+      "BATTERY",
+      "URN",
+      "CAVITY",
+      "RESER",
+      "SIGN",
+      "EGGS",
+      "VASE",
+      "RUG",
+      "CHAIN",
+      "AMBER"
+    ],
+    "multi_state_objects_count": 26,
+    "state_conditioned_travel_rules_count": 25,
+    "status": "OBSERVED"
+  },
+  "object_travel_dependencies": {
+    "dependencies": [
+      {
+        "object_id": "GRATE",
+        "reference_count": 6,
+        "references": [
+          {
+            "condition": [
+              "not",
+              "GRATE",
+              "GRATE_CLOSED"
+            ],
+            "global_travel_index": 39,
+            "source_location_id": "LOC_GRATE"
+          },
+          {
+            "condition": [
+              "not",
+              "GRATE",
+              "GRATE_CLOSED"
+            ],
+            "global_travel_index": 41,
+            "source_location_id": "LOC_BELOWGRATE"
+          },
+          {
+            "condition": [
+              "not",
+              "GRATE",
+              "GRATE_CLOSED"
+            ],
+            "global_travel_index": 49,
+            "source_location_id": "LOC_DEBRIS"
+          },
+          {
+            "condition": [
+              "not",
+              "GRATE",
+              "GRATE_CLOSED"
+            ],
+            "global_travel_index": 55,
+            "source_location_id": "LOC_AWKWARD"
+          },
+          {
+            "condition": [
+              "not",
+              "GRATE",
+              "GRATE_CLOSED"
+            ],
+            "global_travel_index": 60,
+            "source_location_id": "LOC_BIRDCHAMBER"
+          },
+          {
+            "condition": [
+              "not",
+              "GRATE",
+              "GRATE_CLOSED"
+            ],
+            "global_travel_index": 65,
+            "source_location_id": "LOC_PITTOP"
+          }
+        ]
+      },
+      {
+        "object_id": "DOOR",
+        "reference_count": 1,
+        "references": [
+          {
+            "condition": [
+              "not",
+              "DOOR",
+              "DOOR_RUSTED"
+            ],
+            "global_travel_index": 293,
+            "source_location_id": "LOC_IMMENSE"
+          }
+        ]
+      },
+      {
+        "object_id": "SNAKE",
+        "reference_count": 4,
+        "references": [
+          {
+            "condition": [
+              "not",
+              "SNAKE",
+              "SNAKE_BLOCKS"
+            ],
+            "global_travel_index": 86,
+            "source_location_id": "LOC_KINGHALL"
+          },
+          {
+            "condition": [
+              "not",
+              "SNAKE",
+              "SNAKE_BLOCKS"
+            ],
+            "global_travel_index": 87,
+            "source_location_id": "LOC_KINGHALL"
+          },
+          {
+            "condition": [
+              "not",
+              "SNAKE",
+              "SNAKE_BLOCKS"
+            ],
+            "global_travel_index": 88,
+            "source_location_id": "LOC_KINGHALL"
+          },
+          {
+            "condition": [
+              "with",
+              "SNAKE"
+            ],
+            "global_travel_index": 91,
+            "source_location_id": "LOC_KINGHALL"
+          }
+        ]
+      },
+      {
+        "object_id": "FISSURE",
+        "reference_count": 6,
+        "references": [
+          {
+            "condition": [
+              "not",
+              "FISSURE",
+              "UNBRIDGED"
+            ],
+            "global_travel_index": 80,
+            "source_location_id": "LOC_EASTBANK"
+          },
+          {
+            "condition": [
+              "not",
+              "FISSURE",
+              "BRIDGED"
+            ],
+            "global_travel_index": 81,
+            "source_location_id": "LOC_EASTBANK"
+          },
+          {
+            "condition": [
+              "not",
+              "FISSURE",
+              "BRIDGED"
+            ],
+            "global_travel_index": 82,
+            "source_location_id": "LOC_EASTBANK"
+          },
+          {
+            "condition": [
+              "not",
+              "FISSURE",
+              "UNBRIDGED"
+            ],
+            "global_travel_index": 105,
+            "source_location_id": "LOC_WESTBANK"
+          },
+          {
+            "condition": [
+              "not",
+              "FISSURE",
+              "BRIDGED"
+            ],
+            "global_travel_index": 106,
+            "source_location_id": "LOC_WESTBANK"
+          },
+          {
+            "condition": [
+              "not",
+              "FISSURE",
+              "BRIDGED"
+            ],
+            "global_travel_index": 107,
+            "source_location_id": "LOC_WESTBANK"
+          }
+        ]
+      },
+      {
+        "object_id": "CLAM",
+        "reference_count": 1,
+        "references": [
+          {
+            "condition": [
+              "carry",
+              "CLAM"
+            ],
+            "global_travel_index": 316,
+            "source_location_id": "LOC_SHELLROOM"
+          }
+        ]
+      },
+      {
+        "object_id": "OYSTER",
+        "reference_count": 1,
+        "references": [
+          {
+            "condition": [
+              "carry",
+              "OYSTER"
+            ],
+            "global_travel_index": 317,
+            "source_location_id": "LOC_SHELLROOM"
+          }
+        ]
+      },
+      {
+        "object_id": "PLANT",
+        "reference_count": 2,
+        "references": [
+          {
+            "condition": [
+              "not",
+              "PLANT",
+              "PLANT_GROWN"
+            ],
+            "global_travel_index": 102,
+            "source_location_id": "LOC_WESTPIT"
+          },
+          {
+            "condition": [
+              "not",
+              "PLANT",
+              "PLANT_BELLOWING"
+            ],
+            "global_travel_index": 117,
+            "source_location_id": "LOC_BUILDING1"
+          }
+        ]
+      },
+      {
+        "object_id": "DRAGON",
+        "reference_count": 2,
+        "references": [
+          {
+            "condition": [
+              "not",
+              "DRAGON",
+              "DRAGON_BARS"
+            ],
+            "global_travel_index": 239,
+            "source_location_id": "LOC_SECRET1"
+          },
+          {
+            "condition": [
+              "not",
+              "DRAGON",
+              "DRAGON_BARS"
+            ],
+            "global_travel_index": 255,
+            "source_location_id": "LOC_SECRET3"
+          }
+        ]
+      },
+      {
+        "object_id": "CHASM",
+        "reference_count": 2,
+        "references": [
+          {
+            "condition": [
+              "not",
+              "CHASM",
+              "TROLL_BRIDGE"
+            ],
+            "global_travel_index": 366,
+            "source_location_id": "LOC_SWCHASM"
+          },
+          {
+            "condition": [
+              "not",
+              "CHASM",
+              "TROLL_BRIDGE"
+            ],
+            "global_travel_index": 368,
+            "source_location_id": "LOC_SWCHASM"
+          }
+        ]
+      },
+      {
+        "object_id": "TROLL",
+        "reference_count": 2,
+        "references": [
+          {
+            "condition": [
+              "with",
+              "TROLL"
+            ],
+            "global_travel_index": 365,
+            "source_location_id": "LOC_SWCHASM"
+          },
+          {
+            "condition": [
+              "with",
+              "TROLL"
+            ],
+            "global_travel_index": 379,
+            "source_location_id": "LOC_NECHASM"
+          }
+        ]
+      },
+      {
+        "object_id": "VEND",
+        "reference_count": 1,
+        "references": [
+          {
+            "condition": [
+              "not",
+              "VEND",
+              "VEND_BLOCKS"
+            ],
+            "global_travel_index": 505,
+            "source_location_id": "LOC_DEADEND13"
+          }
+        ]
+      },
+      {
+        "object_id": "OGRE",
+        "reference_count": 1,
+        "references": [
+          {
+            "condition": [
+              "with",
+              "OGRE"
+            ],
+            "global_travel_index": 511,
+            "source_location_id": "LOC_LARGE"
+          }
+        ]
+      },
+      {
+        "object_id": "RESER",
+        "reference_count": 2,
+        "references": [
+          {
+            "condition": [
+              "not",
+              "RESER",
+              "WATERS_PARTED"
+            ],
+            "global_travel_index": 358,
+            "source_location_id": "LOC_RESERVOIR"
+          },
+          {
+            "condition": [
+              "not",
+              "RESER",
+              "WATERS_PARTED"
+            ],
+            "global_travel_index": 599,
+            "source_location_id": "LOC_RESNORTH"
+          }
+        ]
+      },
+      {
+        "object_id": "RABBITFOOT",
+        "reference_count": 1,
+        "references": [
+          {
+            "condition": [
+              "carry",
+              "RABBITFOOT"
+            ],
+            "global_travel_index": 609,
+            "source_location_id": "LOC_CLIFFACE"
+          }
+        ]
+      },
+      {
+        "object_id": "NUGGET",
+        "reference_count": 2,
+        "references": [
+          {
+            "condition": [
+              "carry",
+              "NUGGET"
+            ],
+            "global_travel_index": 69,
+            "source_location_id": "LOC_PITTOP"
+          },
+          {
+            "condition": [
+              "carry",
+              "NUGGET"
+            ],
+            "global_travel_index": 75,
+            "source_location_id": "LOC_MISTHALL"
+          }
+        ]
+      },
+      {
+        "object_id": "EMERALD",
+        "reference_count": 2,
+        "references": [
+          {
+            "condition": [
+              "carry",
+              "EMERALD"
+            ],
+            "global_travel_index": 124,
+            "source_location_id": "LOC_Y2"
+          },
+          {
+            "condition": [
+              "carry",
+              "EMERALD"
+            ],
+            "global_travel_index": 309,
+            "source_location_id": "LOC_PLOVER"
+          }
+        ]
+      }
+    ],
+    "distinct_objects": [
+      "CHASM",
+      "CLAM",
+      "DOOR",
+      "DRAGON",
+      "EMERALD",
+      "FISSURE",
+      "GRATE",
+      "NUGGET",
+      "OGRE",
+      "OYSTER",
+      "PLANT",
+      "RABBITFOOT",
+      "RESER",
+      "SNAKE",
+      "TROLL",
+      "VEND"
+    ],
+    "distinct_objects_count": 16,
+    "status": "OBSERVED",
+    "total_conditioned_rules_referencing_objects": 36
+  },
+  "runtime_pending_systems": {
+    "documented_systems": [
+      {
+        "description": "Historical troll bridge crossing from LOC_SWCHASM and LOC_NECHASM.",
+        "status": "PENDING / NOT AUTHORIZED",
+        "system": "special_3_troll_bridge"
+      },
+      {
+        "description": "Historical dwarf movement (dwarfmove) and pirate encounter (spotted_by_pirate).",
+        "status": "PENDING / NOT AUTHORIZED",
+        "system": "dwarf_and_pirate_actors"
+      },
+      {
+        "description": "Cave closing checks (closecheck) and repository room relocation.",
+        "status": "PENDING / NOT AUTHORIZED",
+        "system": "cave_closing_and_endgame"
+      },
+      {
+        "description": "End-of-game score calculation based on all 20 historical treasures.",
+        "status": "PENDING / NOT AUTHORIZED",
+        "system": "global_treasure_scoring"
+      },
+      {
+        "description": "Dynamic turn thresholds and conditional question triggers.",
+        "status": "PENDING / NOT AUTHORIZED",
+        "system": "dynamic_hints"
+      },
+      {
+        "description": "Persistent dark room simulation across chapters 02-11.",
+        "status": "PENDING / NOT AUTHORIZED",
+        "system": "darkness_lamp_full_lifecycle"
+      }
+    ],
+    "status": "PENDING"
+  },
+  "schema_version": 1,
+  "special_travel_destinations": {
+    "rules": [
+      {
+        "condition": [
+          "carry",
+          "EMERALD"
+        ],
+        "global_travel_index": 124,
+        "source_location_id": "LOC_Y2",
+        "special_handler_id": 2,
+        "status": "INFERRED / OBSERVED",
+        "verbs": [
+          "PLOVE"
+        ]
+      },
+      {
+        "condition": null,
+        "global_travel_index": 305,
+        "source_location_id": "LOC_ALCOVE",
+        "special_handler_id": 1,
+        "status": "INFERRED / OBSERVED",
+        "verbs": [
+          "EAST",
+          "PASSA"
+        ]
+      },
+      {
+        "condition": null,
+        "global_travel_index": 307,
+        "source_location_id": "LOC_PLOVER",
+        "special_handler_id": 1,
+        "status": "INFERRED / OBSERVED",
+        "verbs": [
+          "WEST",
+          "PASSA",
+          "OUT"
+        ]
+      },
+      {
+        "condition": [
+          "carry",
+          "EMERALD"
+        ],
+        "global_travel_index": 309,
+        "source_location_id": "LOC_PLOVER",
+        "special_handler_id": 2,
+        "status": "INFERRED / OBSERVED",
+        "verbs": [
+          "PLOVE"
+        ]
+      },
+      {
+        "condition": null,
+        "global_travel_index": 367,
+        "source_location_id": "LOC_SWCHASM",
+        "special_handler_id": 3,
+        "status": "PENDING / NOT IMPLEMENTED (troll bridge crossing)",
+        "verbs": [
+          "OVER"
+        ]
+      },
+      {
+        "condition": null,
+        "global_travel_index": 380,
+        "source_location_id": "LOC_NECHASM",
+        "special_handler_id": 3,
+        "status": "PENDING / NOT IMPLEMENTED (troll bridge crossing)",
+        "verbs": [
+          "OVER"
+        ]
+      }
+    ],
+    "status": "OBSERVED_AND_PENDING",
+    "total_count": 6
+  }
+}

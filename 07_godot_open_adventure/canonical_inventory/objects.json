@@ -1,0 +1,2757 @@
+{
+  "counts": {
+    "immobile": 33,
+    "initially_absent_or_nowhere": 18,
+    "multiple_locations": 11,
+    "multiple_states": 26,
+    "portable": 36,
+    "sentinel": 1,
+    "treasures": 20
+  },
+  "object_count": 70,
+  "objects": [
+    {
+      "all_initial_locations": [],
+      "changes": [],
+      "descriptions": [],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "NO_OBJECT",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": null,
+      "is_initially_absent": true,
+      "is_portable": false,
+      "is_sentinel": true,
+      "primary_location": null,
+      "raw_locations": null,
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 0,
+      "states": [],
+      "texts": [],
+      "treasure": false,
+      "words": []
+    },
+    {
+      "all_initial_locations": [
+        "LOC_BUILDING"
+      ],
+      "changes": [],
+      "descriptions": [
+        "There are some keys on the ground here."
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "KEYS",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": "Set of keys",
+      "is_initially_absent": false,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_BUILDING",
+      "raw_locations": "LOC_BUILDING",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 1,
+      "states": [],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "keys",
+        "key"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_BUILDING"
+      ],
+      "changes": [
+        "Your lamp is now off.",
+        "Your lamp is now on."
+      ],
+      "descriptions": [
+        "There is a shiny brass lamp nearby.",
+        "There is a lamp shining nearby."
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": true,
+      "id": "LAMP",
+      "immovable": false,
+      "initial_state": "LAMP_DARK",
+      "inventory_label": "Brass lantern",
+      "is_initially_absent": false,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_BUILDING",
+      "raw_locations": "LOC_BUILDING",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 2,
+      "states": [
+        "LAMP_DARK",
+        "LAMP_BRIGHT"
+      ],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "lamp",
+        "lante"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_GRATE",
+        "LOC_BELOWGRATE"
+      ],
+      "changes": [
+        "The grate is now locked.",
+        "The grate is now unlocked."
+      ],
+      "descriptions": [
+        "The grate is locked.",
+        "The grate is open."
+      ],
+      "fixed_locations": [
+        "LOC_BELOWGRATE"
+      ],
+      "has_multiple_locations": true,
+      "has_multiple_states": true,
+      "id": "GRATE",
+      "immovable": true,
+      "initial_state": "GRATE_CLOSED",
+      "inventory_label": "*grate",
+      "is_initially_absent": false,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_GRATE",
+      "raw_locations": [
+        "LOC_GRATE",
+        "LOC_BELOWGRATE"
+      ],
+      "referenced_in_travel_conditions": [
+        {
+          "condition": [
+            "not",
+            "GRATE",
+            "GRATE_CLOSED"
+          ],
+          "global_travel_index": 39,
+          "source_location_id": "LOC_GRATE"
+        },
+        {
+          "condition": [
+            "not",
+            "GRATE",
+            "GRATE_CLOSED"
+          ],
+          "global_travel_index": 41,
+          "source_location_id": "LOC_BELOWGRATE"
+        },
+        {
+          "condition": [
+            "not",
+            "GRATE",
+            "GRATE_CLOSED"
+          ],
+          "global_travel_index": 49,
+          "source_location_id": "LOC_DEBRIS"
+        },
+        {
+          "condition": [
+            "not",
+            "GRATE",
+            "GRATE_CLOSED"
+          ],
+          "global_travel_index": 55,
+          "source_location_id": "LOC_AWKWARD"
+        },
+        {
+          "condition": [
+            "not",
+            "GRATE",
+            "GRATE_CLOSED"
+          ],
+          "global_travel_index": 60,
+          "source_location_id": "LOC_BIRDCHAMBER"
+        },
+        {
+          "condition": [
+            "not",
+            "GRATE",
+            "GRATE_CLOSED"
+          ],
+          "global_travel_index": 65,
+          "source_location_id": "LOC_PITTOP"
+        }
+      ],
+      "sounds": [],
+      "source_index": 3,
+      "states": [
+        "GRATE_CLOSED",
+        "GRATE_OPEN"
+      ],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "grate"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_COBBLE"
+      ],
+      "changes": [],
+      "descriptions": [
+        "There is a small wicker cage discarded nearby."
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "CAGE",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": "Wicker cage",
+      "is_initially_absent": false,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_COBBLE",
+      "raw_locations": "LOC_COBBLE",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 4,
+      "states": [],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "cage"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_DEBRIS"
+      ],
+      "changes": [],
+      "descriptions": [
+        "A three foot black rod with a rusty star on an end lies nearby."
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "ROD",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": "Black rod",
+      "is_initially_absent": false,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_DEBRIS",
+      "raw_locations": "LOC_DEBRIS",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 5,
+      "states": [],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "rod"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_NOWHERE"
+      ],
+      "changes": [],
+      "descriptions": [
+        "A three foot black rod with a rusty mark on an end lies nearby."
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "ROD2",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": "Black rod",
+      "is_initially_absent": true,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_NOWHERE",
+      "raw_locations": "LOC_NOWHERE",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 6,
+      "states": [],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "rod"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_PITTOP",
+        "LOC_MISTHALL"
+      ],
+      "changes": [],
+      "descriptions": [
+        "Rough stone steps lead down the pit.",
+        "Rough stone steps lead up the dome."
+      ],
+      "fixed_locations": [
+        "LOC_MISTHALL"
+      ],
+      "has_multiple_locations": true,
+      "has_multiple_states": true,
+      "id": "STEPS",
+      "immovable": true,
+      "initial_state": "STEPS_DOWN",
+      "inventory_label": "*steps",
+      "is_initially_absent": false,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_PITTOP",
+      "raw_locations": [
+        "LOC_PITTOP",
+        "LOC_MISTHALL"
+      ],
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 7,
+      "states": [
+        "STEPS_DOWN",
+        "STEPS_UP"
+      ],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "steps"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_BIRDCHAMBER"
+      ],
+      "changes": [],
+      "descriptions": [
+        "A cheerful little bird is sitting here singing.",
+        "There is a little bird in the cage.",
+        "A cheerful little bird is sitting here singing."
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": true,
+      "id": "BIRD",
+      "immovable": false,
+      "initial_state": "BIRD_UNCAGED",
+      "inventory_label": "Little bird in cage",
+      "is_initially_absent": false,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_BIRDCHAMBER",
+      "raw_locations": "LOC_BIRDCHAMBER",
+      "referenced_in_travel_conditions": [],
+      "sounds": [
+        "The bird's singing is quite melodious.",
+        "The bird does not seem inclined to sing while in the cage.",
+        "It almost seems as though the bird is trying to tell you something.",
+        "To your surprise, you can understand the bird's chirping; it is\nsinging about the joys of its forest home.",
+        "The bird does not seem inclined to sing while in the cage.",
+        "The bird is singing to you in gratitude for your having returned it to\nits home.  In return, it informs you of a magic word which it thinks\nyou may find useful somewhere near the Hall of Mists.  The magic word\nchanges frequently, but for now the bird believes it is \"%s\".  You\nthank the bird for this information, and it flies off into the forest."
+      ],
+      "source_index": 8,
+      "states": [
+        "BIRD_UNCAGED",
+        "BIRD_CAGED",
+        "BIRD_FOREST_UNCAGED"
+      ],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "bird"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_IMMENSE"
+      ],
+      "changes": [
+        "The hinges are quite thoroughly rusted now and won't budge.",
+        "The oil has freed up the hinges so that the door will now move,\nalthough it requires some effort."
+      ],
+      "descriptions": [
+        "The way north is barred by a massive, rusty, iron door.",
+        "The way north leads through a massive, rusty, iron door."
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": true,
+      "id": "DOOR",
+      "immovable": true,
+      "initial_state": "DOOR_RUSTED",
+      "inventory_label": "*rusty door",
+      "is_initially_absent": false,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_IMMENSE",
+      "raw_locations": "LOC_IMMENSE",
+      "referenced_in_travel_conditions": [
+        {
+          "condition": [
+            "not",
+            "DOOR",
+            "DOOR_RUSTED"
+          ],
+          "global_travel_index": 293,
+          "source_location_id": "LOC_IMMENSE"
+        }
+      ],
+      "sounds": [],
+      "source_index": 9,
+      "states": [
+        "DOOR_RUSTED",
+        "DOOR_UNRUSTED"
+      ],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "door"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_SOFTROOM"
+      ],
+      "changes": [],
+      "descriptions": [
+        "A small velvet pillow lies on the floor."
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "PILLOW",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": "Velvet pillow",
+      "is_initially_absent": false,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_SOFTROOM",
+      "raw_locations": "LOC_SOFTROOM",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 10,
+      "states": [],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "pillo",
+        "velve"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_KINGHALL"
+      ],
+      "changes": [],
+      "descriptions": [
+        "A huge green fierce snake bars the way!",
+        ""
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": true,
+      "id": "SNAKE",
+      "immovable": true,
+      "initial_state": "SNAKE_BLOCKS",
+      "inventory_label": "*snake",
+      "is_initially_absent": false,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_KINGHALL",
+      "raw_locations": "LOC_KINGHALL",
+      "referenced_in_travel_conditions": [
+        {
+          "condition": [
+            "not",
+            "SNAKE",
+            "SNAKE_BLOCKS"
+          ],
+          "global_travel_index": 86,
+          "source_location_id": "LOC_KINGHALL"
+        },
+        {
+          "condition": [
+            "not",
+            "SNAKE",
+            "SNAKE_BLOCKS"
+          ],
+          "global_travel_index": 87,
+          "source_location_id": "LOC_KINGHALL"
+        },
+        {
+          "condition": [
+            "not",
+            "SNAKE",
+            "SNAKE_BLOCKS"
+          ],
+          "global_travel_index": 88,
+          "source_location_id": "LOC_KINGHALL"
+        },
+        {
+          "condition": [
+            "with",
+            "SNAKE"
+          ],
+          "global_travel_index": 91,
+          "source_location_id": "LOC_KINGHALL"
+        }
+      ],
+      "sounds": [
+        "The snake is hissing venomously.",
+        ""
+      ],
+      "source_index": 11,
+      "states": [
+        "SNAKE_BLOCKS",
+        "SNAKE_CHASED"
+      ],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "snake"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_EASTBANK",
+        "LOC_WESTBANK"
+      ],
+      "changes": [
+        "The crystal bridge has vanished!",
+        "A crystal bridge now spans the fissure."
+      ],
+      "descriptions": [
+        "",
+        "A crystal bridge spans the fissure."
+      ],
+      "fixed_locations": [
+        "LOC_WESTBANK"
+      ],
+      "has_multiple_locations": true,
+      "has_multiple_states": true,
+      "id": "FISSURE",
+      "immovable": true,
+      "initial_state": "UNBRIDGED",
+      "inventory_label": "*fissure",
+      "is_initially_absent": false,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_EASTBANK",
+      "raw_locations": [
+        "LOC_EASTBANK",
+        "LOC_WESTBANK"
+      ],
+      "referenced_in_travel_conditions": [
+        {
+          "condition": [
+            "not",
+            "FISSURE",
+            "UNBRIDGED"
+          ],
+          "global_travel_index": 80,
+          "source_location_id": "LOC_EASTBANK"
+        },
+        {
+          "condition": [
+            "not",
+            "FISSURE",
+            "BRIDGED"
+          ],
+          "global_travel_index": 81,
+          "source_location_id": "LOC_EASTBANK"
+        },
+        {
+          "condition": [
+            "not",
+            "FISSURE",
+            "BRIDGED"
+          ],
+          "global_travel_index": 82,
+          "source_location_id": "LOC_EASTBANK"
+        },
+        {
+          "condition": [
+            "not",
+            "FISSURE",
+            "UNBRIDGED"
+          ],
+          "global_travel_index": 105,
+          "source_location_id": "LOC_WESTBANK"
+        },
+        {
+          "condition": [
+            "not",
+            "FISSURE",
+            "BRIDGED"
+          ],
+          "global_travel_index": 106,
+          "source_location_id": "LOC_WESTBANK"
+        },
+        {
+          "condition": [
+            "not",
+            "FISSURE",
+            "BRIDGED"
+          ],
+          "global_travel_index": 107,
+          "source_location_id": "LOC_WESTBANK"
+        }
+      ],
+      "sounds": [],
+      "source_index": 12,
+      "states": [
+        "UNBRIDGED",
+        "BRIDGED"
+      ],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "fissu"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_DARKROOM"
+      ],
+      "changes": [],
+      "descriptions": [
+        "A massive stone tablet embedded in the wall reads:\n\"Congratulations on bringing light into the dark-room!\""
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "OBJ_13",
+      "immovable": true,
+      "initial_state": null,
+      "inventory_label": "*stone tablet",
+      "is_initially_absent": false,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_DARKROOM",
+      "raw_locations": "LOC_DARKROOM",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 13,
+      "states": [],
+      "texts": [
+        "\"Congratulations on bringing light into the dark-room!\""
+      ],
+      "treasure": false,
+      "words": [
+        "table"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_SHELLROOM"
+      ],
+      "changes": [],
+      "descriptions": [
+        "There is an enormous clam here with its shell tightly closed."
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "CLAM",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": "Giant clam  >GRUNT!<",
+      "is_initially_absent": false,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_SHELLROOM",
+      "raw_locations": "LOC_SHELLROOM",
+      "referenced_in_travel_conditions": [
+        {
+          "condition": [
+            "carry",
+            "CLAM"
+          ],
+          "global_travel_index": 316,
+          "source_location_id": "LOC_SHELLROOM"
+        }
+      ],
+      "sounds": [
+        "The clam is as tight-mouthed as a, er, clam."
+      ],
+      "source_index": 14,
+      "states": [],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "clam"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_NOWHERE"
+      ],
+      "changes": [],
+      "descriptions": [
+        "There is an enormous oyster here with its shell tightly closed.",
+        "Interesting.  There seems to be something written on the underside of\\nthe oyster."
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "OYSTER",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": "Giant oyster  >GROAN!<",
+      "is_initially_absent": true,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_NOWHERE",
+      "raw_locations": "LOC_NOWHERE",
+      "referenced_in_travel_conditions": [
+        {
+          "condition": [
+            "carry",
+            "OYSTER"
+          ],
+          "global_travel_index": 317,
+          "source_location_id": "LOC_SHELLROOM"
+        }
+      ],
+      "sounds": [
+        "Even though it's an oyster, the critter's as tight-mouthed as a clam.",
+        "It says the same thing it did before.  Hm, maybe it's a pun?"
+      ],
+      "source_index": 15,
+      "states": [],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "oyste"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_ANTEROOM"
+      ],
+      "changes": [],
+      "descriptions": [
+        "There are a few recent issues of \"Spelunker Today\" magazine here."
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "MAGAZINE",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": "\"Spelunker Today\"",
+      "is_initially_absent": false,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_ANTEROOM",
+      "raw_locations": "LOC_ANTEROOM",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 16,
+      "states": [],
+      "texts": [
+        "I'm afraid the magazine is written in dwarvish.  But penciled on one\ncover you see, \"Please leave the magazines at the construction site.\""
+      ],
+      "treasure": false,
+      "words": [
+        "magaz",
+        "issue",
+        "spelu",
+        "\"spel"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_NOWHERE"
+      ],
+      "changes": [],
+      "descriptions": [],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "DWARF",
+      "immovable": true,
+      "initial_state": null,
+      "inventory_label": null,
+      "is_initially_absent": true,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_NOWHERE",
+      "raw_locations": "LOC_NOWHERE",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 17,
+      "states": [],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "dwarf",
+        "dwarv"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_NOWHERE"
+      ],
+      "changes": [],
+      "descriptions": [],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "KNIFE",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": null,
+      "is_initially_absent": true,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_NOWHERE",
+      "raw_locations": "LOC_NOWHERE",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 18,
+      "states": [],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "knife",
+        "knive"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_BUILDING"
+      ],
+      "changes": [],
+      "descriptions": [
+        "There is food here."
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "FOOD",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": "Tasty food",
+      "is_initially_absent": false,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_BUILDING",
+      "raw_locations": "LOC_BUILDING",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 19,
+      "states": [],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "food",
+        "ratio"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_BUILDING"
+      ],
+      "changes": [
+        "Your bottle is now full of water.",
+        "The bottle of water is now empty.",
+        "Your bottle is now full of oil."
+      ],
+      "descriptions": [
+        "There is a bottle of water here.",
+        "There is an empty bottle here.",
+        "There is a bottle of oil here."
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": true,
+      "id": "BOTTLE",
+      "immovable": false,
+      "initial_state": "WATER_BOTTLE",
+      "inventory_label": "Small bottle",
+      "is_initially_absent": false,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_BUILDING",
+      "raw_locations": "LOC_BUILDING",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 20,
+      "states": [
+        "WATER_BOTTLE",
+        "EMPTY_BOTTLE",
+        "OIL_BOTTLE"
+      ],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "bottl",
+        "jar"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_NOWHERE"
+      ],
+      "changes": [],
+      "descriptions": [],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "WATER",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": "Water in the bottle",
+      "is_initially_absent": true,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_NOWHERE",
+      "raw_locations": "LOC_NOWHERE",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 21,
+      "states": [],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "water",
+        "h2o"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_NOWHERE"
+      ],
+      "changes": [],
+      "descriptions": [],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "OIL",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": "Oil in the bottle",
+      "is_initially_absent": true,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_NOWHERE",
+      "raw_locations": "LOC_NOWHERE",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 22,
+      "states": [],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "oil"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_MIRRORCANYON"
+      ],
+      "changes": [
+        "",
+        "You strike the mirror a resounding blow, whereupon it shatters into a\nmyriad tiny fragments."
+      ],
+      "descriptions": [
+        "",
+        ""
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": true,
+      "id": "MIRROR",
+      "immovable": true,
+      "initial_state": "MIRROR_UNBROKEN",
+      "inventory_label": "*mirror",
+      "is_initially_absent": false,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_MIRRORCANYON",
+      "raw_locations": "LOC_MIRRORCANYON",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 23,
+      "states": [
+        "MIRROR_UNBROKEN",
+        "MIRROR_BROKEN"
+      ],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "mirro"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_WESTPIT"
+      ],
+      "changes": [
+        "You've over-watered the plant!  It's shriveling up!  And now . . .",
+        "The plant spurts into furious growth for a few seconds.",
+        "The plant grows explosively, almost filling the bottom of the pit."
+      ],
+      "descriptions": [
+        "There is a tiny little plant in the pit, murmuring \"water, water, ...\"",
+        "There is a 12-foot-tall beanstalk stretching up out of the pit,\\nbellowing \"WATER!! WATER!!\"",
+        "There is a gigantic beanstalk stretching all the way up to the hole."
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": true,
+      "id": "PLANT",
+      "immovable": true,
+      "initial_state": "PLANT_THIRSTY",
+      "inventory_label": "*plant",
+      "is_initially_absent": false,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_WESTPIT",
+      "raw_locations": "LOC_WESTPIT",
+      "referenced_in_travel_conditions": [
+        {
+          "condition": [
+            "not",
+            "PLANT",
+            "PLANT_GROWN"
+          ],
+          "global_travel_index": 102,
+          "source_location_id": "LOC_WESTPIT"
+        },
+        {
+          "condition": [
+            "not",
+            "PLANT",
+            "PLANT_BELLOWING"
+          ],
+          "global_travel_index": 117,
+          "source_location_id": "LOC_BUILDING1"
+        }
+      ],
+      "sounds": [
+        "The plant continues to ask plaintively for water.",
+        "The plant continues to demand water.",
+        "The plant now maintains a contented silence."
+      ],
+      "source_index": 24,
+      "states": [
+        "PLANT_THIRSTY",
+        "PLANT_BELLOWING",
+        "PLANT_GROWN"
+      ],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "plant",
+        "beans"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_WESTEND",
+        "LOC_EASTEND"
+      ],
+      "changes": [],
+      "descriptions": [
+        "",
+        "The top of a 12-foot-tall beanstalk is poking out of the west pit.",
+        "There is a huge beanstalk growing out of the west pit up to the hole."
+      ],
+      "fixed_locations": [
+        "LOC_EASTEND"
+      ],
+      "has_multiple_locations": true,
+      "has_multiple_states": false,
+      "id": "PLANT2",
+      "immovable": true,
+      "initial_state": null,
+      "inventory_label": "*phony plant",
+      "is_initially_absent": false,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_WESTEND",
+      "raw_locations": [
+        "LOC_WESTEND",
+        "LOC_EASTEND"
+      ],
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 25,
+      "states": [],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "plant"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_TOPSTALACTITE"
+      ],
+      "changes": [],
+      "descriptions": [
+        ""
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "OBJ_26",
+      "immovable": true,
+      "initial_state": null,
+      "inventory_label": "*stalactite",
+      "is_initially_absent": false,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_TOPSTALACTITE",
+      "raw_locations": "LOC_TOPSTALACTITE",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 26,
+      "states": [],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "stala"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_WINDOW1",
+        "LOC_WINDOW2"
+      ],
+      "changes": [],
+      "descriptions": [
+        "The shadowy figure seems to be trying to attract your attention."
+      ],
+      "fixed_locations": [
+        "LOC_WINDOW2"
+      ],
+      "has_multiple_locations": true,
+      "has_multiple_states": false,
+      "id": "OBJ_27",
+      "immovable": true,
+      "initial_state": null,
+      "inventory_label": "*shadowy figure and/or window",
+      "is_initially_absent": false,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_WINDOW1",
+      "raw_locations": [
+        "LOC_WINDOW1",
+        "LOC_WINDOW2"
+      ],
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 27,
+      "states": [],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "shado",
+        "figur",
+        "windo"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_NOWHERE"
+      ],
+      "changes": [
+        "",
+        "The axe misses and lands near the bear where you can't get at it."
+      ],
+      "descriptions": [
+        "There is a little axe here.",
+        "There is a little axe lying beside the bear."
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": true,
+      "id": "AXE",
+      "immovable": false,
+      "initial_state": "AXE_HERE",
+      "inventory_label": "Dwarf's axe",
+      "is_initially_absent": true,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_NOWHERE",
+      "raw_locations": "LOC_NOWHERE",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 28,
+      "states": [
+        "AXE_HERE",
+        "AXE_LOST"
+      ],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "axe"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_ORIENTAL"
+      ],
+      "changes": [],
+      "descriptions": [],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "OBJ_29",
+      "immovable": true,
+      "initial_state": null,
+      "inventory_label": "*cave drawings",
+      "is_initially_absent": false,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_ORIENTAL",
+      "raw_locations": "LOC_ORIENTAL",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 29,
+      "states": [],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "drawi"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_NOWHERE"
+      ],
+      "changes": [],
+      "descriptions": [],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "OBJ_30",
+      "immovable": true,
+      "initial_state": null,
+      "inventory_label": "*pirate/genie",
+      "is_initially_absent": true,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_NOWHERE",
+      "raw_locations": "LOC_NOWHERE",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 30,
+      "states": [],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "pirat",
+        "genie",
+        "djinn"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_SECRET4",
+        "LOC_SECRET6"
+      ],
+      "changes": [
+        "",
+        "Congratulations!  You have just vanquished a dragon with your bare\nhands!  (Unbelievable, isn't it?)",
+        "Your head buzzes strangely for a moment."
+      ],
+      "descriptions": [
+        "A huge green fierce dragon bars the way!",
+        "The blood-specked body of a huge green dead dragon lies to one side.",
+        "The body of a huge green dead dragon is lying off to one side."
+      ],
+      "fixed_locations": [
+        "LOC_SECRET6"
+      ],
+      "has_multiple_locations": true,
+      "has_multiple_states": true,
+      "id": "DRAGON",
+      "immovable": true,
+      "initial_state": "DRAGON_BARS",
+      "inventory_label": "*dragon",
+      "is_initially_absent": false,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_SECRET4",
+      "raw_locations": [
+        "LOC_SECRET4",
+        "LOC_SECRET6"
+      ],
+      "referenced_in_travel_conditions": [
+        {
+          "condition": [
+            "not",
+            "DRAGON",
+            "DRAGON_BARS"
+          ],
+          "global_travel_index": 239,
+          "source_location_id": "LOC_SECRET1"
+        },
+        {
+          "condition": [
+            "not",
+            "DRAGON",
+            "DRAGON_BARS"
+          ],
+          "global_travel_index": 255,
+          "source_location_id": "LOC_SECRET3"
+        }
+      ],
+      "sounds": [
+        "The dragon's ominous hissing does not bode well for you.",
+        "The dragon is, not surprisingly, silent.",
+        "The dragon is, not surprisingly, silent."
+      ],
+      "source_index": 31,
+      "states": [
+        "DRAGON_BARS",
+        "DRAGON_DEAD",
+        "DRAGON_BLOODLESS"
+      ],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "drago"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_SWCHASM",
+        "LOC_NECHASM"
+      ],
+      "changes": [
+        "",
+        "Just as you reach the other side, the bridge buckles beneath the\nweight of the bear, which was still following you around.  You\nscrabble desperately for support, but as the bridge collapses you\nstumble back and fall into the chasm."
+      ],
+      "descriptions": [
+        "A rickety wooden bridge extends across the chasm, vanishing into the\\nmist.  A notice posted on the bridge reads, \"Stop! Pay troll!\"",
+        "The wreckage of a bridge (and a dead bear) can be seen at the bottom\\nof the chasm."
+      ],
+      "fixed_locations": [
+        "LOC_NECHASM"
+      ],
+      "has_multiple_locations": true,
+      "has_multiple_states": true,
+      "id": "CHASM",
+      "immovable": true,
+      "initial_state": "TROLL_BRIDGE",
+      "inventory_label": "*chasm",
+      "is_initially_absent": false,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_SWCHASM",
+      "raw_locations": [
+        "LOC_SWCHASM",
+        "LOC_NECHASM"
+      ],
+      "referenced_in_travel_conditions": [
+        {
+          "condition": [
+            "not",
+            "CHASM",
+            "TROLL_BRIDGE"
+          ],
+          "global_travel_index": 366,
+          "source_location_id": "LOC_SWCHASM"
+        },
+        {
+          "condition": [
+            "not",
+            "CHASM",
+            "TROLL_BRIDGE"
+          ],
+          "global_travel_index": 368,
+          "source_location_id": "LOC_SWCHASM"
+        }
+      ],
+      "sounds": [],
+      "source_index": 32,
+      "states": [
+        "TROLL_BRIDGE",
+        "BRIDGE_WRECKED"
+      ],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "chasm"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_SWCHASM",
+        "LOC_NECHASM"
+      ],
+      "changes": [
+        "",
+        "",
+        "The bear lumbers toward the troll, who lets out a startled shriek and\nscurries away.  The bear soon gives up the pursuit and wanders back."
+      ],
+      "descriptions": [
+        "A burly troll stands by the bridge and insists you throw him a\\ntreasure before you may cross.",
+        "The troll steps out from beneath the bridge and blocks your way.",
+        ""
+      ],
+      "fixed_locations": [
+        "LOC_NECHASM"
+      ],
+      "has_multiple_locations": true,
+      "has_multiple_states": true,
+      "id": "TROLL",
+      "immovable": true,
+      "initial_state": "TROLL_UNPAID",
+      "inventory_label": "*troll",
+      "is_initially_absent": false,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_SWCHASM",
+      "raw_locations": [
+        "LOC_SWCHASM",
+        "LOC_NECHASM"
+      ],
+      "referenced_in_travel_conditions": [
+        {
+          "condition": [
+            "with",
+            "TROLL"
+          ],
+          "global_travel_index": 365,
+          "source_location_id": "LOC_SWCHASM"
+        },
+        {
+          "condition": [
+            "with",
+            "TROLL"
+          ],
+          "global_travel_index": 379,
+          "source_location_id": "LOC_NECHASM"
+        }
+      ],
+      "sounds": [
+        "The troll sounds quite adamant in his demand for a treasure.",
+        "The troll sounds quite adamant in his demand for a treasure.",
+        ""
+      ],
+      "source_index": 33,
+      "states": [
+        "TROLL_UNPAID",
+        "TROLL_PAIDONCE",
+        "TROLL_GONE"
+      ],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "troll"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_NOWHERE",
+        "LOC_NOWHERE"
+      ],
+      "changes": [],
+      "descriptions": [
+        "The troll is nowhere to be seen."
+      ],
+      "fixed_locations": [
+        "LOC_NOWHERE"
+      ],
+      "has_multiple_locations": true,
+      "has_multiple_states": false,
+      "id": "TROLL2",
+      "immovable": true,
+      "initial_state": null,
+      "inventory_label": "*phony troll",
+      "is_initially_absent": true,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_NOWHERE",
+      "raw_locations": [
+        "LOC_NOWHERE",
+        "LOC_NOWHERE"
+      ],
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 34,
+      "states": [],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "troll"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_BARRENROOM"
+      ],
+      "changes": [
+        "",
+        "The bear eagerly wolfs down your food, after which he seems to calm\\ndown considerably and even becomes rather friendly.",
+        "",
+        ""
+      ],
+      "descriptions": [
+        "There is a ferocious cave bear eyeing you from the far end of the room!",
+        "There is a gentle cave bear sitting placidly in one corner.",
+        "There is a contented-looking bear wandering about nearby.",
+        ""
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": true,
+      "id": "BEAR",
+      "immovable": true,
+      "initial_state": "UNTAMED_BEAR",
+      "inventory_label": null,
+      "is_initially_absent": false,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_BARRENROOM",
+      "raw_locations": "LOC_BARRENROOM",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 35,
+      "states": [
+        "UNTAMED_BEAR",
+        "SITTING_BEAR",
+        "CONTENTED_BEAR",
+        "BEAR_DEAD"
+      ],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "bear"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_NOWHERE"
+      ],
+      "changes": [],
+      "descriptions": [
+        "There is a message scrawled in the dust in a flowery script, reading:\n\"This is not the maze where the pirate leaves his treasure chest.\""
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "MESSAG",
+      "immovable": true,
+      "initial_state": null,
+      "inventory_label": "*message in second maze",
+      "is_initially_absent": true,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_NOWHERE",
+      "raw_locations": "LOC_NOWHERE",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 36,
+      "states": [],
+      "texts": [
+        "\"This is not the maze where the pirate leaves his treasure chest.\""
+      ],
+      "treasure": false,
+      "words": [
+        "messa"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_BREATHTAKING"
+      ],
+      "changes": [],
+      "descriptions": [],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "VOLCANO",
+      "immovable": true,
+      "initial_state": null,
+      "inventory_label": "*volcano and/or geyser",
+      "is_initially_absent": false,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_BREATHTAKING",
+      "raw_locations": "LOC_BREATHTAKING",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 37,
+      "states": [],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "volca",
+        "geyse"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_DEADEND13"
+      ],
+      "changes": [
+        "The vending machine swings back to block the passage.",
+        "As you strike the vending machine, it pivots backward along with a\\nsection of wall, revealing a dark passage leading south."
+      ],
+      "descriptions": [
+        "There is a massive and somewhat battered vending machine here.  The\ninstructions on it read: \"Drop coins here to receive fresh batteries.\"",
+        "There is a massive vending machine here, swung back to reveal a\nsouthward passage."
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": true,
+      "id": "VEND",
+      "immovable": true,
+      "initial_state": "VEND_BLOCKS",
+      "inventory_label": "*vending machine",
+      "is_initially_absent": false,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_DEADEND13",
+      "raw_locations": "LOC_DEADEND13",
+      "referenced_in_travel_conditions": [
+        {
+          "condition": [
+            "not",
+            "VEND",
+            "VEND_BLOCKS"
+          ],
+          "global_travel_index": 505,
+          "source_location_id": "LOC_DEADEND13"
+        }
+      ],
+      "sounds": [],
+      "source_index": 38,
+      "states": [
+        "VEND_BLOCKS",
+        "VEND_UNBLOCKS"
+      ],
+      "texts": [
+        "\"Drop coins here to receive fresh batteries.\"",
+        "\"Drop coins here to receive fresh batteries.\""
+      ],
+      "treasure": false,
+      "words": [
+        "machi",
+        "vendi"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_NOWHERE"
+      ],
+      "changes": [],
+      "descriptions": [
+        "There are fresh batteries here.",
+        "Some worn-out batteries have been discarded nearby."
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": true,
+      "id": "BATTERY",
+      "immovable": false,
+      "initial_state": "FRESH_BATTERIES",
+      "inventory_label": "Batteries",
+      "is_initially_absent": true,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_NOWHERE",
+      "raw_locations": "LOC_NOWHERE",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 39,
+      "states": [
+        "FRESH_BATTERIES",
+        "DEAD_BATTERIES"
+      ],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "batte"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_SOFTROOM"
+      ],
+      "changes": [],
+      "descriptions": [],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "OBJ_40",
+      "immovable": true,
+      "initial_state": null,
+      "inventory_label": "*carpet and/or moss and/or curtains",
+      "is_initially_absent": false,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_SOFTROOM",
+      "raw_locations": "LOC_SOFTROOM",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 40,
+      "states": [],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "carpe",
+        "moss"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_LARGE"
+      ],
+      "changes": [],
+      "descriptions": [
+        "A formidable ogre bars the northern exit."
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "OGRE",
+      "immovable": true,
+      "initial_state": null,
+      "inventory_label": "*ogre",
+      "is_initially_absent": false,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_LARGE",
+      "raw_locations": "LOC_LARGE",
+      "referenced_in_travel_conditions": [
+        {
+          "condition": [
+            "with",
+            "OGRE"
+          ],
+          "global_travel_index": 511,
+          "source_location_id": "LOC_LARGE"
+        }
+      ],
+      "sounds": [
+        "The ogre is apparently the strong, silent type."
+      ],
+      "source_index": 41,
+      "states": [],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "ogre"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_CLIFF"
+      ],
+      "changes": [
+        "The urn is empty and will not light.",
+        "The urn is now dark.",
+        "The urn is now lit."
+      ],
+      "descriptions": [
+        "A small urn is embedded in the rock.",
+        "A small urn full of oil is embedded in the rock.",
+        "A small oil flame extrudes from an urn embedded in the rock."
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": true,
+      "id": "URN",
+      "immovable": true,
+      "initial_state": "URN_EMPTY",
+      "inventory_label": "*urn",
+      "is_initially_absent": false,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_CLIFF",
+      "raw_locations": "LOC_CLIFF",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 42,
+      "states": [
+        "URN_EMPTY",
+        "URN_DARK",
+        "URN_LIT"
+      ],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "urn"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_NOWHERE"
+      ],
+      "changes": [],
+      "descriptions": [
+        "",
+        "There is a small urn-shaped cavity in the rock."
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": true,
+      "id": "CAVITY",
+      "immovable": true,
+      "initial_state": "CAVITY_FULL",
+      "inventory_label": "*cavity",
+      "is_initially_absent": true,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_NOWHERE",
+      "raw_locations": "LOC_NOWHERE",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 43,
+      "states": [
+        "CAVITY_FULL",
+        "CAVITY_EMPTY"
+      ],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "cavit"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_NOWHERE"
+      ],
+      "changes": [],
+      "descriptions": [
+        ""
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "BLOOD",
+      "immovable": true,
+      "initial_state": null,
+      "inventory_label": "*blood",
+      "is_initially_absent": true,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_NOWHERE",
+      "raw_locations": "LOC_NOWHERE",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 44,
+      "states": [],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "blood"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_RESERVOIR",
+        "LOC_RESNORTH"
+      ],
+      "changes": [
+        "The waters crash together again.",
+        "The waters have parted to form a narrow path across the reservoir."
+      ],
+      "descriptions": [
+        "",
+        "The waters have parted to form a narrow path across the reservoir."
+      ],
+      "fixed_locations": [
+        "LOC_RESNORTH"
+      ],
+      "has_multiple_locations": true,
+      "has_multiple_states": true,
+      "id": "RESER",
+      "immovable": true,
+      "initial_state": "WATERS_UNPARTED",
+      "inventory_label": "*reservoir",
+      "is_initially_absent": false,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_RESERVOIR",
+      "raw_locations": [
+        "LOC_RESERVOIR",
+        "LOC_RESNORTH"
+      ],
+      "referenced_in_travel_conditions": [
+        {
+          "condition": [
+            "not",
+            "RESER",
+            "WATERS_PARTED"
+          ],
+          "global_travel_index": 358,
+          "source_location_id": "LOC_RESERVOIR"
+        },
+        {
+          "condition": [
+            "not",
+            "RESER",
+            "WATERS_PARTED"
+          ],
+          "global_travel_index": 599,
+          "source_location_id": "LOC_RESNORTH"
+        }
+      ],
+      "sounds": [],
+      "source_index": 45,
+      "states": [
+        "WATERS_UNPARTED",
+        "WATERS_PARTED"
+      ],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "reser"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_FOREST22"
+      ],
+      "changes": [],
+      "descriptions": [
+        "Your keen eye spots a severed leporine appendage lying on the ground."
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "RABBITFOOT",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": "Leporine appendage",
+      "is_initially_absent": false,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_FOREST22",
+      "raw_locations": "LOC_FOREST22",
+      "referenced_in_travel_conditions": [
+        {
+          "condition": [
+            "carry",
+            "RABBITFOOT"
+          ],
+          "global_travel_index": 609,
+          "source_location_id": "LOC_CLIFFACE"
+        }
+      ],
+      "sounds": [],
+      "source_index": 46,
+      "states": [],
+      "texts": [],
+      "treasure": false,
+      "words": [
+        "appen",
+        "lepor"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_DEBRIS"
+      ],
+      "changes": [],
+      "descriptions": [
+        ""
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "OBJ_47",
+      "immovable": true,
+      "initial_state": null,
+      "inventory_label": "*mud",
+      "is_initially_absent": false,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_DEBRIS",
+      "raw_locations": "LOC_DEBRIS",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 47,
+      "states": [],
+      "texts": [
+        "\"MAGIC WORD XYZZY\""
+      ],
+      "treasure": false,
+      "words": [
+        "mud"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_NUGGET"
+      ],
+      "changes": [],
+      "descriptions": [
+        ""
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "OBJ_48",
+      "immovable": true,
+      "initial_state": null,
+      "inventory_label": "*note",
+      "is_initially_absent": false,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_NUGGET",
+      "raw_locations": "LOC_NUGGET",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 48,
+      "states": [],
+      "texts": [
+        "\"You won't get it up the steps\""
+      ],
+      "treasure": false,
+      "words": [
+        "note"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_ANTEROOM"
+      ],
+      "changes": [],
+      "descriptions": [
+        "",
+        ""
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": true,
+      "id": "SIGN",
+      "immovable": true,
+      "initial_state": "INGAME_SIGN",
+      "inventory_label": "*sign",
+      "is_initially_absent": false,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_ANTEROOM",
+      "raw_locations": "LOC_ANTEROOM",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 49,
+      "states": [
+        "INGAME_SIGN",
+        "ENDGAME_SIGN"
+      ],
+      "texts": [
+        "Cave under construction beyond this point.\n           Proceed at own risk.\n       [Witt Construction Company]",
+        "\"Treasure Vault.  Keys in main office.\""
+      ],
+      "treasure": false,
+      "words": [
+        "sign"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_NUGGET"
+      ],
+      "changes": [],
+      "descriptions": [
+        "There is a large sparkling nugget of gold here!"
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "NUGGET",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": "Large gold nugget",
+      "is_initially_absent": false,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_NUGGET",
+      "raw_locations": "LOC_NUGGET",
+      "referenced_in_travel_conditions": [
+        {
+          "condition": [
+            "carry",
+            "NUGGET"
+          ],
+          "global_travel_index": 69,
+          "source_location_id": "LOC_PITTOP"
+        },
+        {
+          "condition": [
+            "carry",
+            "NUGGET"
+          ],
+          "global_travel_index": 75,
+          "source_location_id": "LOC_MISTHALL"
+        }
+      ],
+      "sounds": [],
+      "source_index": 50,
+      "states": [],
+      "texts": [],
+      "treasure": true,
+      "words": [
+        "gold",
+        "nugge"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_WESTBANK"
+      ],
+      "changes": [],
+      "descriptions": [
+        "There are diamonds here!"
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "OBJ_51",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": "Several diamonds",
+      "is_initially_absent": false,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_WESTBANK",
+      "raw_locations": "LOC_WESTBANK",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 51,
+      "states": [],
+      "texts": [],
+      "treasure": true,
+      "words": [
+        "diamo"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_FLOORHOLE"
+      ],
+      "changes": [],
+      "descriptions": [
+        "There are bars of silver here!"
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "OBJ_52",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": "Bars of silver",
+      "is_initially_absent": false,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_FLOORHOLE",
+      "raw_locations": "LOC_FLOORHOLE",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 52,
+      "states": [],
+      "texts": [],
+      "treasure": true,
+      "words": [
+        "silve",
+        "bars"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_SOUTHSIDE"
+      ],
+      "changes": [],
+      "descriptions": [
+        "There is precious jewelry here!"
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "OBJ_53",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": "Precious jewelry",
+      "is_initially_absent": false,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_SOUTHSIDE",
+      "raw_locations": "LOC_SOUTHSIDE",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 53,
+      "states": [],
+      "texts": [],
+      "treasure": true,
+      "words": [
+        "jewel"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_WESTSIDE"
+      ],
+      "changes": [],
+      "descriptions": [
+        "There are many coins here!"
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "COINS",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": "Rare coins",
+      "is_initially_absent": false,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_WESTSIDE",
+      "raw_locations": "LOC_WESTSIDE",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 54,
+      "states": [],
+      "texts": [],
+      "treasure": true,
+      "words": [
+        "coins"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_NOWHERE"
+      ],
+      "changes": [],
+      "descriptions": [
+        "The pirate's treasure chest is here!"
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "CHEST",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": "Treasure chest",
+      "is_initially_absent": true,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_NOWHERE",
+      "raw_locations": "LOC_NOWHERE",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 55,
+      "states": [],
+      "texts": [],
+      "treasure": true,
+      "words": [
+        "chest",
+        "box",
+        "treas"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_GIANTROOM"
+      ],
+      "changes": [],
+      "descriptions": [
+        "There is a large nest here, full of golden eggs!",
+        "The nest of golden eggs has vanished!",
+        "Done!"
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": true,
+      "id": "EGGS",
+      "immovable": false,
+      "initial_state": "EGGS_HERE",
+      "inventory_label": "Golden eggs",
+      "is_initially_absent": false,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_GIANTROOM",
+      "raw_locations": "LOC_GIANTROOM",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 56,
+      "states": [
+        "EGGS_HERE",
+        "EGGS_VANISHED",
+        "EGGS_DONE"
+      ],
+      "texts": [],
+      "treasure": true,
+      "words": [
+        "eggs",
+        "egg",
+        "nest"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_WATERFALL"
+      ],
+      "changes": [],
+      "descriptions": [
+        "There is a jewel-encrusted trident here!"
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "TRIDENT",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": "Jeweled trident",
+      "is_initially_absent": false,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_WATERFALL",
+      "raw_locations": "LOC_WATERFALL",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 57,
+      "states": [],
+      "texts": [],
+      "treasure": true,
+      "words": [
+        "tride"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_ORIENTAL"
+      ],
+      "changes": [
+        "The vase is now resting, delicately, on a velvet pillow.",
+        "The ming vase drops with a delicate crash.",
+        "You have taken the vase and hurled it delicately to the ground."
+      ],
+      "descriptions": [
+        "There is a delicate, precious, ming vase here!",
+        "The floor is littered with worthless shards of pottery.",
+        "The floor is littered with worthless shards of pottery."
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": true,
+      "id": "VASE",
+      "immovable": false,
+      "initial_state": "VASE_WHOLE",
+      "inventory_label": "Ming vase",
+      "is_initially_absent": false,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_ORIENTAL",
+      "raw_locations": "LOC_ORIENTAL",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 58,
+      "states": [
+        "VASE_WHOLE",
+        "VASE_DROPPED",
+        "VASE_BROKEN"
+      ],
+      "texts": [],
+      "treasure": true,
+      "words": [
+        "vase",
+        "ming",
+        "shard",
+        "potte"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_PLOVER"
+      ],
+      "changes": [],
+      "descriptions": [
+        "There is an emerald here the size of a plover's egg!",
+        "There is an emerald resting in a small cavity in the rock!"
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "EMERALD",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": "Egg-sized emerald",
+      "is_initially_absent": false,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_PLOVER",
+      "raw_locations": "LOC_PLOVER",
+      "referenced_in_travel_conditions": [
+        {
+          "condition": [
+            "carry",
+            "EMERALD"
+          ],
+          "global_travel_index": 124,
+          "source_location_id": "LOC_Y2"
+        },
+        {
+          "condition": [
+            "carry",
+            "EMERALD"
+          ],
+          "global_travel_index": 309,
+          "source_location_id": "LOC_PLOVER"
+        }
+      ],
+      "sounds": [],
+      "source_index": 59,
+      "states": [],
+      "texts": [],
+      "treasure": true,
+      "words": [
+        "emera"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_DARKROOM"
+      ],
+      "changes": [],
+      "descriptions": [
+        "There is a platinum pyramid here, 8 inches on a side!"
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "PYRAMID",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": "Platinum pyramid",
+      "is_initially_absent": false,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_DARKROOM",
+      "raw_locations": "LOC_DARKROOM",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 60,
+      "states": [],
+      "texts": [],
+      "treasure": true,
+      "words": [
+        "plati",
+        "pyram"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_NOWHERE"
+      ],
+      "changes": [],
+      "descriptions": [
+        "Off to one side lies a glistening pearl!"
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "PEARL",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": "Glistening pearl",
+      "is_initially_absent": true,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_NOWHERE",
+      "raw_locations": "LOC_NOWHERE",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 61,
+      "states": [],
+      "texts": [],
+      "treasure": true,
+      "words": [
+        "pearl"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_SECRET4",
+        "LOC_SECRET6"
+      ],
+      "changes": [],
+      "descriptions": [
+        "There is a Persian rug spread out on the floor!",
+        "The dragon is sprawled out on a Persian rug!!",
+        "There is a Persian rug here, hovering in mid-air!"
+      ],
+      "fixed_locations": [
+        "LOC_SECRET6"
+      ],
+      "has_multiple_locations": true,
+      "has_multiple_states": true,
+      "id": "RUG",
+      "immovable": true,
+      "initial_state": "RUG_FLOOR",
+      "inventory_label": "Persian rug",
+      "is_initially_absent": false,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_SECRET4",
+      "raw_locations": [
+        "LOC_SECRET4",
+        "LOC_SECRET6"
+      ],
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 62,
+      "states": [
+        "RUG_FLOOR",
+        "RUG_DRAGON",
+        "RUG_HOVER"
+      ],
+      "texts": [],
+      "treasure": true,
+      "words": [
+        "rug",
+        "persi"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_BOULDERS2"
+      ],
+      "changes": [],
+      "descriptions": [
+        "There are rare spices here!"
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "OBJ_63",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": "Rare spices",
+      "is_initially_absent": false,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_BOULDERS2",
+      "raw_locations": "LOC_BOULDERS2",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 63,
+      "states": [],
+      "texts": [],
+      "treasure": true,
+      "words": [
+        "spice"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_BARRENROOM"
+      ],
+      "changes": [],
+      "descriptions": [
+        "There is a golden chain lying in a heap on the floor!",
+        "The bear is locked to the wall with a golden chain!",
+        "There is a golden chain locked to the wall!"
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": true,
+      "id": "CHAIN",
+      "immovable": true,
+      "initial_state": "CHAIN_HEAP",
+      "inventory_label": "Golden chain",
+      "is_initially_absent": false,
+      "is_portable": false,
+      "is_sentinel": false,
+      "primary_location": "LOC_BARRENROOM",
+      "raw_locations": "LOC_BARRENROOM",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 64,
+      "states": [
+        "CHAIN_HEAP",
+        "CHAINING_BEAR",
+        "CHAIN_FIXED"
+      ],
+      "texts": [],
+      "treasure": true,
+      "words": [
+        "chain"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_STOREROOM"
+      ],
+      "changes": [],
+      "descriptions": [
+        "There is an enormous ruby here!",
+        "There is a ruby resting in a small cavity in the rock!"
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "RUBY",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": "Giant ruby",
+      "is_initially_absent": false,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_STOREROOM",
+      "raw_locations": "LOC_STOREROOM",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 65,
+      "states": [],
+      "texts": [],
+      "treasure": true,
+      "words": [
+        "ruby"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_NOWHERE"
+      ],
+      "changes": [],
+      "descriptions": [
+        "A precious jade necklace has been dropped here!"
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "JADE",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": "Jade necklace",
+      "is_initially_absent": true,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_NOWHERE",
+      "raw_locations": "LOC_NOWHERE",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 66,
+      "states": [],
+      "texts": [],
+      "treasure": true,
+      "words": [
+        "jade",
+        "neckl"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_NOWHERE"
+      ],
+      "changes": [],
+      "descriptions": [
+        "There is a rare amber gemstone here!",
+        "There is an amber gemstone resting in a small cavity in the rock!"
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": true,
+      "id": "AMBER",
+      "immovable": false,
+      "initial_state": "AMBER_IN_URN",
+      "inventory_label": "Amber gemstone",
+      "is_initially_absent": true,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_NOWHERE",
+      "raw_locations": "LOC_NOWHERE",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 67,
+      "states": [
+        "AMBER_IN_URN",
+        "AMBER_IN_ROCK"
+      ],
+      "texts": [],
+      "treasure": true,
+      "words": [
+        "amber",
+        "gemst"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_LEDGE"
+      ],
+      "changes": [],
+      "descriptions": [
+        "A brilliant blue star sapphire is here!",
+        "There is a star sapphire resting in a small cavity in the rock!"
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "SAPPH",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": "Star sapphire",
+      "is_initially_absent": false,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_LEDGE",
+      "raw_locations": "LOC_LEDGE",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 68,
+      "states": [],
+      "texts": [],
+      "treasure": true,
+      "words": [
+        "sapph"
+      ]
+    },
+    {
+      "all_initial_locations": [
+        "LOC_REACHDEAD"
+      ],
+      "changes": [],
+      "descriptions": [
+        "There is a richly-carved ebony statuette here!"
+      ],
+      "fixed_locations": [],
+      "has_multiple_locations": false,
+      "has_multiple_states": false,
+      "id": "OBJ_69",
+      "immovable": false,
+      "initial_state": null,
+      "inventory_label": "Ebony statuette",
+      "is_initially_absent": false,
+      "is_portable": true,
+      "is_sentinel": false,
+      "primary_location": "LOC_REACHDEAD",
+      "raw_locations": "LOC_REACHDEAD",
+      "referenced_in_travel_conditions": [],
+      "sounds": [],
+      "source_index": 69,
+      "states": [],
+      "texts": [],
+      "treasure": true,
+      "words": [
+        "ebony",
+        "statu"
+      ]
+    }
+  ],
+  "schema_version": 1
+}

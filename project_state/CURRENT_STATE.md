@@ -138,8 +138,18 @@ baseline. See the retrospective
   66 START prototype checks, 62 integration/fallback checks, 455 batch
   headless checks and 582 graphical checks; suites were not rerun for this
   documentary closure. Preparation measured 2.084–3.271 s on the test machine.
-  Legacy illustrations and fallback remain available. See the
-  [production record and gallery](changes/car_art_004_ch01_vector_illustration_production/CHANGE.md).
+- CAR-CORE-002 Decision Gate: `CLOSED / VIABLE WITH CONDITIONS` on 2026-10-25.
+  Full historical room reconstruction is verified viable as an inert,
+  deterministic structural projection prior to puzzle and actor mechanics.
+  See the [Decision Gate record](changes/car_core_002_complete_room_reconstruction_decision_gate/CHANGE.md).
+- CAR-CORE-002 / R1: `CLOSED / PASS` on 2026-10-25. The canonical room inventory
+  is established as a reproducible reference from authoritative sources: 185
+  locations, 623 travel records, 70 objects, 11 editorial chapters (100% coverage,
+  0 duplicates, 0 fallback), draw.io visual correspondence, structural dependency
+  matrix, 26 unit and negative tests, and zero regressions across existing engine
+  and illustration suites. Runtime Godot, `WorldData`, and CH_01 playable
+  boundary remain untouched. See the
+  [R1 record](changes/car_core_002_r1_canonical_room_inventory/CHANGE.md).
 
 ## ACTIVE
 
@@ -149,6 +159,8 @@ No active implementation cut is recorded.
 
 These items are not authorized implementation cuts:
 
+- CAR-CORE-002 / R2 — Complete Structural Data Projection: `PROPOSED / NOT AUTHORIZED`.
+- CAR-CORE-002 / R3 & R4: `PROPOSED / NOT AUTHORIZED`.
 - Human graphical and gameplay-experience review of chapter 01.
 - Final artistic polish of `GRATE_OPEN`, accepted provisionally by the human
   in CAR-ART-005 and reserved for the project's final art review.
@@ -202,6 +214,10 @@ Known style diagnostics, not demonstrated functional regressions:
 
 ## Next Decision Gate
 
+CAR-CORE-002 / R1 is closed with PASS: the canonical room inventory and reproducible
+validator are verified in tooling and documentation.
+**CAR-CORE-002 / R2 — Complete Structural Data Projection: PROPOSED / NOT AUTHORIZED**
+is the next dependency cut; it requires explicit human authorization.
 CAR-ART-005 is closed with documented follow-up: `GRATE_OPEN` polish remains
 pending final artistic review; its accepted state selection and integration are
 closed. CAR-CORE-001 CUT A is closed for the global data contract only.

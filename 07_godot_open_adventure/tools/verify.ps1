@@ -41,15 +41,24 @@ if ([string]::IsNullOrWhiteSpace($Godot)) {
         ForEach-Object { Get-Command $_ -ErrorAction SilentlyContinue } |
         Select-Object -First 1 -ExpandProperty Source
     if ([string]::IsNullOrWhiteSpace($Godot)) {
-        Fail "No Godot executable found in PATH; pass -Godot <path>."
+        $repoCandidate = Join-Path (Split-Path -Parent $cut) "tools\Godot_v4.7.2-stable_win64_console.exe"
+        if (Test-Path $repoCandidate) {
+            $Godot = $repoCandidate
+        } else {
+            Fail "No Godot executable found in PATH; pass -Godot <path>."
+        }
     }
 }
 
-Write-Host "== 1/7 export determinism ==" -ForegroundColor Cyan
+Write-Host "== 1/7 export determinism & canonical inventory ==" -ForegroundColor Cyan
 & $Python (Join-Path $here "oa_export_godot.py") --check
 if ($LASTEXITCODE -ne 0) { Fail "the committed dataset does not match the regenerated one" }
 & $Python (Join-Path $here "test_simulation_graph.py")
 if ($LASTEXITCODE -ne 0) { Fail "the global simulation data contract failed" }
+& $Python (Join-Path $here "oa_canonical_inventory.py") --check
+if ($LASTEXITCODE -ne 0) { Fail "the canonical inventory does not match the regenerated dataset" }
+& $Python (Join-Path $here "test_canonical_inventory.py")
+if ($LASTEXITCODE -ne 0) { Fail "the canonical inventory tests failed" }
 
 Write-Host "== 2/7 godot import ==" -ForegroundColor Cyan
 & $Godot --headless --path $project --editor --quit | Out-Null

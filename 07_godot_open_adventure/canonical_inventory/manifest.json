@@ -1,0 +1,73 @@
+{
+  "artifacts": {
+    "chapters.json": {
+      "record_count": 11,
+      "sha256": "90bd9d39622d20e66b3f4b2a9965cddde6478ac89aeae12bb3cb6b89c5feac53"
+    },
+    "locations.json": {
+      "record_count": 185,
+      "sha256": "8289888c62ddaf8ceaeb90ead05c6f3b22e74d6f5a03d9cbb6cd6b3b472afb95"
+    },
+    "objects.json": {
+      "record_count": 70,
+      "sha256": "cfa3588ab53822ed07d2f6939ab14d2aa0d3b099ef34f8458ad4f3cfdb5002e6"
+    },
+    "structural_dependencies.json": {
+      "record_count": 85,
+      "sha256": "7d63c00879f3658ce4f0db20aec252c5c13e3649be2865bb7030163314e61519"
+    },
+    "travel.json": {
+      "record_count": 623,
+      "sha256": "87d28a4b39c7900b0411b80b9e2caef13486deb5181c39cf998e36fb141218d4"
+    }
+  },
+  "canonical_counts": {
+    "absent_or_nowhere_objects": 18,
+    "action_type_counts": {
+      "goto": 583,
+      "speak": 34,
+      "special": 6
+    },
+    "chapters": 11,
+    "condition_counts": {
+      "always": 574,
+      "carry": 7,
+      "nodwarves": 1,
+      "not": 25,
+      "pct": 12,
+      "with": 4
+    },
+    "cross_chapter_travel_records": 85,
+    "forced_locations": 22,
+    "immobile_objects": 33,
+    "locations": 185,
+    "multiple_location_objects": 11,
+    "multiple_state_objects": 26,
+    "objects": 70,
+    "portable_objects": 36,
+    "sentinel_objects": 1,
+    "structural_role_counts": {
+      "lethal": 4,
+      "null": 1,
+      "ordinary": 162,
+      "special": 13,
+      "transient": 5
+    },
+    "travel_records": 623,
+    "treasure_objects": 20
+  },
+  "cut_id": "CAR-CORE-002-R1",
+  "document_status": "CLOSED / PASS",
+  "schema_version": 1,
+  "sources": {
+    "drawio": {
+      "path": "06_reconstruccion_drawio/output/Open_Adventure_World_V3.drawio",
+      "sha256": "a67521fd3d8addd04deda504926c715f5db0395c8adbb0414951f048199370e2"
+    },
+    "yaml": {
+      "path": "06_reconstruccion_drawio/Open_Adventure.yaml",
+      "sha256": "4ee2c6451a64591bacfcec890efa60e15324411897cce894a79eff01cdf35747"
+    }
+  },
+  "title": "Canonical Room Inventory"
+}
