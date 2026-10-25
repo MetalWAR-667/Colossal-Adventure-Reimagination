@@ -164,7 +164,7 @@ function Invoke-Sync {
     if ($LASTEXITCODE -ne 0) { throw 'Hay cambios tracked sin commit; sincroniza solo después de finalizar el corte.' }
     $staged = & git -C $source diff --cached --quiet --
     if ($LASTEXITCODE -ne 0) { throw 'El índice Git no está limpio; no se sincronizó Drive.' }
-    $unmerged = Invoke-GitText -Root $source -GitArgs @('ls-files', '-u')
+    $unmerged = @(Invoke-GitText -Root $source -GitArgs @('ls-files', '-u'))
     if ($unmerged.Count -gt 0) { throw 'Hay conflictos de merge en el índice.' }
 
     $files = @(Invoke-GitText -Root $source -GitArgs @('ls-files', '--cached'))
@@ -172,8 +172,6 @@ function Invoke-Sync {
     $paths = @($files | ForEach-Object { ConvertTo-SafeRelativePath -Path $_ })
     $tempRoot = Join-Path ([IO.Path]::GetTempPath()) ('CAR-sync-' + [guid]::NewGuid().ToString('N'))
     $stage = Join-Path $tempRoot 'snapshot'
-    $parentStage = Join-Path $tempRoot 'parent'
-    $archive = Join-Path $tempRoot 'parent.zip'
     $gitDirText = (Invoke-GitText -Root $source -GitArgs @('rev-parse', '--git-common-dir') | Select-Object -First 1).Trim()
     $gitDir = if ([IO.Path]::IsPathRooted($gitDirText)) { $gitDirText } else { Join-Path $source $gitDirText }
     $statePath = Join-Path $gitDir 'car_drive_sync_state.json'
@@ -225,26 +223,30 @@ function Invoke-Sync {
                 }
             }
             if ($mismatches.Count -gt 0 -and $null -eq $state) {
-                $parentCommit = & git -C $source rev-parse --verify 'HEAD^' 2>$null
-                if ($LASTEXITCODE -eq 0) {
-                    $changedPaths = @(Invoke-GitText -Root $source -GitArgs @('diff-tree', '--no-commit-id', '--name-only', '-r', 'HEAD^', 'HEAD'))
-                    $candidatePaths = @($mismatches | Where-Object { $changedPaths -contains $_ })
-                    if ($candidatePaths.Count -gt 0) {
-                        New-Item -ItemType Directory -Path $parentStage -Force | Out-Null
-                        $archiveArgs = @('-C', $source, 'archive', '--format=zip', "--output=$archive", $parentCommit.Trim(), '--') + $candidatePaths
-                        & git @archiveArgs
-                        if ($LASTEXITCODE -ne 0) { throw 'No se pudo inspeccionar el snapshot padre para resolver la primera sincronización.' }
-                        Expand-Archive -LiteralPath $archive -DestinationPath $parentStage -Force
+                $commonAncestorFound = $false
+                $ancestors = @(Invoke-GitText -Root $source -GitArgs @('rev-list', '--max-count=100', 'HEAD'))
+                foreach ($ancestor in $ancestors) {
+                    $candidateStage = Join-Path $tempRoot ('ancestor-' + $ancestor.Substring(0, 12))
+                    $candidateArchive = Join-Path $tempRoot ('ancestor-' + $ancestor.Substring(0, 12) + '.zip')
+                    New-Item -ItemType Directory -Path $candidateStage -Force | Out-Null
+                    $archiveArgs = @('-C', $source, 'archive', '--format=zip', "--output=$candidateArchive", $ancestor.Trim(), '--') + @($mismatches)
+                    & git @archiveArgs
+                    if ($LASTEXITCODE -ne 0) { continue }
+                    Expand-Archive -LiteralPath $candidateArchive -DestinationPath $candidateStage -Force
+                    $matchesAncestor = $true
+                    foreach ($relative in $mismatches) {
+                        $target = Join-Path $destination ($relative.Replace('/', '\'))
+                        $oldVersion = Join-Path $candidateStage ($relative.Replace('/', '\'))
+                        if (-not (Test-Path -LiteralPath $oldVersion -PathType Leaf) -or
+                            (Get-FileSha256 -Path $target) -ne (Get-FileSha256 -Path $oldVersion)) {
+                            $matchesAncestor = $false
+                            break
+                        }
                     }
+                    if ($matchesAncestor) { $commonAncestorFound = $true; break }
                 }
-                foreach ($relative in @($mismatches)) {
-                    $target = Join-Path $destination ($relative.Replace('/', '\'))
-                    $oldVersion = Join-Path $parentStage ($relative.Replace('/', '\'))
-                    if (Test-Path -LiteralPath $oldVersion -PathType Leaf) {
-                        $oldHash = Get-FileSha256 -Path $oldVersion
-                        if ((Get-FileSha256 -Path $target) -eq $oldHash) { continue }
-                    }
-                    throw "Posible edición directa o versión divergente en Drive; no se sobrescribe: $relative"
+                if (-not $commonAncestorFound) {
+                    throw "No se encontró una base Git común para las diferencias de Drive; no se sobrescribió: $($mismatches -join ', ')"
                 }
             } elseif ($mismatches.Count -gt 0) {
                 throw "Posible edición directa en Drive; no se sobrescribe: $($mismatches -join ', ')"

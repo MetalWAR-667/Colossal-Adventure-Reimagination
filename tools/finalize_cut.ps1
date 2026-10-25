@@ -78,6 +78,14 @@ function Assert-ChangeSetMatches {
     }
 }
 
+function Assert-ChangesAllowed {
+    param([string[]]$Actual, [string[]]$Allowed)
+    $unexpected = @($Actual | Sort-Object -Unique | Where-Object { $_ -notin $Allowed })
+    if ($unexpected.Count -gt 0) {
+        throw "Hay cambios fuera de -Files; no se prepararon: $($unexpected -join ', ')"
+    }
+}
+
 function Assert-CutIdentity {
     param([string]$Id, [string]$Message, [string[]]$Allowed)
     if ($Id -notmatch '^CAR-[A-Z0-9]+(?:-[A-Z0-9]+)*$') { throw "CutId no válido para CAR: $Id" }
@@ -173,7 +181,7 @@ function Invoke-FinalizeCutCore {
             @(Invoke-GitText -Root $rootFull -GitArgs @('diff-tree', '--root', '--no-commit-id', '--name-only', '-r', 'HEAD'))
         }
         if ($lastMessage -notmatch [regex]::Escape($Id)) { throw 'No hay cambios y HEAD no identifica este corte; no se creará un commit vacío.' }
-        Assert-ChangeSetMatches -Actual $lastFiles -Allowed $allowed
+        Assert-ChangesAllowed -Actual $lastFiles -Allowed $allowed
         Write-Host "El corte $Id ya está comprometido en HEAD; se omite un commit duplicado."
         if (-not $NoSync) {
             Invoke-CheckAction -Name 'reintento sync_to_drive.ps1 -DryRun' -Action { & (Join-Path $rootFull 'sync_to_drive.ps1') -DryRun }
@@ -181,7 +189,7 @@ function Invoke-FinalizeCutCore {
         }
         return
     }
-    Assert-ChangeSetMatches -Actual $actual -Allowed $allowed
+    Assert-ChangesAllowed -Actual $actual -Allowed $allowed
     Assert-NoTrailingWhitespace -Root $rootFull -Paths $allowed
     Invoke-CheckAction -Name 'git diff --check' -Action { & git -C $rootFull diff --check }
     Invoke-ApplicableChecks -Root $rootFull -Paths $allowed
@@ -195,7 +203,7 @@ function Invoke-FinalizeCutCore {
     & git -C $rootFull add -- @allowed
     if ($LASTEXITCODE -ne 0) { throw 'git add explícito falló.' }
     $staged = @(Invoke-GitText -Root $rootFull -GitArgs @('diff', '--cached', '--name-only'))
-    Assert-ChangeSetMatches -Actual $staged -Allowed $allowed
+    Assert-ChangesAllowed -Actual $staged -Allowed $allowed
     Invoke-CheckAction -Name 'git diff --cached --check' -Action { & git -C $rootFull diff --cached --check }
     Write-Host 'Diff staged que se comprometerá:'
     & git -C $rootFull diff --cached --stat
