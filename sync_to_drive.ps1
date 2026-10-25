@@ -139,6 +139,28 @@ function Test-SyncHelpers {
     try { Assert-PathExists -Exists $false -Description 'Unidad Drive de prueba' } catch { $existsRejected = $true }
     if (-not $existsRejected) { throw 'No se detectó la ausencia de la unidad de destino.' }
     $passed++
+    $archiveProbe = Join-Path ([IO.Path]::GetTempPath()) ('CAR-archive-test-' + [guid]::NewGuid().ToString('N'))
+    try {
+        New-Item -ItemType Directory -Path $archiveProbe | Out-Null
+        $archivePath = Join-Path $archiveProbe 'snapshot.zip'
+        $archiveArgs = @('-C', $PSScriptRoot, 'archive', '--format=zip', "--output=$archivePath", 'HEAD', 'sync_to_drive.ps1')
+        & git @archiveArgs
+        if ($LASTEXITCODE -ne 0) { throw 'git archive no pudo seleccionar una ruta del snapshot.' }
+        Expand-Archive -LiteralPath $archivePath -DestinationPath (Join-Path $archiveProbe 'out')
+        if (-not (Test-Path -LiteralPath (Join-Path $archiveProbe 'out/sync_to_drive.ps1') -PathType Leaf)) {
+            throw 'git archive no produjo el archivo seleccionado.'
+        }
+        $passed++
+    } finally {
+        $archiveFull = [IO.Path]::GetFullPath($archiveProbe)
+        $archiveParent = [IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd('\') + '\'
+        if ($archiveFull.StartsWith($archiveParent, [StringComparison]::OrdinalIgnoreCase) -and
+            (Split-Path -Leaf $archiveFull) -match '^CAR-archive-test-[0-9a-f]{32}$') {
+            Remove-Item -LiteralPath $archiveFull -Recurse -Force
+        } else {
+            throw "Ruta temporal inesperada; no se eliminó: $archiveFull"
+        }
+    }
     Write-Host "PASS: $passed comprobaciones internas de sync_to_drive.ps1"
 }
 
@@ -229,7 +251,7 @@ function Invoke-Sync {
                     $candidateStage = Join-Path $tempRoot ('ancestor-' + $ancestor.Substring(0, 12))
                     $candidateArchive = Join-Path $tempRoot ('ancestor-' + $ancestor.Substring(0, 12) + '.zip')
                     New-Item -ItemType Directory -Path $candidateStage -Force | Out-Null
-                    $archiveArgs = @('-C', $source, 'archive', '--format=zip', "--output=$candidateArchive", $ancestor.Trim(), '--') + @($mismatches)
+                    $archiveArgs = @('-C', $source, 'archive', '--format=zip', "--output=$candidateArchive", $ancestor.Trim()) + @($mismatches)
                     & git @archiveArgs
                     if ($LASTEXITCODE -ne 0) { continue }
                     Expand-Archive -LiteralPath $candidateArchive -DestinationPath $candidateStage -Force
