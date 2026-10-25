@@ -20,6 +20,7 @@ var objects: Dictionary = {}
 var messages: Dictionary = {}
 var frontier: Dictionary = {}
 var classes: Array[Dictionary] = []
+var obituaries: Array[Dictionary] = []
 var num_deaths: int = 0
 var chest_index: int = -1
 var motion_verbs: Dictionary = {}
@@ -70,6 +71,10 @@ func load_dataset(path: String) -> bool:
 	classes.clear()
 	for entry in data.get("classes", []):
 		classes.append(entry)
+	obituaries.clear()
+	var historical_runtime: Dictionary = data.get("historical_runtime", {})
+	for entry in historical_runtime.get("obituaries", []):
+		obituaries.append(entry)
 	num_deaths = int(data.get("num_deaths", 0))
 	chest_index = int(data.get("chest_index", -1))
 

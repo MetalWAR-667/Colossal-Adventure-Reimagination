@@ -7,6 +7,7 @@ const CARRIED := ""  ## sentinel used as "object place" for carried items
 const INITIAL_LAMP_ENERGY := 330  ## advent.h:GAMELIMIT
 
 enum TravelOutcome { IDLE, ARRIVED, SPOKE, REJECTED, FRONTIER, DEATH_PENDING, DEPENDENCY_PENDING, CYCLE_ERROR }
+enum SessionPhase { PLAYING, REINCARNATION_PENDING, FINISHED }
 
 var current_location: String = ""
 var previous_location: String = ""
@@ -22,6 +23,11 @@ var lamp_energy: int = INITIAL_LAMP_ENERGY  ## historical game.limit
 var lamp_warned: bool = false  ## historical lmwarn
 var was_dark: bool = false  ## historical wzdark snapshot
 var treasures_taken: int = 0
+var death_count: int = 0  ## historical game.numdie
+var session_phase: SessionPhase = SessionPhase.PLAYING
+var cave_closing: bool = false  ## minimal historical game.closng contract
+var last_death_cause: String = ""
+var last_death_location: String = ""
 var finished: bool = false
 
 
@@ -40,6 +46,11 @@ func reset(world: WorldData) -> void:
 	lamp_warned = false
 	was_dark = false
 	treasures_taken = 0
+	death_count = 0
+	session_phase = SessionPhase.PLAYING
+	cave_closing = false
+	last_death_cause = ""
+	last_death_location = ""
 	finished = false
 	for object_id in world.objects.keys():
 		var obj: WorldObject = world.objects[object_id]

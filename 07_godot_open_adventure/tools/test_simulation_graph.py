@@ -101,7 +101,8 @@ class SimulationGraphTests(unittest.TestCase):
                 self.assertEqual(row["condition"], expected)
 
     def test_playable_contract_matches_pre_cut_bytes(self):
-        playable = {k: v for k, v in self.dataset.items() if k != "simulation_graph"}
+        non_playable_projections = {"simulation_graph", "historical_runtime"}
+        playable = {k: v for k, v in self.dataset.items() if k not in non_playable_projections}
         # Canonical dump of the complete pre-CUT-A dataset at f8796e6.
         digest = hashlib.sha256(export.dump(playable).encode("utf-8")).hexdigest()
         self.assertEqual(digest, "a49db669ea659a36cfe8a057ec0f511cfb559e8e875a3c3047bf38bb64ffb77f")

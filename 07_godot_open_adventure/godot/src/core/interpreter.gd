@@ -39,7 +39,9 @@ func submit(line: String) -> Array[String]:
 	var output: Array[String] = []
 	if state.finished:
 		return output
-	if state.travel_outcome in [GameState.TravelOutcome.DEATH_PENDING, GameState.TravelOutcome.DEPENDENCY_PENDING, GameState.TravelOutcome.CYCLE_ERROR]:
+	if state.session_phase == GameState.SessionPhase.REINCARNATION_PENDING:
+		return _answer_reincarnation(line)
+	if state.travel_outcome in [GameState.TravelOutcome.DEPENDENCY_PENDING, GameState.TravelOutcome.CYCLE_ERROR]:
 		return output
 	# misc.c:get_command_input rejects empty/overlong input before counting.
 	var input_words := line.strip_edges().replace("\t", " ").split(" ", false)
@@ -72,6 +74,7 @@ func submit(line: String) -> Array[String]:
 	if command.is_motion():
 		output.append_array(_handle_motion(command))
 		output.append_array(_check_dark_fall())
+		output.append_array(_consume_death_pending())
 		return output
 
 	if command.is_action():
@@ -79,6 +82,80 @@ func submit(line: String) -> Array[String]:
 		return output
 
 	return output
+
+
+# ---------------------------------------------------------------------------
+# death and reincarnation (main.c:croak, misc.c:yes_or_no)
+# ---------------------------------------------------------------------------
+
+func _consume_death_pending() -> Array[String]:
+	if state.travel_outcome != GameState.TravelOutcome.DEATH_PENDING or state.session_phase != GameState.SessionPhase.PLAYING:
+		return []
+	var obituary_index := state.death_count
+	state.last_death_cause = state.travel_dependency
+	state.last_death_location = state.current_location
+	state.death_count += 1
+	if state.cave_closing:
+		_finish_after_death()
+		return [world.message("DEATH_CLOSING")]
+	state.session_phase = GameState.SessionPhase.REINCARNATION_PENDING
+	return [_obituary_text(obituary_index, "query")]
+
+
+func _answer_reincarnation(line: String) -> Array[String]:
+	var obituary_index := state.death_count - 1
+	var first_word := line.strip_edges().split(" ", false)
+	if first_word.is_empty():
+		return [world.message("PLEASE_ANSWER"), _obituary_text(obituary_index, "query")]
+	var answer := String(first_word[0]).to_lower()
+	if answer.begins_with("y"):
+		var lines: Array[String] = [_obituary_text(obituary_index, "yes_response")]
+		if state.death_count >= world.num_deaths:
+			_finish_after_death()
+			return lines
+		_reincarnate()
+		lines.append_array(_describe_current(true))
+		return lines
+	if answer.begins_with("n"):
+		_finish_after_death()
+		return [world.message("OK_MAN")]
+	return [world.message("PLEASE_ANSWER"), _obituary_text(obituary_index, "query")]
+
+
+func _obituary_text(index: int, key: String) -> String:
+	if index < 0 or index >= world.obituaries.size():
+		return ""
+	return String(world.obituaries[index].get(key, ""))
+
+
+func _finish_after_death() -> void:
+	state.session_phase = GameState.SessionPhase.FINISHED
+	state.finished = true
+
+
+func _reincarnate() -> void:
+	# main.c:croak destroys loose liquids before dropping carried objects.
+	for liquid_id in ["WATER", "OIL"]:
+		if state.object_place.has(liquid_id):
+			state.object_place[liquid_id] = "LOC_NOWHERE"
+	# CH_01 represents bottle contents as BOTTLE state rather than separate
+	# WATER/OIL objects, so clear the equivalent state without resetting energy.
+	if state.state_of("BOTTLE") in ["WATER_BOTTLE", "OIL_BOTTLE"]:
+		state.set_state("BOTTLE", "EMPTY_BOTTLE")
+	var death_drop := state.previous_previous_location
+	for object_id in state.carried_objects():
+		if object_id == "LAMP":
+			state.set_state("LAMP", "LAMP_DARK")
+			state.object_place[object_id] = "LOC_START"
+		else:
+			state.object_place[object_id] = death_drop
+	state.current_location = "LOC_BUILDING"
+	state.previous_location = "LOC_BUILDING"
+	state.pending_location = "LOC_BUILDING"
+	state.travel_outcome = GameState.TravelOutcome.IDLE
+	state.travel_dependency = ""
+	state.was_dark = false
+	state.session_phase = GameState.SessionPhase.PLAYING
 
 
 # ---------------------------------------------------------------------------
@@ -194,9 +271,9 @@ func _execute_move(rule: TravelRule) -> Dictionary:
 			return result
 		state.pending_location = candidate.target
 		if candidate.target == "LOC_NOWHERE" and loc != null and loc.is_forced():
-			# do_move() would call croak. Keep last entered location and
-			# oldloc/oldlc2/newloc for CUT D; no reincarnation or score change.
+			# do_move() calls croak after entering a lethal forced destination.
 			state.travel_outcome = GameState.TravelOutcome.DEATH_PENDING
+			state.travel_dependency = "lethal_destination"
 			return result
 		if not world.is_in_chapter(candidate.target):
 			state.travel_outcome = GameState.TravelOutcome.FRONTIER
@@ -655,8 +732,8 @@ func _score() -> int:
 			points += 2
 		if state.is_here(obj.id) and state.current_location == "LOC_BUILDING":
 			points += k - 2
-	# Surviving: (NDEATHS - deaths) * 10, with no deaths possible in chapter 01.
-	points += world.num_deaths * 10
+	# Surviving: (NDEATHS - game.numdie) * 10 (score.c:63-70).
+	points += max(world.num_deaths - state.death_count, 0) * 10
 	points += 2
 	return points
 

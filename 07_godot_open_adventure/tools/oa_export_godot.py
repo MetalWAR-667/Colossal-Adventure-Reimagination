@@ -430,8 +430,15 @@ def build_dataset() -> dict[str, Any]:
         },
     }
     # Existing fields remain the playable contract. WorldData does not consume
-    # this additive projection. Both projections share the loaded IR and hashes.
+    # the actor projection. Additive historical runtime data stays separate
+    # from playable rooms/objects and shares the same loaded IR and hashes.
     dataset["simulation_graph"] = build_simulation_graph(ir)
+    dataset["historical_runtime"] = {
+        "obituaries": [
+            {"query": spec.get("query") or "", "yes_response": spec.get("yes_response") or ""}
+            for spec in ir["obituaries"]
+        ]
+    }
     return dataset
 
 
