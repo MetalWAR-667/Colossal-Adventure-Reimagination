@@ -169,6 +169,15 @@ baseline. See the retrospective
   Playable CH_01 contract digest (`a49db669...`), `GameState.gd`, `Interpreter.gd`,
   and `CommandParser.gd` remain untouched. See the
   [R3 record](changes/car_core_002_r3_structural_loader_enabled_view/CHANGE.md).
+- CAR-CORE-002 / R4: `CLOSED / PASS` on 2026-10-25. Structural validation and
+  contract freeze are completed and sealed: `CAR_CORE_002_STRUCTURAL_CONTRACT.md`
+  and `CAR_CORE_002_TRACEABILITY_MATRIX.md` formalize the authority chain,
+  schema v1, travel precedence, static vs. runtime objects, LOADED vs. ENABLED
+  separation, deep defensive copies, fail-closed policy, and R5 compatibility.
+  The Godot test suite `test_structural_contract_freeze.gd` verified all 34
+  checks with 0 failures. Baseline digests (`a49db669...`, `afa33c88...`,
+  `fda199af...`) and functional isolation of CH_01 are fully preserved. See the
+  [R4 record](changes/car_core_002_r4_structural_validation_contract_freeze/CHANGE.md).
 
 ## ACTIVE
 
@@ -178,7 +187,7 @@ No active implementation cut is recorded.
 
 These items are not authorized implementation cuts:
 
-- CAR-CORE-002 / R4 — Structural Validation & Contract Freeze: `PROPOSED / NOT AUTHORIZED`.
+- CAR-CORE-002 / R5 — Structural Navigation Enablement: `PROPOSED / NOT AUTHORIZED`.
 - Human graphical and gameplay-experience review of chapter 01.
 - Final artistic polish of `GRATE_OPEN`, accepted provisionally by the human
   in CAR-ART-005 and reserved for the project's final art review.
@@ -232,9 +241,9 @@ Known style diagnostics, not demonstrated functional regressions:
 
 ## Next Decision Gate
 
-CAR-CORE-002 / R3 is closed with PASS: the structural loader and enabled location
-view are verified in Godot.
-**CAR-CORE-002 / R4 — Structural Validation & Contract Freeze: PROPOSED / NOT AUTHORIZED**
+CAR-CORE-002 / R4 is closed with PASS: the structural validation and contract
+freeze are sealed.
+**CAR-CORE-002 / R5 — Structural Navigation Enablement: PROPOSED / NOT AUTHORIZED**
 is the next dependency cut; it requires explicit human authorization.
 CAR-ART-005 is closed with documented follow-up: `GRATE_OPEN` polish remains
 pending final artistic review; its accepted state selection and integration are
