@@ -201,7 +201,8 @@ func _refresh_status() -> void:
 		interpreter.state.turn,
 		world.ui("turn_line").replace("{turn}", str(interpreter.state.turn)),
 	]
-	illustration.show_room(location_id)
+	var visual_state := interpreter.state.state_of("GRATE") if location_id == "LOC_GRATE" else ""
+	illustration.show_room(location_id, visual_state)
 	if debug_mode:
 		illustration.complete_pending()
 	map_view.set_location(location_id, interpreter.state.visited, interpreter.state)

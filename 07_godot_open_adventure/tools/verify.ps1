@@ -9,7 +9,8 @@
       3. the headless test suite of the engine;
       4. the contact sheet of the vector illustrations.
       5. runtime illustration/layout integration regressions.
-      6. deterministic vector-art compilation and CH_01 batch regressions.
+      6. deterministic vector-art compilation and CH_01 batch regressions;
+      7. deterministic GRATE variants and state-aware presentation regressions.
 
 .EXAMPLE
     powershell -ExecutionPolicy Bypass -File tools\verify.ps1
@@ -44,30 +45,36 @@ if ([string]::IsNullOrWhiteSpace($Godot)) {
     }
 }
 
-Write-Host "== 1/6 export determinism ==" -ForegroundColor Cyan
+Write-Host "== 1/7 export determinism ==" -ForegroundColor Cyan
 & $Python (Join-Path $here "oa_export_godot.py") --check
 if ($LASTEXITCODE -ne 0) { Fail "the committed dataset does not match the regenerated one" }
 
-Write-Host "== 2/6 godot import ==" -ForegroundColor Cyan
+Write-Host "== 2/7 godot import ==" -ForegroundColor Cyan
 & $Godot --headless --path $project --editor --quit | Out-Null
 if ($LASTEXITCODE -ne 0) { Fail "the Godot import reported errors" }
 
-Write-Host "== 3/6 engine tests ==" -ForegroundColor Cyan
+Write-Host "== 3/7 engine tests ==" -ForegroundColor Cyan
 & $Godot --headless --path $project --script res://tests/run_tests.gd
 if ($LASTEXITCODE -ne 0) { Fail "the engine tests failed" }
 
-Write-Host "== 4/6 illustration sheet ==" -ForegroundColor Cyan
+Write-Host "== 4/7 illustration sheet ==" -ForegroundColor Cyan
 & $Godot --headless --path $project --script res://tools/capture_scenes.gd
 if ($LASTEXITCODE -ne 0) { Fail "the illustration sheet could not be rendered" }
 
-Write-Host "== 5/6 runtime illustration integration ==" -ForegroundColor Cyan
+Write-Host "== 5/7 runtime illustration integration ==" -ForegroundColor Cyan
 & $Godot --headless --path $project --script res://tests/test_runtime_illustration.gd
 if ($LASTEXITCODE -ne 0) { Fail "the runtime illustration integration tests failed" }
 
-Write-Host "== 6/6 CH_01 vector art ==" -ForegroundColor Cyan
+Write-Host "== 6/7 CH_01 vector art ==" -ForegroundColor Cyan
 & $Python (Join-Path $here "build_ch01_vector_art.py") --check
 if ($LASTEXITCODE -ne 0) { Fail "the vector artwork differs from its authored geometry" }
 & $Godot --headless --path $project --script res://tests/test_ch01_vector_art.gd
 if ($LASTEXITCODE -ne 0) { Fail "the CH_01 vector-art batch tests failed" }
+
+Write-Host "== 7/7 GRATE state art ==" -ForegroundColor Cyan
+& $Python (Join-Path $here "build_grate_variants.py") --check
+if ($LASTEXITCODE -ne 0) { Fail "the GRATE artwork differs from its authored geometry" }
+& $Godot --headless --path $project --script res://tests/test_grate_state_art.gd
+if ($LASTEXITCODE -ne 0) { Fail "the GRATE state-art tests failed" }
 
 Write-Host "ALL CHECKS PASSED" -ForegroundColor Green

@@ -14,6 +14,8 @@ const PROGRESSIVE_SOURCES := {
 	"LOC_CLIFF": "res://data/vector_ch01/loc_cliff.json",
 	"LOC_LEDGE": "res://data/vector_ch01/loc_ledge.json",
 	"LOC_SEWER": "res://data/vector_ch01/loc_sewer.json",
+	"GRATE_CLOSED": "res://data/vector_ch01/grate_closed.json",
+	"GRATE_OPEN": "res://data/vector_ch01/grate_open.json",
 }
 
 var world: WorldData
@@ -21,6 +23,7 @@ var playback: Control
 var progressive_sources: Dictionary = PROGRESSIVE_SOURCES.duplicate()
 var _playbacks: Dictionary = {}
 var current_room := ""
+var current_scene_id := ""
 var presentation_kind := "legacy"
 var _presented_rooms: Dictionary = {}
 var _texture: ImageTexture
@@ -34,14 +37,21 @@ func _init(world_data: WorldData) -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 
-func show_room(location_id: String) -> void:
-	if location_id == current_room:
-		return
-	current_room = location_id
-	_caption = location_id.replace("LOC_", "")
+func show_room(location_id: String, visual_state: String = "") -> void:
 	var scene_id := location_id
 	if location_id.begins_with("LOC_FOREST") and progressive_sources.has("LOC_FOREST"):
 		scene_id = "LOC_FOREST"
+	elif (
+		location_id == "LOC_GRATE"
+		and visual_state in ["GRATE_CLOSED", "GRATE_OPEN"]
+		and progressive_sources.has(visual_state)
+	):
+		scene_id = visual_state
+	if location_id == current_room and scene_id == current_scene_id:
+		return
+	current_room = location_id
+	current_scene_id = scene_id
+	_caption = location_id.replace("LOC_", "")
 	if playback != null:
 		playback.show_room("")
 		playback.hide()

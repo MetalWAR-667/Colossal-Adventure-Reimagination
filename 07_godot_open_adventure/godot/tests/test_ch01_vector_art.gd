@@ -194,6 +194,10 @@ func _run() -> void:
 	for id: String in forest_ids:
 		main.illustration.show_room(id)
 		check(main.illustration.playback.illustration_id == "LOC_FOREST", "shared forest source " + id)
+	# Preserve the historical CAR-ART-004 fallback fixture; production selection
+	# for both GRATE states is checked separately by CAR-ART-005.
+	main.illustration.progressive_sources.erase("GRATE_CLOSED")
+	main.illustration.progressive_sources.erase("GRATE_OPEN")
 	main.interpreter.state.current_location = "LOC_GRATE"
 	main._refresh_status()
 	check(main.illustration.presentation_kind == "legacy" and main.illustration._texture != null, "GRATE fallback retained")

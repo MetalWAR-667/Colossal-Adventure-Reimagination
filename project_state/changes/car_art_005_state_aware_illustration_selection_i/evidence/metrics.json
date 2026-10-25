@@ -1,0 +1,48 @@
+{
+	"checks": 180,
+	"device": "NVIDIA GeForce RTX 3070",
+	"failures": [],
+	"godot": "4.7.2-stable (official)",
+	"manual_validation": "PENDING",
+	"source_state": "GameState.state_of(GRATE)",
+	"variants": [
+		{
+			"paths": 49,
+			"playback_seconds": 3.502407,
+			"prepare_seconds": 4.189422,
+			"regions": 28,
+			"samples": [
+				"00.png",
+				"01.png",
+				"02.png",
+				"03.png",
+				"04.png",
+				"05.png",
+				"06.png",
+				"07.png",
+				"08.png",
+				"09.png"
+			],
+			"variant": "GRATE_CLOSED"
+		},
+		{
+			"paths": 47,
+			"playback_seconds": 3.505492,
+			"prepare_seconds": 4.242553,
+			"regions": 25,
+			"samples": [
+				"00.png",
+				"01.png",
+				"02.png",
+				"03.png",
+				"04.png",
+				"05.png",
+				"06.png",
+				"07.png",
+				"08.png",
+				"09.png"
+			],
+			"variant": "GRATE_OPEN"
+		}
+	]
+}

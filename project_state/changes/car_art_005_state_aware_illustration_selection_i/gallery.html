@@ -1,0 +1,33 @@
+<!doctype html><html lang="es"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CAR-ART-005 · GRATE abierta y cerrada</title>
+<style>body{margin:24px;background:#f8efdc;color:#333d37;font:16px/1.5 system-ui}
+main{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,480px),1fr));gap:20px}
+article{background:#fffaf0;border:1px solid #92745a;border-radius:8px;padding:16px}
+img{display:block;width:100%;height:auto}a{color:#265d60}summary{cursor:pointer}
+footer{margin-top:24px}</style>
+<h1>GRATE · C — Línea solar</h1><p>Dos estados de una misma sala, seleccionados desde
+GameState. Técnica verificada; revisión artística humana pendiente. Los GIF son
+frames reales muestreados con paleta y tiempos aproximados; los PNG y las métricas
+son la evidencia de render.</p><main><article><h2>GRATE — Cerrada</h2>
+<p>Variante GRATE_CLOSED · técnica PASS · aceptación visual pendiente.</p>
+<img src="evidence/grate_closed_final.png" alt="Reja cerrada, final">
+<details><summary>Ver LINE/FILL muestreado</summary>
+<img loading="lazy" src="evidence/grate_closed_playback.gif" alt="Reproducción GRATE_CLOSED"></details>
+<p><a href="evidence/runtime_grate_closed.png">Vista dentro del juego</a> ·
+preparación 4.189 s · reproducción 3.502 s.</p></article>
+<article><h2>GRATE — Abierta</h2>
+<p>Variante GRATE_OPEN · técnica PASS · aceptación visual pendiente.</p>
+<img src="evidence/grate_open_final.png" alt="Reja abierta, final">
+<details><summary>Ver LINE/FILL muestreado</summary>
+<img loading="lazy" src="evidence/grate_open_playback.gif" alt="Reproducción GRATE_OPEN"></details>
+<p><a href="evidence/runtime_grate_open.png">Vista dentro del juego</a> ·
+preparación 4.243 s · reproducción 3.505 s.</p></article></main><h2>Transición en el juego</h2><p>Tras UNLOCK GRATE, la sala permanece
+LOC_GRATE y la reproducción sustituye la variante cerrada. Las capturas muestran
+el inicio del trazado y la reja abierta más avanzada:</p>
+<main><article><img src="evidence/state_transition_open_contours.png" alt="Inicio del trazado abierto"></article>
+<article><img src="evidence/state_transition_open_gate.png" alt="Contornos de la reja abierta"></article></main>
+<footer><a href="CHANGE.md">Informe técnico</a> ·
+<a href="evidence/metrics.json">Métricas</a> ·
+<a href="../car_art_004_ch01_vector_illustration_production/gallery.html">Galería anterior aceptada</a> ·
+<a href="../car_art_004_ch01_vector_illustration_production/evidence/LOC_GRATE/legacy.png">Referencia heredada conservada</a></footer></html>
