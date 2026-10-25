@@ -44,7 +44,7 @@ El sincronizador verifica que se ejecuta en la raíz CAR, que Drive está montad
 
 La copia es local → Drive, incremental y no destructiva. Usa `/E` y `/XJ`; no usa `/MIR`, `/PURGE` ni opciones que muevan archivos. Los archivos exclusivos del destino —incluidos los `.agents` y `.git` observados en la carpeta actual de Drive— se conservan. Códigos Robocopy 0–7 se consideran finalización/advertencia; 8 o superior falla. Tras copiar, se comprueba SHA-256 de cada archivo versionado.
 
-Un estado de sincronización local bajo `.git/car_drive_sync_state.json` recuerda la huella anterior. Si aún no existe, el primer sync permite sobrescribir contenido solo cuando los archivos divergentes coinciden, todos, con un mismo ancestro Git reconocido (hasta 100 commits); si no puede demostrar una base común, se detiene. Tras un sync correcto, el estado local se actualiza; no se añade al repositorio ni a Drive.
+Un estado de sincronización local bajo `.git/car_drive_sync_state.json` recuerda la huella anterior. Las huellas de archivos de texto normalizan exclusivamente finales de línea LF/CRLF; no normalizan espacios ni contenido. Si aún no existe estado, el primer sync permite sobrescribir contenido solo cuando los archivos divergentes coinciden, todos, con un mismo ancestro Git reconocido (hasta 100 commits); si no puede demostrar una base común, se detiene. Tras un sync correcto, el estado local se actualiza; no se añade al repositorio ni a Drive.
 
 ## Recuperación y límites
 

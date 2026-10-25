@@ -67,6 +67,15 @@ function Test-SafeOverwrite {
 
 function Get-FileSha256 {
     param([string]$Path)
+    $textExtensions = @('.md', '.txt', '.gd', '.tscn', '.tres', '.json', '.yaml', '.yml', '.ps1', '.py', '.toml', '.cfg', '.c', '.h', '.drawio', '.csv', '.xml', '.svg', '.gdshader', '.gdshaderinc', '.gdextension')
+    $fileName = [IO.Path]::GetFileName($Path)
+    if ([IO.Path]::GetExtension($Path).ToLowerInvariant() -in $textExtensions -or $fileName -in @('LICENSE', 'NOTICE', 'COPYING', 'AUTHORS')) {
+        $text = [IO.File]::ReadAllText($Path, [Text.Encoding]::UTF8)
+        $normalized = $text.Replace("`r`n", "`n").Replace("`r", "`n")
+        $sha = [Security.Cryptography.SHA256]::Create()
+        try { $bytes = $sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($normalized)) } finally { $sha.Dispose() }
+        return ([BitConverter]::ToString($bytes) -replace '-', '').ToLowerInvariant()
+    }
     return (Get-FileHash -LiteralPath $Path -Algorithm SHA256).Hash.ToLowerInvariant()
 }
 
@@ -142,6 +151,14 @@ function Test-SyncHelpers {
     $archiveProbe = Join-Path ([IO.Path]::GetTempPath()) ('CAR-archive-test-' + [guid]::NewGuid().ToString('N'))
     try {
         New-Item -ItemType Directory -Path $archiveProbe | Out-Null
+        $lfFile = Join-Path $archiveProbe 'lf.txt'
+        $crlfFile = Join-Path $archiveProbe 'crlf.txt'
+        [IO.File]::WriteAllText($lfFile, "line one`nline two`n", [Text.UTF8Encoding]::new($false))
+        [IO.File]::WriteAllText($crlfFile, "line one`r`nline two`r`n", [Text.UTF8Encoding]::new($false))
+        if ((Get-FileSha256 -Path $lfFile) -ne (Get-FileSha256 -Path $crlfFile)) {
+            throw 'La comparación normalizada no aceptó finales LF/CRLF equivalentes.'
+        }
+        $passed++
         $archivePath = Join-Path $archiveProbe 'snapshot.zip'
         $archiveArgs = @('-C', $PSScriptRoot, 'archive', '--format=zip', "--output=$archivePath", 'HEAD', 'sync_to_drive.ps1')
         & git @archiveArgs
