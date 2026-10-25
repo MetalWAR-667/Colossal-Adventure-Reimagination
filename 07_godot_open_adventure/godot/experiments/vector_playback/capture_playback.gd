@@ -20,11 +20,12 @@ func _run() -> void:
 		output = args[1]
 	DirAccess.make_dir_recursive_absolute(output)
 	var viewport := SubViewport.new()
-	viewport.size = Vector2i(640, 400)
+	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://experiments/vector_playback/loc_start.json"))
+	viewport.size = Vector2i(int(data.grid[0]), int(data.grid[1]))
 	viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 	root.add_child(viewport)
 	var view := View.new()
-	view.size = Vector2(640, 400)
+	view.size = Vector2(viewport.size)
 	viewport.add_child(view)
 	while not view.model.prepared and view.model.error.is_empty():
 		await process_frame
@@ -69,7 +70,7 @@ func _run() -> void:
 	var same := full.get_data() == skipped.get_data()
 	var log := {"godot": Engine.get_version_info().string, "display": DisplayServer.get_name(),
 		"renderer": RenderingServer.get_current_rendering_method(), "device": RenderingServer.get_video_adapter_name(),
-		"grid": [640,400], "target_seconds": view.model.duration, "wall_seconds": wall,
+		"grid": [viewport.size.x,viewport.size.y], "target_seconds": view.model.duration, "wall_seconds": wall,
 		"view_completion_seconds": completion, "rendered_frames": frames,
 		"max_frame_ms_including_capture": max_frame_ms, "prepare_seconds": view.prepare_seconds,
 		"max_prepare_us": view.max_prepare_us, "max_update_us": view.max_update_us,

@@ -13,6 +13,20 @@ import struct
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[3]
 SOURCE = ROOT / "project_state/changes/car_art_001_vector_direction_gate/studies/build_studies.py"
+GRID = (736, 400)
+MARGIN = 48
+
+
+def frame(polyline, kind):
+    """Translate rigid geometry; extend only the backdrop and road boundary."""
+    result = [list(point) for point in polyline]
+    if kind == "road":
+        # Preserve the original curve, then continue its exit tangent to the
+        # new left edge. No scale/shear of the existing road or other objects.
+        result[-1:-1] = [[-MARGIN, 366 + MARGIN*60/153], [-MARGIN, 400]]
+    if kind == "backdrop":
+        result = [[-MARGIN if x == 0 else 640+MARGIN if x == 640 else x, y] for x, y in result]
+    return [[round(x+MARGIN, 5), y] for x, y in result]
 
 
 def paths(text):
@@ -68,7 +82,8 @@ def paths(text):
 
 def interior(poly):
     cells = []
-    for y in range(400):
+    width, height = GRID
+    for y in range(height):
         crossings = []
         for a, b in zip(poly, poly[1:]):
             if (a[1] > y+.5) != (b[1] > y+.5):
@@ -76,7 +91,7 @@ def interior(poly):
         crossings.sort()
         assert len(crossings) % 2 == 0
         for left, right in zip(crossings[::2], crossings[1::2]):
-            cells.extend(y*640+x for x in range(max(0, math.ceil(left-.5)), min(640, math.ceil(right-.5))))
+            cells.extend(y*width+x for x in range(max(0, math.ceil(left-.5)), min(width, math.ceil(right-.5))))
     return cells
 
 
@@ -85,24 +100,31 @@ def build():
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     drawing = module.start("C")
+    original_road, = paths(drawing.fills[2][0])
     regions = []
     for index, (path, color, seed) in enumerate(drawing.fills):
+        original_seed = seed
         polygon, = paths(path)
+        polygon = frame(polygon, "backdrop" if index < 2 else "road" if index == 2 else "rigid")
+        seed = (seed[0]+MARGIN, seed[1])
         assert polygon[0] == polygon[-1]
         cells = interior(polygon)
         # Original conceptual seeds may be on boundaries/outside. Choose the
         # nearest actual interior cell explicitly; keep the source seed too.
-        cell = min(cells, key=lambda n: ((n % 640 + .5-seed[0])**2 + (n//640 + .5-seed[1])**2, n))
+        cell = min(cells, key=lambda n: ((n % GRID[0] + .5-seed[0])**2 + (n//GRID[0] + .5-seed[1])**2, n))
         mask_bytes = b"".join(struct.pack("<i", n) for n in cells)
         regions.append(dict(id=f"region_{index:02}", polygon=polygon, color=color,
-                            source_seed=seed, seed=[cell % 640, cell//640],
+                            source_seed=original_seed, seed=[cell % GRID[0], cell//GRID[0]],
                             raster_area=len(cells), mask_sha256=hashlib.sha256(mask_bytes).hexdigest()))
     lines = []
     for path, phase in drawing.strokes:
         for polyline in paths(path):
             if len(polyline) > 1:
+                kind = "road" if polyline == original_road else "backdrop" if len(lines) < 2 else "rigid"
+                polyline = frame(polyline, kind)
                 lines.append(dict(points=polyline, phase=phase, width=1.35 if phase == "detail" else 2.6))
-    data = dict(format="CAR-ART-002-experimental-v1", room="LOC_START", grid=[640, 400],
+    data = dict(format="CAR-ART-002-experimental-v1", room="LOC_START", grid=list(GRID),
+                framing=dict(revision="lateral_fix_01", translate_x=MARGIN, scale=1),
                 provenance="Original C / Línea solar START study; experimental, not a final asset.",
                 source_sha256_lf=hashlib.sha256(SOURCE.read_text(encoding="utf-8").encode("utf-8")).hexdigest(),
                 background=drawing.p["paper"], ink=drawing.p["ink"],

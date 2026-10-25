@@ -78,6 +78,8 @@ baseline. See the retrospective
   technically verified; `REVIEW / MANUAL_VALIDATION PENDING`. The isolated
   Godot scene is not integrated into the game or its parser. See the
   [prototype record](changes/car_art_002_vector_drawing_playback_prototype/CHANGE.md).
+  Human review accepted the 3.5 s speed; lateral framing was corrected in
+  Visual Review Fix 01 and awaits final visual acceptance.
 
 ## PENDING / PROPOSED
 
@@ -91,7 +93,7 @@ These items are not authorized implementation cuts:
   to existing project evidence and a separately approved scope.
 - CAR-CORE-001 CUT A — proposed global data-contract cut; not authorized.
 - Human visual acceptance of CAR-ART-002 and any subsequent production
-  integration; the existing 448 game checks and 62 separate prototype checks
+  integration; the existing 448 game checks and 66 separate prototype checks
   do not replace that acceptance.
 - CAR-ART-003 — migration of all eleven CH_01 illustrations; `NOT AUTHORIZED`.
 - CH_02 playable integration remains blocked by the global runtime dependencies

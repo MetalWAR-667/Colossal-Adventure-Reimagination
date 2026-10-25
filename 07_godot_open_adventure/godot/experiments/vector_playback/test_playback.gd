@@ -29,7 +29,8 @@ func _run() -> void:
 	var model := Playback.new()
 	model.configure(data)
 	check(data.room == "LOC_START" and data.format == "CAR-ART-002-experimental-v1", "Experimental dataset identity")
-	check(model.grid == Vector2i(640, 400) and model.lines.size() == 43 and model.regions.size() == 17, "Full C/START geometry retained")
+	check(model.grid == Vector2i(736, 400) and model.lines.size() == 43 and model.regions.size() == 17, "Full C/START geometry retained in wider frame")
+	var width := model.grid.x
 	var before := Time.get_ticks_usec()
 	var steps := 0
 	var max_prepare := 0
@@ -49,13 +50,24 @@ func _run() -> void:
 		sorted.sort()
 		check(order.size() == int(data.regions[i].raster_area) and digest(sorted.to_byte_array()) == data.regions[i].mask_sha256, "Region %d exact independent Python mask: no leak or missing pixels" % i)
 		var seen: Dictionary = {}
-		var connected := order[0] == int(data.regions[i].seed[1])*640+int(data.regions[i].seed[0])
+		var connected := order[0] == int(data.regions[i].seed[1])*width+int(data.regions[i].seed[0])
 		for cell in order:
 			if not seen.is_empty():
-				connected = connected and (seen.has(cell-640) or seen.has(cell+640) or (cell%640>0 and seen.has(cell-1)) or (cell%640<639 and seen.has(cell+1)))
+				connected = connected and (seen.has(cell-width) or seen.has(cell+width) or (cell%width>0 and seen.has(cell-1)) or (cell%width<width-1 and seen.has(cell+1)))
 			connected = connected and not seen.has(cell)
 			seen[cell] = true
 		check(connected, "Region %d grows through adjacent unique cells from its seed" % i)
+	var left := 10000.0
+	var right := 0.0
+	for point: Vector2 in model.regions[10].polygon:
+		left = minf(left, point.x)
+	for point: Vector2 in model.regions[16].polygon:
+		right = maxf(right, point.x)
+	check(left - 1.3 >= 30.0, "Left crown has at least 30 px margin including stroke")
+	check(width - right - 1.3 >= 30.0, "Right crown has at least 30 px margin including stroke")
+	check(not model.owners.has(-1), "Every canvas pixel is covered by a region, including lateral extensions")
+	# Exact source coordinates after a translation only: no horizontal stretch.
+	check(model.regions[3].polygon == PackedVector2Array([Vector2(425,144),Vector2(580,144),Vector2(580,263),Vector2(425,263),Vector2(425,144)]) and model.regions[8].polygon[0].is_equal_approx(Vector2(547,263)), "House and stream retain original dimensions and rigid +48 translation")
 	var path := PackedVector2Array([Vector2(0, 0), Vector2(3, 0), Vector2(3, 4)])
 	var partial := Playback.partial_path(path, 5.0)
 	check(partial.size() == 3 and partial[-1].is_equal_approx(Vector2(3, 2)), "Interpolation traverses intermediate segments at arc distance")
@@ -68,7 +80,7 @@ func _run() -> void:
 	check(model.last_painted > 0 and model.last_painted <= Playback.PAINT_BUDGET, "Spatial fill begins with bounded work")
 	var occlusion_ok := true
 	for cell in model.owners.size():
-		if model.owners[cell] > 0 and model.image.get_pixel(cell%640, cell/640) != Color(String(data.background)):
+		if model.owners[cell] > 0 and model.image.get_pixel(cell%width, cell/width) != Color(String(data.background)):
 			occlusion_ok = false
 	check(occlusion_ok, "Initial sky front cannot paint inside any later foreground region")
 	var max_paint := 0

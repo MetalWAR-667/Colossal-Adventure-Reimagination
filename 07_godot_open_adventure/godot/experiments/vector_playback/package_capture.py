@@ -20,12 +20,13 @@ def package(source, target):
     durations = [max(10, round((b-a)*100)*10) for a, b in zip(times, times[1:])] + [1500]
     indexed[0].save(target / "playback.gif", save_all=True, append_images=indexed[1:],
                     duration=durations, loop=0, optimize=False, disposal=2)
-    sheet = Image.new("RGB", (1280, 1260), "#ece9df")
+    width, height = final.size
+    sheet = Image.new("RGB", (width*2, (height+20)*3), "#ece9df")
     draw = ImageDraw.Draw(sheet)
     for position, index in enumerate([8, 14, 21, 23, 29, len(frames)]):
         frame = final if index == len(frames) else frames[index]
         elapsed = metrics["target_seconds"] if index == len(frames) else times[index]
-        x, y = (position % 2)*640, (position//2)*420
+        x, y = (position % 2)*width, (position//2)*(height+20)
         sheet.paste(frame, (x, y+20))
         draw.text((x+8, y+4), f"Godot actual capture / t={elapsed:.3f}s", fill="#263b38")
     sheet.save(target / "contact_sheet.png")

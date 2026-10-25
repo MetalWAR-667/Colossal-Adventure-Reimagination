@@ -3,6 +3,8 @@
 Estado: **IMPLEMENTED / TECHNICAL VERIFICATION COMPLETE / MANUAL_VALIDATION PENDING**.
 Resultado de entrega: **PARTIAL**, pendiente de que el responsable contemple y acepte la animación real. Prototipo experimental, sin integración productiva. Fecha: 2026-10-25. Agente: Sol, implementación asistida por Codex.
 
+**Revisión vigente:** Visual Review Fix 01, encuadre lateral corregido a **736 × 400**. La velocidad de 3,5 s a 1× está **ACCEPTED** por el responsable; aceptación visual final todavía pendiente. Las secciones originales y sus artefactos conservan la evidencia de la primera entrega a 640 × 400. El registro de la corrección y las capturas actuales figuran al final de este documento.
+
 ## Autorización y baseline
 
 Encargo humano CAR-ART-002: implementar una única ilustración experimental `LOC_START` en Godot 4.7.2, con dirección **C — Línea solar**, contornos interpolados, rellenos espaciales y objetivo de 3,5 segundos a 1×. Se admite expresamente una escena de prueba si integrar la UI introduce riesgo. La elección humana procede de [CAR-ART-001](../car_art_001_vector_direction_gate/CHANGE.md); no se repite su investigación ni se modifican sus estudios.
@@ -66,7 +68,7 @@ Revisar visualmente recorrido, ritmo, propagación, curvas/legibilidad y reconoc
 
 ## Verificación ejecutada
 
-Godot **4.7.2.stable.official.ed1daf0bf**, Windows; captura OpenGL Compatibility, NVIDIA GeForce RTX 3070. Comandos ejecutados desde raíz:
+Godot **4.7.2.stable.official.ed1daf0bf**, Windows; captura OpenGL Compatibility, NVIDIA GeForce RTX 3070. Comandos históricos de la primera entrega desde raíz; para nuevas capturas usar el destino separado indicado en Visual Review Fix 01, conservando estos artefactos originales:
 
 ```powershell
 python 07_godot_open_adventure/godot/experiments/vector_playback/build_loc_start.py
@@ -96,3 +98,41 @@ La primera ejecución de la prueba encontró un array temporal compartido que va
 - Parar y revisar si se pierde una pista, cambia la geografía, aparecen fugas, divergencia del final o sala obsoleta; no ocultar esos fallos mediante un fundido.
 
 `CURRENT_STATE_UPDATE: REQUIRED`: prototipo técnico entregado para revisión humana, sin integración productiva. Finalización autorizada con CAR-AUTO-001, lista explícita, commit local y sincronización verificada a Drive. **Sin push**. La sincronización no ofrece bloqueo atómico frente a ediciones simultáneas en Drive.
+
+## Visual Review Fix 01 — Lateral Framing (2026-10-25)
+
+**Baseline:** `b6c558b55da8131ff90886f2f392a634367c7629`, `main`, índice/árbol limpios. La persona ha ejecutado el prototipo: acepta velocidad de 3,5 s a 1×, mantiene C — Línea solar y no formula objeciones al trazado o relleno en esta revisión. Solicita corregir exclusivamente el recorte lateral. **Estado posterior a esta corrección: REVIEW / MANUAL_VALIDATION PENDING**; la aceptación parcial no cierra el corte.
+
+### Causa y corrección
+
+El recorte se demuestra en la geometría: la copa izquierda abarcaba x = −13,275…100,83457 y la derecha x = 554,715…649,26293 frente a un lienzo 0…640. La presentación ya utilizaba escala uniforme (`min` de ancho/alto); no causaba deformación horizontal. El gris exterior del visor es espacio fuera del lienzo, no fondo utilizable por la ilustración.
+
+Corrección mínima en los datos experimentales: ampliar de 640 × 400 a **736 × 400** y trasladar rígidamente el contenido **+48 px en X**, sin escala, shear ni cambio de altura. Se conservan casa, árboles, arroyo y los tramos existentes del camino. Se extienden cielo, terreno y sus líneas hasta los nuevos bordes. El camino conserva su curva original y prolonga únicamente la entrada lateral siguiendo la tangente hasta el borde nuevo. Las semillas se recalculan dentro de las máscaras ampliadas; las semillas originales de procedencia siguen registradas.
+
+Las copas completas quedan en x = 34,725…148,83457 y 602,715…697,26293: márgenes mínimos, contando 1,3 px de semigrosor, **33,425 px a izquierda y 37,43707 px a derecha**. Los troncos también quedan interiores. El fondo y el terreno cubren todas las celdas del nuevo lienzo, sin bandas internas sin pintar. El espacio exterior de la UI continúa siendo letterbox; no se usa para simular margen.
+
+No se modifica el renderer, la vista o el reloj de playback: el mismo consumidor acepta el nuevo grid. Se conserva 1,4 / 0,7 / 1,4 s, total objetivo **3,5 s a 1×**. Captura y empaquetado leen las dimensiones del dataset/PNG, evitando recortar la nueva evidencia a 640 px.
+
+### Verificación actual y comparación
+
+- **66 checks, 0 fallos**: se conservan los 62 anteriores, adaptando únicamente sus índices de raster al nuevo ancho. Se añaden cuatro aserciones para margen izquierdo, derecho, cobertura de todas las celdas y proporciones/traslación de casa-arroyo. Las 17 máscaras vuelven a coincidir exactamente con el raster independiente Python y mantienen propagación conectada sin fugas.
+- Comparación con el JSON del baseline: toda la geometría interior se conserva con traslación +48, incluidos 40 paths de trazos rígidos y las 14 regiones distintas de fondo/terreno/camino. Se mantienen grosores, fases y reparto temporal; solo se extienden los bordes descritos arriba.
+- **`verify.ps1: ALL CHECKS PASSED`**: exportación determinista, importación, **448 checks** y hoja de **11 escenas**. No cambian arte productivo, parser, GameState, YAML ni reglas; los diez dibujos restantes y el START productivo permanecen intactos.
+- Captura real Godot 4.7.2 / OpenGL Compatibility / RTX 3070: **3,516883 s** hasta final de vista, +16,883 ms sobre objetivo. Preparación previa **1,535074 s**. Máximos CPU prepare/update/envío de dibujo **5.530 / 2.691 / 1.426 µs**; máximo intervalo entre frames **17,653 ms**, incluyendo captura. La captura completa terminó a 3,558852 s por esperas/readbacks finales; no es la duración del dibujo.
+- **Final animado y Omitir: igualdad byte a byte en 736 × 400**. Cancelación, replay, revisitas y mismo ID sin reinicio vuelven a pasar en las pruebas. Simulación a 24/60/144 FPS: 3,541667 / 3,516667 / 3,500000 s.
+- Datos actuales: 43 polilíneas, 17 regiones y 390.065 celdas de región contando solapes. Preparación headless: 0,246 s CPU en 187 llamadas con presupuesto 4.096; máximo 3.074 µs. Máximo avance headless 2.538 µs. No se rebaja la calidad para cumplir tiempo.
+
+**Evidencia conservada:** [final anterior](evidence/final.png), [animación anterior](evidence/playback.gif) y métricas/lámina originales permanecen sin cambios. **Evidencia actual:** [final corregido](evidence/lateral_fix_01/final.png), [animación corregida](evidence/lateral_fix_01/playback.gif), [lámina](evidence/lateral_fix_01/contact_sheet.png) y [métricas](evidence/lateral_fix_01/metrics.json). Se inspeccionó la captura corregida: ambos árboles completos y márgenes propios de cielo/terreno visibles. La persona debe revisar ahora esta versión ejecutable para la aceptación visual final.
+
+La apertura sigue siendo la misma: abrir `experiments/vector_playback/demo.tscn` en Godot y **F6**, o ejecutar el comando de demo indicado arriba. Los controles conservan su comportamiento. Para reproducir la evidencia actual, desde raíz con `$Godot` definido como arriba:
+
+```powershell
+python 07_godot_open_adventure/godot/experiments/vector_playback/build_loc_start.py
+& $Godot --headless --path 07_godot_open_adventure/godot --script res://experiments/vector_playback/test_playback.gd
+& ./07_godot_open_adventure/tools/verify.ps1 -Godot $Godot
+$captureDir = Join-Path $env:TEMP 'CAR-ART-002-lateral-fix-01'
+& $Godot --path 07_godot_open_adventure/godot --resolution 900x600 --max-fps 60 --script res://experiments/vector_playback/capture_playback.gd -- --output $captureDir
+python 07_godot_open_adventure/godot/experiments/vector_playback/package_capture.py $captureDir project_state/changes/car_art_002_vector_drawing_playback_prototype/evidence/lateral_fix_01
+```
+
+Inventario de esta revisión: `build_loc_start.py`, `loc_start.json`, `test_playback.gd`, `capture_playback.gd`, `package_capture.py`, este CHANGE, actualización acotada de `CURRENT_STATE.md` y los cuatro artefactos nuevos de `evidence/lateral_fix_01/`: **11 archivos**. Verificar regeneración determinista, enlaces, inventario y whitespace antes de CAR-AUTO-001. Commit local y sincronización verificada a Drive; **NO PUSH**. No se migra otra escena, no se integra el parser y no se inicia CAR-ART-003.
