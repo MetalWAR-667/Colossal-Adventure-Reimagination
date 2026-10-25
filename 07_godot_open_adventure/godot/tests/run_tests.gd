@@ -263,7 +263,7 @@ func _test_sewer(world: WorldData) -> void:
 	var interpreter := Interpreter.new(world)
 	_play(interpreter, ["E"])
 	var output := _play(interpreter, ["DOWNSTREAM"])
-	_equal(interpreter.state.current_location, "LOC_SEWER", "downstream reaches the sewer")
+	_equal(interpreter.state.current_location, "LOC_BUILDING", "sewer HERE returns automatically to the building")
 	output = _play(interpreter, ["N"])
 	_equal(interpreter.state.current_location, "LOC_BUILDING", "the sewer only leads back")
 

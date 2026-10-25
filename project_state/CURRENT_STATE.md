@@ -75,6 +75,16 @@ baseline. See the retrospective
   tests and 12 Godot isolation checks passed; the unchanged game suite passes
   448 checks. Runtime consumption and CH_02 remain outside this cut. See the
   [CUT A record](changes/car_core_001_cut_a_global_data_contract/CHANGE.md).
+- CAR-CORE-001 CUT B: `CLOSED / PASS` for the authorized player travel cycle.
+  Source-ordered rules, automatic HERE cascades, oldloc/oldlc2, BACK and input
+  turns are implemented. Special 1/2 paths are verified in isolated source
+  fixtures; special 3 and death stop at explicitly typed pending dependencies,
+  without implementing the global object/actor or reincarnation subsystems.
+  Verification: 54 focused travel checks, 448 game checks, 10 Python CUT A tests
+  and 12 isolation checks passed. SEWER now returns automatically to BUILDING;
+  LOOK and rejected nonempty commands consume an input turn. CH_02 and the
+  simulation graph remain isolated. See the
+  [CUT B record](changes/car_core_001_cut_b_historical_travel_cycle/CHANGE.md).
 - CAR-ART-001 is `CLOSED / DECISION RECORDED`: the human selected C — Línea
   solar on 2026-10-25. This closes the art-direction gate only;
   conceptual-browser playback remains unverified. Runtime pilot integration
@@ -125,7 +135,7 @@ These items are not authorized implementation cuts:
 - Expansion beyond chapter 01; chapters 02–11 are not implemented.
 - Further UX improvements beyond the recorded CAR-ART-001 direction, subject
   to existing project evidence and a separately approved scope.
-- CAR-CORE-001 CUT B — `PROPOSED / NOT AUTHORIZED`: historical travel cycle.
+- CAR-CORE-001 CUT C — `PROPOSED / NOT AUTHORIZED`: darkness/lamp cycle.
 - Final UI polish/resizing, possible hiding of the main graph after development,
   graph legibility at 1280 × 720 and the approximately 1.571 s initial
   preparation cost remain future work. Acceptance of CAR-ART-003 does not
@@ -172,8 +182,9 @@ Known style diagnostics, not demonstrated functional regressions:
 CAR-ART-005 is closed with documented follow-up: `GRATE_OPEN` polish remains
 pending final artistic review; its accepted state selection and integration are
 closed. CAR-CORE-001 CUT A is closed for the global data contract only.
-**CAR-CORE-001 CUT B — PROPOSED / NOT AUTHORIZED** is the next decision gate:
-historical travel cycle, with its own explicit scope and authorization required.
+CAR-CORE-001 CUT B is closed within its documented travel/dependency boundary.
+**CAR-CORE-001 CUT C — PROPOSED / NOT AUTHORIZED** is the next decision gate:
+darkness/lamp cycle, with its own explicit scope and authorization required.
 CH_02 remains blocked for
 playable integration until the global travel, forced movement, lighting, death,
 and actor dependencies are implemented and verified in authorized cuts.

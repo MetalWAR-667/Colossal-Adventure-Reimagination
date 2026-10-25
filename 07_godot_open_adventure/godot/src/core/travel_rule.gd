@@ -9,12 +9,14 @@ extends RefCounted
 enum ActionType {
 	GOTO,
 	SPEAK,
+	SPECIAL,
 }
 
 var verbs: PackedStringArray = PackedStringArray()
 var motion_names: PackedStringArray = PackedStringArray()
 var action_type: int = ActionType.GOTO
 var target: String = ""
+var special_id: int = 0
 var cond_type: String = "always"
 var cond_object: String = ""
 var cond_state: String = ""
@@ -26,8 +28,9 @@ static func from_dict(data: Dictionary) -> TravelRule:
 	var rule := TravelRule.new()
 	rule.verbs = PackedStringArray(data.get("verbs", []))
 	var kind := String(data.get("action_type", "goto"))
-	rule.action_type = ActionType.SPEAK if kind == "speak" else ActionType.GOTO
-	rule.target = String(data.get("target", ""))
+	rule.action_type = ActionType.SPECIAL if kind == "special" else (ActionType.SPEAK if kind == "speak" else ActionType.GOTO)
+	rule.target = str(data.get("target", ""))
+	rule.special_id = int(data.get("target", 0)) if kind == "special" else 0
 	rule.target_in_chapter = bool(data.get("target_in_chapter", true))
 	var cond: Dictionary = data.get("cond", {"type": "always"})
 	rule.cond_type = String(cond.get("type", "always"))

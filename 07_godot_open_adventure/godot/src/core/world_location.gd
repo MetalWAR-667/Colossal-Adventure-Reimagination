@@ -32,6 +32,13 @@ func has_condition(name: String) -> bool:
 	return bool(conditions.get(name, false))
 
 
+func is_forced() -> bool:
+	# init.c:initialise + make_dungeon.py: [] expands to HERE. All source
+	# locations with travel have non-null long text ("" counts), except NOWHERE
+	# which has no travel. This is checked against YAML in CUT A's tests.
+	return id != "LOC_NOWHERE" and not travel.is_empty() and travel[0].is_here()
+
+
 ## `NOBACK` marks the twisty forest rooms where "go back" is impossible.
 func forbids_back() -> bool:
 	return has_condition("NOBACK")

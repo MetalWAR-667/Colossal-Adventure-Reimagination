@@ -94,7 +94,7 @@ func _run() -> void:
 	check(not view.model.prepared, "command exercise occurs during preparation")
 	metrics.look_during_preparation_ms = command("LOOK")
 	check(terminal.output.get_parsed_text().length() > history.length() and terminal.output.get_parsed_text().contains("> LOOK"), "real Enter delivers LOOK while preparing")
-	check(state.turn == turn, "LOOK preserves existing turn semantics")
+	check(state.turn == turn + 1, "LOOK consumes one input turn while preparing")
 	check(main.illustration.playback == view, "same room command reuses preparation")
 	var deadline := Time.get_ticks_msec() + 10000
 	while not view.model.prepared and Time.get_ticks_msec() < deadline:

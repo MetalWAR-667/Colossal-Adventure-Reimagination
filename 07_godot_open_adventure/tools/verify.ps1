@@ -60,6 +60,8 @@ Write-Host "== 3/7 engine tests ==" -ForegroundColor Cyan
 if ($LASTEXITCODE -ne 0) { Fail "the engine tests failed" }
 & $Godot --headless --path $project --script res://tests/test_simulation_graph_isolation.gd
 if ($LASTEXITCODE -ne 0) { Fail "the simulation graph changed the playable boundary" }
+& $Godot --headless --path $project --script res://tests/test_travel_cycle.gd
+if ($LASTEXITCODE -ne 0) { Fail "the historical travel cycle tests failed" }
 
 Write-Host "== 4/7 illustration sheet ==" -ForegroundColor Cyan
 & $Godot --headless --path $project --script res://tools/capture_scenes.gd

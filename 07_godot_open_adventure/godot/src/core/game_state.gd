@@ -5,8 +5,14 @@ extends RefCounted
 
 const CARRIED := ""  ## sentinel used as "object place" for carried items
 
+enum TravelOutcome { IDLE, ARRIVED, SPOKE, REJECTED, FRONTIER, DEATH_PENDING, DEPENDENCY_PENDING, CYCLE_ERROR }
+
 var current_location: String = ""
 var previous_location: String = ""
+var previous_previous_location: String = ""  ## historical oldlc2
+var pending_location: String = ""  ## historical newloc, including unresolved outcomes
+var travel_outcome: TravelOutcome = TravelOutcome.IDLE
+var travel_dependency: String = ""
 var visited: Dictionary = {}
 var object_place: Dictionary = {}
 var object_state: Dictionary = {}
@@ -18,6 +24,10 @@ var finished: bool = false
 func reset(world: WorldData) -> void:
 	current_location = _start_location(world)
 	previous_location = ""
+	previous_previous_location = ""
+	pending_location = current_location
+	travel_outcome = TravelOutcome.IDLE
+	travel_dependency = ""
 	visited = {}
 	object_place = {}
 	object_state = {}
@@ -71,9 +81,12 @@ func set_state(object_id: String, state_name: String) -> void:
 	object_state[object_id] = state_name
 
 
-func move_to(location_id: String) -> void:
-	previous_location = current_location
+func move_to(location_id: String, update_history: bool = true) -> void:
+	if update_history:
+		previous_previous_location = previous_location
+		previous_location = current_location
 	current_location = location_id
+	pending_location = location_id
 	visited[location_id] = true
 
 

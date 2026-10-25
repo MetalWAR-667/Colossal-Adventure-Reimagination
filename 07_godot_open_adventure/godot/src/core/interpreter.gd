@@ -36,6 +36,18 @@ func submit(line: String) -> Array[String]:
 	var output: Array[String] = []
 	if state.finished:
 		return output
+	if state.travel_outcome in [GameState.TravelOutcome.DEATH_PENDING, GameState.TravelOutcome.DEPENDENCY_PENDING, GameState.TravelOutcome.CYCLE_ERROR]:
+		return output
+	# misc.c:get_command_input rejects empty/overlong input before counting.
+	var input_words := line.strip_edges().replace("\t", " ").split(" ", false)
+	if input_words.is_empty():
+		return output
+	if input_words.size() > 2:
+		return [world.message("TWO_WORDS")]
+	state.turn += 1
+	state.travel_outcome = GameState.TravelOutcome.IDLE
+	state.travel_dependency = ""
+	state.pending_location = state.current_location
 
 	var command := parser.parse(line)
 	# Interface commands that are not part of the source vocabulary.
@@ -74,6 +86,7 @@ func _handle_motion(command: Command) -> Array[String]:
 		_:
 			pass
 
+	_advance_history()
 	var result := _try_move(command.motion)
 	if result["handled"]:
 		return result["lines"]
@@ -87,6 +100,7 @@ func _handle_motion(command: Command) -> Array[String]:
 
 
 func _movement_failure(command: Command) -> Array[String]:
+	state.travel_outcome = GameState.TravelOutcome.REJECTED
 	var compass := [
 		"EAST", "WEST", "NORTH", "SOUTH",
 		"NE", "NW", "SE", "SW", "UP", "DOWN",
@@ -104,70 +118,140 @@ func _movement_failure(command: Command) -> Array[String]:
 
 func _try_move(motion: String) -> Dictionary:
 	var result := {"handled": false, "moved": false, "spoke": false, "lines": [] as Array[String]}
+	var disconnected: Array[String] = [world.message("NOT_CONNECTED")]
 	var loc := world.location(state.current_location)
 	if loc == null:
 		result["handled"] = true
-		result["lines"] = [world.message("NOT_CONNECTED")]
+		result["lines"] = disconnected
 		return result
-
 	var rule := _select_rule(loc, motion)
 	if rule == null:
+		if state.travel_outcome in [GameState.TravelOutcome.DEPENDENCY_PENDING, GameState.TravelOutcome.CYCLE_ERROR]:
+			result["handled"] = true
+			result["lines"] = disconnected
 		return result
-
-	result["handled"] = true
-	if rule.action_type == TravelRule.ActionType.SPEAK:
-		result["spoke"] = true
-		var lines: Array[String] = []
-		lines.append(world.message(rule.target))
-		result["lines"] = lines
-		return result
-
 	return _execute_move(rule)
 
 
 func _execute_move(rule: TravelRule) -> Dictionary:
 	var result := {"handled": true, "moved": false, "spoke": false, "lines": [] as Array[String]}
 	var lines: Array[String] = []
-
-	if not world.is_in_chapter(rule.target):
-		# The rule leaves the chapter: the chapter is a closed slice, so the
-		# move is refused and the boundary is announced.
-		if rule.target.begins_with("LOC_FOOF"):
-			lines.append(world.message("MAGIC_FOOF"))
-		lines.append(world.ui("frontier"))
-		result["lines"] = lines
-		return result
-
-	state.move_to(rule.target)
-	state.turn += 1
-	result["moved"] = true
-	lines.append_array(_describe_current(false))
 	result["lines"] = lines
+	var candidate := rule
+	for step in range(MAX_RULE_WALK):
+		var loc := world.location(state.current_location)
+		if candidate.action_type == TravelRule.ActionType.SPECIAL:
+			match candidate.special_id:
+				1:
+					# main.c: Plover passage permits no load or only emerald.
+					var carried := state.carried_objects()
+					if carried.size() > 1 or (carried.size() == 1 and carried[0] != "EMERALD"):
+						state.travel_outcome = GameState.TravelOutcome.SPOKE
+						lines.append(world.message("MUST_DROP"))
+						result["spoke"] = true
+						return result
+					var passage := TravelRule.new()
+					passage.target = "LOC_ALCOVE" if state.current_location == "LOC_PLOVER" else "LOC_PLOVER"
+					candidate = passage
+				2:
+					if not world.objects.has("EMERALD") or not state.object_place.has("EMERALD"):
+						_pending_dependency("special_2: global EMERALD state")
+						return result
+					if loc == null or not loc.travel.has(candidate):
+						_travel_error("special_2 without source alternative")
+						return result
+					state.object_place["EMERALD"] = state.current_location
+					candidate = _select_from(loc, _next_distinct(loc, loc.travel.find(candidate)))
+					if candidate == null:
+						return result
+					continue
+				3:
+					# Requires original two-place/fixed objects and croak().
+					# No invented bridge result or partial mutation.
+					_pending_dependency("special_3: global TROLL/TROLL2/CHASM/BEAR placements and death")
+					return result
+				_:
+					_travel_error("unknown special travel")
+					return result
+		if candidate.action_type == TravelRule.ActionType.SPEAK:
+			state.pending_location = state.current_location
+			state.travel_outcome = GameState.TravelOutcome.SPOKE
+			result["spoke"] = true
+			lines.append(world.message(candidate.target))
+			return result
+		state.pending_location = candidate.target
+		if candidate.target == "LOC_NOWHERE" and loc != null and loc.is_forced():
+			# do_move() would call croak. Keep last entered location and
+			# oldloc/oldlc2/newloc for CUT D; no reincarnation or score change.
+			state.travel_outcome = GameState.TravelOutcome.DEATH_PENDING
+			return result
+		if not world.is_in_chapter(candidate.target):
+			state.travel_outcome = GameState.TravelOutcome.FRONTIER
+			if candidate.target.begins_with("LOC_FOOF"):
+				lines.append(world.message("MAGIC_FOOF"))
+			lines.append(world.ui("frontier"))
+			return result
+		result["moved"] = result["moved"] or candidate.target != state.current_location
+		state.move_to(candidate.target, false)
+		lines.append_array(_describe_current(false))
+		loc = world.location(state.current_location)
+		if not loc.is_forced():
+			state.travel_outcome = GameState.TravelOutcome.ARRIVED
+			return result
+		# do_command describes forced room, calls playermove(HERE), then
+		# next do_move. No new input or turn between these steps.
+		_advance_history()
+		candidate = _select_rule(loc, "HERE")
+		if candidate == null:
+			if state.travel_outcome != GameState.TravelOutcome.DEPENDENCY_PENDING:
+				_travel_error("FORCED location has no eligible HERE destination")
+			return result
+	_travel_error("travel cycle exceeded %d dispatches" % MAX_RULE_WALK)
 	return result
 
 
+func _advance_history() -> void:
+	state.previous_previous_location = state.previous_location
+	state.previous_location = state.current_location
+
+
+func _pending_dependency(reason: String) -> void:
+	state.travel_outcome = GameState.TravelOutcome.DEPENDENCY_PENDING
+	state.travel_dependency = reason
+	state.pending_location = state.current_location
+
+
+func _travel_error(reason: String) -> void:
+	state.travel_outcome = GameState.TravelOutcome.CYCLE_ERROR
+	state.travel_dependency = reason
+
+
 func _select_rule(loc: WorldLocation, verb: String) -> TravelRule:
-	var rules := loc.travel
-	var index := 0
-	while index < rules.size():
-		var rule := rules[index]
-		if rule.matches_verb(verb):
-			var cursor := index
-			var guard := 0
-			while guard < MAX_RULE_WALK:
-				guard += 1
-				var candidate := rules[cursor]
-				if _condition_holds(candidate):
-					return candidate
-				# Conditional failure: walk to the next rule with a
-				# different condition and destination, as `playermove()` does.
-				var probe := cursor + 1
-				while probe < rules.size() and candidate.is_equivalent_to(rules[probe]):
-					probe += 1
-				if probe >= rules.size():
-					return null
-				cursor = probe
-		index += 1
+	for index in range(loc.travel.size()):
+		if loc.travel[index].matches_verb(verb):
+			return _select_from(loc, index)
+	return null
+
+
+func _next_distinct(loc: WorldLocation, index: int) -> int:
+	var probe := index + 1
+	while probe < loc.travel.size() and loc.travel[index].is_equivalent_to(loc.travel[probe]):
+		probe += 1
+	return probe
+
+
+func _select_from(loc: WorldLocation, index: int) -> TravelRule:
+	while index < loc.travel.size():
+		var candidate := loc.travel[index]
+		if candidate.cond_object != "" and not world.objects.has(candidate.cond_object):
+			_pending_dependency("travel condition requires object " + candidate.cond_object)
+			return null
+		if _condition_holds(candidate):
+			return candidate
+		if state.travel_outcome == GameState.TravelOutcome.CYCLE_ERROR:
+			return null
+		index = _next_distinct(loc, index)
+	_travel_error("conditional travel has no distinct alternative")
 	return null
 
 
@@ -184,23 +268,48 @@ func _condition_holds(rule: TravelRule) -> bool:
 		"pct":
 			return rng.randf() * 100.0 < float(rule.cond_percent)
 		"no_dwarves":
-			return true
+			# Historical player condition is PCT(100); actors exclude this row.
+			return rng.randf() * 100.0 < 100.0
 		_:
-			return true
+			_travel_error("unknown travel condition " + rule.cond_type)
+			return false
 
 
 func _go_back() -> Array[String]:
 	var loc := world.location(state.current_location)
+	var target := state.previous_location
+	var previous := world.location(target)
+	if previous != null and previous.is_forced():
+		target = state.previous_previous_location
+	_advance_history()
 	if loc != null and loc.forbids_back():
+		state.travel_outcome = GameState.TravelOutcome.REJECTED
 		return [world.message("TWIST_TURN")]
-	if state.previous_location == "" or state.previous_location == state.current_location:
+	if target == state.current_location:
+		state.travel_outcome = GameState.TravelOutcome.REJECTED
 		return [world.message("FORGOT_PATH")]
-	if not world.is_in_chapter(state.previous_location):
-		return [world.ui("frontier")]
+	var fallback: TravelRule = null
+	if loc != null:
+		for rule in loc.travel:
+			if rule.action_type != TravelRule.ActionType.GOTO:
+				continue
+			if rule.target == target:
+				return _try_move(_rule_motion(rule))["lines"]
+			var via := world.location(rule.target)
+			if via != null and via.is_forced() and via.travel[0].target == target:
+				fallback = rule
+	if fallback != null:
+		return _try_move(_rule_motion(fallback))["lines"]
+	state.travel_outcome = GameState.TravelOutcome.REJECTED
+	return [world.message("NOT_CONNECTED")]
 
-	state.move_to(state.previous_location)
-	state.turn += 1
-	return _describe_current(false)
+
+func _rule_motion(rule: TravelRule) -> String:
+	if rule.is_here():
+		return "HERE"
+	# BACK selects an expanded C motion, so aliases must re-enter rule
+	# selection by normalized motion identity rather than one raw spelling.
+	return rule.motion_names[0] if not rule.motion_names.is_empty() else rule.verbs[0]
 
 
 func _cave_hint() -> Array[String]:
