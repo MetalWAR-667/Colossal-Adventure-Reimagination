@@ -1,7 +1,22 @@
 # CAR-ART-003 — Runtime Illustration & UI Layout Integration I
 
-**Estado:** `IMPLEMENTED / TECHNICAL VERIFICATION COMPLETE / MANUAL_VALIDATION PENDING`.
-Fecha: 2026-10-25. Ejecución: Sol / Codex. Resultado técnico: PASS; aceptación humana de esta integración: PENDING.
+**Estado:** `CLOSED / PASS — RUNTIME INTEGRATION PILOT`.
+Fecha: 2026-10-25. Ejecución: Sol / Codex. Resultado técnico: PASS; aceptación visual y de interacción humana: PASS.
+
+## Aceptación humana y cierre documental — 2026-10-25
+
+Sobre el baseline `bc23adcc3178a81125e632bbf22a1812b0d0cc39`, el responsable
+declaró **«CAR-ART-003 — VISUAL & INTERACTION ACCEPTANCE / PASS»**. Se acepta
+la integración de `LOC_START` con LINE/FILL y el orden ilustración → narración
+→ grafo y salidas → entrada de comandos. Se acepta conservar el grafo principal
+durante el desarrollo y TAB como modo de depuración independiente.
+
+Este cierre documental registra esa decisión y conserva la evidencia técnica
+existente: 448 checks del juego, 66 del prototipo, 62 de integración headless
+y 71 gráficos, exportación/importación y 11 escenas. No se repiten pruebas de
+runtime ni se modifican sus resultados, recursos o capturas para este cierre.
+La aceptación corresponde al piloto integrado; no elimina las limitaciones
+ni autoriza los trabajos futuros enumerados al final de este documento.
 
 ## Baseline y autorización
 
@@ -97,7 +112,8 @@ $Godot = 'C:\remake\Colossal-Adventure-Reimagination-public\tools\Godot_v4.7.2-s
   idéntico a Omitir. Captura de UI real a 1920×1080 y 1280×720, con entrada y
   estado dentro del viewport e historial largo sin desplazarlos.
 - Se inspeccionaron capturas de trazado, final, sala heredada, transición y
-  debug. La aceptación estética/ergonómica sigue reservada al responsable.
+  debug. En aquella entrega la aceptación estética/ergonómica estaba pendiente;
+  la decisión humana posterior se registra en la sección de cierre.
 - Durante el desarrollo una nueva aserción suponía erróneamente que LOOK
   incrementaba turno: se contrastó `Interpreter._handle_motion()` y se corrigió
   solo la prueba nueva. Otro intento de contabilizar visitas pendientes en la
@@ -130,15 +146,22 @@ Las revisitas reutilizan máscaras/colas, no repiten la preparación inicial.
 - [Sala heredada 1280](evidence/07_legacy_1280.png).
 - [Debug 1280](evidence/08_debug_1280.png).
 
-## Límites y revisión humana
+## Límites y trabajo futuro sin nuevos cortes
 
-El piloto ya funciona en el juego real (F5 o ejecutar la escena principal),
-pero no se declara CLOSED. Revisar tamaño percibido de la ilustración y sus
-márgenes, narración desplazable, selección/copia, foco al enviar órdenes,
-transiciones rápidas y TAB durante preparación, contornos y rellenos.
+El piloto funciona en el juego real (F5 o ejecutar la escena principal) y
+queda aceptado por el responsable. Se conservan como trabajo futuro, sin
+abrir cortes ni conceder autorización de implementación:
+
+- Pulido y redimensionamiento definitivo de la interfaz.
+- Posible ocultación del grafo principal al finalizar el desarrollo.
+- Legibilidad del grafo a 1280 × 720.
+- Preparación inicial de aproximadamente 1,571 s.
+- Migración de las restantes ilustraciones de CH_01.
+
 El grafo de 720p es más compacto y presenta solapamientos con su política
 de tamaño de tarjetas existente; zoom/pan y debug siguen disponibles. No se
-ha rediseñado el algoritmo ni se da por aceptada esa legibilidad.
+ha rediseñado el algoritmo; la legibilidad a esa resolución permanece como
+trabajo futuro pese a la aceptación del piloto.
 Los screenshots se renderizan en SubViewport: no acreditan interacción humana
 con ventana maximizada, escalado de monitores o el portapapeles del sistema.
 
@@ -146,7 +169,7 @@ Se mantienen solo las capacidades del prototipo aceptado y el coste inicial
 medido; no se optimiza globalmente ni se migran otras salas. CAR-CORE-001 y
 CH_02 no cambian de estado. No se inicia un corte posterior.
 
-`CURRENT_STATE_UPDATE: REQUIRED`: integración piloto entregada para revisión.
+`CURRENT_STATE_UPDATE: REQUIRED`: integración piloto cerrada por aceptación humana.
 Finalización CAR-AUTO-001 con inventario explícito, commit local y sincronización
 verificada a Drive; resultado operativo y SHA se comunican en la entrega.
 **NO PUSH**. Drive no ofrece bloqueo atómico frente a ediciones simultáneas.

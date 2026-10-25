@@ -77,10 +77,9 @@ baseline. See the retrospective
   its later runtime pilot belongs to CAR-ART-003. See the
   [prototype record](changes/car_art_002_vector_drawing_playback_prototype/CHANGE.md).
 
-## ACTIVE
-
-- CAR-ART-003: `IMPLEMENTED / TECHNICAL VERIFICATION COMPLETE /
-  MANUAL_VALIDATION PENDING`. The authorized pilot integrates progressive
+- CAR-ART-003: `CLOSED / PASS — RUNTIME INTEGRATION PILOT`. Human visual and
+  interaction acceptance was granted on 2026-10-25 for baseline
+  `bc23adcc3178a81125e632bbf22a1812b0d0cc39`. The accepted pilot integrates progressive
   `LOC_START` into the playable main scene, with illustration → narration →
   navigation graph → exits → command input. Other illustrations retain the
   legacy consumer and TAB retains the debug composition without illustration.
@@ -88,6 +87,10 @@ baseline. See the retrospective
   62 focused headless integration checks and 71 graphics integration checks
   (the extra nine cover eight PNG captures and rendered final/skip equality).
   See the [integration record](changes/car_art_003_runtime_illustration_ui_integration_i/CHANGE.md).
+
+## ACTIVE
+
+No CAR-ART implementation cut is active following this documentary closure.
 
 ## PENDING / PROPOSED
 
@@ -100,7 +103,10 @@ These items are not authorized implementation cuts:
 - Further UX improvements beyond the recorded CAR-ART-001 direction, subject
   to existing project evidence and a separately approved scope.
 - CAR-CORE-001 CUT A — proposed global data-contract cut; not authorized.
-- Human visual and interaction acceptance of the CAR-ART-003 pilot layout.
+- Final UI polish/resizing, possible hiding of the main graph after development,
+  graph legibility at 1280 × 720 and the approximately 1.571 s initial
+  preparation cost remain future work. Acceptance of CAR-ART-003 does not
+  authorize these changes or open new cuts.
 - Migration of the other ten CH_01 illustrations is not authorized by the
   CAR-ART-003 pilot scope. Replay/revisit policy beyond immediate revisits
   remains a separate decision.
@@ -134,9 +140,9 @@ Known style diagnostics, not demonstrated functional regressions:
 
 ## Next Decision Gate
 
-**CAR-ART-003 — MANUAL_VALIDATION PENDING:** review the actual playable pilot,
-its layout, parser continuity, normal/debug alternation and legacy artwork.
-No further implementation cut is authorized by this state update.
+**Awaiting new human authorization.** CAR-ART-003 is closed by visual and
+interaction acceptance of its runtime integration pilot. The retained future
+work does not open or authorize another implementation cut.
 CAR-CORE-001 CUT A remains
 `PROPOSED / NOT AUTHORIZED`: emit and verify the ordered global simulation graph
 alongside the playable subset, with no runtime behavior change. CH_02 remains
