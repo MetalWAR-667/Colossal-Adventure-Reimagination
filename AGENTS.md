@@ -48,3 +48,35 @@ Las tareas identificadas como `CAR-*`, incluida `CAR-QOL-001`, corresponden a:
 `C:\remake\Colossal-Adventure-Reimagination-public`
 
 No ejecutarlas desde `C:\LoF-GIT`.
+
+## CAR — Local Commit & Drive Sync Policy
+
+La autorización permanente del propietario registrada en `CAR-AUTO-001` se
+aplica únicamente a este repositorio. Permite crear commits **locales** de los
+archivos pertenecientes a un corte CAR expresamente autorizado, incluidos
+informes de investigación completada aunque sus propuestas sigan pendientes,
+y ejecutar la sincronización local → Drive después de cada commit correcto.
+Esta regla concreta la aprobación humana exigida por los contratos compartidos;
+no concede autoridad para iniciar un corte ni ampliar su alcance.
+
+Usa `tools/finalize_cut.ps1` con `-CutId`, mensaje identificable y una lista
+explícita `-Files`. El finalizador solo prepara esos archivos, rechaza un índice
+previamente preparado o cambios ajenos, ejecuta las verificaciones aplicables,
+crea como máximo un commit y sincroniza su snapshot versionado. Si un commit
+ya existe y la sincronización falló, repetir la misma invocación reintenta la
+sincronización sin duplicar el commit. `-DryRun` no prepara ni confirma cambios;
+`-SkipSync` queda reservado al diagnóstico.
+
+`sync_to_drive.ps1` solo copia archivos rastreados en el commit actual. No
+sincroniza archivos no versionados, no elimina nada del destino y preserva
+extras de Drive. Si una ruta de destino difiere tanto de su última huella
+sincronizada como de una base Git reconocida, se detiene antes de sobrescribir.
+Los conflictos deben revisarse manualmente; no se resuelven con espejo ni
+force. El estado de huellas local vive bajo `.git` y no se publica.
+
+La autorización permanente **no** incluye push, merge, tags, releases,
+publicación, cierre `CLOSED / PASS` sin sus pruebas, commits de cambios humanos
+ajenos, implementación de cortes solo propuestos, modificación de otros
+repositorios ni eliminación de archivos de Drive. Nunca usar `git add .` ni
+`git add -A` en este flujo. Los cambios fallidos o bloqueados se preservan para
+revisión y no se convierten automáticamente en commits de implementación.
