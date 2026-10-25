@@ -88,16 +88,20 @@ baseline. See the retrospective
   (the extra nine cover eight PNG captures and rendered final/skip equality).
   See the [integration record](changes/car_art_003_runtime_illustration_ui_integration_i/CHANGE.md).
 
+- CAR-ART-004: `CLOSED / PASS — WITH DOCUMENTED EXCEPTION` on 2026-10-25.
+  The nine new CH_01 illustrations are `IMPLEMENTED / TECHNICAL PASS / HUMAN
+  ACCEPTED`; `LOC_START` retains its prior acceptance and is not counted in the
+  nine. `GRATE` is `DEFERRED / STATE-DEPENDENT ILLUSTRATION` and is not counted
+  as complete. Existing results remain documented: 448 original game checks,
+  66 START prototype checks, 62 integration/fallback checks, 455 batch
+  headless checks and 582 graphical checks; suites were not rerun for this
+  documentary closure. Preparation measured 2.084–3.271 s on the test machine.
+  Legacy illustrations and fallback remain available. See the
+  [production record and gallery](changes/car_art_004_ch01_vector_illustration_production/CHANGE.md).
+
 ## ACTIVE
 
-- CAR-ART-004: `IMPLEMENTED / TECHNICAL VERIFICATION COMPLETE /
-  MANUAL_VALIDATION PENDING` for nine remaining CH_01 illustrations, using the
-  [vector-art contract](../03_reinterpretation/CH01_VECTOR_ART_CONTRACT.md).
-  FOREST is a shared drawing for 22 canonical locations. The nine pieces are
-  integrated through the existing progressive consumer; START and legacy art
-  remain intact. GRATE is `BLOCKED / NOT PRODUCED` by explicit human choice:
-  a future state-aware selector needs separate technical authorization.
-  See the [production record and gallery](changes/car_art_004_ch01_vector_illustration_production/CHANGE.md).
+No active implementation cut is recorded.
 
 ## PENDING / PROPOSED
 
@@ -114,14 +118,16 @@ These items are not authorized implementation cuts:
   graph legibility at 1280 × 720 and the approximately 1.571 s initial
   preparation cost remain future work. Acceptance of CAR-ART-003 does not
   authorize these changes or open new cuts.
-- Human artistic acceptance of CAR-ART-004's nine completed illustrations.
-- GRATE production remains blocked pending expressly authorized support for
-  open/closed visual selection. The inherited static reference is preserved;
-  it is excluded from the nine-piece technical PASS.
 - Replay/revisit policy beyond immediate revisits remains a separate decision.
 - CH_02 playable integration remains blocked by the global runtime dependencies
   identified in CAR-CORE-001. Chapters beyond CH_01 are not implemented or
   authorized.
+
+CAR-ART-004's **2.084–3.271 s** preparation time for the nine new illustrations
+is a measured limitation from the test machine; it was not optimized in the
+closure cut and is not a general performance guarantee. `GRATE` remains
+deferred until state-dependent open/closed illustration support is separately
+authorized. The inherited static reference remains available as fallback.
 
 ## DEFERRED / OUT OF SCOPE
 
@@ -149,14 +155,11 @@ Known style diagnostics, not demonstrated functional regressions:
 
 ## Next Decision Gate
 
-**CAR-ART-004 — MANUAL_VALIDATION PENDING:** the responsible human reviews the
-nine-piece batch and its runtime presentation. GRATE remains the explicitly
-excluded blocked exception. CAR-ART-003 stays closed; no further production
-or technical cut is opened by this record.
-CAR-CORE-001 CUT A remains
-`PROPOSED / NOT AUTHORIZED`: emit and verify the ordered global simulation graph
-alongside the playable subset, with no runtime behavior change. CH_02 remains
-blocked for playable integration until the global travel, forced movement,
-lighting, death, and actor dependencies are implemented and verified in
-authorized cuts.
+**CAR-CORE-001 CUT A — PROPOSED / NOT AUTHORIZED** remains the next decision
+gate: emit and verify the ordered global simulation graph alongside the
+playable subset, with no runtime behavior change. No implementation is opened
+by this state update. CH_02 remains blocked for playable integration until the
+global travel, forced movement, lighting, death, and actor dependencies are
+implemented and verified in authorized cuts. `GRATE` remains the documented
+state-dependent illustration exception under CAR-ART-004.
 

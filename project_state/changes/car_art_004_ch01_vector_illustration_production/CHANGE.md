@@ -1,9 +1,11 @@
 # CAR-ART-004 — CH_01 Vector Illustration Production
 
-**Estado:** `IMPLEMENTED / TECHNICAL VERIFICATION COMPLETE / MANUAL_VALIDATION PENDING`
-para **nueve piezas**. **GRATE: BLOCKED / NOT PRODUCED**, por decisión humana.
-Fecha: 2026-10-25. Producción artística: Jack Burton / Codex; soporte técnico
-acotado: selección de recursos, pruebas y captura. No se declara aceptación artística.
+**Estado final:** `CLOSED / PASS — WITH DOCUMENTED EXCEPTION`.
+Nueve ilustraciones nuevas: `IMPLEMENTED / TECHNICAL PASS / HUMAN ACCEPTED`.
+`LOC_START` conserva su aceptación previa. `GRATE: DEFERRED / STATE-DEPENDENT
+ILLUSTRATION`, excluida y no contabilizada como completada. Fecha de cierre:
+2026-10-25. Producción artística: Jack Burton / Codex; soporte técnico acotado:
+selección de recursos, pruebas y captura.
 
 [Galería de CH_01](gallery.html) · [Índice y fichas](REVIEW.md) ·
 [Lámina del lote](evidence/contact_sheet.png) · [Métricas](evidence/metrics.json)
@@ -52,8 +54,9 @@ elementos imprescindibles, relaciones, estados y captura dentro de la UI.
 
 Total nuevo: **301 trazos y 125 regiones**. Máscaras y semillas válidas,
 sin celdas de fondo descubiertas; igualdad exacta final/Omitir en las nueve.
-La revisión de márgenes, siluetas, profundidad y fidelidad se realizó sobre
-capturas reales. Sigue pendiente la aceptación artística del responsable.
+La revisión técnica de márgenes, siluetas, profundidad y fidelidad se realizó
+sobre capturas reales. La tabla registra el estado de cada pieza al presentar
+el lote; la aceptación humana posterior se registra en el cierre documental.
 
 ## Decisiones de representación
 
@@ -173,13 +176,38 @@ aceptación artística. Las capturas SubViewport no acreditan portapapeles,
 monitores o interacción física humana. El layout y su límite de legibilidad
 del grafo a 720p siguen siendo los aceptados/documentados en CAR-ART-003.
 
-El responsable debe revisar las nueve fichas/secuencias y su presentación en
-el juego (F5), con especial atención a escala de la grieta/tuberías, cornisa
-sin ruta, simplificación de interiores y ausencia de objetos pintados fijos.
-GRATE requiere una autorización técnica futura; no se retoma automáticamente.
-CH_02 y CAR-CORE-001 no cambian. No se declara CLOSED ni se inicia otro corte.
+El responsable revisó y probó las nueve ilustraciones nuevas y otorgó
+**CAR-ART-004 — HUMAN ACCEPTANCE / PASS (9 SCENES)** el 2026-10-25. La aceptación
+cubre exclusivamente estas nueve piezas; no completa las diez ilustraciones
+inicialmente inventariadas. `LOC_START` mantiene su aceptación previa y no forma
+parte del lote nuevo. La galería, fichas, capturas y métricas enlazadas arriba
+son las evidencias existentes del lote.
 
-`CURRENT_STATE_UPDATE: REQUIRED`. Finalización CAR-AUTO-001 con inventario
-explícito, commit local y sincronización verificada; SHA/resultado en la entrega.
-**NO PUSH**. La sincronización preserva extras y no ofrece bloqueo atómico ante
-ediciones simultáneas en Drive.
+### Cierre humano y estado documental
+
+- Las nueve piezas quedan `IMPLEMENTED / TECHNICAL PASS / HUMAN ACCEPTED`.
+- CAR-ART-004 queda `CLOSED / PASS — WITH DOCUMENTED EXCEPTION`.
+- `GRATE` queda `DEFERRED / STATE-DEPENDENT ILLUSTRATION`: requiere representar
+  GRATE_CLOSED/GRATE_OPEN; no se produjo ni aceptó una ilustración nueva y no se
+  cuenta como completada. El respaldo heredado conserva su compatibilidad y su
+  limitación estática preexistente.
+- Las ilustraciones heredadas restantes siguen disponibles mediante el
+  consumidor/fallback existente; el registro del corte confirma que no se
+  cambió `art_ch01.json` ni el formato del renderer.
+- Se conservan los resultados ya ejecutados: exportador determinista e
+  importación PASS; 448 checks originales, 66 del prototipo START, 62 del
+  fixture de integración/fallback, 455 checks headless del lote y 582 checks
+  gráficos. No se repitieron suites para este cierre documental. Los checks
+  gráficos incluyen pruebas de render y equivalencia final/Omitir; no se
+  describen como 582 pruebas independientes ni como tests GUT.
+- La preparación gráfica medida para las nueve piezas sigue siendo una
+  limitación documentada de **2,084–3,271 s** en el equipo de prueba. No se
+  afirma que se haya optimizado ni que esas cifras se generalicen a otros equipos.
+- El cierre es documental y no cambia CH_02 ni CAR-CORE-001. La limitación de
+  reproducción HTML conceptual y los pendientes generales de revisión gráfica
+  del proyecto no se convierten en aceptación de todo CH_01.
+
+La reconciliación se limita a este CHANGE y `project_state/CURRENT_STATE.md`.
+CAR-AUTO-001 se aplica con inventario explícito para un commit local y
+sincronización verificada a Drive. **NO PUSH**. La sincronización preserva extras
+y no ofrece bloqueo atómico ante ediciones simultáneas en Drive.
