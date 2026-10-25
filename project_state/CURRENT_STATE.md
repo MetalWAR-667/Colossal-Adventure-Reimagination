@@ -178,6 +178,13 @@ baseline. See the retrospective
   checks with 0 failures. Baseline digests (`a49db669...`, `afa33c88...`,
   `fda199af...`) and functional isolation of CH_01 are fully preserved. See the
   [R4 record](changes/car_core_002_r4_structural_validation_contract_freeze/CHANGE.md).
+- CAR-CORE-002 / R5 Decision Gate: `CLOSED / DECISION GATE — VIABLE WITH CONDITIONS`
+  on 2026-10-25. The technical navigation audit confirmed that expanding navigation
+  beyond CH_01 is viable under Alternative C (subgraph with verified dependencies)
+  without breaking R1–R4 contracts. Anti-bypass strictness, English text fallback,
+  and isolation of missing mechanics/dwarves are established. See the
+  [Decision Gate record](changes/car_core_002_r5_navigation_decision_gate/CHANGE.md) and
+  [audit report](changes/car_core_002_r5_navigation_decision_gate/NAVIGATION_AUDIT.md).
 
 ## ACTIVE
 
@@ -187,7 +194,8 @@ No active implementation cut is recorded.
 
 These items are not authorized implementation cuts:
 
-- CAR-CORE-002 / R5 — Structural Navigation Enablement: `PROPOSED / NOT AUTHORIZED`.
+- CAR-CORE-002 / R5 — Structural Navigation Enablement: `PROPOSED / NOT AUTHORIZED`
+  (recommended first cut: `CAR-CORE-002 / R5A — Cave Mouth Pilot (LOC_BELOWGRATE)`).
 - Human graphical and gameplay-experience review of chapter 01.
 - Final artistic polish of `GRATE_OPEN`, accepted provisionally by the human
   in CAR-ART-005 and reserved for the project's final art review.
@@ -241,9 +249,8 @@ Known style diagnostics, not demonstrated functional regressions:
 
 ## Next Decision Gate
 
-CAR-CORE-002 / R4 is closed with PASS: the structural validation and contract
-freeze are sealed.
-**CAR-CORE-002 / R5 — Structural Navigation Enablement: PROPOSED / NOT AUTHORIZED**
+CAR-CORE-002 / R5 Decision Gate is closed with VIABLE WITH CONDITIONS.
+**CAR-CORE-002 / R5A — Cave Mouth Pilot (`LOC_BELOWGRATE`): PROPOSED / NOT AUTHORIZED**
 is the next dependency cut; it requires explicit human authorization.
 CAR-ART-005 is closed with documented follow-up: `GRATE_OPEN` polish remains
 pending final artistic review; its accepted state selection and integration are
