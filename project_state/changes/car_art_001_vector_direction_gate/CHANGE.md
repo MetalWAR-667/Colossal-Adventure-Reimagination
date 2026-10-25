@@ -1,6 +1,6 @@
 # CAR-ART-001 — Vector Art Direction & Drawing Experience Gate
 
-Estado: **REVIEW / DECISION PENDING**. Resultado: **PARTIAL**: investigación y estudios preparados; dirección definitiva, reproducción gráfica del visor y aceptación humana pendientes. No es una implementación productiva.
+Estado: **CLOSED / DECISION RECORDED**. Resultado documental: la investigación quedó revisada y la dirección artística fue seleccionada por decisión humana. La viabilidad técnica y la reproducción gráfica del visor siguen pendientes; esto no es una implementación productiva.
 
 Rol: Jack Burton, dirección creativa. Conceptos originales preparados con asistencia de Codex; el rol no atribuye autoría o aceptación a un artista humano. Fecha: 2026-10-25. Baseline: `2dfaa96bc6af7ab2ed8f6aab24e33c45b183acaf`, `main`, árbol/índice inicialmente limpios; cinco commits por delante de la referencia local `origin/main` (`b562386…`). No se consultó el remoto en vivo.
 
@@ -16,9 +16,21 @@ Rol: Jack Burton, dirección creativa. Conceptos originales preparados con asist
 
 ## 1. Brief aprobado y propuestas
 
-El encargo humano fija CAR V1 como aventura vectorial contemporánea con contornos progresivos y rellenos posteriores. Recuperar la sensación de las primeras aventuras ilustradas no obliga a conservar sus restricciones técnicas. Pixel art moderno, pintura digital y reinterpretación visual completa quedan fuera de este corte.
+El encargo humano fija CAR V1 como aventura vectorial contemporánea con contornos progresivos y rellenos posteriores. Recuperar la sensación de las primeras aventuras ilustradas no obliga a conservar sus restricciones técnicas. Pixel art moderno, pintura digital, música y una reinterpretación narrativa más elaborada quedan fuera de CAR V1 y reservados como posibilidades para una futura V2.
 
-Tratamientos, paletas, cámaras, tiempos y capacidades nuevas son **propuestas**. La Biblia Creativa solo incorpora el alcance humano explícito y el enlace al gate, sin adoptar una dirección ni cambiar el contrato del renderer.
+### Decisión humana — 2026-10-25
+
+El responsable selecciona **C — Línea solar** para CAR V1. La decisión se basa en su luminosidad, legibilidad, curvas suaves y continuidad con el espíritu vectorial de las primeras aventuras. Los estudios `C_LOC_START.svg`, `C_LOC_BUILDING.svg` y `C_LOC_GRATE.svg`, incluidos en [la lámina comparativa](studies/comparison.png), son referencias conceptuales para esta dirección; no son assets finales ni se incorporan al juego.
+
+Quedan aprobados como **objetivos de prototipo para CAR-ART-002**, no como resultados técnicos verificados ni como contrato implementado:
+
+- Secuencia completa de objetivo: **3,5 segundos**, referencia **1×**.
+- Contornos interpolados por longitud, con avance visible real.
+- Relleno progresivo por región con propagación espacial perceptible.
+- Omitir la secuencia debe producir el mismo resultado final que reproducirla completa.
+- El parser debe seguir utilizable durante la reproducción; las visitas repetidas no impondrán esperas obligatorias.
+
+La decisión estética C queda registrada y cierra este gate. No demuestra que el renderer actual pueda cumplir los objetivos temporales o de relleno; esa viabilidad requiere un prototipo técnico aislado. Los hallazgos, incertidumbres y limitaciones originales de la auditoría se conservan abajo y en los estudios.
 
 ## 2. Diagnóstico verificado del flujo actual
 
@@ -87,7 +99,7 @@ Lienzo de estudio 640 × 400, aspecto 8:5 del arte actual; no es resolución pro
 | B — Luz mineral | Marfil sobre campos fríos oscuros, facetas y motivos más próximos | Alto contraste y atmósfera | Medio/alto: puede sugerir oscuridad donde fuente dice LIT. No justificar iluminación con la lámpara apagada. |
 | C — Línea solar | Base cálida, verdes vivos y curvas suaves | Accesible, limpio y menos áspero | Medio: puede perder tensión; curvas nativas son comodidad editorial, no requisito runtime. |
 
-**Recomendación de Jack, pendiente:** A. Conserva economía y reduce riesgo de confundir luz/estado. No adoptar filtro retro ni aumentar detalle indiscriminadamente. B/C permiten elegir otra temperatura visual.
+**Recomendación anterior de Jack:** A, por su contorno visible y menor riesgo de sugerir oscuridad. La decisión humana posterior seleccionó **C — Línea solar**, por luminosidad, legibilidad, curvas suaves y continuidad vectorial. La recomendación anterior se conserva como parte del registro de investigación, no como dirección vigente.
 
 Autocrítica: árboles todavía muy emparentados, interiores esquemáticos y perspectiva simplificada; son bloqueos de dirección, no assets finales. No se promete conversión directa al JSON actual. La revisión de densidad y materiales sigue siendo humana.
 
@@ -101,7 +113,7 @@ Autocrítica: árboles todavía muy emparentados, interiores esquemáticos y per
 
 ## 7. Experiencia LINE/FILL propuesta
 
-Primera visita orientativa **5,5 s**: 45% contorno, 23% detalle y 32% relleno. Son parámetros de comparación sin aprobación ni prueba perceptual. Contornos persistentes y rellenos espaciales; no fundir toda la imagen final.
+La decisión humana fija para el prototipo una duración objetivo de **3,5 s a 1×**. Este objetivo sustituye la propuesta de exploración anterior de 5,5 s y no implica medición perceptual ni rendimiento ya comprobado. El criterio aprobado es que se perciba el recorrido interpolado de los contornos y la propagación espacial posterior del relleno; no fundir la imagen completa como sustituto.
 
 1. Estructura: suelo, edificio/roca, huecos que permiten reconocer el lugar.
 2. Detalles: materiales y objetos/pistas presentes.
@@ -154,14 +166,18 @@ Ejecutado:
 - PASS: XML de los 14 SVG, sintaxis Python/JavaScript, enlaces locales y reconstrucción determinista de SVG/HTML; hashes del renderer/arte productivos sin cambios. `git diff --check`: PASS. Inventario final: 22 archivos (Biblia, CHANGE y 20 archivos de estudio), sin archivos ajenos. Estos checks no ejecutan los controles del navegador.
 - `verify.ps1` y 448 checks **NOT_RUN**: no se modifica proyecto Godot, renderer, runtime, datos productivos, parser, escenas, YAML o exportador.
 - El navegador automatizado bloqueó `file:`. No se eludió la política. Reproducción/pausa/omisión del HTML **NO verificadas gráficamente**. Rasterizar SVG no acredita esos controles.
-- Selección artística y prueba de duración/legibilidad **PENDING**.
+- Dirección artística C: **DECIDED** por el responsable. Prueba perceptual de duración/legibilidad: **PENDING**.
 
-## 10. Decision Gate y cierre
+## 10. Cierre del Decision Gate
 
-El responsable elige A/B/C o pide variación acotada, juzga densidad y revisa el visor en navegador real. Después podrá autorizar por separado viabilidad temporal con Sol. No iniciar CAR-ART-002, reemplazar los once assets ni ampliar CH_02 desde esta entrega.
+**Decisión registrada:** C — Línea solar, elegida por el responsable el 2026-10-25. CAR-ART-001 queda **CLOSED / DECISION RECORDED** en su alcance de investigación y decisión artística. La selección no convierte los estudios en assets finales ni verifica la viabilidad del renderer.
+
+El visor HTML conceptual sigue sin validación gráfica automatizada: el intento de navegador `file:` fue bloqueado por la política del entorno y no se eludió. La decisión humana sobre la dirección queda registrada independientemente de esa limitación; la reproducción del visor y la prueba de duración/legibilidad no se declaran PASS. Los objetivos temporales y de dibujo se investigarán, si se autoriza, en un prototipo técnico aislado de CAR-ART-002 limitado inicialmente a `LOC_START`.
+
+CAR-ART-003 — migración de las once ilustraciones — **NOT AUTHORIZED**. No reemplazar los assets productivos ni ampliar CH_02 desde este gate. CAR-CORE-001 CUT A–F conserva exactamente sus estados y autorizaciones previos.
 
 Parar en un futuro corte si se pierde pista/estado, se falsea geografía, fill invade otra región, se bloquea parser o una secuencia cancelada muestra sala obsoleta. No ocultar esos problemas con fundido.
 
-Inventario: este CHANGE, estudios originales y nota del brief humano en Biblia. `CURRENT_STATE_UPDATE: NOT_REQUIRED`: ningún corte runtime se reabre ni implementa. La decisión de este gate sigue pendiente.
+Inventario de la investigación: este CHANGE, los estudios originales y la nota de dirección en la Biblia Creativa. `CURRENT_STATE_UPDATE: REQUIRED`: el estado operativo debe reflejar el cierre documental de CAR-ART-001 y registrar CAR-ART-002 como `PROPOSED / NOT STARTED`. No se alteran los estados de CH_01, CH_02 ni CAR-CORE-001.
 
 CAR-AUTO-001 permite commit local de investigación completada con propuestas pendientes y sync posterior. Se usa `finalize_cut.ps1` con lista explícita; SHA/resultado de sync/estado Git se entregan al finalizar, sin push. Confirmar archivos no constituye aprobación artística.

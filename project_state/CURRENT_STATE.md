@@ -68,6 +68,9 @@ baseline. See the retrospective
 - CAR-CORE-001 historical runtime-dependency Decision Gate is complete. It
   concludes that a full simulation graph can remain separate from the playable
   subset; this is an architectural finding, not an implementation.
+- CAR-ART-001 is `CLOSED / DECISION RECORDED`: the human selected C — Línea
+  solar on 2026-10-25. This closes the art-direction gate only; renderer
+  feasibility and conceptual-browser playback remain unverified.
 
 ## ACTIVE
 
@@ -81,9 +84,13 @@ These items are not authorized implementation cuts:
 - Effective integration of project tests with GUT.
 - Selection of the next playable cut.
 - Expansion beyond chapter 01; chapters 02–11 are not implemented.
-- UX and art-direction improvements, subject to the existing project evidence
-  and a separately approved scope.
+- Further UX improvements beyond the recorded CAR-ART-001 direction, subject
+  to existing project evidence and a separately approved scope.
 - CAR-CORE-001 CUT A — proposed global data-contract cut; not authorized.
+- CAR-ART-002 — proposed isolated Godot 4.7.2 LINE/FILL playback prototype,
+  initially limited to `LOC_START`; `NOT STARTED` and not authorized by this
+  record. Approved prototype objectives are recorded in the CAR-ART-001 CHANGE.
+- CAR-ART-003 — migration of all eleven CH_01 illustrations; `NOT AUTHORIZED`.
 - CH_02 playable integration remains blocked by the global runtime dependencies
   identified in CAR-CORE-001. Chapters beyond CH_01 are not implemented or
   authorized.
@@ -114,9 +121,13 @@ Known style diagnostics, not demonstrated functional regressions:
 
 ## Next Decision Gate
 
-**PROPOSED / NOT AUTHORIZED:** CAR-CORE-001 CUT A — emit and verify the
-ordered global simulation graph alongside the playable subset, with no runtime
-behavior change. CH_02 remains blocked for playable integration until the
-global travel, forced movement, lighting, death, and actor dependencies are
-implemented and verified in authorized cuts.
+**PROPOSED / NOT STARTED:** CAR-ART-002 — isolated Godot 4.7.2 LINE/FILL
+playback prototype beginning with `LOC_START`, using C — Línea solar as its
+approved artistic direction and the objectives recorded in the CAR-ART-001
+CHANGE. This is not implementation authorization. CAR-CORE-001 CUT A remains
+`PROPOSED / NOT AUTHORIZED`: emit and verify the ordered global simulation graph
+alongside the playable subset, with no runtime behavior change. CH_02 remains
+blocked for playable integration until the global travel, forced movement,
+lighting, death, and actor dependencies are implemented and verified in
+authorized cuts.
 
