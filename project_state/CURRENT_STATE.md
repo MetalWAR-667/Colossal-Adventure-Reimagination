@@ -185,6 +185,16 @@ baseline. See the retrospective
   and isolation of missing mechanics/dwarves are established. See the
   [Decision Gate record](changes/car_core_002_r5_navigation_decision_gate/CHANGE.md) and
   [audit report](changes/car_core_002_r5_navigation_decision_gate/NAVIGATION_AUDIT.md).
+- CAR-CORE-002 / R5-PRE: `CLOSED / VERIFIED — R5A READY` on 2026-10-26.
+  Historical travel semantics crosscheck against Open Adventure 1.22 C code
+  confirmed that Godot's CUT B travel resolver (`Interpreter._select_rule`,
+  `_select_from`, `_next_distinct`) faithfully replicates the C algorithm
+  (`playermove`, `traveleq`). All 19 differential test scenarios for `LOC_GRATE`
+  and `LOC_BELOWGRATE` matched with 100% precision. The `DEPENDENCY_PENDING`
+  safeguard prevents uninstantiated objects from falsely triggering fallback rules.
+  Dwarves are confirmed inactive before `LOC_MISTHALL` (`DEEP == false`).
+  See the [R5-PRE record](changes/car_core_002_r5_pre_historical_travel_semantics_crosscheck/CHANGE.md)
+  and [crosscheck report](changes/car_core_002_r5_pre_historical_travel_semantics_crosscheck/HISTORICAL_TRAVEL_CROSSCHECK.md).
 
 ## ACTIVE
 
@@ -249,7 +259,7 @@ Known style diagnostics, not demonstrated functional regressions:
 
 ## Next Decision Gate
 
-CAR-CORE-002 / R5 Decision Gate is closed with VIABLE WITH CONDITIONS.
+CAR-CORE-002 / R5-PRE is closed with VERIFIED — R5A READY.
 **CAR-CORE-002 / R5A — Cave Mouth Pilot (`LOC_BELOWGRATE`): PROPOSED / NOT AUTHORIZED**
 is the next dependency cut; it requires explicit human authorization.
 CAR-ART-005 is closed with documented follow-up: `GRATE_OPEN` polish remains
