@@ -2,6 +2,8 @@
 
 Esta entrada orienta el trabajo asistido en el repositorio público. Consulta primero [README.md](README.md), la tarea humana vigente y las reglas enlazadas desde [contracts/AGENTS.md](contracts/AGENTS.md). Carga únicamente el contrato del rol asignado; la presencia de varios contratos no activa agentes ni autoriza delegaciones.
 
+La carpeta visible en el workspace de Codex no garantiza acceso de ejecución a repositorios hermanos. Ante errores de worktree, comprobar primero las restricciones del sandbox.
+
 El producto ejecutable es una aplicación independiente de Godot 4.7 situada en `07_godot_open_adventure/`. No es un plugin de editor. El YAML de Open Adventure es la autoridad de los datos históricos; los diagramas, informes, JSON exportado y la aplicación Godot son transformaciones o consumidores derivados con responsabilidades distintas.
 
 Antes de modificar el proyecto Godot:

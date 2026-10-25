@@ -2,7 +2,7 @@
 
 **Document status:** `CURRENT / REVIEW`
 **Documentation task:** `CAR-DOC-001` — closed and published
-**Observed state:** `main` at `04841045a6b3e4a01ac6b8b1e401d70d5af5f279`
+**Observed state at CAR-AUTO-001 preflight (2026-10-25):** local `main` at `176492ab13f418414c18df6775ec28cabaa88122`; four CAR-AUTO-001 commits ahead of local `origin/main` at `b5623864d11e0081096df5e4a61900a5ef4bc4a6`. Remote not queried live.
 **Historical baseline:** `f59c413550dd3566e63af0c98a8df17a96359768`
 
 ## Project Identity
@@ -58,6 +58,16 @@ baseline. See the retrospective
 - The CAR-QOL-001 terminal focus correction is closed after manual validation;
   the current suite passes 448 checks. The maximized window mode is accepted
   provisionally for this cut.
+- CAR-AUTO-001 is implemented and validated for its authorized tooling and
+  documents: the finalizer self-test passed 9 internal checks, the Drive-sync
+  self-test passed 21 internal checks, and the committed snapshot was synced
+  and hash-verified. These are tooling checks, not Godot checks.
+- CAR-AUTO-001 permits local commits only for expressly authorized CAR cuts,
+  followed by non-destructive synchronization of tracked files to Drive. It
+  never authorizes automatic push; local `origin/main` is not live remote evidence.
+- CAR-CORE-001 historical runtime-dependency Decision Gate is complete. It
+  concludes that a full simulation graph can remain separate from the playable
+  subset; this is an architectural finding, not an implementation.
 
 ## ACTIVE
 
@@ -73,7 +83,10 @@ These items are not authorized implementation cuts:
 - Expansion beyond chapter 01; chapters 02–11 are not implemented.
 - UX and art-direction improvements, subject to the existing project evidence
   and a separately approved scope.
-- `CH_02`: proposed planning gate only; not implemented and not authorized.
+- CAR-CORE-001 CUT A — proposed global data-contract cut; not authorized.
+- CH_02 playable integration remains blocked by the global runtime dependencies
+  identified in CAR-CORE-001. Chapters beyond CH_01 are not implemented or
+  authorized.
 
 ## DEFERRED / OUT OF SCOPE
 
@@ -101,6 +114,9 @@ Known style diagnostics, not demonstrated functional regressions:
 
 ## Next Decision Gate
 
-**PROPOSED / NOT AUTHORIZED:** plan the next small cut after the chapter 01
-review. `CH_02` remains a proposal only and is not authorized for implementation.
+**PROPOSED / NOT AUTHORIZED:** CAR-CORE-001 CUT A — emit and verify the
+ordered global simulation graph alongside the playable subset, with no runtime
+behavior change. CH_02 remains blocked for playable integration until the
+global travel, forced movement, lighting, death, and actor dependencies are
+implemented and verified in authorized cuts.
 
