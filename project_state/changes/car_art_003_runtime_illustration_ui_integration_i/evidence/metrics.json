@@ -1,0 +1,25 @@
+{
+	"1280x720_layout": {
+		"graph": "[P: (14.0, 364.0), S: (1252.0, 286.0)]",
+		"image": "[P: (14.0, 75.0), S: (1252.0, 180.0)]",
+		"input": "[P: (14.0, 656.0), S: (1252.0, 25.0)]",
+		"text": "[P: (14.0, 263.0), S: (1252.0, 95.0)]"
+	},
+	"1920x1080_layout": {
+		"graph": "[P: (14.0, 575.0), S: (1892.0, 435.0)]",
+		"image": "[P: (14.0, 75.0), S: (1892.0, 342.0)]",
+		"input": "[P: (14.0, 1016.0), S: (1892.0, 25.0)]",
+		"text": "[P: (14.0, 425.0), S: (1892.0, 144.0)]"
+	},
+	"checks": 71,
+	"device": "NVIDIA GeForce RTX 3070",
+	"display": "Windows",
+	"failures": [],
+	"godot": "4.7.2-stable (official)",
+	"human_visual_acceptance": "PENDING",
+	"look_during_preparation_ms": 2.833,
+	"playback_seconds": 3.516495,
+	"prepare_seconds": 1.570843,
+	"transition_dispatch_ms": 4.162,
+	"transition_to_next_render_ms": 33.307
+}

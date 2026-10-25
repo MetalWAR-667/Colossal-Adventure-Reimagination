@@ -1,7 +1,11 @@
-# Isolated presentation. No Interpreter, GameState, global keys or parser hooks.
+# Presentation only. No Interpreter, GameState, global keys or parser hooks.
 extends Control
 
 const Playback = preload("res://experiments/vector_playback/playback.gd")
+var source_path := "res://experiments/vector_playback/loc_start.json"
+var illustration_id := "LOC_START"
+var autoplay_on_ready := true
+var _finish_requested := false
 var model := Playback.new()
 var texture: ImageTexture
 var paths: Array[Dictionary] = []
@@ -21,11 +25,12 @@ var _waiting := false
 func _ready() -> void:
 	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
-	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://experiments/vector_playback/loc_start.json"))
+	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(source_path))
 	model.configure(data)
 	texture = ImageTexture.create_from_image(model.image)
 	prepare_started = Time.get_ticks_usec()
-	show_room("LOC_START")
+	if autoplay_on_ready:
+		show_room(illustration_id)
 
 
 func show_room(id: String) -> void:
@@ -33,7 +38,8 @@ func show_room(id: String) -> void:
 		return
 	model.cancel()
 	room = id
-	_waiting = id == "LOC_START"
+	_finish_requested = false
+	_waiting = id == illustration_id
 	if _waiting and model.prepared:
 		_enter_start()
 	_update_picture()
@@ -41,15 +47,15 @@ func show_room(id: String) -> void:
 
 func _enter_start() -> void:
 	_waiting = false
-	if visited.has("LOC_START"):
+	if visited.has(illustration_id) or _finish_requested:
 		model.skip()
 	else:
-		visited["LOC_START"] = true
 		replay()
+	visited[illustration_id] = true
 
 
 func replay() -> void:
-	if room != "LOC_START" or not model.prepared:
+	if room != illustration_id or not model.prepared:
 		return
 	model.replay()
 	_started = Time.get_ticks_usec()
@@ -59,9 +65,11 @@ func replay() -> void:
 
 
 func skip() -> void:
-	if room == "LOC_START":
-		model.skip()
-		_update_picture()
+	if room == illustration_id:
+		_finish_requested = true
+		if model.prepared:
+			model.skip()
+			_update_picture()
 
 
 func _process(_delta: float) -> void:

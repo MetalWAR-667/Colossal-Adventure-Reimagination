@@ -69,17 +69,25 @@ baseline. See the retrospective
   concludes that a full simulation graph can remain separate from the playable
   subset; this is an architectural finding, not an implementation.
 - CAR-ART-001 is `CLOSED / DECISION RECORDED`: the human selected C — Línea
-  solar on 2026-10-25. This closes the art-direction gate only; production
-  renderer integration and conceptual-browser playback remain unverified.
+  solar on 2026-10-25. This closes the art-direction gate only;
+  conceptual-browser playback remains unverified. Runtime pilot integration
+  is tracked separately in CAR-ART-003.
 - CAR-ART-002 is `CLOSED / PASS — EXPERIMENTAL PROTOTYPE LOC_START` after human
-  visual acceptance on 2026-10-25. The prototype is not integrated into the
-  productive game; see the
+  visual acceptance on 2026-10-25. That closure covered the isolated prototype;
+  its later runtime pilot belongs to CAR-ART-003. See the
   [prototype record](changes/car_art_002_vector_drawing_playback_prototype/CHANGE.md).
 
 ## ACTIVE
 
-No CAR-ART-002 implementation work is active. Any production integration
-requires a separately authorized cut.
+- CAR-ART-003: `IMPLEMENTED / TECHNICAL VERIFICATION COMPLETE /
+  MANUAL_VALIDATION PENDING`. The authorized pilot integrates progressive
+  `LOC_START` into the playable main scene, with illustration → narration →
+  navigation graph → exits → command input. Other illustrations retain the
+  legacy consumer and TAB retains the debug composition without illustration.
+  Verification: 448 unchanged game checks, 66 unchanged prototype checks,
+  62 focused headless integration checks and 71 graphics integration checks
+  (the extra nine cover eight PNG captures and rendered final/skip equality).
+  See the [integration record](changes/car_art_003_runtime_illustration_ui_integration_i/CHANGE.md).
 
 ## PENDING / PROPOSED
 
@@ -92,10 +100,10 @@ These items are not authorized implementation cuts:
 - Further UX improvements beyond the recorded CAR-ART-001 direction, subject
   to existing project evidence and a separately approved scope.
 - CAR-CORE-001 CUT A — proposed global data-contract cut; not authorized.
-- Any production integration of CAR-ART-002 requires a separately authorized
-  cut; the accepted experimental prototype does not establish parser/UI
-  integration or a production renderer contract.
-- CAR-ART-003 — migration of all eleven CH_01 illustrations; `NOT AUTHORIZED`.
+- Human visual and interaction acceptance of the CAR-ART-003 pilot layout.
+- Migration of the other ten CH_01 illustrations is not authorized by the
+  CAR-ART-003 pilot scope. Replay/revisit policy beyond immediate revisits
+  remains a separate decision.
 - CH_02 playable integration remains blocked by the global runtime dependencies
   identified in CAR-CORE-001. Chapters beyond CH_01 are not implemented or
   authorized.
@@ -126,9 +134,10 @@ Known style diagnostics, not demonstrated functional regressions:
 
 ## Next Decision Gate
 
-**No new implementation cut is authorized by this state update.** CAR-ART-002
-is closed for its isolated `LOC_START` prototype only. Production integration
-and CAR-ART-003 are not authorized by this record. CAR-CORE-001 CUT A remains
+**CAR-ART-003 — MANUAL_VALIDATION PENDING:** review the actual playable pilot,
+its layout, parser continuity, normal/debug alternation and legacy artwork.
+No further implementation cut is authorized by this state update.
+CAR-CORE-001 CUT A remains
 `PROPOSED / NOT AUTHORIZED`: emit and verify the ordered global simulation graph
 alongside the playable subset, with no runtime behavior change. CH_02 remains
 blocked for playable integration until the global travel, forced movement,

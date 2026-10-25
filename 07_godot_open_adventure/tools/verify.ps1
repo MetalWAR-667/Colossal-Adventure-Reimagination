@@ -8,6 +8,7 @@
       2. the Godot import, which registers the global script classes;
       3. the headless test suite of the engine;
       4. the contact sheet of the vector illustrations.
+      5. runtime illustration/layout integration regressions.
 
 .EXAMPLE
     powershell -ExecutionPolicy Bypass -File tools\verify.ps1
@@ -42,20 +43,24 @@ if ([string]::IsNullOrWhiteSpace($Godot)) {
     }
 }
 
-Write-Host "== 1/4 export determinism ==" -ForegroundColor Cyan
+Write-Host "== 1/5 export determinism ==" -ForegroundColor Cyan
 & $Python (Join-Path $here "oa_export_godot.py") --check
 if ($LASTEXITCODE -ne 0) { Fail "the committed dataset does not match the regenerated one" }
 
-Write-Host "== 2/4 godot import ==" -ForegroundColor Cyan
+Write-Host "== 2/5 godot import ==" -ForegroundColor Cyan
 & $Godot --headless --path $project --editor --quit | Out-Null
 if ($LASTEXITCODE -ne 0) { Fail "the Godot import reported errors" }
 
-Write-Host "== 3/4 engine tests ==" -ForegroundColor Cyan
+Write-Host "== 3/5 engine tests ==" -ForegroundColor Cyan
 & $Godot --headless --path $project --script res://tests/run_tests.gd
 if ($LASTEXITCODE -ne 0) { Fail "the engine tests failed" }
 
-Write-Host "== 4/4 illustration sheet ==" -ForegroundColor Cyan
+Write-Host "== 4/5 illustration sheet ==" -ForegroundColor Cyan
 & $Godot --headless --path $project --script res://tools/capture_scenes.gd
 if ($LASTEXITCODE -ne 0) { Fail "the illustration sheet could not be rendered" }
+
+Write-Host "== 5/5 runtime illustration integration ==" -ForegroundColor Cyan
+& $Godot --headless --path $project --script res://tests/test_runtime_illustration.gd
+if ($LASTEXITCODE -ne 0) { Fail "the runtime illustration integration tests failed" }
 
 Write-Host "ALL CHECKS PASSED" -ForegroundColor Green

@@ -12,7 +12,7 @@ var title_label: Label
 var debug_mode: bool = false
 var _normal_interface: MarginContainer
 var _debug_interface: MarginContainer
-var _normal_terminal_host: HBoxContainer
+var _normal_terminal_host: VBoxContainer
 var _normal_map_host: VBoxContainer
 var _debug_terminal_host: VBoxContainer
 var _debug_map_host: VBoxContainer
@@ -56,7 +56,12 @@ func _build_layout() -> void:
 	subtitle.add_theme_color_override("font_color", Color(0.65, 0.68, 0.72))
 	root.add_child(subtitle)
 
-	_normal_terminal_host = HBoxContainer.new()
+	illustration = IllustrationView.new(world)
+	root.add_child(illustration)
+	resized.connect(_resize_illustration)
+	_resize_illustration()
+
+	_normal_terminal_host = VBoxContainer.new()
 	_normal_terminal_host.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_normal_terminal_host.add_theme_constant_override("separation", 14)
 	root.add_child(_normal_terminal_host)
@@ -66,20 +71,23 @@ func _build_layout() -> void:
 	terminal.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	terminal.command_entered.connect(_on_command)
 	_normal_terminal_host.add_child(terminal)
+	terminal.output.custom_minimum_size = Vector2(0, 80)
+	terminal.output.size_flags_stretch_ratio = 0.5
 	_terminal_output_minimum = terminal.output.custom_minimum_size
 
 	_normal_map_host = VBoxContainer.new()
-	_normal_map_host.custom_minimum_size = Vector2(360, 0)
 	_normal_map_host.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_normal_map_host.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_normal_map_host.size_flags_stretch_ratio = 1.5
 	_normal_map_host.add_theme_constant_override("separation", 8)
-	_normal_terminal_host.add_child(_normal_map_host)
-
-	illustration = IllustrationView.new(world)
-	_normal_map_host.add_child(illustration)
+	terminal.add_child(_normal_map_host)
+	terminal.move_child(_normal_map_host, 1)
 
 	map_view = MapView.new(world)
 	map_view.exit_requested.connect(_on_command)
 	_normal_map_host.add_child(map_view)
+	map_view.custom_minimum_size.y = 240
+	map_view._canvas.custom_minimum_size.y = 120
 
 	status_label = Label.new()
 	status_label.add_theme_font_size_override("font_size", 12)
@@ -87,6 +95,12 @@ func _build_layout() -> void:
 	root.add_child(status_label)
 
 	_build_debug_interface()
+
+
+func _resize_illustration() -> void:
+	# Stable responsive region, independent of partial stroke/fill bounds.
+	if illustration != null:
+		illustration.custom_minimum_size.y = clampf(180.0 + (size.y - 720.0) * 0.45, 180.0, 360.0)
 
 
 func _build_debug_interface() -> void:
@@ -151,11 +165,16 @@ func _input(event: InputEvent) -> void:
 
 func _toggle_debug_mode() -> void:
 	debug_mode = not debug_mode
+	_normal_map_host.visible = not debug_mode
 	if debug_mode:
+		illustration.complete_pending()
 		map_view.reparent(_debug_map_host, false)
 		terminal.reparent(_debug_terminal_host, false)
 		terminal.output.custom_minimum_size = Vector2(0, 180)
+		terminal.output.size_flags_stretch_ratio = 1.0
 		map_view.set_navigation_enabled(false)
+		map_view.custom_minimum_size.y = 320
+		map_view._canvas.custom_minimum_size.y = 180
 		_normal_interface.visible = false
 		_debug_interface.visible = true
 	else:
@@ -164,7 +183,10 @@ func _toggle_debug_mode() -> void:
 		terminal.reparent(_normal_terminal_host, false)
 		_normal_terminal_host.move_child(terminal, 0)
 		terminal.output.custom_minimum_size = _terminal_output_minimum
+		terminal.output.size_flags_stretch_ratio = 0.5
 		map_view.set_navigation_enabled(true)
+		map_view.custom_minimum_size.y = 240
+		map_view._canvas.custom_minimum_size.y = 120
 		_normal_interface.visible = true
 	terminal.focus_input_deferred()
 
@@ -172,6 +194,7 @@ func _toggle_debug_mode() -> void:
 func _refresh_status() -> void:
 	var location_id := interpreter.state.current_location
 	var where := location_id.replace("LOC_", "")
+	title_label.text = "%s · %s" % [world.ui("title"), where]
 	status_label.text = "%s · %s · turno %d · %s" % [
 		world.chapter_title,
 		where,
@@ -179,4 +202,6 @@ func _refresh_status() -> void:
 		world.ui("turn_line").replace("{turn}", str(interpreter.state.turn)),
 	]
 	illustration.show_room(location_id)
+	if debug_mode:
+		illustration.complete_pending()
 	map_view.set_location(location_id, interpreter.state.visited, interpreter.state)
