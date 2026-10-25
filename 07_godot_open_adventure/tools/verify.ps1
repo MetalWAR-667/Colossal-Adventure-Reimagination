@@ -59,6 +59,8 @@ if ($LASTEXITCODE -ne 0) { Fail "the global simulation data contract failed" }
 if ($LASTEXITCODE -ne 0) { Fail "the canonical inventory does not match the regenerated dataset" }
 & $Python (Join-Path $here "test_canonical_inventory.py")
 if ($LASTEXITCODE -ne 0) { Fail "the canonical inventory tests failed" }
+& $Python (Join-Path $here "test_structural_projection.py")
+if ($LASTEXITCODE -ne 0) { Fail "the structural projection tests failed" }
 
 Write-Host "== 2/7 godot import ==" -ForegroundColor Cyan
 & $Godot --headless --path $project --editor --quit | Out-Null
@@ -69,6 +71,8 @@ Write-Host "== 3/7 engine tests ==" -ForegroundColor Cyan
 if ($LASTEXITCODE -ne 0) { Fail "the engine tests failed" }
 & $Godot --headless --path $project --script res://tests/test_simulation_graph_isolation.gd
 if ($LASTEXITCODE -ne 0) { Fail "the simulation graph changed the playable boundary" }
+& $Godot --headless --path $project --script res://tests/test_structural_projection_isolation.gd
+if ($LASTEXITCODE -ne 0) { Fail "the structural projection changed the playable boundary" }
 & $Godot --headless --path $project --script res://tests/test_travel_cycle.gd
 if ($LASTEXITCODE -ne 0) { Fail "the historical travel cycle tests failed" }
 & $Godot --headless --path $project --script res://tests/test_darkness_lamp.gd

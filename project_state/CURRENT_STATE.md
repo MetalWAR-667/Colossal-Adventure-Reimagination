@@ -150,6 +150,16 @@ baseline. See the retrospective
   and illustration suites. Runtime Godot, `WorldData`, and CH_01 playable
   boundary remain untouched. See the
   [R1 record](changes/car_core_002_r1_canonical_room_inventory/CHANGE.md).
+- CAR-CORE-002 / R2: `CLOSED / PASS` on 2026-10-25. The complete historical structural
+  projection is generated deterministically and versioned under
+  `07_godot_open_adventure/godot/data/structural_world.json`: 185 locations with
+  descriptions, flags and ordered outbound travel, 623 travel records, 70 objects,
+  11 chapters, 6 dwarf start positions, and static dependency matrix. 34 unit/negative
+  tests in `test_structural_projection.py` and 23 Godot headless isolation checks in
+  `test_structural_projection_isolation.gd` passed. Playable CH_01 contract
+  (`chapter_01_surface.json` digest `a49db669...`) and runtime scripts remain
+  untouched. See the
+  [R2 record](changes/car_core_002_r2_complete_structural_data_projection/CHANGE.md).
 
 ## ACTIVE
 
@@ -159,8 +169,8 @@ No active implementation cut is recorded.
 
 These items are not authorized implementation cuts:
 
-- CAR-CORE-002 / R2 — Complete Structural Data Projection: `PROPOSED / NOT AUTHORIZED`.
-- CAR-CORE-002 / R3 & R4: `PROPOSED / NOT AUTHORIZED`.
+- CAR-CORE-002 / R3 — Structural Loader & Enabled View: `PROPOSED / NOT AUTHORIZED`.
+- CAR-CORE-002 / R4 — Gameplay Mechanics & Active View: `PROPOSED / NOT AUTHORIZED`.
 - Human graphical and gameplay-experience review of chapter 01.
 - Final artistic polish of `GRATE_OPEN`, accepted provisionally by the human
   in CAR-ART-005 and reserved for the project's final art review.
@@ -214,9 +224,9 @@ Known style diagnostics, not demonstrated functional regressions:
 
 ## Next Decision Gate
 
-CAR-CORE-002 / R1 is closed with PASS: the canonical room inventory and reproducible
-validator are verified in tooling and documentation.
-**CAR-CORE-002 / R2 — Complete Structural Data Projection: PROPOSED / NOT AUTHORIZED**
+CAR-CORE-002 / R2 is closed with PASS: the complete structural data projection
+is generated deterministically and verified inert.
+**CAR-CORE-002 / R3 — Structural Loader & Enabled View: PROPOSED / NOT AUTHORIZED**
 is the next dependency cut; it requires explicit human authorization.
 CAR-ART-005 is closed with documented follow-up: `GRATE_OPEN` polish remains
 pending final artistic review; its accepted state selection and integration are
