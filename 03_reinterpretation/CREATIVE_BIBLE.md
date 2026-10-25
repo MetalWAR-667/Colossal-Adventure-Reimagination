@@ -10,6 +10,8 @@
 ## Arte
 - Referencias de técnicas y sensaciones (no reproducción directa de capturas): **[DECIDIDO 2026-10-15]** ilustración por sala que recrea el dibujado vectorial de las aventuras de 8 bits: se trazan líneas y después se rellenan zonas con flood fill, visible en tiempo real para el jugador.
   - Nota de arquitectura: la ilustración se guarda como **datos** (lista ordenada de comandos: `LINE`, `FILL`, color…) y el renderer los reproduce. El renderer consume datos, no dicta nada.
+- **[ALCANCE HUMANO APROBADO — CAR-ART-001, 2026-10-25]** CAR V1 explora una aventura vectorial contemporánea con contornos progresivos y rellenos posteriores; no está obligada a reproducir las limitaciones técnicas de los primeros microordenadores. Pixel art moderno, pintura digital y una reinterpretación visual completa quedan reservados a una posible V2.
+  - [CAR-ART-001: estudios de dirección y experiencia LINE/FILL](../project_state/changes/car_art_001_vector_direction_gate/CHANGE.md) contiene **propuestas pendientes de elección humana**. No se ha adoptado ninguno de sus tres tratamientos, paletas, tiempos ni requisitos técnicos nuevos.
 - Paleta / iluminación / textura:
 - Perspectiva / encuadre / aspect ratio:
 - Elementos visuales que comunican pistas:

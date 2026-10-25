@@ -1,0 +1,80 @@
+{
+  "baseline": "2dfaa96bc6af7ab2ed8f6aab24e33c45b183acaf",
+  "method": "Exact current renderer and art copied into a disposable Godot project; no production execution/files overwritten.",
+  "godot": "4.7.2.stable.official.ed1daf0bf",
+  "renderer_sha256": "b880174a2a9c490aec76697c04401500cba0550f4523ac437cfcee168f1666c8",
+  "art_sha256": "f1ab032b8cc2f46dfcb1000cf484fa948ed650e84861309ba3eb26f33849922c",
+  "audit_png_sha256": "f7c83ab3c8e7f04257882283044998d2781cf65512ee2c3b73d8f89eb309ae47",
+  "tracked_contact_sha256": "f7c83ab3c8e7f04257882283044998d2781cf65512ee2c3b73d8f89eb309ae47",
+  "audit_matches_tracked_contact_bytes": true,
+  "sorted_scene_order": [
+    "LOC_BUILDING",
+    "LOC_CLIFF",
+    "LOC_FOREST",
+    "LOC_GRATE",
+    "LOC_HILL",
+    "LOC_LEDGE",
+    "LOC_ROADEND",
+    "LOC_SEWER",
+    "LOC_SLIT",
+    "LOC_START",
+    "LOC_VALLEY"
+  ],
+  "scene_stats": {
+    "LOC_BUILDING": {
+      "lines": 8,
+      "segments": 17,
+      "fills": 5
+    },
+    "LOC_CLIFF": {
+      "lines": 9,
+      "segments": 27,
+      "fills": 8
+    },
+    "LOC_FOREST": {
+      "lines": 12,
+      "segments": 20,
+      "fills": 10
+    },
+    "LOC_GRATE": {
+      "lines": 14,
+      "segments": 21,
+      "fills": 5
+    },
+    "LOC_HILL": {
+      "lines": 8,
+      "segments": 22,
+      "fills": 9
+    },
+    "LOC_LEDGE": {
+      "lines": 7,
+      "segments": 23,
+      "fills": 7
+    },
+    "LOC_ROADEND": {
+      "lines": 11,
+      "segments": 22,
+      "fills": 11
+    },
+    "LOC_SEWER": {
+      "lines": 6,
+      "segments": 18,
+      "fills": 4
+    },
+    "LOC_SLIT": {
+      "lines": 7,
+      "segments": 18,
+      "fills": 5
+    },
+    "LOC_START": {
+      "lines": 15,
+      "segments": 39,
+      "fills": 13
+    },
+    "LOC_VALLEY": {
+      "lines": 10,
+      "segments": 22,
+      "fills": 7
+    }
+  }
+}
