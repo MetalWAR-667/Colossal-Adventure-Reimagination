@@ -207,6 +207,18 @@ baseline. See the retrospective
   `test_cave_mouth_pilot.gd` and all 7 `verify.ps1` phases passed cleanly with
   zero regressions on CUT A–D. See the
   [R5A record](changes/car_core_002_r5a_cave_mouth_pilot/CHANGE.md).
+- CAR-CORE-002 / R5A-POST: `CLOSED / VERIFIED — NO REGRESSION` on 2026-10-26.
+  Focused test coverage and structural lighting audit resolved the apparent
+  metrics reporting discrepancy in R5A (10 vs 11 scenes, 36 vs 62 UI checks,
+  19 vs 455 art checks, 10 vs 150 grate checks, 448 -> 459 engine checks).
+  Confirmed zero loss of test coverage, zero alterations in `verify.ps1` other
+  than adding `test_cave_mouth_pilot.gd`, and 1277 total passed checks (+61 vs.
+  baseline). Provenance of `LIT` for `LOC_BELOWGRATE` (and `LOC_COBBLE`) was
+  cross-checked with Open Adventure 1.22 C source and YAML (37 total LIT rooms out
+  of 185), confirming natural sunlight through the grate and absence of artificial
+  lighting bleed into dark rooms. Structural enablement boundary in `WorldData` is
+  strictly whitelisted and fail-closed. See the
+  [R5A-POST record](changes/car_core_002_r5a_post_coverage_lighting_audit/CHANGE.md).
 
 ## ACTIVE
 
@@ -275,6 +287,7 @@ Known style diagnostics, not demonstrated functional regressions:
 ## Next Decision Gate
 
 CAR-CORE-002 / R5A is closed with `CLOSED / PASS`.
+CAR-CORE-002 / R5A-POST is closed with `CLOSED / VERIFIED — NO REGRESSION`.
 **CAR-CORE-002 / R5B — Hall of Mists Vestibule (`CH_ENTRY` Safe Subgraph): PROPOSED / NOT AUTHORIZED**
 is the next dependency cut; it requires explicit human authorization.
 CAR-ART-005 is closed with documented follow-up: `GRATE_OPEN` polish remains
