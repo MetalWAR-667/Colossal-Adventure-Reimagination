@@ -232,9 +232,21 @@ baseline. See the retrospective
   `LOC_MISTHALL` remain strictly blocked; downward movement at `LOC_PITTOP` is
   fail-closed via `DEPENDENCY_PENDING` on `NUGGET`. Zero dwarves, zero actors,
   zero new objects (8 functional objects preserved). All 50 focused checks in
-  `test_hall_of_mists_vestibule.gd` and 1,552 checks across all 7 `verify.ps1`
+  `test_hall_of_mists_vestibule.gd` and 1,612 checks across all 7 `verify.ps1`
   phases passed cleanly with zero regressions on CUT A–D. See the
   [R5B record](changes/car_core_002_r5b_hall_of_mists_vestibule/CHANGE.md).
+- CAR-CORE-002 / R5B-POST: `CLOSED / VERIFIED — R5B METRICS RECONCILED` on 2026-10-26.
+  Test coverage and navigation verification audit resolved the numerical discrepancy
+  between the 1,552 checks preliminary estimate in R5B and the 1,612 reproducible
+  checks executed across the 7 phases of `verify.ps1`. The 60-check difference is
+  fully accounted for by +59 net checks in `run_tests.gd` (459 -> 518) covering the
+  new rooms plus 1 check in manual addition. Net test growth over R5A-POST baseline
+  (1,503) is exactly +109 checks (+50 in `test_hall_of_mists_vestibule.gd` and +59 in
+  `run_tests.gd`). Navigation matrix of all 159 rules across 41 enabled locations
+  audited: 148 internal rules, 6 frontier rules and 5 special/message rules.
+  Manual observation of `LOC_START / WEST -> LOC_HILL` confirmed as `VERIFIED HISTORICAL`
+  and covered by `run_tests.gd:204-205`. R5B maintains `CLOSED / PASS`. See the
+  [R5B-POST record](changes/car_core_002_r5b_post_test_coverage_navigation_audit/CHANGE.md).
 
 ## ACTIVE
 
