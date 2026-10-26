@@ -126,7 +126,7 @@ func _test_enabled_view() -> void:
 
 	# 13. Exactamente 35 ubicaciones habilitadas
 	var enabled_ids := world.get_enabled_location_ids()
-	check(enabled_ids.size() == 41, "13. Exactamente 41 ubicaciones habilitadas en runtime")
+	check(enabled_ids.size() == 42, "13. Exactamente 42 ubicaciones habilitadas en runtime")
 
 	# 14. Las 35 pertenecen a CH_SURFACE + LOC_BELOWGRATE
 	var all_authorized := true
@@ -136,7 +136,7 @@ func _test_enabled_view() -> void:
 		if not surface_members.has(eid) and not WorldData.AUTHORIZED_ADDITIONAL_LOCATIONS.has(eid):
 			all_authorized = false
 			break
-	check(all_authorized and surface_members.size() == 34, "14. Todas las 41 ubicaciones habilitadas pertenecen a CH_SURFACE + autorizadas")
+	check(all_authorized and surface_members.size() == 34, "14. Todas las 42 ubicaciones habilitadas pertenecen a CH_SURFACE + autorizadas")
 
 	# 15. Las otras 150 permanecen deshabilitadas
 	var non_enabled_count := 0
@@ -144,7 +144,7 @@ func _test_enabled_view() -> void:
 	for lid in all_ids:
 		if not world.is_location_enabled(lid):
 			non_enabled_count += 1
-	check(non_enabled_count == 144, "15. Exactamente 144 ubicaciones históricas permanecen deshabilitadas")
+	check(non_enabled_count == 143, "15. Exactamente 143 ubicaciones históricas permanecen deshabilitadas")
 
 	# 16. Ubicación global deshabilitada es consultable estructuralmente
 	var test_inert_id := "LOC_MISTHALL"
@@ -162,7 +162,7 @@ func _test_enabled_view() -> void:
 	check(not_playable, "17. La ubicación estructural inerte no es accesible en el runtime jugable")
 
 	# 18. WorldData.locations conserva su contenido funcional
-	check(world.locations.size() == 41, "18. WorldData.locations conserva exactamente 41 ubicaciones funcionales")
+	check(world.locations.size() == 42, "18. WorldData.locations conserva exactamente 42 ubicaciones funcionales")
 
 	# 19. WorldData.objects conserva su contenido funcional
 	check(world.objects.size() == 8, "19. WorldData.objects conserva exactamente 8 objetos funcionales")
@@ -192,7 +192,7 @@ func _test_functional_isolation() -> void:
 
 	# 23. El intérprete no permite acceder a una sala deshabilitada
 	var rule_outside := TravelRule.new()
-	rule_outside.target = "LOC_FOOF1"
+	rule_outside.target = "LOC_MISTHALL"
 	var move_result := interpreter._execute_move(rule_outside)
 	var blocked: bool = not bool(move_result.get("moved", false)) and interpreter.state.travel_outcome == GameState.TravelOutcome.FRONTIER
 	check(blocked, "23. El intérprete rechaza el movimiento hacia salas deshabilitadas y produce FRONTIER")

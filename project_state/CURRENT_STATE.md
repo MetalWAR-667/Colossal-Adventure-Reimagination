@@ -311,9 +311,12 @@ Known style diagnostics, not demonstrated functional regressions:
 
 ## Next Decision Gate
 
-CAR-CORE-002 / R5A is closed with `CLOSED / PASS`.
-CAR-CORE-002 / R5A-POST is closed with `CLOSED / VERIFIED / RECONCILED`.
-**CAR-CORE-002 / R5B — Hall of Mists Vestibule (`CH_ENTRY` Safe Subgraph): PROPOSED / NOT AUTHORIZED**
+CAR-CORE-002 / R5A is closed with CLOSED / PASS.
+CAR-CORE-002 / R5A-POST is closed with CLOSED / VERIFIED / RECONCILED.
+CAR-CORE-002 / R5B is closed with CLOSED / PASS.
+CAR-CORE-002 / R5B-POST is closed with CLOSED / VERIFIED — R5B METRICS RECONCILED.
+CAR-CORE-002 / R5C — Magic Transit & Word Connections (LOC_FOOF1) is closed with CLOSED / PASS.
+**CAR-CORE-002 / R6 — Visual Debug Graph in Godot (MapView): PROPOSED / NOT AUTHORIZED**
 is the next dependency cut; it requires explicit human authorization.
 CAR-ART-005 is closed with documented follow-up: `GRATE_OPEN` polish remains
 pending final artistic review; its accepted state selection and integration are

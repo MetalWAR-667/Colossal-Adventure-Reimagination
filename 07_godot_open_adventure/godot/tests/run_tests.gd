@@ -73,7 +73,7 @@ func _play(interpreter: Interpreter, lines: Array[String]) -> Array[String]:
 
 func _test_dataset(world: WorldData) -> void:
 	_equal(world.chapter_id, "CH_SURFACE", "chapter id")
-	_equal(world.locations.size(), 41, "chapter location count")
+	_equal(world.locations.size(), 42, "chapter location count")
 	_equal(world.objects.size(), 8, "chapter object count")
 	_equal(world.map_nodes.size(), 34, "map node count")
 	_check(world.map_edges.size() > 100, "map edges present")
@@ -259,9 +259,11 @@ func _test_magic_words(world: WorldData) -> void:
 	_play(interpreter, ["E"])
 	_equal(interpreter.state.current_location, "LOC_BUILDING", "inside the building")
 	var output := _play(interpreter, ["XYZZY"])
-	_contains(output, "Puf", "the magic word is answered")
-	_contains(output, "capítulo siguiente", "the magic word leaves the chapter")
-	_equal(interpreter.state.current_location, "LOC_BUILDING", "the player stays inside")
+	_contains(output, ">>Foof!<<", "the magic word triggers foof transition")
+	_equal(interpreter.state.current_location, "LOC_DEBRIS", "XYZZY teleports to LOC_DEBRIS via LOC_FOOF1")
+	output = _play(interpreter, ["XYZZY"])
+	_contains(output, "Puf", "return XYZZY triggers foof transition")
+	_equal(interpreter.state.current_location, "LOC_BUILDING", "XYZZY teleports back to LOC_BUILDING via LOC_FOOF2")
 
 
 func _test_sewer(world: WorldData) -> void:

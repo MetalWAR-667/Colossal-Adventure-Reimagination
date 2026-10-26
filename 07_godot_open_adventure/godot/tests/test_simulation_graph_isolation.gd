@@ -19,7 +19,7 @@ func _initialize() -> void:
 	var world := WorldData.load_default()
 	var interpreter := Interpreter.new(world)
 	check(graph["locations"].size() == 185, "global locations present")
-	check(world.locations.size() == 41, "playable locations unchanged (34 CH_01 + 7 CH_ENTRY)")
+	check(world.locations.size() == 42, "playable locations unchanged (34 CH_01 + 8 CH_ENTRY)")
 	check(world.objects.size() == 8, "playable objects unchanged")
 	var outside := 0
 	var inaccessible := true
@@ -45,7 +45,7 @@ func _initialize() -> void:
 		rule.target = id
 		var result: Dictionary = interpreter._execute_move(rule)
 		blocked = blocked and not result["moved"] and interpreter.state.current_location == "LOC_START" and interpreter.state.turn == 0
-	check(outside == 144, "144 global IDs remain outside playable world")
+	check(outside == 143, "143 global IDs remain outside playable world")
 	check(inaccessible, "all simulation-only locations excluded from player lookups")
 	check(undescribable, "no descriptions for simulation-only locations")
 	check(unmapped, "no simulation-only map nodes or enabled edges")

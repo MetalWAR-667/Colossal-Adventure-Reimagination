@@ -1,4 +1,4 @@
-# Local CAR cut finalizer. This tool never pushes, merges, tags or releases.
+﻿# Local CAR cut finalizer. This tool never pushes, merges, tags or releases.
 # Usage: .\tools\finalize_cut.ps1 -CutId CAR-AUTO-001 -CommitMessage "CAR-AUTO-001: ..." -Files @(...)
 # Diagnostic: add -DryRun. Retry a committed-but-unsynced cut with the same inputs.
 param(

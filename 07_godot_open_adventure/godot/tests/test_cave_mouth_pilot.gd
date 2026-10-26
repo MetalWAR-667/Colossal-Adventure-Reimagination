@@ -58,17 +58,17 @@ func _test_enablement_and_catalog() -> void:
 	check(world.is_location_enabled("LOC_BELOWGRATE") and world.location("LOC_BELOWGRATE") != null,
 		"3. Habilitación funcional de LOC_BELOWGRATE en WorldData")
 
-	# 4. Exactamente 41 ubicaciones habilitadas
+	# 4. Exactamente 42 ubicaciones habilitadas
 	var enabled := world.get_enabled_location_ids()
-	check(enabled.size() == 41 and world.locations.size() == 41,
-		"4. Exactamente 41 ubicaciones habilitadas en la vista funcional")
+	check(enabled.size() == 42 and world.locations.size() == 42,
+		"4. Exactamente 42 ubicaciones habilitadas en la vista funcional")
 
-	# 5. Exactamente 144 ubicaciones deshabilitadas
+	# 5. Exactamente 143 ubicaciones deshabilitadas
 	var non_enabled := 0
 	for lid in catalog.get_location_ids():
 		if not world.is_location_enabled(lid):
 			non_enabled += 1
-	check(non_enabled == 144, "5. Exactamente 144 ubicaciones históricas permanecen deshabilitadas")
+	check(non_enabled == 143, "5. Exactamente 143 ubicaciones históricas permanecen deshabilitadas")
 
 	# 6. Ausencia de habilitación accidental: 34 CH_SURFACE + autorizadas
 	var ch_surface := catalog.get_chapter("CH_SURFACE")
@@ -82,13 +82,13 @@ func _test_enablement_and_catalog() -> void:
 
 	# 7. Idempotencia de la habilitación
 	var re_enable := world.enable_structural_location("LOC_BELOWGRATE")
-	check(re_enable and world.locations.size() == 41 and world.get_enabled_location_ids().size() == 41,
+	check(re_enable and world.locations.size() == 42 and world.get_enabled_location_ids().size() == 42,
 		"7. Idempotencia de enable_structural_location('LOC_BELOWGRATE')")
 
 	# 8. Rechazo de identificadores no autorizados o inválidos
 	var reject_misthall := world.enable_structural_location("LOC_MISTHALL")
 	var reject_fake := world.enable_structural_location("LOC_NONEXISTENT")
-	check(not reject_misthall and not reject_fake and world.locations.size() == 41,
+	check(not reject_misthall and not reject_fake and world.locations.size() == 42,
 		"8. Rechazo explícito de salas no autorizadas (LOC_MISTHALL) o inválidas")
 
 	# 9. Conservación del catálogo original (185 salas inalteradas)
