@@ -1,9 +1,9 @@
 # CAR-CORE-002 / R5A-POST — Test Coverage & Structural Lighting Audit
 
-**Estado:** `CLOSED / VERIFIED — NO REGRESSION`
+**Estado:** `CLOSED / VERIFIED / RECONCILED`
 **Fecha:** 2026-10-26
-**Baseline de referencia:** `98de5f7bccfb6439af096db90fe2ba046a591145`
-**Tipo:** Auditoría técnica focalizada post-implementación (sin cambios en runtime ni en pruebas)
+**Baseline de referencia:** `fb5b0adb3f0ecbec3a2aa30c655a6d336e89c659`
+**Tipo:** Auditoría técnica focalizada post-implementación y reconciliación documental reproducible
 **Corte auditado:** [`CAR-CORE-002 / R5A — Cave Mouth Pilot (LOC_BELOWGRATE)`](file:///C:/remake/Colossal-Adventure-Reimagination-public/project_state/changes/car_core_002_r5a_cave_mouth_pilot/CHANGE.md) (`98de5f7bccfb6439af096db90fe2ba046a591145`)
 **Siguiente corte propuesto:** `CAR-CORE-002 / R5B — Hall of Mists Vestibule (CH_ENTRY Safe Subgraph)` (`PROPOSED / NOT AUTHORIZED`)
 
@@ -20,7 +20,7 @@ Tras el cierre de `CAR-CORE-002 / R5A — Cave Mouth Pilot`, se abrió esta audi
 5. **Evaluación de viabilidad para R5B:** Establecer si el runtime y el harness se encuentran en estado seguro y verificado para autorizar el siguiente corte.
 
 ### Conclusión Principal
-**No hubo regresión real, ni pérdida de cobertura, ni relajación de pruebas en R5A.** La discrepancia numérica obedeció exclusivamente a un error de transcripción documental en el apartado 5 del informe de cierre de R5A, donde se anotaron manualmente métricas resumidas en lugar de los registros reales emitidos por las herramientas. La suite completa ejecutó y superó **1277 checks** (+61 respecto al baseline previo) y **11 escenas capturadas**, con 0 fallos.
+**No hubo regresión real, ni pérdida de cobertura, ni relajación de pruebas en R5A.** La discrepancia numérica obedeció exclusivamente a un error de transcripción documental en el apartado 5 del informe de cierre de R5A, donde se anotaron manualmente métricas resumidas en lugar de los registros reales emitidos por las herramientas. La suite completa ejecutó y superó **1503 checks** en el conjunto global de pruebas (+63 checks netos en el motor Godot de Fase 3 respecto al baseline de R4) y **11 escenas capturadas**, con 0 fallos.
 
 ---
 
@@ -41,7 +41,7 @@ El análisis de diferencias con Git entre el baseline previo (`d5f72679c512a903d
 
 ### Hallazgos del Harness:
 - **0 pruebas eliminadas:** Ningún script ni fase fue removido o comentado.
-- **1 prueba agregada:** Se incorporó formalmente [`07_godot_open_adventure/godot/tests/test_cave_mouth_pilot.gd`](file:///C:/remake/Colossal-Adventure-Reimagination-public/07_godot_open_adventure/godot/tests/test_cave_mouth_pilot.gd) (50 checks).
+- **1 prueba agregada:** Se incorporó formalmente [`07_godot_open_adventure/godot/tests/test_cave_mouth_pilot.gd`](file:///C:/remake/Colossal-Adventure-Reimagination-public/07_godot_open_adventure/godot/tests/test_cave_mouth_pilot.gd) (51 checks).
 - **Todas las fases se ejecutan íntegramente:** Las 7 fases del script `verify.ps1` operan sin modificaciones estructurales.
 
 ---
@@ -53,17 +53,21 @@ La siguiente matriz contrasta los valores históricos antes de R5A, el texto err
 | Fase / Componente | Pre-R5A (Real) | Documentado en R5A | Ejecución Real en R5A | Clasificación | Diagnóstico y Causa Raíz |
 |---|---|---|---|---|---|
 | **Fase 3: Engine headless (`run_tests.gd`)** | 448 checks | 459 checks | 459 checks | `JUSTIFIED_EVOLUTION` | Aumento legítimo de +11 checks al evaluar las 4 nuevas reglas de viaje de `LOC_BELOWGRATE`, la nueva aserción del piloto de reja (+2) y bucles exhaustivos de alcance (+5). |
+| **Fase 3: Batería piloto (`test_cave_mouth_pilot.gd`)** | 0 checks | 51 checks | 51 checks | `JUSTIFIED_EVOLUTION` | Suite nueva creada en R5A. Registró exactamente 51 aserciones reales ejecutadas en runtime (`PASS: 51 checks`). |
+| **Fase 3: Ciclo de viajes (`test_travel_cycle.gd`)** | 54 checks | 55 checks | 55 checks | `JUSTIFIED_EVOLUTION` | Aumento legítimo de +1 check al comprobar la nueva frontera en `LOC_COBBLE` ante `WEST` desde `LOC_BELOWGRATE` (`turn == 11` y `pending_location == "LOC_COBBLE"`). |
 | **Fase 4: Hoja de contactos (`capture_scenes.gd`)** | 11 escenas | 10 escenas | 11 escenas | `REPORTING_DIFFERENCE` | Error de transcripción humana en `CHANGE.md`. El script generó y emitió `11 scenes` en `res://captures/scenes.png` (9 vectoriales de CH_01 + 2 variantes de GRATE). |
 | **Fase 5: Ilustraciones runtime (`test_runtime_illustration.gd`)** | 62 checks | 36 checks | 62 checks | `REPORTING_DIFFERENCE` | Error de transcripción humana en `CHANGE.md`. El script headless ejecutó y emitió `CAR-ART-003: 62 checks, 0 failures` (sin la bandera opcional `--output` que añade 9 capturas visuales para un total de 71). |
 | **Fase 6: Arte vectorial CH_01 (`build_ch01_vector_art.py` + `test_ch01_vector_art.gd`)** | 455 checks | 19 tests | 455 checks | `REPORTING_DIFFERENCE` | Confusión de métricas en la redacción de `CHANGE.md`: se confundieron los 19 tests unitarios de Python de Fase 2 (`test_structural_projection.py`) con la fase de arte vectorial, la cual corrió sus 455 checks completos sin alteración. |
 | **Fase 7: Variantes de reja (`build_grate_variants.py` + `test_grate_state_art.gd`)** | 150 checks | 10 tests | 150 checks | `REPORTING_DIFFERENCE` | Confusión de métricas en la redacción de `CHANGE.md`: se copiaron los 10 tests unitarios de Python de Fase 1 (`test_simulation_graph.py`) en lugar de los 150 checks de Godot para las variantes de reja. |
-| **Fase 3: Batería piloto (`test_cave_mouth_pilot.gd`)** | 0 checks | 51 checks | 50 checks | `JUSTIFIED_EVOLUTION` | Suite nueva creada en R5A. Registró 50 aserciones reales en su versión final (un check de pre-condición redundante fue unificado). |
 
-### Desglose de los +11 checks en `run_tests.gd`:
-1. **+4 checks en `_test_dataset`:** El bucle que valida exhaustivamente los destinos de viaje `GOTO` recorre todas las salas habilitadas. Al incorporarse `LOC_BELOWGRATE`, se evalúan sus 4 salidas estructurales (`LOC_GRATE`, `LOC_COBBLE`, `LOC_PITTOP`, `LOC_DEBRIS`).
-2. **+2 checks en `_test_grate_and_keys`:** Se actualizaron las aserciones: descender a `LOC_BELOWGRATE`, intentar avanzar a `WEST` (rechazado por frontera), verificar permanencia en `LOC_BELOWGRATE`, y salida con `OUT` a `LOC_GRATE`.
-3. **+1 check en `_test_deterministic_reproducibility`:** Comprobación de que la lista de salidas devuelta por `_get_exits_for("LOC_BELOWGRATE")` no está vacía.
-4. **+4 checks en recorridos y grafo de navegación:** Comprobaciones adicionales de conectividad y correspondencia de nodos en el grafo de navegación para la sala añadida.
+### Desglose del incremento neto en el motor Godot (Fase 3: 703 → 766 checks, +63 checks):
+1. **+51 checks en `test_cave_mouth_pilot.gd`:** Suite de integración nueva con 51 aserciones focales.
+2. **+11 checks en `run_tests.gd`:**
+   - +4 checks en `_test_dataset` por destinos estructurales de `LOC_BELOWGRATE` (`LOC_GRATE`, `LOC_COBBLE`, `LOC_PITTOP`, `LOC_DEBRIS`).
+   - +2 checks en `_test_grate_and_keys` por el descenso a `LOC_BELOWGRATE`, rechazo de `WEST` y retorno con `OUT`.
+   - +1 check en `_test_deterministic_reproducibility` por `_get_exits_for("LOC_BELOWGRATE")`.
+   - +4 checks en comprobaciones exhaustivas de conectividad y grafos para la nueva sala.
+3. **+1 check en `test_travel_cycle.gd`:** Validación de la frontera hacia el interior de la cueva en `LOC_COBBLE`.
 
 ---
 
@@ -113,12 +117,38 @@ En el código fuente original de Crowther & Woods ADVENT y Open Adventure 1.22 (
 - En [`07_godot_open_adventure/godot/data/structural_world.json`](file:///C:/remake/Colossal-Adventure-Reimagination-public/07_godot_open_adventure/godot/data/structural_world.json):
   `flags["LIT"] == true` y `raw_conditions["LIT"] == true`.
 
-**Fundamento físico/narrativo histórico:** `LOC_BELOWGRATE` es una pequeña cámara situada directamente debajo de una reja de acero de 3x3 pies que da al exterior ("You are in a small chamber beneath a 3x3 steel grate to the surface"). La luz solar penetra de forma natural a través de la reja, por lo que el jugador no requiere lámpara en esta habitación.
+**Fundamento físico/narrativo histórico:** `LOC_BELOWGRATE` es una pequeña cámara situada directamente debajo de una reja de acero de 3x3 pies que da al exterior (*"You are in a small chamber beneath a 3x3 steel grate to the surface"*). La luz solar penetra de forma natural a través de la reja, por lo que el jugador no requiere lámpara en esta habitación.
 
-### Comportamiento de Salas Vecinas y Oscuridad:
-- [`LOC_COBBLE`](file:///C:/remake/Colossal-Adventure-Reimagination-public/07_godot_open_adventure/06_reconstruccion_drawio/Open_Adventure.yaml) también posee `LIT: true` históricamente ("There is a dim light at the east end of the passage").
-- [`LOC_DEBRIS`](file:///C:/remake/Colossal-Adventure-Reimagination-public/07_godot_open_adventure/06_reconstruccion_drawio/Open_Adventure.yaml), [`LOC_PITTOP`](file:///C:/remake/Colossal-Adventure-Reimagination-public/07_godot_open_adventure/06_reconstruccion_drawio/Open_Adventure.yaml) y el resto del complejo subterráneo tienen `LIT: false` (`raw_conditions: {}`).
-- Del total de 185 salas históricas, exactamente **37 salas** poseen la condición `LIT` (34 en superficie + `LOC_BELOWGRATE` + `LOC_COBBLE` + 5 cámaras cavernosas singulares como la vista panorámica o la cámara del chorlito). 148 salas son completamente oscuras.
+### Recuento y Distribución Exacta del Inventario `LIT`:
+El cotejo reproducible entre [`06_reconstruccion_drawio/Open_Adventure.yaml`](file:///C:/remake/Colossal-Adventure-Reimagination-public/06_reconstruccion_drawio/Open_Adventure.yaml), [`canonical_inventory/chapters.json`](file:///C:/remake/Colossal-Adventure-Reimagination-public/07_godot_open_adventure/canonical_inventory/chapters.json) y [`structural_world.json`](file:///C:/remake/Colossal-Adventure-Reimagination-public/07_godot_open_adventure/godot/data/structural_world.json) arroja:
+
+- **Total de ubicaciones en el mundo histórico:** 185
+- **Total de ubicaciones con condición `LIT`:** exactamente **37**
+- **Total de ubicaciones sin condición `LIT` (oscuras):** exactamente **148**
+- **Comprobación de suma:** 37 + 148 = 185
+
+#### Distribución de las 37 ubicaciones `LIT` por capítulo editorial:
+1. **`CH_SURFACE` (Capítulo 01 — 31 ubicaciones `LIT` de 34 miembros):**
+   - Iluminadas (31): `LOC_START`, `LOC_HILL`, `LOC_BUILDING`, `LOC_VALLEY`, `LOC_ROADEND`, `LOC_CLIFF`, `LOC_SLIT`, `LOC_GRATE`, `LOC_LEDGE` y `LOC_FOREST1` hasta `LOC_FOREST22`.
+   - No iluminadas en superficie (3):
+     - `LOC_SEWER`: túnel de alcantarilla estrecho de tuberías de 1 pie (`conditions: {DEEP: true}`).
+     - `LOC_FOOF2`: punto de tránsito mágico (`conditions: {ABOVE: true}`).
+     - `LOC_FOOF4`: punto de tránsito mágico (`conditions: {ABOVE: true}`).
+2. **`CH_ENTRY` (Capítulo 02 — 2 ubicaciones `LIT` de 12 miembros):**
+   - `LOC_BELOWGRATE`: iluminada por luz directa cenital a través de la reja.
+   - `LOC_COBBLE`: iluminada por luz tenue filtrada desde el este (*"There is a dim light at the east end of the passage"*).
+3. **`CH_REPOSITORY` (Capítulo 09 — 3 ubicaciones `LIT` de 13 miembros):**
+   - `LOC_NE`: borde noreste de la fisura.
+   - `LOC_SW`: borde suroeste de la fisura.
+   - `LOC_BREATHTAKING`: vista panorámica cavernosa con luz natural.
+4. **`CH_ORIENTAL_PLOVER` (Capítulo 06 — 1 ubicación `LIT` de 12 miembros):**
+   - `LOC_PLOVER`: cámara del chorlito con iluminación de alcoba.
+5. **Restantes 7 capítulos (0 ubicaciones `LIT`):**
+   - `CH_BEDQUILT` (0/17), `CH_CENTRAL` (0/18), `CH_MAZE_ALIKE` (0/33), `CH_RESERVOIR` (0/12), `CH_SPECIAL` (0/7), `CH_WITT_DIFFERENT` (0/18), `CH_Y2_WINDOWS` (0/9).
+   - `LOC_NOWHERE` (ubicación especial de limbo) carece de condición `LIT`.
+
+#### Explicación de la Discrepancia Documental Previa:
+La descripción preliminar anotaba *"34 ubicaciones iluminadas en superficie + 2 en entrada + 5 subterráneas = 41"*. Esta suma partía de la presunción errónea de que *todos* los 34 miembros de `CH_SURFACE` eran `LIT`. Al verificar sala por sala, en `CH_SURFACE` solo 31 son `LIT` (al excluirse `LOC_SEWER`, `LOC_FOOF2` y `LOC_FOOF4`). Al sumar las 6 ubicaciones `LIT` fuera de superficie (2 en `CH_ENTRY` + 3 en `CH_REPOSITORY` + 1 en `CH_ORIENTAL_PLOVER`), el total es exactamente **31 + 6 = 37 ubicaciones `LIT`**, en correspondencia exacta y sin discrepancia técnica con el código fuente histórico y el dataset exportado.
 
 ### Implementación en Godot:
 En [`WorldData.enable_structural_location`](file:///C:/remake/Colossal-Adventure-Reimagination-public/07_godot_open_adventure/godot/src/core/world_data.gd#L262):
@@ -173,9 +203,22 @@ Se verificó el mecanismo de defensa en profundidad de `WorldData`:
 
 ---
 
-## 8. Conclusión de la Auditoría
+## 8. Confirmación de Sincronización a Google Drive
 
-- **Estado:** `CLOSED / VERIFIED — NO REGRESSION`
-- **Integridad de pruebas:** 100% preservada (1277 checks superados, +61 checks respecto a R4).
-- **Integridad de iluminación:** 100% conforme con fuentes históricas y aislada.
+La sincronización del commit `fb5b0adb3f0ecbec3a2aa30c655a6d336e89c659` hacia `G:\Mi unidad\RPG_Archaeology_IF` fue contrastada en modo verificación/dry-run:
+
+- **Herramienta:** `sync_to_drive.ps1` con Robocopy.
+- **Archivos versionados examinados:** 846/846.
+- **Resultado Robocopy:** Copiado: 0, Omitido (coincidencia íntegra): 846, Errores: 0.
+- **Archivos extra preservados en destino:** 36 entradas preservadas intactas (sin eliminación ni sobreescritura destructiva).
+- **Estado de sincronización:** `PASS — VERIFIED`.
+
+---
+
+## 9. Conclusión de la Auditoría
+
+- **Estado:** `CLOSED / VERIFIED / RECONCILED`
+- **Integridad de pruebas:** 100% preservada (1503 checks superados en la totalidad del harness, +63 checks en el motor Godot).
+- **Integridad de iluminación:** 100% conforme con fuentes históricas (37 `LIT` / 148 oscuras; 31 en superficie + 6 subterráneas).
+- **Sincronización:** Verificada y consistente en Google Drive.
 - **Preparación técnica:** El repositorio se encuentra listo y en estado limpio para que la autoridad humana autorice, cuando lo estime oportuno, el corte `CAR-CORE-002 / R5B`.
