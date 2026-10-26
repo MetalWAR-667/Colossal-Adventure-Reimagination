@@ -414,6 +414,42 @@ func _resolve_verbs(verbs: PackedStringArray, target: String) -> Dictionary:
 			return {"best_verb": "XYZZY", "dir_code": "XYZZY", "display_dir": "XYZZY"}
 		elif vu == "PLUGH":
 			return {"best_verb": "PLUGH", "dir_code": "PLUGH", "display_dir": "PLUGH"}
+		elif vu == "CRAWL":
+			return {"best_verb": "CRAWL", "dir_code": "GATEAR", "display_dir": "GATEAR"}
+		elif vu == "COBBL":
+			return {"best_verb": "COBBLE", "dir_code": "COBBLE", "display_dir": "GUIJARROS"}
+		elif vu == "DEBRI":
+			return {"best_verb": "DEBRIS", "dir_code": "DEBRIS", "display_dir": "ESCOMBROS"}
+		elif vu == "CANYO":
+			return {"best_verb": "CANYON", "dir_code": "CAÑON", "display_dir": "CAÑÓN"}
+		elif vu == "PASSA":
+			return {"best_verb": "PASSAGE", "dir_code": "PASO", "display_dir": "PASADIZO"}
+		elif vu == "PIT":
+			return {"best_verb": "PIT", "dir_code": "FOSO", "display_dir": "FOSO"}
+		elif vu == "STEPS" or vu == "STAIR":
+			return {"best_verb": "STEPS", "dir_code": "ESCALERA", "display_dir": "ESCALONES"}
+		elif vu == "HALL":
+			return {"best_verb": "HALL", "dir_code": "SALA", "display_dir": "SALA"}
+		elif vu == "CRACK":
+			return {"best_verb": "CRACK", "dir_code": "GRIETA", "display_dir": "GRIETA"}
+		elif vu == "SURFA":
+			return {"best_verb": "SURFACE", "dir_code": "SUPERF", "display_dir": "SUPERFICIE"}
+		elif vu == "DARK":
+			return {"best_verb": "DARK", "dir_code": "OSCURO", "display_dir": "OSCURIDAD"}
+		elif vu == "LOW":
+			return {"best_verb": "LOW", "dir_code": "BAJO", "display_dir": "PASO BAJO"}
+		elif vu == "ENTRA":
+			return {"best_verb": "ENTRANCE", "dir_code": "ENTRADA", "display_dir": "ENTRADA"}
+		elif vu == "JUMP":
+			return {"best_verb": "JUMP", "dir_code": "SALTAR", "display_dir": "SALTAR"}
+		elif vu == "CROSS" or vu == "ACROS" or vu == "OVER":
+			return {"best_verb": "CROSS", "dir_code": "CRUZAR", "display_dir": "CRUZAR"}
+		elif vu == "FORWA":
+			return {"best_verb": "FORWARD", "dir_code": "ADELANTE", "display_dir": "ADELANTE"}
+		elif vu == "LEFT":
+			return {"best_verb": "LEFT", "dir_code": "IZQ", "display_dir": "IZQUIERDA"}
+		elif vu == "Y2":
+			return {"best_verb": "Y2", "dir_code": "Y2", "display_dir": "Y2"}
 
 	if not verbs.is_empty():
 		return {"best_verb": verbs[0], "dir_code": verbs[0], "display_dir": verbs[0]}
@@ -421,8 +457,99 @@ func _resolve_verbs(verbs: PackedStringArray, target: String) -> Dictionary:
 	return {"best_verb": fallback, "dir_code": fallback, "display_dir": fallback}
 
 
+func _is_in_surface(location_id: String) -> bool:
+	if world == null:
+		return false
+	var loc := world.location(location_id)
+	if loc != null and not loc.chapter_id.is_empty():
+		return loc.chapter_id == "CH_SURFACE"
+	return world.is_in_chapter(location_id) and not WorldData.AUTHORIZED_ADDITIONAL_LOCATIONS.has(location_id)
+
+
+func _get_active_nodes() -> Array[Dictionary]:
+	if world == null:
+		return []
+	if current_location.is_empty() or _is_in_surface(current_location) or world.structural_catalog == null:
+		return world.map_nodes
+
+	# When outside surface (e.g. CH_ENTRY safe subgraph), construct active nodes dynamically
+	var catalog: StructuralCatalog = world.structural_catalog
+	var nodes: Array[Dictionary] = []
+	var visited_ids: Dictionary = {}
+
+	# 1. Add all enabled locations in current chapter
+	for loc_id in world.enabled_location_ids.keys():
+		var id_str := String(loc_id)
+		if _is_in_surface(id_str):
+			continue
+		var raw_loc := catalog.get_location(id_str)
+		if raw_loc.is_empty():
+			continue
+		var dw: Dictionary = raw_loc.get("drawio", {})
+		visited_ids[id_str] = true
+		nodes.append({
+			"id": id_str,
+			"label": String(dw.get("label", id_str.replace("LOC_", ""))),
+			"x": float(dw.get("x", 0.0)),
+			"y": float(dw.get("y", 0.0)),
+			"w": float(dw.get("width", 290.0)),
+			"h": float(dw.get("height", 160.0)),
+			"is_frontier": false,
+		})
+
+	# 2. Add reachable frontier / cross-chapter nodes if directly accessible
+	var current_exits := _get_exits_for(current_location)
+	for exit in current_exits:
+		var target: String = exit.target
+		if not visited_ids.has(target) and catalog.has_location(target):
+			var raw_loc := catalog.get_location(target)
+			var dw: Dictionary = raw_loc.get("drawio", {})
+			visited_ids[target] = true
+			nodes.append({
+				"id": target,
+				"label": String(dw.get("label", target.replace("LOC_", ""))),
+				"x": float(dw.get("x", 0.0)),
+				"y": float(dw.get("y", 0.0)),
+				"w": float(dw.get("width", 290.0)),
+				"h": float(dw.get("height", 160.0)),
+				"is_frontier": true,
+			})
+
+	return nodes
+
+
+func _get_active_edges() -> Array[Dictionary]:
+	if world == null:
+		return []
+	if current_location.is_empty() or _is_in_surface(current_location) or world.structural_catalog == null:
+		return world.map_edges
+
+	var catalog: StructuralCatalog = world.structural_catalog
+	var edges: Array[Dictionary] = []
+	var active_nodes := _get_active_nodes()
+	var active_ids := {}
+	for n in active_nodes:
+		active_ids[String(n.get("id", ""))] = true
+
+	for loc_id in world.enabled_location_ids.keys():
+		var id_str := String(loc_id)
+		if _is_in_surface(id_str):
+			continue
+		var travels := catalog.get_travel_records(id_str)
+		for tr in travels:
+			if tr.get("action_type") == "goto":
+				var dest := String(tr.get("destination_location_id", ""))
+				if active_ids.has(dest):
+					edges.append({
+						"from": id_str,
+						"to": dest,
+						"verbs": tr.get("verbs", []),
+					})
+	return edges
+
+
 func _on_canvas_draw() -> void:
-	if world == null or world.map_nodes.is_empty():
+	if world == null or _get_active_nodes().is_empty():
 		return
 
 	var canvas_rect := Rect2(Vector2.ZERO, _canvas.size)
@@ -444,13 +571,15 @@ func _on_canvas_draw() -> void:
 		active_target_map[exit.target] = exit
 
 	var reachable_neighbors := active_target_map.keys()
+	var active_edges := _get_active_edges()
+	var active_nodes := _get_active_nodes()
 
 	var local_node_set := {}
 	if view_mode == ViewMode.LOCAL:
 		local_node_set[current_location] = true
 		for t in reachable_neighbors:
 			local_node_set[t] = true
-		for edge in world.map_edges:
+		for edge in active_edges:
 			if String(edge.get("to", "")) == current_location:
 				local_node_set[String(edge.get("from", ""))] = true
 		if not observed_from.is_empty():
@@ -459,7 +588,7 @@ func _on_canvas_draw() -> void:
 			local_node_set[observed_to] = true
 
 	# 1. Background passive edges
-	for edge in world.map_edges:
+	for edge in active_edges:
 		var from_id := String(edge.get("from", ""))
 		var to_id := String(edge.get("to", ""))
 		if from_id == current_location:
@@ -521,7 +650,7 @@ func _on_canvas_draw() -> void:
 		_draw_directed_arrow(s_from, s_to, box_from, box_to, edge_color, exit.dir_code, is_hovered)
 
 	# 4. Nodes
-	for node in world.map_nodes:
+	for node in active_nodes:
 		var id := String(node.get("id", ""))
 		if view_mode == ViewMode.LOCAL and not local_node_set.has(id):
 			continue
@@ -533,6 +662,7 @@ func _on_canvas_draw() -> void:
 		var is_vis := visited.has(id)
 
 		_draw_node_card(node, box, is_current, is_neighbor, is_vis, is_hovered)
+
 
 
 func _draw_directed_arrow(
@@ -660,7 +790,8 @@ func _calculate_bounds() -> Rect2:
 	var local_ids: Dictionary = {current_location: true}
 	for exit in current_exits:
 		local_ids[exit.target] = true
-	for edge in world.map_edges:
+	var active_edges := _get_active_edges()
+	for edge in active_edges:
 		if String(edge.get("to", "")) == current_location:
 			local_ids[String(edge.get("from", ""))] = true
 	if not observed_from.is_empty():
@@ -670,7 +801,7 @@ func _calculate_bounds() -> Rect2:
 
 	var bounds := Rect2()
 	var first := true
-	for node in world.map_nodes:
+	for node in _get_active_nodes():
 		var id := String(node.get("id", ""))
 		if not local_ids.has(id):
 			continue
@@ -767,7 +898,7 @@ func _handle_click_at(pos: Vector2) -> void:
 	var offset := (_canvas.size - bounds.size * scale) * 0.5 - bounds.position * scale + pan_offset
 
 	var current_exits := _get_exits_for(current_location)
-	for node in world.map_nodes:
+	for node in _get_active_nodes():
 		var id := String(node.get("id", ""))
 		var box := _node_screen_box(node, scale, offset)
 		if box.has_point(pos):
@@ -786,7 +917,7 @@ func _update_hover_at(pos: Vector2) -> void:
 	var offset := (_canvas.size - bounds.size * scale) * 0.5 - bounds.position * scale + pan_offset
 
 	var found_id := ""
-	for node in world.map_nodes:
+	for node in _get_active_nodes():
 		var box := _node_screen_box(node, scale, offset)
 		if box.has_point(pos):
 			found_id = String(node.get("id", ""))
@@ -800,7 +931,7 @@ func _update_hover_at(pos: Vector2) -> void:
 func _node_bounds() -> Rect2:
 	var bounds := Rect2()
 	var first := true
-	for node in world.map_nodes:
+	for node in _get_active_nodes():
 		var box := Rect2(
 			Vector2(float(node.get("x", 0.0)), float(node.get("y", 0.0))),
 			Vector2(float(node.get("w", 0.0)), float(node.get("h", 0.0)))
@@ -814,7 +945,7 @@ func _node_bounds() -> Rect2:
 
 
 func _node_center(location_id: String) -> Vector2:
-	for node in world.map_nodes:
+	for node in _get_active_nodes():
 		if String(node.get("id", "")) == location_id:
 			return Vector2(
 				float(node.get("x", 0.0)) + float(node.get("w", 0.0)) * 0.5,
@@ -824,7 +955,7 @@ func _node_center(location_id: String) -> Vector2:
 
 
 func _get_node(location_id: String) -> Dictionary:
-	for node in world.map_nodes:
+	for node in _get_active_nodes():
 		if String(node.get("id", "")) == location_id:
 			return node
 	return {}
