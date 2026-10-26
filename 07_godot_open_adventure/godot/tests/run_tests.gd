@@ -73,7 +73,7 @@ func _play(interpreter: Interpreter, lines: Array[String]) -> Array[String]:
 
 func _test_dataset(world: WorldData) -> void:
 	_equal(world.chapter_id, "CH_SURFACE", "chapter id")
-	_equal(world.locations.size(), 35, "chapter location count")
+	_equal(world.locations.size(), 41, "chapter location count")
 	_equal(world.objects.size(), 8, "chapter object count")
 	_equal(world.map_nodes.size(), 34, "map node count")
 	_check(world.map_edges.size() > 100, "map edges present")
@@ -124,11 +124,11 @@ func _test_connectivity(world: WorldData) -> void:
 				continue
 			seen[rule.target] = true
 			queue.append(rule.target)
-	_equal(seen.size(), world.locations.size() - 3, "chapter rooms reachable from LOC_START")
+	_equal(seen.size(), world.locations.size() - 2, "chapter rooms reachable from LOC_START")
 	# The source gives no inbound rule for these three inside chapter 01:
 	# the two magic-word pseudo rooms live in other chapters, and the ledge
 	# is only reachable from the reservoir side of the cave.
-	for orphan in ["LOC_FOOF2", "LOC_FOOF4", "LOC_LEDGE"]:
+	for orphan in ["LOC_FOOF4", "LOC_LEDGE"]:
 		_check(not seen.has(orphan), "%s is not reachable inside the chapter" % orphan)
 
 
@@ -247,8 +247,9 @@ func _test_grate_and_keys(world: WorldData) -> void:
 	output = _play(interpreter, ["ENTER"])
 	_equal(interpreter.state.current_location, "LOC_BELOWGRATE", "entering the open grate moves to LOC_BELOWGRATE")
 	output = _play(interpreter, ["WEST"])
-	_contains(output, "capítulo siguiente", "moving west from LOC_BELOWGRATE hits the chapter frontier")
-	_equal(interpreter.state.current_location, "LOC_BELOWGRATE", "the frontier refuses the move")
+	_equal(interpreter.state.current_location, "LOC_COBBLE", "moving west from LOC_BELOWGRATE enters LOC_COBBLE")
+	output = _play(interpreter, ["EAST"])
+	_equal(interpreter.state.current_location, "LOC_BELOWGRATE", "returning east moves back to LOC_BELOWGRATE")
 	output = _play(interpreter, ["OUT"])
 	_equal(interpreter.state.current_location, "LOC_GRATE", "leaving LOC_BELOWGRATE returns to LOC_GRATE")
 

@@ -12,7 +12,13 @@ const L10N_PATH := "res://data/l10n_es.json"
 const ART_PATH := "res://data/art_ch01.json"
 const STRUCTURAL_DATASET_PATH := "res://data/structural_world.json"
 const AUTHORIZED_ADDITIONAL_LOCATIONS: PackedStringArray = [
-	"LOC_BELOWGRATE"
+	"LOC_BELOWGRATE",
+	"LOC_COBBLE",
+	"LOC_DEBRIS",
+	"LOC_AWKWARD",
+	"LOC_BIRDCHAMBER",
+	"LOC_PITTOP",
+	"LOC_CRACK"
 ]
 
 var meta: Dictionary = {}
@@ -50,7 +56,8 @@ static func load_default() -> WorldData:
 	world.load_l10n(L10N_PATH)
 	world.load_art(ART_PATH)
 	world.load_structural_catalog(STRUCTURAL_DATASET_PATH)
-	world.enable_structural_location("LOC_BELOWGRATE")
+	for loc_id in AUTHORIZED_ADDITIONAL_LOCATIONS:
+		world.enable_structural_location(loc_id)
 	return world
 
 
@@ -277,8 +284,8 @@ func enable_structural_location(location_id: String) -> bool:
 	var loc := WorldLocation.new()
 	loc.id = String(data.get("id", ""))
 	loc.chapter_id = String(data.get("chapter_id", ""))
-	loc.description_en = String(data.get("long_description", ""))
-	loc.short_en = String(data.get("short_description", ""))
+	loc.description_en = String(data.get("long_description", "") if data.get("long_description") != null else "")
+	loc.short_en = String(data.get("short_description", "") if data.get("short_description") != null else "")
 	loc.maptag = String(data.get("maptag", "") if data.get("maptag") != null else "")
 	loc.sound = String(data.get("sound", "") if data.get("sound") != null else "")
 
@@ -309,7 +316,7 @@ func enable_structural_location(location_id: String) -> bool:
 		rule.cond_object = String(cond_data.get("object", ""))
 		rule.cond_state = String(cond_data.get("state", ""))
 		rule.cond_percent = int(cond_data.get("percent", 0))
-		rule.target_in_chapter = is_location_enabled(rule.target)
+		rule.target_in_chapter = is_location_enabled(rule.target) or AUTHORIZED_ADDITIONAL_LOCATIONS.has(rule.target)
 
 		rule.motion_names.clear()
 		for verb in rule.verbs:

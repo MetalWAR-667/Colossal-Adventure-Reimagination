@@ -58,38 +58,38 @@ func _test_enablement_and_catalog() -> void:
 	check(world.is_location_enabled("LOC_BELOWGRATE") and world.location("LOC_BELOWGRATE") != null,
 		"3. Habilitación funcional de LOC_BELOWGRATE en WorldData")
 
-	# 4. Exactamente 35 ubicaciones habilitadas
+	# 4. Exactamente 41 ubicaciones habilitadas
 	var enabled := world.get_enabled_location_ids()
-	check(enabled.size() == 35 and world.locations.size() == 35,
-		"4. Exactamente 35 ubicaciones habilitadas en la vista funcional")
+	check(enabled.size() == 41 and world.locations.size() == 41,
+		"4. Exactamente 41 ubicaciones habilitadas en la vista funcional")
 
-	# 5. Exactamente 150 ubicaciones deshabilitadas
+	# 5. Exactamente 144 ubicaciones deshabilitadas
 	var non_enabled := 0
 	for lid in catalog.get_location_ids():
 		if not world.is_location_enabled(lid):
 			non_enabled += 1
-	check(non_enabled == 150, "5. Exactamente 150 ubicaciones históricas permanecen deshabilitadas")
+	check(non_enabled == 144, "5. Exactamente 144 ubicaciones históricas permanecen deshabilitadas")
 
-	# 6. Ausencia de habilitación accidental: 34 CH_SURFACE + 1 LOC_BELOWGRATE
+	# 6. Ausencia de habilitación accidental: 34 CH_SURFACE + autorizadas
 	var ch_surface := catalog.get_chapter("CH_SURFACE")
 	var surface_members: Array = ch_surface.get("members", [])
 	var accidental := false
 	for eid in enabled:
-		if eid != "LOC_BELOWGRATE" and not surface_members.has(eid):
+		if not WorldData.AUTHORIZED_ADDITIONAL_LOCATIONS.has(eid) and not surface_members.has(eid):
 			accidental = true
 			break
-	check(not accidental, "6. Ausencia de habilitación accidental fuera de CH_SURFACE + LOC_BELOWGRATE")
+	check(not accidental, "6. Ausencia de habilitación accidental fuera de CH_SURFACE + autorizadas")
 
 	# 7. Idempotencia de la habilitación
 	var re_enable := world.enable_structural_location("LOC_BELOWGRATE")
-	check(re_enable and world.locations.size() == 35 and world.get_enabled_location_ids().size() == 35,
+	check(re_enable and world.locations.size() == 41 and world.get_enabled_location_ids().size() == 41,
 		"7. Idempotencia de enable_structural_location('LOC_BELOWGRATE')")
 
 	# 8. Rechazo de identificadores no autorizados o inválidos
-	var reject_cobble := world.enable_structural_location("LOC_COBBLE")
+	var reject_misthall := world.enable_structural_location("LOC_MISTHALL")
 	var reject_fake := world.enable_structural_location("LOC_NONEXISTENT")
-	check(not reject_cobble and not reject_fake and world.locations.size() == 35,
-		"8. Rechazo explícito de salas no autorizadas (LOC_COBBLE) o inválidas")
+	check(not reject_misthall and not reject_fake and world.locations.size() == 41,
+		"8. Rechazo explícito de salas no autorizadas (LOC_MISTHALL) o inválidas")
 
 	# 9. Conservación del catálogo original (185 salas inalteradas)
 	check(catalog.get_counts().get("locations", 0) == 185,
@@ -148,19 +148,14 @@ func _test_navigation_and_grate_frontier() -> void:
 	check(interpreter.state.current_location == "LOC_GRATE",
 		"15. BACK desde LOC_BELOWGRATE regresa fielmente a LOC_GRATE")
 
-	# 16. Salidas posteriores hacia el interior bloqueadas como fronteras
+	# 16. Salida hacia el interior habilitada en R5B
 	interpreter.submit("DOWN") # vuelve a LOC_BELOWGRATE
 	check(interpreter.state.current_location == "LOC_BELOWGRATE", "Vuelta a LOC_BELOWGRATE")
-	var lines_west := interpreter.submit("WEST")
-	var lines_pit := interpreter.submit("PIT")
-	var lines_debri := interpreter.submit("DEBRI")
-	var all_frontiers := (
-		interpreter.state.current_location == "LOC_BELOWGRATE" and
-		"\n".join(lines_west).contains(world.ui("frontier")) and
-		"\n".join(lines_pit).contains(world.ui("frontier")) and
-		"\n".join(lines_debri).contains(world.ui("frontier"))
-	)
-	check(all_frontiers, "16. Salidas WEST, PIT y DEBRI bloqueadas como frontera de capítulo")
+	interpreter.submit("WEST")
+	var at_cobble: bool = (interpreter.state.current_location == "LOC_COBBLE")
+	interpreter.submit("EAST")
+	check(at_cobble and interpreter.state.current_location == "LOC_BELOWGRATE",
+		"16. Salida WEST desde LOC_BELOWGRATE accede a LOC_COBBLE y retorno con EAST")
 
 	# 17. Ubicación actual coherente
 	check(interpreter.state.current_location == "LOC_BELOWGRATE",
@@ -325,12 +320,12 @@ func _test_integrated_journey() -> void:
 	var down_out := interpreter.submit("DOWN")
 	check(interpreter.state.current_location == "LOC_BELOWGRATE", "Segundo descenso mediante DOWN")
 
-	# Probar avanzar hacia el interior de la cueva (bloqueado como frontera)
+	# Probar avanzar hacia el interior de la cueva (LOC_COBBLE habilitada en R5B)
 	var try_west := interpreter.submit("WEST")
-	check(interpreter.state.current_location == "LOC_BELOWGRATE" and
-		"\n".join(try_west).contains(world.ui("frontier")),
-		"Avanzar al interior bloqueado como frontera no habilitada")
+	check(interpreter.state.current_location == "LOC_COBBLE",
+		"Avanzar al interior accede a LOC_COBBLE")
 
-	# Salir con OUT
+	# Regresar a LOC_BELOWGRATE y salir con OUT
+	interpreter.submit("EAST")
 	var out_out := interpreter.submit("OUT")
 	check(interpreter.state.current_location == "LOC_GRATE", "Salida legítima mediante OUT")

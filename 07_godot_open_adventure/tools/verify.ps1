@@ -79,6 +79,8 @@ if ($LASTEXITCODE -ne 0) { Fail "the structural loader and enabled view tests fa
 if ($LASTEXITCODE -ne 0) { Fail "the structural contract freeze tests failed" }
 & $Godot --headless --path $project --script res://tests/test_cave_mouth_pilot.gd
 if ($LASTEXITCODE -ne 0) { Fail "the cave mouth pilot tests failed" }
+& $Godot --headless --path $project --script res://tests/test_hall_of_mists_vestibule.gd
+if ($LASTEXITCODE -ne 0) { Fail "the hall of mists vestibule tests failed" }
 & $Godot --headless --path $project --script res://tests/test_travel_cycle.gd
 if ($LASTEXITCODE -ne 0) { Fail "the historical travel cycle tests failed" }
 & $Godot --headless --path $project --script res://tests/test_darkness_lamp.gd

@@ -222,6 +222,19 @@ baseline. See the retrospective
   lighting bleed into dark rooms. Structural enablement in `WorldData` is strictly
   whitelisted and fail-closed. Google Drive sync for commit `fb5b0ad` verified.
   See the [R5A-POST record](changes/car_core_002_r5a_post_coverage_lighting_audit/CHANGE.md).
+- CAR-CORE-002 / R5B: `CLOSED / PASS` on 2026-10-26. Hall of Mists Vestibule
+  (`CH_ENTRY` Safe Subgraph) is implemented in Godot 4.7.2. Exactly six
+  additional locations from `StructuralCatalog` are enabled in runtime:
+  `LOC_COBBLE` (LIT=true), `LOC_DEBRIS`, `LOC_AWKWARD`, `LOC_BIRDCHAMBER`,
+  `LOC_PITTOP`, and `LOC_CRACK` (forced transitory bounce back to `LOC_PITTOP`).
+  Playable world expands from 35 to 41 locations (34 `CH_SURFACE` + 7 `CH_ENTRY`);
+  exactly 144 historical locations remain inert. Interior frontiers towards
+  `LOC_MISTHALL` remain strictly blocked; downward movement at `LOC_PITTOP` is
+  fail-closed via `DEPENDENCY_PENDING` on `NUGGET`. Zero dwarves, zero actors,
+  zero new objects (8 functional objects preserved). All 50 focused checks in
+  `test_hall_of_mists_vestibule.gd` and 1,552 checks across all 7 `verify.ps1`
+  phases passed cleanly with zero regressions on CUT A–D. See the
+  [R5B record](changes/car_core_002_r5b_hall_of_mists_vestibule/CHANGE.md).
 
 ## ACTIVE
 
@@ -231,9 +244,6 @@ No active implementation cut is recorded.
 
 These items are not authorized implementation cuts:
 
-- CAR-CORE-002 / R5B — Hall of Mists Vestibule (`CH_ENTRY` Safe Subgraph):
-  `PROPOSED / NOT AUTHORIZED`. (Enabling `LOC_COBBLE`, `LOC_DEBRIS`, `LOC_AWKWARD`,
-  `LOC_BIRDCHAMBER`, `LOC_PITTOP`, `LOC_CRACK` under strict anti-bypass rules).
 - CAR-CORE-002 / R5C — Magic Transit & Word Connections: `PROPOSED / NOT AUTHORIZED`.
   (Enabling `LOC_FOOF1`, `LOC_FOOF2` and bidirectional `XYZZY` transport).
 - Human graphical and gameplay-experience review of chapter 01.

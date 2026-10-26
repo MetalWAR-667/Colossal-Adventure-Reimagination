@@ -19,7 +19,7 @@ func _initialize() -> void:
 	var world := WorldData.load_default()
 	var interpreter := Interpreter.new(world)
 	check(graph["locations"].size() == 185, "global locations present")
-	check(world.locations.size() == 35, "playable locations unchanged (34 CH_01 + LOC_BELOWGRATE)")
+	check(world.locations.size() == 41, "playable locations unchanged (34 CH_01 + 7 CH_ENTRY)")
 	check(world.objects.size() == 8, "playable objects unchanged")
 	var outside := 0
 	var inaccessible := true
@@ -30,7 +30,7 @@ func _initialize() -> void:
 	for raw in graph["locations"]:
 		var id := String(raw["id"])
 		narrative_absent = narrative_absent and not raw.has("description_en")
-		if data["locations"].has(id) or id == "LOC_BELOWGRATE":
+		if data["locations"].has(id) or WorldData.AUTHORIZED_ADDITIONAL_LOCATIONS.has(id):
 			continue
 		outside += 1
 		inaccessible = inaccessible and not world.is_in_chapter(id) and world.location(id) == null
@@ -45,7 +45,7 @@ func _initialize() -> void:
 		rule.target = id
 		var result: Dictionary = interpreter._execute_move(rule)
 		blocked = blocked and not result["moved"] and interpreter.state.current_location == "LOC_START" and interpreter.state.turn == 0
-	check(outside == 150, "150 global IDs remain outside playable world")
+	check(outside == 144, "144 global IDs remain outside playable world")
 	check(inaccessible, "all simulation-only locations excluded from player lookups")
 	check(undescribable, "no descriptions for simulation-only locations")
 	check(unmapped, "no simulation-only map nodes or enabled edges")

@@ -47,7 +47,7 @@ func _initialize() -> void:
 	# WorldData load_default must remain strictly limited to Chapter 01
 	var world := WorldData.load_default()
 	var interpreter := Interpreter.new(world)
-	check(world.locations.size() == 35, "playable locations strictly preserved at 35")
+	check(world.locations.size() == 41, "playable locations strictly preserved at 41")
 	check(world.objects.size() == 8, "playable objects strictly preserved at 8")
 
 	var outside := 0
@@ -73,8 +73,8 @@ func _initialize() -> void:
 		var result: Dictionary = interpreter._execute_move(rule)
 		blocked = blocked and not result["moved"] and interpreter.state.current_location == "LOC_START" and interpreter.state.turn == 0
 
-	check(outside == 150, "exactly 150 inert locations outside playable boundary")
-	check(inaccessible, "all 150 inert locations excluded from player lookups")
+	check(outside == 144, "exactly 144 inert locations outside playable boundary")
+	check(inaccessible, "all 144 inert locations excluded from player lookups")
 	check(undescribable, "no descriptions accessible in runtime for inert locations")
 	check(unmapped, "no inert locations in playable map nodes or edges")
 	check(blocked, "movement to all inert locations strictly rejected")
