@@ -58,17 +58,17 @@ func _test_enablement_and_catalog() -> void:
 	check(world.is_location_enabled("LOC_BELOWGRATE") and world.location("LOC_BELOWGRATE") != null,
 		"3. Habilitación funcional de LOC_BELOWGRATE en WorldData")
 
-	# 4. Exactamente 42 ubicaciones habilitadas
+	# 4. Exactamente 46 ubicaciones habilitadas
 	var enabled := world.get_enabled_location_ids()
-	check(enabled.size() == 42 and world.locations.size() == 42,
-		"4. Exactamente 42 ubicaciones habilitadas en la vista funcional")
+	check(enabled.size() == 46 and world.locations.size() == 46,
+		"4. Exactamente 46 ubicaciones habilitadas en la vista funcional")
 
-	# 5. Exactamente 143 ubicaciones deshabilitadas
+	# 5. Exactamente 139 ubicaciones deshabilitadas
 	var non_enabled := 0
 	for lid in catalog.get_location_ids():
 		if not world.is_location_enabled(lid):
 			non_enabled += 1
-	check(non_enabled == 143, "5. Exactamente 143 ubicaciones históricas permanecen deshabilitadas")
+	check(non_enabled == 139, "5. Exactamente 139 ubicaciones históricas permanecen deshabilitadas")
 
 	# 6. Ausencia de habilitación accidental: 34 CH_SURFACE + autorizadas
 	var ch_surface := catalog.get_chapter("CH_SURFACE")
@@ -82,14 +82,14 @@ func _test_enablement_and_catalog() -> void:
 
 	# 7. Idempotencia de la habilitación
 	var re_enable := world.enable_structural_location("LOC_BELOWGRATE")
-	check(re_enable and world.locations.size() == 42 and world.get_enabled_location_ids().size() == 42,
+	check(re_enable and world.locations.size() == 46 and world.get_enabled_location_ids().size() == 46,
 		"7. Idempotencia de enable_structural_location('LOC_BELOWGRATE')")
 
 	# 8. Rechazo de identificadores no autorizados o inválidos
-	var reject_misthall := world.enable_structural_location("LOC_MISTHALL")
+	var reject_kinghall := world.enable_structural_location("LOC_KINGHALL")
 	var reject_fake := world.enable_structural_location("LOC_NONEXISTENT")
-	check(not reject_misthall and not reject_fake and world.locations.size() == 42,
-		"8. Rechazo explícito de salas no autorizadas (LOC_MISTHALL) o inválidas")
+	check(not reject_kinghall and not reject_fake and world.locations.size() == 46,
+		"8. Rechazo explícito de salas no autorizadas (LOC_KINGHALL) o inválidas")
 
 	# 9. Conservación del catálogo original (185 salas inalteradas)
 	check(catalog.get_counts().get("locations", 0) == 185,

@@ -62,6 +62,12 @@ func reset(world: WorldData) -> void:
 	if not object_place.has("BATTERY"):
 		object_place["BATTERY"] = "LOC_NOWHERE"
 		object_state["BATTERY"] = "FRESH_BATTERIES"
+	if not object_place.has("NUGGET"):
+		object_place["NUGGET"] = "LOC_NUGGET"
+		object_state["NUGGET"] = ""
+	if not object_place.has("FISSURE"):
+		object_place["FISSURE"] = "LOC_EASTBANK"
+		object_state["FISSURE"] = "UNBRIDGED"
 
 
 func _start_location(world: WorldData) -> String:

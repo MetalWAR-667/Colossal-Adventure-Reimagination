@@ -334,8 +334,9 @@ func _select_from(loc: WorldLocation, index: int) -> TravelRule:
 	while index < loc.travel.size():
 		var candidate := loc.travel[index]
 		if candidate.cond_object != "" and not world.objects.has(candidate.cond_object):
-			_pending_dependency("travel condition requires object " + candidate.cond_object)
-			return null
+			if not state.object_place.has(candidate.cond_object):
+				_pending_dependency("travel condition requires object " + candidate.cond_object)
+				return null
 		if _condition_holds(candidate):
 			return candidate
 		if state.travel_outcome == GameState.TravelOutcome.CYCLE_ERROR:

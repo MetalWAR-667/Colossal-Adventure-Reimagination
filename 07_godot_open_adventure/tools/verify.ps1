@@ -85,6 +85,8 @@ if ($LASTEXITCODE -ne 0) { Fail "the hall of mists vestibule tests failed" }
 if ($LASTEXITCODE -ne 0) { Fail 'the magic transit tests failed' }
 & $Godot --headless --path $project --script res://tests/test_map_view_ch_entry.gd
 if ($LASTEXITCODE -ne 0) { Fail 'the map view ch entry tests failed' }
+& $Godot --headless --path $project --script res://tests/test_full_ch02_reconstruction.gd
+if ($LASTEXITCODE -ne 0) { Fail 'the full ch02 reconstruction tests failed' }
 & $Godot --headless --path $project --script res://tests/test_travel_cycle.gd
 if ($LASTEXITCODE -ne 0) { Fail "the historical travel cycle tests failed" }
 & $Godot --headless --path $project --script res://tests/test_darkness_lamp.gd

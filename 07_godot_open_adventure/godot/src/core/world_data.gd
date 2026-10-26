@@ -19,7 +19,11 @@ const AUTHORIZED_ADDITIONAL_LOCATIONS: PackedStringArray = [
 	"LOC_BIRDCHAMBER",
 	"LOC_PITTOP",
 	"LOC_CRACK",
-	"LOC_FOOF1"
+	"LOC_FOOF1",
+	"LOC_MISTHALL",
+	"LOC_NUGGET",
+	"LOC_EASTBANK",
+	"LOC_WESTBANK"
 ]
 
 var meta: Dictionary = {}

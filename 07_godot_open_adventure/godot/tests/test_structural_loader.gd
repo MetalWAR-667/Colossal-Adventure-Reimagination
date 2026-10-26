@@ -124,11 +124,11 @@ func _test_enabled_view() -> void:
 	var world := WorldData.load_default()
 	check(world != null and world.structural_catalog != null, "WorldData.load_default() carga el catálogo estructural")
 
-	# 13. Exactamente 35 ubicaciones habilitadas
+	# 13. Exactamente 46 ubicaciones habilitadas
 	var enabled_ids := world.get_enabled_location_ids()
-	check(enabled_ids.size() == 42, "13. Exactamente 42 ubicaciones habilitadas en runtime")
+	check(enabled_ids.size() == 46, "13. Exactamente 46 ubicaciones habilitadas en runtime")
 
-	# 14. Las 35 pertenecen a CH_SURFACE + LOC_BELOWGRATE
+	# 14. Las 46 pertenecen a CH_SURFACE + autorizadas
 	var all_authorized := true
 	var ch_surface := world.structural_catalog.get_chapter("CH_SURFACE")
 	var surface_members: Array = ch_surface.get("members", [])
@@ -136,18 +136,18 @@ func _test_enabled_view() -> void:
 		if not surface_members.has(eid) and not WorldData.AUTHORIZED_ADDITIONAL_LOCATIONS.has(eid):
 			all_authorized = false
 			break
-	check(all_authorized and surface_members.size() == 34, "14. Todas las 42 ubicaciones habilitadas pertenecen a CH_SURFACE + autorizadas")
+	check(all_authorized and surface_members.size() == 34, "14. Todas las 46 ubicaciones habilitadas pertenecen a CH_SURFACE + autorizadas")
 
-	# 15. Las otras 150 permanecen deshabilitadas
+	# 15. Las otras 139 permanecen deshabilitadas
 	var non_enabled_count := 0
 	var all_ids := world.get_structural_location_ids()
 	for lid in all_ids:
 		if not world.is_location_enabled(lid):
 			non_enabled_count += 1
-	check(non_enabled_count == 143, "15. Exactamente 143 ubicaciones históricas permanecen deshabilitadas")
+	check(non_enabled_count == 139, "15. Exactamente 139 ubicaciones históricas permanecen deshabilitadas")
 
 	# 16. Ubicación global deshabilitada es consultable estructuralmente
-	var test_inert_id := "LOC_MISTHALL"
+	var test_inert_id := "LOC_KINGHALL"
 	var structural_known := world.has_structural_location(test_inert_id)
 	var struct_loc := world.get_structural_location(test_inert_id)
 	check(structural_known and not struct_loc.is_empty(), "16. Ubicación fuera de CH_01 (" + test_inert_id + ") es consultable estructuralmente")
@@ -162,7 +162,7 @@ func _test_enabled_view() -> void:
 	check(not_playable, "17. La ubicación estructural inerte no es accesible en el runtime jugable")
 
 	# 18. WorldData.locations conserva su contenido funcional
-	check(world.locations.size() == 42, "18. WorldData.locations conserva exactamente 42 ubicaciones funcionales")
+	check(world.locations.size() == 46, "18. WorldData.locations conserva exactamente 46 ubicaciones funcionales")
 
 	# 19. WorldData.objects conserva su contenido funcional
 	check(world.objects.size() == 8, "19. WorldData.objects conserva exactamente 8 objetos funcionales")
@@ -192,7 +192,7 @@ func _test_functional_isolation() -> void:
 
 	# 23. El intérprete no permite acceder a una sala deshabilitada
 	var rule_outside := TravelRule.new()
-	rule_outside.target = "LOC_MISTHALL"
+	rule_outside.target = "LOC_KINGHALL"
 	var move_result := interpreter._execute_move(rule_outside)
 	var blocked: bool = not bool(move_result.get("moved", false)) and interpreter.state.travel_outcome == GameState.TravelOutcome.FRONTIER
 	check(blocked, "23. El intérprete rechaza el movimiento hacia salas deshabilitadas y produce FRONTIER")
@@ -228,7 +228,7 @@ func _test_functional_isolation() -> void:
 	check(state_intact, "27. Las consultas estructurales no alteran el estado mutable de la partida")
 
 	# 28. No se crean objetos mutables duplicados
-	check(interpreter.state.object_place.size() <= 9, "28. No se instancian objetos mutables adicionales en GameState (solo CH_01 + BATTERY)")
+	check(interpreter.state.object_place.size() <= 11, "28. No se instancian objetos mutables adicionales en GameState (solo CH_01 + BATTERY + NUGGET + FISSURE)")
 
 	# 29. No cambia el ciclo de turnos
 	var t_before := interpreter.state.turn

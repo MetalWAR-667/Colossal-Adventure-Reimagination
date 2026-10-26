@@ -73,7 +73,7 @@ func _play(interpreter: Interpreter, lines: Array[String]) -> Array[String]:
 
 func _test_dataset(world: WorldData) -> void:
 	_equal(world.chapter_id, "CH_SURFACE", "chapter id")
-	_equal(world.locations.size(), 42, "chapter location count")
+	_equal(world.locations.size(), 46, "chapter location count")
 	_equal(world.objects.size(), 8, "chapter object count")
 	_equal(world.map_nodes.size(), 34, "map node count")
 	_check(world.map_edges.size() > 100, "map edges present")

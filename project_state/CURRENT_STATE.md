@@ -317,7 +317,8 @@ CAR-CORE-002 / R5B is closed with CLOSED / PASS.
 CAR-CORE-002 / R5B-POST is closed with CLOSED / VERIFIED — R5B METRICS RECONCILED.
 CAR-CORE-002 / R5C — Magic Transit & Word Connections (LOC_FOOF1) is closed with CLOSED / PASS.
 CAR-CORE-002 / R6 — Visual Debug Graph in Godot (MapView) is closed with CLOSED / PASS.
-**CAR-CORE-002 / R7 — Full CH_02 Hall of Mists Reconstruction: PROPOSED / NOT AUTHORIZED**
+CAR-CORE-002 / R7 — Full CH_02 Hall of Mists Reconstruction is closed with CLOSED / PASS.
+**CAR-CORE-003 / R1 — CH_03 Central Complex / Hall of the Mountain King Transition: PROPOSED / NOT AUTHORIZED**
 is the next dependency cut; it requires explicit human authorization.
 CAR-ART-005 is closed with documented follow-up: `GRATE_OPEN` polish remains
 pending final artistic review; its accepted state selection and integration are

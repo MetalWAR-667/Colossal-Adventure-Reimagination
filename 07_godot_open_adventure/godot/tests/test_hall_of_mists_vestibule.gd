@@ -29,7 +29,11 @@ const ALL_AUTHORIZED_ADDITIONAL: PackedStringArray = [
 	"LOC_BIRDCHAMBER",
 	"LOC_PITTOP",
 	"LOC_CRACK",
-	"LOC_FOOF1"
+	"LOC_FOOF1",
+	"LOC_MISTHALL",
+	"LOC_NUGGET",
+	"LOC_EASTBANK",
+	"LOC_WESTBANK"
 ]
 
 var checks := 0
@@ -88,19 +92,19 @@ func _test_enablement_and_catalog() -> void:
 			break
 	check(all_enabled, "3. Habilitación funcional de las 7 salas de CH_ENTRY en WorldData")
 
-	# 4. Exactamente 42 ubicaciones habilitadas
+	# 4. Exactamente 46 ubicaciones habilitadas
 	var enabled := world.get_enabled_location_ids()
-	check(enabled.size() == 42 and world.locations.size() == 42,
-		"4. Exactamente 42 ubicaciones habilitadas en la vista funcional")
+	check(enabled.size() == 46 and world.locations.size() == 46,
+		"4. Exactamente 46 ubicaciones habilitadas en la vista funcional")
 
-	# 5. Exactamente 144 ubicaciones deshabilitadas
+	# 5. Exactamente 139 ubicaciones deshabilitadas
 	var non_enabled := 0
 	for lid in catalog.get_location_ids():
 		if not world.is_location_enabled(lid):
 			non_enabled += 1
-	check(non_enabled == 143, "5. Exactamente 143 ubicaciones históricas permanecen deshabilitadas")
+	check(non_enabled == 139, "5. Exactamente 139 ubicaciones históricas permanecen deshabilitadas")
 
-	# 6. Ausencia de habilitación accidental: 34 CH_SURFACE + 8 CH_ENTRY
+	# 6. Ausencia de habilitación accidental: 34 CH_SURFACE + 12 CH_ENTRY
 	var ch_surface := catalog.get_chapter("CH_SURFACE")
 	var surface_members: Array = ch_surface.get("members", [])
 	var accidental := false
@@ -108,7 +112,7 @@ func _test_enablement_and_catalog() -> void:
 		if not ALL_AUTHORIZED_ADDITIONAL.has(eid) and not surface_members.has(eid):
 			accidental = true
 			break
-	check(not accidental, "6. Ausencia de habilitación accidental fuera de CH_SURFACE + 7 CH_ENTRY")
+	check(not accidental, "6. Ausencia de habilitación accidental fuera de CH_SURFACE + 12 CH_ENTRY")
 
 	# 7. Idempotencia de la habilitación
 	var idempotent_ok := true
@@ -116,15 +120,15 @@ func _test_enablement_and_catalog() -> void:
 		if not world.enable_structural_location(lid):
 			idempotent_ok = false
 			break
-	check(idempotent_ok and world.locations.size() == 42 and world.get_enabled_location_ids().size() == 42,
+	check(idempotent_ok and world.locations.size() == 46 and world.get_enabled_location_ids().size() == 46,
 		"7. Idempotencia de enable_structural_location para las salas autorizadas")
 
 	# 8. Rechazo de identificadores no autorizados o inválidos
-	var reject_misthall := world.enable_structural_location("LOC_MISTHALL")
-	var reject_eastbank := world.enable_structural_location("LOC_EASTBANK")
+	var reject_kinghall := world.enable_structural_location("LOC_KINGHALL")
+	var reject_dome := world.enable_structural_location("LOC_DOME")
 	var reject_fake := world.enable_structural_location("LOC_NONEXISTENT")
-	check(not reject_misthall and not reject_eastbank and not reject_fake and world.locations.size() == 42,
-		"8. Rechazo explícito de salas no autorizadas (LOC_MISTHALL, LOC_EASTBANK) o inválidas")
+	check(not reject_kinghall and not reject_dome and not reject_fake and world.locations.size() == 46,
+		"8. Rechazo explícito de salas no autorizadas (LOC_KINGHALL, LOC_DOME) o inválidas")
 
 	# 9. Conservación del catálogo original (185 salas inalteradas)
 	check(catalog.get_counts().get("locations", 0) == 185,
@@ -243,13 +247,12 @@ func _test_subgraph_navigation() -> void:
 	check(interpreter.state.current_location == "LOC_BELOWGRATE",
 		"27. Comando ENTRA desde LOC_PITTOP lleva a LOC_BELOWGRATE")
 
-	# 28. Frontera en LOC_PITTOP: DOWN interceptado como DEPENDENCY_PENDING (objeto NUGGET no disponible)
+	# 28. Navegación histórica hacia LOC_MISTHALL desde LOC_PITTOP (en R5B era DEPENDENCY_PENDING antes de habilitar R7)
 	interpreter.state.move_to("LOC_PITTOP", false)
 	interpreter.submit("DOWN")
-	check(interpreter.state.current_location == "LOC_PITTOP" and
-		interpreter.state.travel_outcome == GameState.TravelOutcome.DEPENDENCY_PENDING and
-		interpreter.state.travel_dependency.contains("NUGGET"),
-		"28. Frontera DOWN en LOC_PITTOP interceptada fail-closed por DEPENDENCY_PENDING (NUGGET)")
+	check(interpreter.state.current_location == "LOC_MISTHALL" and
+		interpreter.state.travel_outcome == GameState.TravelOutcome.ARRIVED,
+		"28. Descenso DOWN desde LOC_PITTOP llega con éxito a LOC_MISTHALL")
 
 
 # ---------------------------------------------------------------------------
